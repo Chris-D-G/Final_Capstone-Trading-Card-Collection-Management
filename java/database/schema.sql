@@ -28,13 +28,13 @@ CREATE TABLE mtg_cards (
 	CONSTRAINT PK_mtg_cards PRIMARY KEY (card_id)
 );
 
-CREATE TABLE mtg_collections (
+CREATE TABLE card_collections (
 	collection_id SERIAL,
 	card_id int NOT NULL REFERENCES mtg_cards(card_id),
 	user_id int NOT NULL REFERENCES users(user_id),
 	tgc_id int NOT NULL REFERENCES tcg(tgc_id),
 	quantity int NOT NULL,
-	CONSTRAINT PK_mtg_collections PRIMARY KEY(collection_id, card_id, user_id)
+	CONSTRAINT PK_mtg_collections PRIMARY KEY(collection_id, card_id, user_id, tgc_id)
 );
 
 
