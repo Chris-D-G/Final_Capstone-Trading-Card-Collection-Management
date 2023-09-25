@@ -29,7 +29,7 @@ CREATE TABLE mtg_cards (
 );
 
 CREATE TABLE card_collections (
-	collection_id SERIAL,
+	collection_id int NOT NULL,
 	card_id int NOT NULL REFERENCES mtg_cards(card_id),
 	user_id int NOT NULL REFERENCES users(user_id),
 	tgc_id int NOT NULL REFERENCES tcg(tgc_id),
