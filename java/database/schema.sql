@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users, tcg, cards, collections CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -20,8 +20,8 @@ CREATE TABLE cards(
 	card_id varchar(128) NOT NULL UNIQUE, 
 	tcg_id integer NOT NULL,
 	card_title varchar(50) NOT NULL,
-	card_image_url varchar(128),
-	card_details_url varchar(128),
+	card_image_url varchar(256),
+	card_details_url varchar(256),
 	CONSTRAINT PK_cards PRIMARY KEY(card_id),
 	CONSTRAINT FK_cards_tcg FOREIGN KEY (tcg_id) REFERENCES tcg (tcg_id)
 );
