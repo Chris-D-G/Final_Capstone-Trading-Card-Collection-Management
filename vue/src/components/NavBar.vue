@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <nav class="navbar navbar-expand-lg" >
   <div class="container-fluid">
     <a class="navbar-brand" href="http://localhost:8080/">
       <img :src="image" alt="..." height="150">
@@ -57,7 +57,7 @@ export default {
 }
 </script>
 <style scoped>
-.bg-* {
+.navbar{
   background-color: #4C2C2E;
 }
 </style>
