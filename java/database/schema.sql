@@ -19,7 +19,7 @@ CREATE TABLE tcg(
 CREATE TABLE cards(
 	card_id varchar(128) NOT NULL UNIQUE, 
 	tcg_id integer NOT NULL,
-	card_title varchar(50) NOT NULL,
+	card_title varchar(256) NOT NULL,
 	card_small_image_url varchar(256),
 	card_normal_image_url varchar(256),
 	card_details_url varchar(256),
