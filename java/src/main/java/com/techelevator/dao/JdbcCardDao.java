@@ -153,7 +153,7 @@ public class JdbcCardDao implements CardDao {
         mappedCard.setId(results.getString("card_id"));
         mappedCard.setTcgId(results.getInt("tcg_id"));
         mappedCard.setName(results.getString("card_title"));
-        mappedCard.setSmallImageUrl.getString("card_small_image_url");
+        mappedCard.setSmallImgUrl(results.getString("card_small_image_url"));
         mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
         return mappedCard;
