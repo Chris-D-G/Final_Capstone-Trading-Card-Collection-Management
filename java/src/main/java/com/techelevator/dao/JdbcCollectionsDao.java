@@ -8,11 +8,12 @@ import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcCollectionsDao implements CollectionsDao{
 
 
@@ -182,8 +183,9 @@ public class JdbcCollectionsDao implements CollectionsDao{
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
             while(rowSet.next()){
+                String id = rowSet.getString("card_id");
                 String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql, rowSet);
+                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
                 if(result.next()){
                     cards.add(mapResultsToCard(result));
                 }
@@ -203,7 +205,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     @Override
     public int addCollection(Collection collection, String username) {
-        String sql = "insert into collections (collection_name, tcg_id) values (?, ?);";
+        String sql = "insert into collections (collection_name, tcg_id) values (?, ?) returning collection_id;";
         String connectingSql = "insert into collections_user (collection_id, user_id) values (?,?);";
         int newCollectionId;
         try{
@@ -261,8 +263,9 @@ public class JdbcCollectionsDao implements CollectionsDao{
     }
 
     @Override
-    public int addCardToCollection(Card card, int collectionId, int qty) {
-        String sql = "insert into collection_cards (collection_id, card_id, quantity) values(?,?,?);";
+    public int addCardToCollection(Card card, int collectionId) {
+        int qty =1;
+        String sql = "insert into collections_cards (collection_id, card_id, quantity) values(?,?,?);";
         int check = -1;
         try{
             check = jdbcTemplate.update(sql,collectionId,card.getId(),qty);

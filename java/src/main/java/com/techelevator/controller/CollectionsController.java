@@ -27,17 +27,26 @@ public class CollectionsController {
       return cdao.getAllUserCollections(principal.getName());
   }
   @RequestMapping(path = "/collections/{tcgId}", method = RequestMethod.GET)
-  public List<Collection> getCollectionsByTCG(@RequestParam int tcgId){
+  public List<Collection> getCollectionsByTCG(@PathVariable int tcgId){
       return cdao.getCollectionsByTCG(tcgId);
   }
   @RequestMapping(path = "/myCollections/{tcgId}", method = RequestMethod.GET)
-  public List<Collection> getUserCollectionsByTCG(Principal principal, @RequestParam int tcgId){
+  public List<Collection> getUserCollectionsByTCG(Principal principal, @PathVariable int tcgId){
       return cdao.getUserCollectionsByTCG(principal.getName(),tcgId);
   }
 
 //  public Card getSingleCollectionItem()
+@RequestMapping(path = "/myCollections/{collectionId}/add", method = RequestMethod.POST)
+ public int addCardToCollection(@Valid @RequestBody Card card, @PathVariable int collectionId){
+      return cdao.addCardToCollection(card, collectionId);
+ }
 
- public int addCardToCollection(@Valid @RequestBody Card card){
-      return -1;//cdao.addCardToCollection(card)
+ @RequestMapping(path = "/myCollections/add", method = RequestMethod.POST)
+ public int createCollection(@Valid @RequestBody Collection collection, Principal principal){
+      return cdao.addCollection(collection,principal.getName());
+ }
+ @RequestMapping(path = "/myCollections/{collectionId}/cards", method = RequestMethod.GET)
+ public List<Card> getCardsByCollection(@PathVariable int collectionId){
+      return cdao.getCardsByCollectionId(collectionId);
  }
 }
