@@ -1,8 +1,10 @@
 <template>
   <div id="nav">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Cardomancy</a>
+    <a class="navbar-brand" href="http://localhost:8080/">
+      <img :src="image" alt="..." height="150">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -44,11 +46,18 @@
 </template>
 
 <script>
-export default {
+import image from "@/assets/Logo.jpg";
 
+export default {
+  data() {
+    return {
+      image
+    }
+  }
 }
 </script>
-
-<style>
-
+<style scoped>
+.bg-* {
+  background-color: #4C2C2E;
+}
 </style>
