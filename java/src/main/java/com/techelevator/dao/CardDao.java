@@ -28,10 +28,20 @@ public interface CardDao {
 
     /**
      * Method to query a list of cards using a card
-     * title as a search parameter
+     * title as a search parameter.
      * @param cardTitle card title to search by
      * @return List of card objects that may match the search parameter
      */
     List<Card> getCardsByTitle(String cardTitle);
+
+    /**
+     * Method to add a new card to source.
+     *
+     * @param cardToBeAdded card object to be added
+     * @return returns the card object directly queried from the source
+     */
+    Card addCard(Card cardToBeAdded);
+
+
 
 }

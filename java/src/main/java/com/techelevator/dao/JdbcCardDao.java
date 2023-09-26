@@ -7,7 +7,6 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class JdbcCardDao implements CardDao {
     @Override
     public Card getCardById(String cardID) {
         // query command to select card using an exact cardID using parameterized input
-        String sql = "SELECT card_id,tcg card_title, card_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg card_title, card_small_image_url,card_normal_image_url, card_details_url " +
                 "FROM cards WHERE card_id = ?;";
         // queried card initially set to null in case no results are returned
         Card queriedCard = null;
@@ -53,7 +52,7 @@ public class JdbcCardDao implements CardDao {
     @Override
     public Card getCardByTitle(String cardTitle) {
         // query command to select card using an exact card title using parameterized input
-        String sql = "SELECT card_id,tcg card_title, card_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg card_title,card_small_image_url,card_normal_image_url, card_details_url " +
                 "FROM cards WHERE card_title = ?;";
         // queried card initially set to null in case no results are returned
         Card queriedCard = null;
@@ -86,7 +85,7 @@ public class JdbcCardDao implements CardDao {
         List<Card> queriedCards = new ArrayList<>();
         String parameter = "%"+ cardTitle+"%";
         // query command to select card matches using a card title as parameterized input
-        String sql = "SELECT card_id,tcg card_title, card_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg card_title, card_small_image_url,card_normal_image_url, card_details_url " +
                      "FROM cards WHERE card_title ILIKE ?;";
         try{
             // send SQL command and return the results as a SQL Row Set
@@ -109,6 +108,39 @@ public class JdbcCardDao implements CardDao {
         //if there were valid results, this returns a list of card object with data otherwise an empty list is returned
         return queriedCards;
     }
+    @Override
+    public Card addCard(Card cardToBeAdded) {
+        // Setting initially created card
+        Card createdCard = null;
+        //query command to insert card into the database
+        String sql = "INSERT INTO cards (card_id, tcg_id, card_title,card_small_image_url,card_normal_image_url, card_details_url) "+
+                                 "VALUES(?, ?, ?, ?, ?, ?)";
+    try{
+        int rowsInserted = jdbcTemplate.update(sql,cardToBeAdded.getId(),
+                                cardToBeAdded.getTcgId(),
+                                cardToBeAdded.getName(),
+                                cardToBeAdded.getSmallImgUrl(),
+                                cardToBeAdded.getImageUrl(),
+                                cardToBeAdded.getScryfallUrl());
+        if(rowsInserted==1){
+            createdCard = getCardById(cardToBeAdded.getId());
+        }else{
+            throw new DataIntegrityViolationException("More that 1 entry updated!");
+        }
+    }catch (CannotGetJdbcConnectionException e) {
+        // catch any database connection errors and throw a new error to be caught at next level
+        throw new RuntimeException("Unable to connect to the database!", e);
+    }catch (BadSqlGrammarException e) {
+        // catch any SQL command errors and throw a new error to be caught at next level
+        throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+    }catch (DataIntegrityViolationException e) {
+        // catch any database connection errors and throw a new error to be caught at next level
+        throw new RuntimeException("Database Integrity Violation!", e);
+    }
+
+        return createdCard;
+    }
+
 
     /**
      * Method that maps sql results to card object
@@ -116,12 +148,13 @@ public class JdbcCardDao implements CardDao {
      * @param results SQL row set  returned by database
      * @return Card object
      */
-    private Card mapResultsToCard(SqlRowSet results) {
+    public Card mapResultsToCard(SqlRowSet results) {
         Card mappedCard = new Card();
         mappedCard.setId(results.getString("card_id"));
         mappedCard.setTcgId(results.getInt("tcg_id"));
         mappedCard.setName(results.getString("card_title"));
-        mappedCard.setImageUrl(results.getString("card_image_url"));
+        mappedCard.setSmallImageUrl.getString("card_small_image_url");
+        mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
         return mappedCard;
     }
