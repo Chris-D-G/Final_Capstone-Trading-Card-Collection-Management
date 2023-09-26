@@ -19,3 +19,4 @@ do
 done
 cd $BASEDIR/../
 java -jar "out/artifacts/ScryfallBulkLoader_jar/ScryfallBulkLoader.jar"
+"c:/program files/postgresql/$i/bin/psql.exe" -U postgres -d $DATABASE -f "database/loadDefaultCollection.sql"
