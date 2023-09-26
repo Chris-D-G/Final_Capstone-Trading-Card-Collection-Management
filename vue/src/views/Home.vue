@@ -4,7 +4,7 @@
     <h1>Welcome to Cardomancy</h1>
     <p>Build, Create, and Showcase</p>
     <div>
-    <img :src="registerBubble" v-if="loggedin">
+    <h2 v-if="loggedin"></h2>
     <h3 v-if="!loggedin"></h3>
     </div>
     </body>
@@ -13,6 +13,7 @@
 
 <script>
 import CollectionService from '../services/CollectionService';
+
 
 
 export default {
@@ -38,7 +39,8 @@ export default {
         this.topCollections = response.data;
         this.isLoading = false;
       }
-    ) 
+    );
+
       
     
   },

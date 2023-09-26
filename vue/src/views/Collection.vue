@@ -7,6 +7,7 @@
     <img class="collection-image" v-bind:src="getCollectionImageURL(collection.tcgId)">
     <p>{{getGameName(collection.tcgId)}}</p>
   </div>
+  {{this.collectionList}}
   </div>
 </template>
 
@@ -23,7 +24,7 @@ export default {
     },
 
     created() {
-        CollectionService.getMyCollections().then(
+        CollectionService.getAllCollections().then(
             (response) => {
                 this.collectionList = response.data;
                 this.isLoading = false;
