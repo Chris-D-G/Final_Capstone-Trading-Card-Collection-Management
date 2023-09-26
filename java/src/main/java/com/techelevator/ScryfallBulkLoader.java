@@ -17,8 +17,9 @@ public class ScryfallBulkLoader {
     @Autowired
     CardDao cardDao;
 
+
     /**
-     * Loads cards from 
+     * Loads cards from the FILE_PATH json card array
      *
      * @param args redundant, leave as empty
      */
@@ -26,6 +27,11 @@ public class ScryfallBulkLoader {
         ScryfallBulkLoader scryfallBulkLoader = new ScryfallBulkLoader();
         scryfallBulkLoader.run();
     }
+
+    /**
+     * parses through the json file and fills
+     * in the postgresql database
+     */
     public void run(){
         try {
             JsonNode cardArray = objectMapper.readTree(jsonPath);
@@ -46,12 +52,20 @@ public class ScryfallBulkLoader {
         }
     }
 
-
+    /**
+     * constructor to instantiate the ScryfallBulkLoader object
+     */
     private ScryfallBulkLoader() {
         this.objectMapper = new ObjectMapper();
         this.jsonPath = new File(FILE_PATH);
     }
 
+    /**
+     * creates a java Card object from a Scryfall json card object
+     *
+     * @param cardJson <a href="https://scryfall.com/docs/api/cards">Scryfall card object</a> from a json
+     * @return java Card object based on the fields in the json card object
+     */
     private Card mapJsonCardToCard(JsonNode cardJson) {
         String id = cardJson.get("id").asText();
         String scryfallUrl = cardJson.get("scryfall_uri").asText();
@@ -69,10 +83,19 @@ public class ScryfallBulkLoader {
         }
         return new Card(id, MTG_ID, name, imgUrl, scryfallUrl);
     }
+
+    /**
+     * updates the postgresql database with a card
+     *
+     * @param card the java card object to upload onto the postgresql server
+     */
     private void uploadCard(Card card){
-        System.out.println(card.getName());
-        // to be implemented!
-//        cardDao.addCard(card);
+        if (cardDao.getCardById(card.getId()) == null) {
+            Card uploadedCard = cardDao.addCard(card);
+            System.out.println(uploadedCard.getName() + " has been added! Card id: " + uploadedCard.getId());
+        } else {
+            System.out.println(card.getName() + " already exists! Card id: " + card.getId());
+        }
     }
 
 }
