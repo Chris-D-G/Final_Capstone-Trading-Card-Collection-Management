@@ -17,22 +17,28 @@ public interface CardDao {
      */
     Card getCardById(String cardID);
 
-    /**
-     * Method to query a card object using a card's
-     * title as a search parameter
-     *
-     * @param cardTitle card title to search by
-     * @return Card object that exactly matches the search parameter
-     */
-    Card getCardByTitle(String cardTitle);
+
+    //ToDO remove this method in subsequent sprint
+//    /**
+//     * Method to query a card object using a card's
+//     * title as a search parameter
+//     *
+//     * @param cardTitle card title to search by
+//     * @return Card object that exactly matches the search parameter
+//     */
+//    Card getCardByTitle(String cardTitle);
+
 
     /**
      * Method to query a list of cards using a card
      * title as a search parameter.
      * @param cardTitle card title to search by
+     * @param isExactMatch boolean determining if an exact match is needed
      * @return List of card objects that may match the search parameter
      */
-    List<Card> getCardsByTitle(String cardTitle);
+    List<Card> getCardsByTitle(String cardTitle, boolean isExactMatch);
+
+
 
     /**
      * Method to add a new card to source.
