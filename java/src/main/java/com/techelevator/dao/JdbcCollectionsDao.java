@@ -18,20 +18,29 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     private UserDao userDao;
     private JdbcTemplate jdbcTemplate;
+    private CardDao cardDao;
 
     public JdbcCollectionsDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         userDao = new JdbcUserDao(jdbcTemplate);
+        cardDao = new JdbcCardDao(jdbcTemplate);
     }
 
+    /**
+     *
+     * @return A list of all collections in the database
+     */
 
     @Override
     public List<Collection> getAllCollections() {
+        //new list
         List<Collection> collectionList = new ArrayList<>();
+        //grab all collections from database
         String sql = "select * from collections;";
         try{
             SqlRowSet rowset = jdbcTemplate.queryForRowSet(sql);
             while(rowset.next()){
+                //if no database issues, map the rowset properties to a collection obj and add the obj to the list
                 collectionList.add(mapRowToCollection(rowset));
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -281,12 +290,13 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collection;
     }
 
-    private Card mapResultsToCard(SqlRowSet results) {
+    public Card mapResultsToCard(SqlRowSet results) {
         Card mappedCard = new Card();
         mappedCard.setId(results.getString("card_id"));
         mappedCard.setTcgId(results.getInt("tcg_id"));
         mappedCard.setName(results.getString("card_title"));
-        mappedCard.setImageUrl(results.getString("card_image_url"));
+        mappedCard.setSmallImgUrl(results.getString("card_small_image_url"));
+        mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
         return mappedCard;
     }
