@@ -1,26 +1,34 @@
 package com.techelevator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techelevator.dao.CardDao;
 import com.techelevator.model.Card;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-
 public class ScryfallBulkLoader {
+    private static final String FILE_PATH = "default-cards-20230925090459.json";
+    final int MTG_ID = 1;
     ObjectMapper objectMapper;
     File jsonPath;
-    int mtgId = 1;
+    @Autowired
+    CardDao cardDao;
 
+    /**
+     * Loads cards from 
+     *
+     * @param args redundant, leave as empty
+     */
     public static void main(String[] args) {
         ScryfallBulkLoader scryfallBulkLoader = new ScryfallBulkLoader();
         scryfallBulkLoader.run();
     }
     public void run(){
-        JsonNode cardArray = null;
         try {
-            cardArray = objectMapper.readTree(jsonPath);
+            JsonNode cardArray = objectMapper.readTree(jsonPath);
             System.out.println("Enter amount of cards to parse through (-1 for all): ");
             Scanner scanner = new Scanner(System.in);
             String response = scanner.nextLine();
@@ -38,9 +46,10 @@ public class ScryfallBulkLoader {
         }
     }
 
-    public ScryfallBulkLoader () {
+
+    private ScryfallBulkLoader() {
         this.objectMapper = new ObjectMapper();
-        this.jsonPath = new File("default-cards-20230925090459.json");
+        this.jsonPath = new File(FILE_PATH);
     }
 
     private Card mapJsonCardToCard(JsonNode cardJson) {
@@ -52,23 +61,18 @@ public class ScryfallBulkLoader {
             imgUrl = null;
         } else {
             JsonNode imgUris = cardJson.get("image_uris");
-            if (imgUris.has("png")) {
-                imgUrl = imgUris.get("png").asText();
-            } else if (imgUris.has("border_crop")) {
-                imgUrl = imgUris.get("border_crop").asText();
-            } else if (imgUris.has("large")) {
-                imgUrl = imgUris.get("large").asText();
-            } else if (imgUris.has("normal")) {
+            if (imgUris.has("normal")) {
                 imgUrl = imgUris.get("normal").asText();
             } else if (imgUris.has("small")) {
                 imgUrl = imgUris.get("small").asText();
             } else imgUrl = null;
         }
-        return new Card(id, mtgId, name, imgUrl, scryfallUrl);
+        return new Card(id, MTG_ID, name, imgUrl, scryfallUrl);
     }
     private void uploadCard(Card card){
         System.out.println(card.getName());
         // to be implemented!
+//        cardDao.addCard(card);
     }
 
 }
