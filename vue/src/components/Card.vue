@@ -1,7 +1,7 @@
 <template>
     <div class="card-container">
         <img v-bind:src="thumbnailImageURL" width="146px" height="204px" v-on:click="displayLargerImage">
-        <img class="large-card" v-bind:src="normalImageURL" width="488px" height="680px" v-show="showLargeImg">
+        <img class="large-card" v-bind:src="normalImageURL" width="488px" height="680px" v-show="showLargeImg" v-on:click="displayLargerImage">
         <div class="card-title">
             <h2>{{card.title}}</h2>
         </div>
