@@ -18,11 +18,11 @@
             Manage Collections
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">View My Collections</a></li>
+            <li><a class="dropdown-item" href="http://localhost:8080/myCollections">View My Collections</a></li>
             <li><a class="dropdown-item" href="#">Start New Collection</a></li>
             <li><a class="dropdown-item" href="#">View Favorited Collections</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">View All Collections</a></li>
+            <li><a class="dropdown-item" href="http://localhost:8080/allCollections">View All Collections</a></li>
           </ul>
         </li>
         <li class="nav-item">
