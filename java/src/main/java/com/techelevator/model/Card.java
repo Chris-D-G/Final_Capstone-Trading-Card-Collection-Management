@@ -7,7 +7,6 @@ public class Card {
     //id is scryfall-specific id
     @NotBlank
     private String id;
-    @NotBlank
     private int tcgId;
     @NotBlank
     private String name;
