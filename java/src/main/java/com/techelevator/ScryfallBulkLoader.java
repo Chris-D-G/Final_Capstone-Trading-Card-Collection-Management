@@ -4,9 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.CardDao;
 import com.techelevator.dao.JdbcCardDao;
 import com.techelevator.model.Card;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.apache.commons.dbcp2.BasicDataSource;
+
+
+
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +23,7 @@ public class ScryfallBulkLoader {
     CardDao cardDao;
     ObjectMapper objectMapper;
     File jsonPath;
+    private BasicDataSource datasource;
 
 
     /**
@@ -62,6 +66,7 @@ public class ScryfallBulkLoader {
     private ScryfallBulkLoader() {
         this.objectMapper = new ObjectMapper();
         this.jsonPath = new File(FILE_PATH);
+
         BasicDataSource datasource = new BasicDataSource();
         datasource.setUsername("final_capstone_appuser");
         datasource.setPassword("finalcapstone");
