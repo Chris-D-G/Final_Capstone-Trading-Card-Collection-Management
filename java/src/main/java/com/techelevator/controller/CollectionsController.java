@@ -26,7 +26,7 @@ public class CollectionsController {
   public List<Collection> getUserCollections(Principal principal){
       return cdao.getAllUserCollections(principal.getName());
   }
-  @RequestMapping(path = "/collections/{tcgId}", method = RequestMethod.GET)
+  @RequestMapping(path = "/allCollections/{tcgId}", method = RequestMethod.GET)
   public List<Collection> getCollectionsByTCG(@PathVariable int tcgId){
       return cdao.getCollectionsByTCG(tcgId);
   }
