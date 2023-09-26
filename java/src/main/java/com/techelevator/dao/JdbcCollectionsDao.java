@@ -53,6 +53,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
+        //return the whole collections data base
         return collectionList;
     }
 
@@ -126,7 +127,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collectionList;
     }
 
-    @Override
+    @Override///////LOOOK AT SOMETHING HERE////////NEED USER ID TO GET ONe RECORD//////
     public Card getCollectionEntryByIds(int collection_id, String cardId) {
         Card card = null;
         String sql = "select * from cards join collections_cards on cards.card_id = collections_cards.card_id where collection_id =? and card_id = ?";

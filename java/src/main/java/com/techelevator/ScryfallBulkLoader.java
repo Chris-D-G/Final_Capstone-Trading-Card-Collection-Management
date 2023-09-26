@@ -8,9 +8,6 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,6 +21,7 @@ public class ScryfallBulkLoader {
     ObjectMapper objectMapper;
     File jsonPath;
     private BasicDataSource datasource;
+
 
 
     /**
