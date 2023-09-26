@@ -31,8 +31,8 @@ public interface CollectionsDao {
     List<Collection> getUserCollectionsByTCG(String username, int tcgId);
 
 
-    Collection getCollectionEntryByIds(int entryId, String cardId);
-    List<Collection> getCollectionEntryByQty(int qty);
+    Card getCollectionEntryByIds(int entryId, String cardId);
+    List<Card> getCollectionEntryByQty(int qty, int collectionId);
 
     /*
     returns a list of card objects by collectionId
@@ -40,8 +40,9 @@ public interface CollectionsDao {
     List<Card> getCardsByCollectionId(int collectionId);
 
 
-    int addCollection(Collection collection);
-    int removeCollectionEntry(int collectionId);
-    int removeWholeCollection(String username, int collectionId);
+    int addCollection(Collection collection, String username);
+    int removeCollection(int collectionId);
+
+    int addCardToCollection(Card card, int collectionId, int qty);
 
 }
