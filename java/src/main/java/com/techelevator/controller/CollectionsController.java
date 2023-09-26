@@ -15,6 +15,7 @@ import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
 @RestController
+@CrossOrigin
 public class CollectionsController {
 
     @Autowired

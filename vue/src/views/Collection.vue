@@ -4,10 +4,9 @@
   v-for="collection in collectionList" 
   v-bind:key="collection.id">
     <h2>{{collection.name}}</h2>
-    <img  class="collection-image" v-bind:src="getCollectionImageURL(collection.tcgId)">
+    <img v-on:click="displayCards(collection.id)" class="collection-image" v-bind:src="getCollectionImageURL(collection.tcgId)">
     <p>{{getGameName(collection.tcgId)}}</p>
   </div>
-  {{this.collectionList}}
   </div>
 </template>
 
@@ -38,7 +37,7 @@ export default {
             }
         },
         getCollectionImageURL(tcgId) {
-             if(tcgId === 1) {
+             if(tcgId == 1) {
                  return "MTG-Collection-Icon.png";
              }
         },
