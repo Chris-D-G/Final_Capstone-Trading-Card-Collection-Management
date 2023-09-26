@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>Insert Name Here</h1>
     <p>If you are seeing this, you are authenticated.</p>
   </div>
 </template>
@@ -10,3 +10,4 @@ export default {
   name: "home"
 };
 </script>
+
