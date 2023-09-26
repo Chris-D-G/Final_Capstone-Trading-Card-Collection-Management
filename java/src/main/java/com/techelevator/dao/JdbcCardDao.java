@@ -22,7 +22,7 @@ public class JdbcCardDao implements CardDao {
     @Override
     public Card getCardById(String cardID) {
         // query command to select card using an exact cardID using parameterized input
-        String sql = "SELECT card_id,tcg card_title, card_small_image_url,card_normal_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
                 "FROM cards WHERE card_id = ?;";
         // queried card initially set to null in case no results are returned
         Card queriedCard = null;
@@ -52,7 +52,7 @@ public class JdbcCardDao implements CardDao {
     @Override
     public Card getCardByTitle(String cardTitle) {
         // query command to select card using an exact card title using parameterized input
-        String sql = "SELECT card_id,tcg card_title,card_small_image_url,card_normal_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg_id, card_title,card_small_image_url,card_normal_image_url, card_details_url " +
                 "FROM cards WHERE card_title = ?;";
         // queried card initially set to null in case no results are returned
         Card queriedCard = null;
@@ -85,7 +85,7 @@ public class JdbcCardDao implements CardDao {
         List<Card> queriedCards = new ArrayList<>();
         String parameter = "%"+ cardTitle+"%";
         // query command to select card matches using a card title as parameterized input
-        String sql = "SELECT card_id,tcg card_title, card_small_image_url,card_normal_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
                      "FROM cards WHERE card_title ILIKE ?;";
         try{
             // send SQL command and return the results as a SQL Row Set
