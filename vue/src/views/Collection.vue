@@ -4,9 +4,10 @@
   v-for="collection in collectionList" 
   v-bind:key="collection.id">
     <h2>{{collection.name}}</h2>
-    <img class="collection-image" v-bind:src="getCollectionImageURL(collection.tcgId)">
+    <img  class="collection-image" v-bind:src="getCollectionImageURL(collection.tcgId)">
     <p>{{getGameName(collection.tcgId)}}</p>
   </div>
+  {{this.collectionList}}
   </div>
 </template>
 
@@ -23,7 +24,7 @@ export default {
     },
 
     created() {
-        CollectionService.getMyCollections().then(
+        CollectionService.getAllCollections().then(
             (response) => {
                 this.collectionList = response.data;
                 this.isLoading = false;
@@ -40,6 +41,10 @@ export default {
              if(tcgId === 1) {
                  return "MTG-Collection-Icon.png";
              }
+        },
+
+        displayCards(collectionId){
+            this.$router.push(`/allCollections/${collectionId}`)
         }
     }
 }

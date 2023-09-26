@@ -48,45 +48,53 @@ public class JdbcCardDao implements CardDao {
         //if there was a valid result, this returns a card object with data otherwise a null is returned
         return queriedCard;
     }
+    //ToDO remove this method in subsequent sprint
+//    @Override
+//    public Card getCardByTitle(String cardTitle) {
+//        // query command to select card using an exact card title using parameterized input
+//        String sql = "SELECT card_id,tcg_id, card_title,card_small_image_url,card_normal_image_url, card_details_url " +
+//                "FROM cards WHERE card_title = ?;";
+//        // queried card initially set to null in case no results are returned
+//        Card queriedCard = null;
+//        // setting up jdbc call inside of a try block to catch any potential errors
+//        try {
+//            // send SQL command and return the results as a SQL Row Set
+//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, cardTitle);
+//            // if there is a RowSet returned...
+//            if (results.next()) {
+//                // use helper method to map sql row to card object
+//                queriedCard = mapResultsToCard(results);
+//            }
+//        } catch (CannotGetJdbcConnectionException e) {
+//            // catch any database connection errors and throw a new error to be caught at next level
+//            throw new RuntimeException("Unable to connect to the database!", e);
+//        } catch (BadSqlGrammarException e) {
+//            // catch any SQL command errors and throw a new error to be caught at next level
+//            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+//        } catch (DataIntegrityViolationException e) {
+//            // catch any database connection errors and throw a new error to be caught at next level
+//            throw new RuntimeException("Database Integrity Violation!", e);
+//        }
+//        //if there was a valid result, this returns a card object with data otherwise a null is returned
+//        return queriedCard;
+//    }
 
     @Override
-    public Card getCardByTitle(String cardTitle) {
-        // query command to select card using an exact card title using parameterized input
-        String sql = "SELECT card_id,tcg_id, card_title,card_small_image_url,card_normal_image_url, card_details_url " +
-                "FROM cards WHERE card_title = ?;";
-        // queried card initially set to null in case no results are returned
-        Card queriedCard = null;
-        // setting up jdbc call inside of a try block to catch any potential errors
-        try {
-            // send SQL command and return the results as a SQL Row Set
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, cardTitle);
-            // if there is a RowSet returned...
-            if (results.next()) {
-                // use helper method to map sql row to card object
-                queriedCard = mapResultsToCard(results);
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        //if there was a valid result, this returns a card object with data otherwise a null is returned
-        return queriedCard;
-    }
-
-    @Override
-    public List<Card> getCardsByTitle(String cardTitle) {
+    public List<Card> getCardsByTitle(String cardTitle, boolean isExactMatch) {
         // Queried Cards set to empty list
         List<Card> queriedCards = new ArrayList<>();
-        String parameter = "%"+ cardTitle+"%";
+        String parameter = cardTitle;
         // query command to select card matches using a card title as parameterized input
         String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
-                     "FROM cards WHERE card_title ILIKE ?;";
+                "FROM cards WHERE card_title LIKE ?;";
+
+        if(!isExactMatch){
+            parameter = "%"+ cardTitle+"%";
+            // query command to select card matches using a card title as parameterized input
+            sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
+                    "FROM cards WHERE card_title ILIKE ?;";
+        }
+
         try{
             // send SQL command and return the results as a SQL Row Set
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql,parameter);
