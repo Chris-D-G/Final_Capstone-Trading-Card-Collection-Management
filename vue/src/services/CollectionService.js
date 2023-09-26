@@ -5,6 +5,9 @@ export default {
         return axios.get('/myCollections');
     },
     getAllCollections() {
-         return axios.get("/allCollections");
+        return axios.get("/allCollections");
+    },
+    addCollection(collection) {
+        return axios.post("myCollections/add", collection);
     }
 }
