@@ -2,20 +2,24 @@ package com.techelevator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.CardDao;
+import com.techelevator.dao.JdbcCardDao;
 import com.techelevator.model.Card;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+@Component
 public class ScryfallBulkLoader {
     private static final String FILE_PATH = "default-cards-20230925090459.json";
     final int MTG_ID = 1;
+    CardDao cardDao;
     ObjectMapper objectMapper;
     File jsonPath;
-    @Autowired
-    CardDao cardDao;
 
 
     /**
@@ -58,6 +62,13 @@ public class ScryfallBulkLoader {
     private ScryfallBulkLoader() {
         this.objectMapper = new ObjectMapper();
         this.jsonPath = new File(FILE_PATH);
+        BasicDataSource datasource = new BasicDataSource();
+        datasource.setUsername("final_capstone_appuser");
+        datasource.setPassword("finalcapstone");
+        datasource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(datasource);
+
+        this.cardDao = new JdbcCardDao(jdbcTemplate);
     }
 
     /**
@@ -70,18 +81,18 @@ public class ScryfallBulkLoader {
         String id = cardJson.get("id").asText();
         String scryfallUrl = cardJson.get("scryfall_uri").asText();
         String name = cardJson.get("name").asText();
-        String imgUrl;
-        if (!cardJson.has("image_uris")){
-            imgUrl = null;
-        } else {
+        String imgUrl = null;
+        String smallImgUrl = null;
+        if (cardJson.has("image_uris")) {
             JsonNode imgUris = cardJson.get("image_uris");
             if (imgUris.has("normal")) {
                 imgUrl = imgUris.get("normal").asText();
-            } else if (imgUris.has("small")) {
-                imgUrl = imgUris.get("small").asText();
-            } else imgUrl = null;
+            }
+            if (imgUris.has("small")) {
+                smallImgUrl = imgUris.get("small").asText();
+            }
         }
-        return new Card(id, MTG_ID, name, imgUrl, scryfallUrl);
+        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl);
     }
 
     /**
