@@ -35,7 +35,6 @@ public class CollectionsController {
       return cdao.getUserCollectionsByTCG(principal.getName(),tcgId);
   }
 
-//  public Card getSingleCollectionItem()
 @RequestMapping(path = "/myCollections/{collectionId}/add", method = RequestMethod.POST)
  public int addCardToCollection(@Valid @RequestBody Card card, @PathVariable int collectionId){
       return cdao.addCardToCollection(card, collectionId);
@@ -48,5 +47,9 @@ public class CollectionsController {
  @RequestMapping(path = "/myCollections/{collectionId}/cards", method = RequestMethod.GET)
  public List<Card> getCardsByCollection(@PathVariable int collectionId){
       return cdao.getCardsByCollectionId(collectionId);
+ }
+ @RequestMapping(path = "/myCollections",method = RequestMethod.DELETE)
+ public int removeCollection(@Valid @RequestBody int collectionId){
+      return cdao.removeCollection(collectionId);
  }
 }
