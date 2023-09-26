@@ -60,4 +60,7 @@ export default {
 .navbar{
   background-color: #4C2C2E;
 }
+.navbar-nav.me-auto.mb-2.mb-lg-0 li a {
+  color: white;
+}
 </style>
