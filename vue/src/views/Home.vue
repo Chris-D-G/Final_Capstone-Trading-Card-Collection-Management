@@ -4,16 +4,44 @@
     <h1>Welcome to Cardomancy</h1>
     <p>Build, Create, and Showcase</p>
     <div>
-    <h2 v-on:></h2>
+    <img :src="registerBubble" v-if="loggedin">
+    <h3 v-if="!loggedin"></h3>
     </div>
     </body>
   </div>
 </template>
 
 <script>
+import CollectionService from '../services/CollectionService';
+
+
 export default {
   name: "home",
   loggedin: false,
+  isLoading: true,
+
+  window:onload = function() {
+      this.checkLoginStatus();
+  },
+
+  data() {
+    return {
+      topCollections: [],
+      isLoading: true
+      
+    }
+  },
+
+  created() {
+    CollectionService.getFavCollections().then(
+      (response) => {
+        this.topCollections = response.data;
+        this.isLoading = false;
+      }
+    ) 
+      
+    
+  },
 
   method: {
     checkLoginStatus() {

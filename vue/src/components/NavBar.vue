@@ -29,12 +29,13 @@
           <a class="nav-link" href="http://localhost:8080/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:8080/logout">Log Out</a>
+          <a class="nav-link" href="http://localhost:8080/logout">LogOut</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="http://localhost:8080/register">Register</a>
         </li>
       </ul>
+      <img class="nav-img" :src="registerBubble" alt="register-now" height="200">
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -47,11 +48,13 @@
 
 <script>
 import image from "@/assets/Logo.jpg";
+import registerBubble from '@/assets/RegisterSuggestionBubble.png';
 
 export default {
   data() {
     return {
-      image
+      image,
+      registerBubble
     }
   }
 }
@@ -62,5 +65,8 @@ export default {
 }
 .navbar-nav.me-auto.mb-2.mb-lg-0 li a {
   color: white;
+}
+.nav-img {
+  padding-right: 100px;
 }
 </style>
