@@ -1,10 +1,13 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class CollectionCard {
     @NotNull
+    @JsonProperty("c")
     private int collectionId;
     @NotNull
     private String cardId;

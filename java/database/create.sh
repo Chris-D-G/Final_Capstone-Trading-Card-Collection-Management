@@ -17,3 +17,5 @@ do
         break
     fi
 done
+cd $BASEDIR/../
+java -jar "out/artifacts/ScryfallBulkLoader_jar/ScryfallBulkLoader.jar"

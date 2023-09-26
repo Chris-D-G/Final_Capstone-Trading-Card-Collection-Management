@@ -1,12 +1,12 @@
 package com.techelevator.model;
 
 import javax.validation.constraints.NotBlank;
+import java.util.ResourceBundle;
 
 public class Card {
     //id is scryfall-specific id
     @NotBlank
     private String id;
-    @NotBlank
     private int tcgId;
     @NotBlank
     private String name;
@@ -14,6 +14,8 @@ public class Card {
     //image url is of full card
     @NotBlank
     private String imageUrl;
+
+    private String smallImgUrl;
 
     //url takes you to full page card notation on scryfall
     @NotBlank
@@ -23,12 +25,21 @@ public class Card {
 /*
 Full constructor used for testing purposes.
  */
-    public Card(String id, int tcgId, String name, String imageUrl, String scryfallUrl) {
+    public Card(String id, int tcgId, String name, String imageUrl,String smallImgUrl, String scryfallUrl) {
         this.id = id;
         this.tcgId = tcgId;
         this.name = name;
         this.imageUrl = imageUrl;
         this.scryfallUrl = scryfallUrl;
+        this.smallImgUrl = smallImgUrl;
+    }
+
+    public String getSmallImgUrl() {
+        return smallImgUrl;
+    }
+
+    public void setSmallImgUrl(String smallImgUrl) {
+        this.smallImgUrl = smallImgUrl;
     }
 
     public String getId() {

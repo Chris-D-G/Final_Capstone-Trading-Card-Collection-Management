@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Card;
 import com.techelevator.model.Collection;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -43,6 +44,6 @@ public interface CollectionsDao {
     int addCollection(Collection collection, String username);
     int removeCollection(int collectionId);
 
-    int addCardToCollection(Card card, int collectionId, int qty);
+    int addCardToCollection(Card card, int collectionId);
 
 }

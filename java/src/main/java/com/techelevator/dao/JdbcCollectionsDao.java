@@ -8,30 +8,40 @@ import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcCollectionsDao implements CollectionsDao{
 
 
     private UserDao userDao;
     private JdbcTemplate jdbcTemplate;
+    private CardDao cardDao;
 
     public JdbcCollectionsDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         userDao = new JdbcUserDao(jdbcTemplate);
+        cardDao = new JdbcCardDao(jdbcTemplate);
     }
 
+    /**
+     *
+     * @return A list of all collections in the database
+     */
 
     @Override
     public List<Collection> getAllCollections() {
+        //new list
         List<Collection> collectionList = new ArrayList<>();
+        //grab all collections from database
         String sql = "select * from collections;";
         try{
             SqlRowSet rowset = jdbcTemplate.queryForRowSet(sql);
             while(rowset.next()){
+                //if no database issues, map the rowset properties to a collection obj and add the obj to the list
                 collectionList.add(mapRowToCollection(rowset));
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -44,6 +54,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
+        //return the whole collections data base
         return collectionList;
     }
 
@@ -117,7 +128,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collectionList;
     }
 
-    @Override
+    @Override///////LOOOK AT SOMETHING HERE////////NEED USER ID TO GET ONe RECORD//////
     public Card getCollectionEntryByIds(int collection_id, String cardId) {
         Card card = null;
         String sql = "select * from cards join collections_cards on cards.card_id = collections_cards.card_id where collection_id =? and card_id = ?";
@@ -172,8 +183,9 @@ public class JdbcCollectionsDao implements CollectionsDao{
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
             while(rowSet.next()){
+                String id = rowSet.getString("card_id");
                 String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql, rowSet);
+                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
                 if(result.next()){
                     cards.add(mapResultsToCard(result));
                 }
@@ -193,7 +205,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     @Override
     public int addCollection(Collection collection, String username) {
-        String sql = "insert into collections (collection_name, tcg_id) values (?, ?);";
+        String sql = "insert into collections (collection_name, tcg_id) values (?, ?) returning collection_id;";
         String connectingSql = "insert into collections_user (collection_id, user_id) values (?,?);";
         int newCollectionId;
         try{
@@ -251,8 +263,9 @@ public class JdbcCollectionsDao implements CollectionsDao{
     }
 
     @Override
-    public int addCardToCollection(Card card, int collectionId, int qty) {
-        String sql = "insert into collection_cards (collection_id, card_id, quantity) values(?,?,?);";
+    public int addCardToCollection(Card card, int collectionId) {
+        int qty =1;
+        String sql = "insert into collections_cards (collection_id, card_id, quantity) values(?,?,?);";
         int check = -1;
         try{
             check = jdbcTemplate.update(sql,collectionId,card.getId(),qty);
@@ -281,12 +294,13 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collection;
     }
 
-    private Card mapResultsToCard(SqlRowSet results) {
+    public Card mapResultsToCard(SqlRowSet results) {
         Card mappedCard = new Card();
         mappedCard.setId(results.getString("card_id"));
         mappedCard.setTcgId(results.getInt("tcg_id"));
         mappedCard.setName(results.getString("card_title"));
-        mappedCard.setImageUrl(results.getString("card_image_url"));
+        mappedCard.setSmallImgUrl(results.getString("card_small_image_url"));
+        mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
         return mappedCard;
     }

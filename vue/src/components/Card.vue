@@ -2,6 +2,9 @@
     <div class="card-container">
         <img v-bind:src="thumbnailImageURL" width="146px" height="204px" v-on:click="displayLargerImage">
         <img class="large-card" v-bind:src="normalImageURL" width="488px" height="680px" v-show="showLargeImg">
+        <div class="card-title">
+            <h2>{{card.title}}</h2>
+        </div>
     </div>
 </template>
 
@@ -31,9 +34,8 @@ export default {
 </script>
 
 <style scoped>
-.large-card{
-    display: block;
-    z-index: 1;
+.large-card{    
+    z-index: 3;
 }
 
 </style>
