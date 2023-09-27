@@ -45,7 +45,7 @@
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item text-dark" href="#"
+                  <a class="dropdown-item text-dark" href="http://localhost:8080/collections/add"
                     >Start New Collection</a
                   >
                 </li>
