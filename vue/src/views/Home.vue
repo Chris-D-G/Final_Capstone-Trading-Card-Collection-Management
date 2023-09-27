@@ -7,6 +7,29 @@
     <h2 v-if="loggedin"></h2>
     <h3 v-if="!loggedin"></h3>
     </div>
+    <!-- bootstrap carousel -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade ">
+      <div class="carousel-inner ">
+        <div class="carousel-item active">
+          <img src="../assets/wayne-low-OvN4OkhkTLo-unsplash.jpg" class="d-block w-75 m-auto border border-dark border-1 rounded-5" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/ryan-quintal-Vp8RnXSnJ6I-unsplash.jpg" class="d-block w-75 m-auto border border-dark border-1 rounded-5" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/depositphotos_469022238-stock-photo-bangkok-thailand-may-2021-magic.jpg" class="d-block w-75 m-auto border border-dark border-1 rounded-5" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- end carousel -->
     </body>
   </div>
 </template>
@@ -70,6 +93,7 @@ body {
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     text-align: center;
+    background-repeat: repeat-y;
 }
 h1 {
   padding-top: 50px;
