@@ -1,6 +1,6 @@
 <template>
-  <div id="nav" class="border-bottom border-dark border-3">
-    <nav class="navbar navbar-expand-lg">
+  <div id="nav">
+    <nav class="navbar navbar-expand-xl border-bottom border-2 border-black">
       <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080/">
           <img :src="image" alt="..." height="150" />
@@ -17,7 +17,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto align-items-center">
+          <ul class="navbar-nav me-auto align-items-center flex-grow-1">
             <li class="nav-item text-">
               <a
                 class="nav-link active text-light fs-4"
@@ -85,7 +85,7 @@
                 >Register</a
               >
             </li>
-            <li class="d-none d-lg-inline">
+            <li class="d-none d-xl-inline">
               <img
                 class="nav-img"
                 :src="registerBubble"
@@ -94,7 +94,7 @@
               />
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="flex-grow-3 d-flex" role="search">
             <input
               class="form-control me-2"
               type="search"
@@ -150,5 +150,8 @@ div > ul > li > ul > li > a:hover {
 }
 .navbar-toggler-icon {
   color: #4c2c2e;
+}
+#nav {
+  height: 160px;
 }
 </style>
