@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container mx-4 mt-3" >
+    <div class="card-container mx-3 mt-3" >
         <img v-bind:src="this.card.smallImgUrl" width="146px" height="204px" v-if="!showLargeImg" v-on:click="displayLargerImage">
         <img class="large-card" v-bind:src="this.card.imageUrl" width="488px" height="680px" v-if="showLargeImg" v-on:click="displayLargerImage" >
         <div class="card-title">
@@ -12,14 +12,7 @@
 export default {
     name: "card-component",
     props: ['card'],
-    computed:{
-        thumbnailImageURL(){
-            return require(this.card.thumbnailImageURL);
-        },
-        normalImageURL(){
-            return require (this.card.normalImageURL)
-        }
-    },
+   
     methods:{
         displayLargerImage(){
             this.showLargeImg = !this.showLargeImg;
