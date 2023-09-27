@@ -9,5 +9,8 @@ export default {
     },
     addCollection(collection) {
         return axios.post("myCollections/add", collection);
+    },
+    getAllCardsByCollection(collectionId){
+        return axios.get(`/myCollections/${collectionId}/cards`);
     }
 }

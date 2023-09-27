@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class ="d-flex flex-wrap me-2">
     
       <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
 
@@ -12,9 +12,6 @@ import card from "../components/Card.vue"
 export default {
     name: 'collection-details',
     components:{card},
-    props:{
-        'collection.id':Number
-    },
     data(){
         return{
             cards:[]
@@ -22,7 +19,7 @@ export default {
     },
 
     created(){
-        CollectionService.getAllCollections().then(
+        CollectionService.getAllCardsByCollection(this.$route.params.id).then(
             response =>{
                 this.cards = response.data;
             }

@@ -50,6 +50,7 @@ public class CollectionsController {
  public int createCollection(@Valid @RequestBody Collection collection, Principal principal){
       return cdao.addCollection(collection,principal.getName());
  }
+ @PreAuthorize("permitAll")
  @RequestMapping(path = "/myCollections/{collectionId}/cards", method = RequestMethod.GET)
  public List<Card> getCardsByCollection(@PathVariable int collectionId){
       return cdao.getCardsByCollectionId(collectionId);
