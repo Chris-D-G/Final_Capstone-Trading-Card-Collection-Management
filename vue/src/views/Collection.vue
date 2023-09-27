@@ -12,13 +12,15 @@
 
 <script>
 import CollectionService from '../services/CollectionService.js';
+import mtgImage from '@/assets/MTG-Collection-Icon.png'
 
 export default {
     name: "collections",
 
     data() {
         return {
-            collectionList : []
+            collectionList : [],
+            mtgImage
         }
     },
 
@@ -38,7 +40,7 @@ export default {
         },
         getCollectionImageURL(tcgId) {
              if(tcgId == 1) {
-                 return "MTG-Collection-Icon.png";
+                 return mtgImage;
              }
         },
 
