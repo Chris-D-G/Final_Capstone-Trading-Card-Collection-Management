@@ -45,7 +45,7 @@ public class CollectionsController {
  public int addCardToCollection(@Valid @RequestBody Card card, @PathVariable int collectionId){
       return cdao.addCardToCollection(card, collectionId);
  }
- @ResponseStatus(HttpStatus.ACCEPTED)
+ @ResponseStatus(HttpStatus.CREATED)
  @RequestMapping(path = "/myCollections/add", method = RequestMethod.POST)
  public int createCollection(@Valid @RequestBody Collection collection, Principal principal){
       return cdao.addCollection(collection,principal.getName());

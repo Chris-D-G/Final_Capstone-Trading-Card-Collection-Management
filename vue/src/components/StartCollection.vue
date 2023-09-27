@@ -36,7 +36,7 @@ export default {
       collectionService.addCollection(this.collection).then((response) => {
         // fake method!!
         if (response.status === 201) {
-          // TODO: route user to their new collection
+          this.$router.push('/MyCollections/')
         }
       });
     },

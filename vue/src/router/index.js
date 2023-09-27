@@ -8,6 +8,7 @@ import store from '../store/index'
 import Collection from '../views/Collection.vue'
 import CollectionDetails from "../views/CollectionDetails"
 import MyCollection from "../views/MyCollection"
+import NewCollection from "../views/NewCollection"
 
 Vue.use(Router)
 
@@ -78,6 +79,14 @@ const router = new Router({
       component: CollectionDetails,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/collections/add",
+      name: "collectionForm",
+      component: NewCollection,
+      meta: {
+        requiresAuth: true
       }
     }
   ]
