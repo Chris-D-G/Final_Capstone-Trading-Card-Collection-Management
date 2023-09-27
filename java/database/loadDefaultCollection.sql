@@ -1,6 +1,6 @@
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
-    (1, 'default', 1),
-    (2, 'default2', 1);
+    (100, 'default', 1),
+    (101, 'default2', 1);
 INSERT INTO collections_user (collection_id,user_id) VALUES (2,4);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
