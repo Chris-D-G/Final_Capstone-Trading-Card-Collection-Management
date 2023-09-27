@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="collectionPreview"
+      class="collectionPreview d-flex flex-column align-items-center m-5 rounded-4 text-light py-2 border border-5 border-dark"
       v-for="collection in collectionList"
       v-bind:key="collection.id"
     >
@@ -18,7 +18,7 @@
 
 <script>
 import CollectionService from "../services/CollectionService.js";
-import mtgImage from "@/assets/MTG-Collection-Icon.png";
+import mtgImage from "@/assets/Updated MTG Collections Image Transparent.png";
 
 export default {
   name: "collections",
@@ -57,11 +57,7 @@ export default {
 
 <style scoped>
 .collectionPreview {
-  padding: 5px;
-  margin: 5px;
-  border: 1px;
   width: 250px;
-  background-color: antiquewhite;
-  border-radius: 20px;
+  background-color: #4c2c2eec;  
 }
 </style>

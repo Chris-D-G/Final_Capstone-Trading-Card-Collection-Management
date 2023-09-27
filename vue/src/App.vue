@@ -27,7 +27,7 @@ body {
   position: relative;
   top: 220px;
 }
-@media screen and (max-width: 992px;) {
+@media screen and (max-width: 992px) {
   .nav {
     display: relative;
   }
@@ -40,14 +40,6 @@ body {
   animation: gradient 15s ease infinite;
   text-align: center;
   background-repeat: repeat-y;
-
-  /* BACKGROUND FOR CVT */
-  /* background: linear-gradient(-45deg, #F4EBD0, #B68D40, #D6AD60, #122620);
-  */
-
-  /* BACKGROUND FOR DECK-O-NAUT */
-  /* background: linear-gradient(-45deg, #422053, #01788F, #912E54, #201F41); */
-  
   
 }
 
