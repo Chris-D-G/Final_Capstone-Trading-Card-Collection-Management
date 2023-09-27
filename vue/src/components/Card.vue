@@ -3,7 +3,7 @@
         <img class="rounded-2 " v-bind:src="this.card.smallImgUrl" width="146px" height="204px" v-if="!showLargeImg" v-on:click="displayLargerImage">
         <img class="large-card rounded-5" v-bind:src="this.card.imageUrl" width="488px" height="680px" v-if="showLargeImg" v-on:click="displayLargerImage" >
         <div class="card-title">
-            <h2>{{this.card.title}}</h2>
+        <h2>{{this.card.title}}</h2>
         </div>
     </div>
 </template>
@@ -30,6 +30,4 @@ export default {
 .large-card{    
     z-index: 3;
 }
-
-
 </style>

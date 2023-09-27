@@ -1,32 +1,29 @@
 <template>
   <div>
       <table>
-    <thead>
-        <tr>
-        <th>Card Name</th>
-        <th>Game Type</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="text" id="cardTitleFilter" v-model="search.cardTitle"/></td>
-        <td>
-          <select id="statusFilter" v-model="search.gameType">
-            <option value="">Magic: The Gathering</option>
-          </select>
-        </td>
-        <tr 
-      v-for="card in filteredCards"
-      v-bind:key="card.id"
-      >
-        <td>{{card.cardTitle}}</td>
-        <td><img src="{{getCardImgUrl(this.card.id)}}" alt="card-art"></td>
-        <td>{{user.username}}</td>
-        <td>{{user.emailAddress}}</td>
-        <td>{{user.status}}</td>
-      </tr>
+        <thead>
+          <tr>
+            <th>Card Name</th>
+            <th>Game Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" id="cardTitleFilter" v-model="search.cardTitle"/></td>
+            <td>
+              <select id="statusFilter" v-model="search.gameType">
+              <option value="">Magic: The Gathering</option>
+            </select>
+            </td>
+          <tr v-for="card in filteredCards" v-bind:key="card.id" >
+            <td>{{card.cardTitle}}</td>
+            <td><img src="{{getCardImgUrl(this.card.id)}}" alt="card-art"></td>
+            <td>{{user.username}}</td>
+            <td>{{user.emailAddress}}</td>
+            <td>{{user.status}}</td>
+          </tr>
         </tbody>
-        </table>
+      </table>
   </div>
 </template>
 
