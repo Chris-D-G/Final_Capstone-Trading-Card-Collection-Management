@@ -28,7 +28,7 @@
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle text-light fs-4"
+                class="nav-link dropdown-toggle text-light fs-4 z-3"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -108,7 +108,6 @@
         </div>
       </div>
     </nav>
-    <body></body>
   </div>
 </template>
 
@@ -125,7 +124,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style >
 .navbar {
   background-color: #4c2c2e;
 }
@@ -157,24 +156,5 @@ div > ul > li > ul > li > a:hover {
 #nav {
   height: 160px;
 }
-body {
-   background: linear-gradient(-45deg, #ae9890, #a888a0, #e8b287, #4c2c2e);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  text-align: center;
-  background-repeat: repeat-y; 
-  background-color: lightgray;
-}
 
- @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 </style>

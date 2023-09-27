@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav" class="position-fixed top-0 start-0 z-3 w-100">
+    <div id="nav" class="position-fixed top-0 start-0 w-100 z-3">
       <nav-bar />
     </div>
-    <router-view class="page-view" />
+    <router-view class="page-view z-0" />
   </div>
 </template>
 <script>
@@ -34,15 +34,24 @@ body {
 }
 
 body {
-  /* background: linear-gradient(-45deg, #ae9890, #a888a0, #e8b287, #4c2c2e);
+  /* BACKGROUND FOR CARDOMANCY */
+  background: linear-gradient(-45deg, #ae9890, #a888a0, #e8b287, #4c2c2e);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   text-align: center;
-  background-repeat: repeat-y; */
-  background-color: lightgray;
+  background-repeat: repeat-y;
+
+  /* BACKGROUND FOR CVT */
+  /* background: linear-gradient(-45deg, #F4EBD0, #B68D40, #D6AD60, #122620);
+  */
+
+  /* BACKGROUND FOR DECK-O-NAUT */
+  /* background: linear-gradient(-45deg, #422053, #01788F, #912E54, #201F41); */
+  
+  
 }
 
-/* @keyframes gradient {
+ @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -52,6 +61,6 @@ body {
   100% {
     background-position: 0% 50%;
   }
-} */
+} 
 </style>
 

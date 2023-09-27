@@ -105,9 +105,7 @@
           </form>
         </div>
       </div>
-    </nav>
-    <body>
-    </body>
+    </nav>    
   </div>
 </template>
 
@@ -153,23 +151,8 @@ div > ul > li > ul > li > a:hover {
 .navbar-toggler-icon {
   color: #122620;
 }
-body {
-  background: linear-gradient(-45deg, #F4EBD0, #B68D40, #D6AD60, #122620);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  text-align: center;
-  background-repeat: repeat-y; 
-}
 
- @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+
+ 
 }
 </style>

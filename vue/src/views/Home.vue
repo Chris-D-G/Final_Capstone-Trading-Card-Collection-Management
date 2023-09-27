@@ -9,6 +9,8 @@
       <!-- bootstrap carousel -->
       <div id="MTG-carousel" class="carousel slide carousel-fade" data-bs-theme="dark">
         <h1 class="text-center">Welcome to Cardomancy</h1>
+        <!-- <h1 class="text-center">Welcome to Deck-O-Naut</h1> -->
+        <!-- <h1 class="text-center">Welcome to Cardventory</h1> -->
         <p class="text-center">Build, Create, and Showcase</p>
         <div class="carousel-inner">
           <div class="carousel-item active">
