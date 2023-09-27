@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="start-50 ">
     <form @submit.prevent="login">
       <h1 >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
@@ -10,13 +10,13 @@
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <input type="text" id="username" placeholder="type username here" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+        <input type="password" id="password" placeholder="type password here" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
+      <button class="btn btn-dark" type="submit">Sign in</button>
       <p>
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>

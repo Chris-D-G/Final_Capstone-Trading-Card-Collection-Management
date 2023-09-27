@@ -45,7 +45,9 @@
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item text-dark" href="http://localhost:8080/collections/add"
+                  <a
+                    class="dropdown-item text-dark"
+                    href="http://localhost:8080/collections/add"
                     >Start New Collection</a
                   >
                 </li>
@@ -64,21 +66,21 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
               <a
                 class="nav-link text-light fs-4"
                 href="http://localhost:8080/login"
                 >Login</a
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
               <a
                 class="nav-link text-light fs-4"
                 href="http://localhost:8080/logout"
                 >Logout</a
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
               <a
                 class="nav-link text-light fs-4"
                 href="http://localhost:8080/register"
@@ -96,9 +98,9 @@
           </ul>
           <form class="flex-grow-3 d-flex" role="search">
             <input
-              class="form-control me-2"
+              class="form-control me-2 fs-10"
               type="search"
-              placeholder="Search"
+              placeholder="Search by Card Name or ID(scryfall)"
               aria-label="Search"
             />
             <button class="btn btn-outline-light" type="submit">Search</button>
@@ -133,7 +135,7 @@ export default {
   left: -80px;
 }
 
-div ul li {
+div > ul > li {
   padding-right: 40px;
 }
 

@@ -1,14 +1,15 @@
 <template>
   <div class="home">
     <body>
-      <h1>Welcome to Cardomancy</h1>
-      <p>Build, Create, and Showcase</p>
+     
       <div>
         <h2 v-if="loggedin"></h2>
         <h3 v-if="!loggedin"></h3>
       </div>
       <!-- bootstrap carousel -->
-      <div id="MTG-carousel" class="carousel slide carousel-fade">
+      <div id="MTG-carousel" class="carousel slide carousel-fade" data-bs-theme="dark">
+        <h1 class="text-center">Welcome to Cardomancy</h1>
+        <p class="text-center">Build, Create, and Showcase</p>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
