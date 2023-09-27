@@ -285,6 +285,27 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return check;
     }
 
+    @Override
+    public Collection getCollectionById(int collectionId) {
+        Collection collection = new Collection();
+        String sql ="select * from collections where collection_id = ?";
+        try{
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql,collectionId);
+            if(result.next()){
+                collection = mapRowToCollection(result);
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+      return collection;
+    }
 
     private Collection mapRowToCollection(SqlRowSet set){
         Collection collection = new Collection();

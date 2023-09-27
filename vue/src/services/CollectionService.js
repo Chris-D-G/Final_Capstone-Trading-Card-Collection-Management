@@ -12,5 +12,8 @@ export default {
     },
     getAllCardsByCollection(collectionId){
         return axios.get(`/collections/${collectionId}/cards`);
+    },
+    getCollectionById(collectionId){
+        return axios.get(`collections/${collectionId}`)
     }
 }

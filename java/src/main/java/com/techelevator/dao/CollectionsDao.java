@@ -67,6 +67,7 @@ public interface CollectionsDao {
      */
     List<Card> getCardsByCollectionId(int collectionId);
 
+
     /**
      *Method that adds a collection to a specific username
      *
@@ -74,6 +75,7 @@ public interface CollectionsDao {
      * @param username collection owner
      * @return ID of the newly created collection
      */
+
 
     int addCollection(Collection collection, String username);
 
