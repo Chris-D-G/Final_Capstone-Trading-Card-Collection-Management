@@ -150,12 +150,7 @@ public class JdbcCardDao implements CardDao {
     }
 
 
-    /**
-     * Method that maps sql results to card object
-     *
-     * @param results SQL row set  returned by database
-     * @return Card object
-     */
+    @Override
     public Card mapResultsToCard(SqlRowSet results) {
         Card mappedCard = new Card();
         mappedCard.setId(results.getString("card_id"));

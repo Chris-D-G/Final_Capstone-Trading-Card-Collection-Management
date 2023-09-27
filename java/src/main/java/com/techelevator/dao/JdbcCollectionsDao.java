@@ -293,7 +293,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         collection.setTcgId(set.getInt("tcg_id"));
         return collection;
     }
-
+    //ToDO remove this method and make a call to the cardDAO method
     public Card mapResultsToCard(SqlRowSet results) {
         Card mappedCard = new Card();
         mappedCard.setId(results.getString("card_id"));

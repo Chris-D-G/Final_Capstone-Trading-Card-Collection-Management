@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Card;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.List;
 
@@ -47,6 +48,14 @@ public interface CardDao {
      * @return returns the card object directly queried from the source
      */
     Card addCard(Card cardToBeAdded);
+
+    /**
+     * Method that maps sql results to card object
+     *
+     * @param results SQL row set  returned by database
+     * @return Card object
+     */
+    Card mapResultsToCard(SqlRowSet results);
 
 
 
