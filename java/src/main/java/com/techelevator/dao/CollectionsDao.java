@@ -102,4 +102,5 @@ public interface CollectionsDao {
     //toDO change to boolean returns
     int addCardToCollection(Card card, int collectionId);
 
+    Collection getCollectionById(int collectionId);
 }
