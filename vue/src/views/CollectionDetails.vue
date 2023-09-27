@@ -1,9 +1,13 @@
 <template>
-  <div class ="d-flex flex-wrap me-2">
+  <div>
     
-      <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
-
+    <div class=" text-dark fs-1 text-center fw-bold text-decoration-underline">Collection Title</div>
+    <div class ="d-flex flex-wrap me-2">
+        <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
+    </div>
   </div>
+  
+  
 </template>
 
 <script>
