@@ -83,7 +83,6 @@ div>ul>li>a:hover{
 }
 div>ul>li>ul>li>a:hover{
   background-color:#AE9890;
-  text-color: #4C2C2E;  
 }
 .navbar-toggler{
   background-color:#E8B287 ;
