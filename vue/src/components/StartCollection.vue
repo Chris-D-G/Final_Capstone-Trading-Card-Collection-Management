@@ -33,7 +33,7 @@ export default {
             if(this.collection.tcgId === 0){
                 return;
             }
-            collectionService.add(this.collection).then(response => { // fake method!!
+            collectionService.addCollection(this.collection).then(response => { // fake method!!
                 if (response.status === 201) {
                     // TODO: route user to their new collection
                 }
