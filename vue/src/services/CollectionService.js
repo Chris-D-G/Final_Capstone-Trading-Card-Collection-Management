@@ -11,6 +11,6 @@ export default {
         return axios.post("myCollections/add", collection);
     },
     getAllCardsByCollection(collectionId){
-        return axios.get(`/myCollections/${collectionId}/cards`);
+        return axios.get(`/collections/${collectionId}/cards`);
     }
 }
