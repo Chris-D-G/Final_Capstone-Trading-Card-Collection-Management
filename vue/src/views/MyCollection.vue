@@ -1,17 +1,19 @@
 <template>
   <div>
     <div
-      class="collectionPreview"
+      class="collectionPreview d-flex flex-column align-items-center m-5 rounded-5 text-dark py-5"
       v-for="collection in collectionList"
       v-bind:key="collection.id"
     >
-      <h2>{{ collection.name }}</h2>
+      <h2 class="">{{ collection.name }}</h2>
       <img
         v-on:click="displayCards(collection.id)"
         class="collection-image"
         v-bind:src="getCollectionImageURL(collection.tcgId)"
+        width="300px"
+        height="auto"
       />
-      <p>{{ getGameName(collection.tcgId) }}</p>
+      <p class="">{{ getGameName(collection.tcgId) }}</p>
     </div>
   </div>
 </template>
@@ -49,7 +51,7 @@ export default {
     },
 
     displayCards(collectionId) {
-      this.$router.push(`/myCollections/${collectionId}`);
+      this.$router.push(`/allCollections/${collectionId}`);
     },
   },
 };
@@ -57,11 +59,12 @@ export default {
 
 <style scoped>
 .collectionPreview {
-  padding: 5px;
+  /* padding: 5px;
   margin: 5px;
-  border: 1px;
+  border: 1px;  
+  border-radius: 20px; */
   width: 250px;
   background-color: antiquewhite;
-  border-radius: 20px;
+  
 }
 </style>

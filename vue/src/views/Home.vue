@@ -81,17 +81,17 @@ export default {
       this.isLoading = false;
     });
   },
-
-  method: {
-    checkLoginStatus() {
-      let token = this.$state.state.token;
-      if (token != "") {
-        this.loggedin = true;
-      } else {
-        this.loggedin = false;
-      }
-    },
-  },
+// To DO: figure out what to do with this method
+  // method: {
+  //   checkLoginStatus() {
+  //     let token = this.$state.state.token;
+  //     if (token != "") {
+  //       this.loggedin = true;
+  //     } else {
+  //       this.loggedin = false;
+  //     }
+  //   },
+  // },
 };
 </script>
 
