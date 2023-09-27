@@ -60,4 +60,9 @@ public class CollectionsController {
  public int removeCollection(@Valid @RequestBody int collectionId){
       return cdao.removeCollection(collectionId);
  }
+ @PreAuthorize("permitAll")
+ @RequestMapping(path = "/collections/{collectionId}", method = RequestMethod.GET)
+ public Collection getCollectionById(@PathVariable int collectionId){
+        return cdao.getCollectionById(collectionId);
+ }
 }

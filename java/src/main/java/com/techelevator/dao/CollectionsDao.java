@@ -40,6 +40,8 @@ public interface CollectionsDao {
      */
     List<Card> getCardsByCollectionId(int collectionId);
 
+    Collection getCollectionById(int collectionId);
+
 
     int addCollection(Collection collection, String username);
     int removeCollection(int collectionId);
