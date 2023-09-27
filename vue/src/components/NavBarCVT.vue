@@ -106,12 +106,13 @@
         </div>
       </div>
     </nav>
-    <body></body>
+    <body>
+    </body>
   </div>
 </template>
 
 <script>
-import image from "@/assets/DOTLogo.png";
+import image from "@/assets/CVTLogo.png";
 import registerBubble from "@/assets/RegisterSuggestionBubble.png";
 
 export default {
@@ -125,7 +126,7 @@ export default {
 </script>
 <style scoped>
 .navbar {
-  background-color: #201F41;
+  background-color: #122620;
 }
 .nav-img {
   padding-right: 100px;
@@ -139,21 +140,21 @@ div ul li {
 }
 
 div > ul > li > a:hover {
-  background-color: #01788F;
+  background-color: #B68D40;
   border-radius: 5px;
 }
 div > ul > li > ul > li > a:hover {
-  background-color: #912E54;
+  background-color: #D6AD60;
 }
 .navbar-toggler {
-  background-color: #01788F;
-  border-color: #201F41;
+  background-color: #B68D40;
+  border-color: #122620;
 }
 .navbar-toggler-icon {
-  color: #422053;
+  color: #122620;
 }
 body {
-  background: linear-gradient(-45deg, #422053, #01788F, #912E54, #201F41);
+  background: linear-gradient(-45deg, #F4EBD0, #B68D40, #D6AD60, #122620);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   text-align: center;
