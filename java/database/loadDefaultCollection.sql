@@ -1,7 +1,7 @@
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (1, 'default', 1),
     (2, 'default2', 1);
-INSERT INTO collections_user (collection_id,user_id) VALUES (2,1);
+INSERT INTO collections_user (collection_id,user_id) VALUES (2,4);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (1, (SELECT card_id FROM cards WHERE card_title = 'Abbot of Keral Keep' LIMIT 1), 4),

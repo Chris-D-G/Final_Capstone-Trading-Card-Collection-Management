@@ -19,36 +19,37 @@
 import collectionService from "../services/CollectionService";
 
 export default {
-    name: "start-collection",
-    data() {
-        return {
-            collection: {
-                name: "",
-                tcgId: ""
-            }
+  name: "start-collection",
+  data() {
+    return {
+      collection: {
+        name: "",
+        tcgId: "",
+      },
+    };
+  },
+  methods: {
+    saveCollection() {
+      if (this.collection.tcgId === 0) {
+        return;
+      }
+      collectionService.addCollection(this.collection).then((response) => {
+        // fake method!!
+        if (response.status === 201) {
+          // TODO: route user to their new collection
         }
+      });
     },
-    methods: {
-        saveCollection() {
-            if(this.collection.tcgId === 0){
-                return;
-            }
-            collectionService.addCollection(this.collection).then(response => { // fake method!!
-                if (response.status === 201) {
-                    // TODO: route user to their new collection
-                }
-            })
-        }
-    }
-}
+  },
+};
 </script>
 
 <style>
 .field {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .field label {
-    font-weight: bold;
+  font-weight: bold;
 }
 </style>
