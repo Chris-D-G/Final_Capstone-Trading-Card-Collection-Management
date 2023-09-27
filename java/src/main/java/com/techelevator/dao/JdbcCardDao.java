@@ -116,6 +116,115 @@ public class JdbcCardDao implements CardDao {
         //if there were valid results, this returns a list of card object with data otherwise an empty list is returned
         return queriedCards;
     }
+
+
+    /**
+     * Method to get cards by color
+     * Search using preset option of Strings (Red, Black, White, Green, Blue)
+     * Must be an exact match as options will not be user entered. ILIKE used for cases where cards have multiple colors
+     * Stored in color object in API using Upper Case single letter abbreviations.
+     * W - White | U - Blue | B - Black | R - Red | G - Green
+     */
+
+    @Override
+    public List<Card> getCardsByColor(String cardColor) {
+        List<Card> cardsOfSelectedColor = new ArrayList<>();
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+                "FROM cards WHERE card_colors ILIKE ?;";
+        String parameter = "%"+cardColor+"%";
+
+        try{
+            // send SQL command and return the results as a SQL Row Set
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,parameter);
+            // while there are results
+            while(results.next()){
+                // add the mapped results to the list
+                cardsOfSelectedColor.add(mapResultsToCard(results));
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        }catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        }catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        //if there were valid results, this returns a list of card object with data otherwise an empty list is returned
+        return cardsOfSelectedColor;
+    }
+
+    @Override
+    public List<Card> getCardsByColorIdentity(String cardColorIdentity) {
+        List<Card> cardsOfSelectedColor = new ArrayList<>();
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+                "FROM cards WHERE card_colors_identity ILIKE ?;";
+        String parameter = "%"+cardColorIdentity+"%";
+
+        try{
+            // send SQL command and return the results as a SQL Row Set
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,parameter);
+            // while there are results
+            while(results.next()){
+                // add the mapped results to the list
+                cardsOfSelectedColor.add(mapResultsToCard(results));
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        }catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        }catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        //if there were valid results, this returns a list of card object with data otherwise an empty list is returned
+        return cardsOfSelectedColor;
+    }
+
+    /**
+     * Methods to get cards by set id and code. Set name can be displayed but does not need to be searchable.
+     * Codes are three letter abbreviations of set names
+     * Must be an exact match as options will be (possibly) searchable but preset.
+     */
+
+    @Override
+    public List<Card> getCardsBySetId(String setId) {
+        List<Card> cardsOfSelectedSet = new ArrayList<>();
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+                "FROM cards WHERE card_set_id = ?;";
+        String parameter = setId;
+
+        try{
+            // send SQL command and return the results as a SQL Row Set
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,parameter);
+            // while there are results
+            while(results.next()){
+                // add the mapped results to the list
+                cardsOfSelectedSet.add(mapResultsToCard(results));
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        }catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        }catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        //if there were valid results, this returns a list of card object with data otherwise an empty list is returned
+        return cardsOfSelectedSet;
+    }
+
     @Override
     public Card addCard(Card cardToBeAdded) {
         // Setting initially created card

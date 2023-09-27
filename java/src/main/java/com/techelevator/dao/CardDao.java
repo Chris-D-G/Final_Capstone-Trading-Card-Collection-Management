@@ -40,6 +40,29 @@ public interface CardDao {
     List<Card> getCardsByTitle(String cardTitle, boolean isExactMatch);
 
 
+    /**
+     * Method to get cards by color/color identity
+     * Search using preset option of Strings (Red, Black, White, Green, Blue)
+     * Must be an exact match as options will not be user entered.
+     * Stored in color object in API using Upper Case single letter abbreviations.
+     * W - White | U - Blue | B - Black | R - Red | G - Green
+     */
+
+    List<Card> getCardsByColor(String color);
+
+
+    List<Card> getCardsByColorIdentity(String cardColorIdentity);
+
+    /**
+     * Methods to get cards by set id and code. Set name can be displayed but does not need to be searchable.
+     * Codes are three letter abbreviations of set names
+     * Must be an exact match as options will be (possibly) searchable but preset.
+     */
+
+    List<Card> getCardsBySetId(String id);
+
+    List<Card> getCardsBySetCode(String setCode);
+
 
     /**
      * Method to add a new card to source.
