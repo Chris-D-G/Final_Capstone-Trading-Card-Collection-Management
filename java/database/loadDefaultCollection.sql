@@ -1,6 +1,8 @@
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (1, 'default', 1),
     (2, 'default2', 1);
+INSERT INTO collections_user (collection_id,user_id) VALUES (2,1);
+
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (1, (SELECT card_id FROM cards WHERE card_title = 'Abbot of Keral Keep' LIMIT 1), 4),
     (1, (SELECT card_id FROM cards WHERE card_title = 'Acolyte of the Inferno' LIMIT 1), 4),
@@ -27,6 +29,8 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (1, (SELECT card_id FROM cards WHERE card_title = 'Tormod''s Crypt' LIMIT 1), 3),
     (1, (SELECT card_id FROM cards WHERE card_title = 'Tymaret, the Murder King' LIMIT 1), 2),
     (1, (SELECT card_id FROM cards WHERE card_title = 'Vampire Nighthawk' LIMIT 1), 4),
+
+
     (2, (SELECT card_id FROM cards WHERE card_title = 'Squirrel Mob' LIMIT 1), 3),
     (2, (SELECT card_id FROM cards WHERE card_title = 'Nut Collector' LIMIT 1), 4),
     (2, (SELECT card_id FROM cards WHERE card_title = 'Satyr Wayfinder' LIMIT 1), 3),
