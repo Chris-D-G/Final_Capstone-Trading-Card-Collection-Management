@@ -19,12 +19,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto align-items-center flex-grow-1">
             <li class="nav-item text-">
-              <router-link :to="{name: 'home'}">
-                <a
-                class="nav-link active text-light fs-4"
-                aria-current="page"
-                >Home</a
-              >
+              <router-link :to="{ name: 'home' }">
+                <a class="nav-link active text-light fs-4" aria-current="page"
+                  >Home</a
+                >
               </router-link>
             </li>
             <li class="nav-item dropdown">
@@ -39,19 +37,13 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link :to="{name: 'myCollections'}">
-                  <a
-                    class="dropdown-item text-dark"
-                    >View My Collections</a
-                  >
+                  <router-link :to="{ name: 'myCollections' }">
+                    <a class="dropdown-item text-dark">View My Collections</a>
                   </router-link>
                 </li>
                 <li>
-                  <router-link :to="{name: 'collectionForm'}">
-                  <a
-                    class="dropdown-item text-dark"
-                    >Start New Collection</a
-                  >
+                  <router-link :to="{ name: 'collectionForm' }">
+                    <a class="dropdown-item text-dark">Start New Collection</a>
                   </router-link>
                 </li>
                 <li>
@@ -61,37 +53,25 @@
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <router-link :to="{name: 'allCollections'}">
-                  <a
-                    class="dropdown-item text-dark"
-                    >View All Collections</a
-                  >
+                  <router-link :to="{ name: 'allCollections' }">
+                    <a class="dropdown-item text-dark">View All Collections</a>
                   </router-link>
                 </li>
               </ul>
             </li>
-            <li class="nav-item" >
-              <router-link :to="{name: 'login'}">
-              <a
-                class="nav-link text-light fs-4"
-                >Login</a
-              >
+            <li class="nav-item">
+              <router-link :to="{ name: 'login' }">
+                <a class="nav-link text-light fs-4">Login</a>
               </router-link>
             </li>
-            <li class="nav-item" >
-              <router-link :to="{name: 'logout'}">
-              <a
-                class="nav-link text-light fs-4"
-                >Logout</a
-              >
+            <li class="nav-item">
+              <router-link :to="{ name: 'logout' }">
+                <a class="nav-link text-light fs-4">Logout</a>
               </router-link>
             </li>
-            <li class="nav-item" >
-              <router-link :to="{name: 'register'}">
-              <a
-                class="nav-link text-light fs-4"
-                >Register</a
-              >
+            <li class="nav-item">
+              <router-link :to="{ name: 'register' }">
+                <a class="nav-link text-light fs-4">Register</a>
               </router-link>
             </li>
             <li class="d-none d-xl-inline">
@@ -164,8 +144,7 @@ div > ul > li > ul > li > a:hover {
   height: 160px;
 }
 
-a{
+a {
   text-decoration: none;
 }
-
 </style>
