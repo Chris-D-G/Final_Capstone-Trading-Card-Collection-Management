@@ -3,6 +3,7 @@ package com.techelevator.model;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Card {
     //id is scryfall-specific id
@@ -32,7 +33,7 @@ public class Card {
     @NotBlank
     private String collectorNumber;
     @NotBlank
-    private List<String> legalities;
+    private Map<String, String> legalities;
     private String layout;
     private double cmc;
     private int edhrecRank;
@@ -42,7 +43,7 @@ Full constructor used for testing purposes.
  */
     public Card(String id, int tcgId, String name, String imageUrl,
                 String smallImgUrl, String scryfallUrl, List<String> colorIdentity,
-                int setId, String setCode, String setName, String collectorNumber, List<String> legalities,
+                int setId, String setCode, String setName, String collectorNumber, Map<String, String> legalities,
                 List<String> colors, String reverseImgUrl, String smallReverseImgUrl, String layout, double cmc,
                 int edhrecRank) {
         this.id = id;
@@ -169,11 +170,11 @@ Full constructor used for testing purposes.
         this.collectorNumber = collectorNumber;
     }
 
-    public List<String> getLegalities() {
+    public Map<String, String> getLegalities() {
         return legalities;
     }
 
-    public void setLegalities(List<String> legalities) {
+    public void setLegalities(Map<String, String> legalities) {
         this.legalities = legalities;
     }
 
@@ -207,5 +208,25 @@ Full constructor used for testing purposes.
 
     public void setSmallReverseImgUrl(String smallReverseImgUrl) {
         this.smallReverseImgUrl = smallReverseImgUrl;
+    }
+
+    public String toString(){
+        return
+                "id: " + getId()
+                + "\nname: " + getName()
+                + "\nimgUrl: " + getImageUrl()
+                + "\nsmallImg: " + getSmallImgUrl()
+                + "\nreverseImgUrl: " + getReverseImgUrl()
+                + "\nsmallReverseImgUrl: " + getSmallImgUrl()
+                + "\ncolors: " + getColors().toString()
+                + "\ncolorIdentity: " + getColorIdentity().toString()
+                + "\nsetId: " + getSetId()
+                + "\nsetCode: " + getSetCode()
+                + "\nsetName: " + getSetName()
+                + "\ncollectorNumber: " + getCollectorNumber()
+                + "\nlegalities: " + getLegalities().toString()
+                + "\nlayout: " + getLayout()
+                + "\ncmc: " + getCmc()
+                + "\nedhrecRank: " + getEdhrecRank();
     }
 }
