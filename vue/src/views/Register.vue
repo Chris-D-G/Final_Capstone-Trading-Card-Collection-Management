@@ -1,24 +1,27 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register" class="text-center mt-5 pt-5">
     <form @submit.prevent="register">
-      <h1>Create Account</h1>
+      <h1 class="mb-5">Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <label for="username" >Username</label>
+        <input type="text" class="form-control w-25 text-center mx-auto" id="username" v-model="user.username" required autofocus />
+        <div class="form-text">Your username will be final. Choose wisely.</div>
       </div>
-      <div class="form-input-group">
+      <div class="form-input-group pb-3">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+        <input type="password" class="form-control w-25 text-center mx-auto" id="password" v-model="user.password" required />
       </div>
-      <div class="form-input-group">
+      <div class="form-input-group pb-3">
         <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
+        <input type="password" class="form-control w-25 text-center mx-auto" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit">Create Account</button>
-      <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      <div class="mb-2">
+      <button class="btn btn-dark" type="submit">Create Account</button>
+      </div>
+      <div id="ch"><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></div>
     </form>
   </div>
 </template>
@@ -79,5 +82,14 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+  font-family: 'Forzan', sans-serif;
+  font-weight: bold;
+  font-size: 14pt;
 }
+
+h1{
+  font-family: 'Forzan', sans-serif;
+  font-weight: bold;
+}
+
 </style>
