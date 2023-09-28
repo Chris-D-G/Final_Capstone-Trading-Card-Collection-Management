@@ -21,8 +21,11 @@ public class JdbcCardDao implements CardDao {
 
     @Override
     public Card getCardById(String cardID) {
+
         // query command to select card using an exact cardID using parameterized input
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
                 "FROM cards WHERE card_id = ?;";
         // queried card initially set to null in case no results are returned
         Card queriedCard = null;
@@ -33,7 +36,9 @@ public class JdbcCardDao implements CardDao {
             // if there is a RowSet returned...
             if (results.next()) {
                 // use helper method to map sql row to card object
-                queriedCard = mapResultsToCard(results);
+                List <String> cardColors = List.of(results.getString("card_colors").split(","));
+                List <String> colorIdentity = List.of(results.getString("card_color_identity").split(","));
+                queriedCard = mapResultsToCard(results, cardColors, colorIdentity);
             }
         } catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -81,17 +86,22 @@ public class JdbcCardDao implements CardDao {
 
     @Override
     public List<Card> getCardsByTitle(String cardTitle, boolean isExactMatch) {
+
         // Queried Cards set to empty list
         List<Card> queriedCards = new ArrayList<>();
         String parameter = cardTitle;
         // query command to select card matches using a card title as parameterized input
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
                 "FROM cards WHERE card_title LIKE ?;";
 
         if(!isExactMatch){
             parameter = "%"+ cardTitle+"%";
             // query command to select card matches using a card title as parameterized input
-            sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, card_details_url " +
+            sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                    "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                    "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
                     "FROM cards WHERE card_title ILIKE ?;";
         }
 
@@ -101,7 +111,9 @@ public class JdbcCardDao implements CardDao {
             // while there are results
             while(results.next()){
                 // add the mapped results to the list
-                queriedCards.add(mapResultsToCard(results));
+                List<String> cardColors = List.of(results.getString("card_colors").split(","));
+                List<String> colorIdentity = List.of(results.getString("card_color_identity").split(","));
+                queriedCards.add(mapResultsToCard(results, cardColors, colorIdentity));
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -132,7 +144,7 @@ public class JdbcCardDao implements CardDao {
         String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
                 "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
                 "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
-                "FROM cards WHERE card_colors ILIKE ?;";
+                "FROM cards WHERE card_colors ILIKE ?";
         String parameter = "%"+cardColor+"%";
 
         try{
@@ -141,7 +153,9 @@ public class JdbcCardDao implements CardDao {
             // while there are results
             while(results.next()){
                 // add the mapped results to the list
-                cardsOfSelectedColor.add(mapResultsToCard(results));
+                List<String> cardColors = List.of(results.getString("card_colors").split(","));
+                List<String> colorIdentity = List.of(results.getString("card_color_identity").split(","));
+                cardsOfSelectedColor.add(mapResultsToCard(results, cardColors, colorIdentity));
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -159,6 +173,7 @@ public class JdbcCardDao implements CardDao {
 
     @Override
     public List<Card> getCardsByColorIdentity(String cardColorIdentity) {
+
         List<Card> cardsOfSelectedColor = new ArrayList<>();
         String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
                 "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
@@ -172,7 +187,9 @@ public class JdbcCardDao implements CardDao {
             // while there are results
             while(results.next()){
                 // add the mapped results to the list
-                cardsOfSelectedColor.add(mapResultsToCard(results));
+               List <String> cardColors = List.of(results.getString("card_colors").split(","));
+                List <String> colorIdentity = List.of(results.getString("card_color_identity").split(","));
+                cardsOfSelectedColor.add(mapResultsToCard(results, cardColors, colorIdentity));
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -209,7 +226,9 @@ public class JdbcCardDao implements CardDao {
             // while there are results
             while(results.next()){
                 // add the mapped results to the list
-                cardsOfSelectedSet.add(mapResultsToCard(results));
+                List <String> cardColors = List.of(results.getString("card_colors").split(","));
+                List <String> colorIdentity = List.of(results.getString("card_color_identity").split(","));
+                cardsOfSelectedSet.add(mapResultsToCard(results, cardColors, colorIdentity));
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -227,6 +246,7 @@ public class JdbcCardDao implements CardDao {
 
     @Override
     public List<Card> getCardsBySetId(String setId) {
+
         List<Card> cardsOfSelectedSet = new ArrayList<>();
         String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
                 "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
@@ -240,7 +260,9 @@ public class JdbcCardDao implements CardDao {
             // while there are results
             while(results.next()){
                 // add the mapped results to the list
-                cardsOfSelectedSet.add(mapResultsToCard(results));
+                List <String> cardColors = List.of(results.getString("card_colors").split(","));
+                List <String> colorIdentity = List.of(results.getString("card_color_identity").split(","));
+                cardsOfSelectedSet.add(mapResultsToCard(results, cardColors, colorIdentity));
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -257,24 +279,31 @@ public class JdbcCardDao implements CardDao {
     }
 
     @Override
-    public List<Card> getCardsBySetCode(String setCode) {
-        return null;
-    }
-
-    @Override
     public Card addCard(Card cardToBeAdded) {
         // Setting initially created card
         Card createdCard = null;
         //query command to insert card into the database
-        String sql = "INSERT INTO cards (card_id, tcg_id, card_title,card_small_image_url,card_normal_image_url, card_details_url) "+
-                                 "VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cards (card_id, tcg_id, card_title, card_small_image_url, " +
+                "card_normal_image_url, card_details_url, card_colors, card_color_identity, card_set_code, card_set_name, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank ) "+
+                                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try{
         int rowsInserted = jdbcTemplate.update(sql,cardToBeAdded.getId(),
                                 cardToBeAdded.getTcgId(),
                                 cardToBeAdded.getName(),
                                 cardToBeAdded.getSmallImgUrl(),
                                 cardToBeAdded.getImageUrl(),
-                                cardToBeAdded.getScryfallUrl());
+                                cardToBeAdded.getScryfallUrl(),
+                                cardToBeAdded.getCardColors(),
+                                cardToBeAdded.getCardColorIdentity(),
+                                cardToBeAdded.getSetCode(),
+                                cardToBeAdded.getSetName(),
+                                cardToBeAdded.getCollectorNumber(),
+                                cardToBeAdded.getReverseImageUrl(),
+                                cardToBeAdded.getLegalities(),
+                                cardToBeAdded.getLayout(),
+                                cardToBeAdded.getCmc(),
+                                cardToBeAdded.getEdhrecRank());
+
         if(rowsInserted==1){
             createdCard = getCardById(cardToBeAdded.getId());
         }else{
@@ -295,8 +324,8 @@ public class JdbcCardDao implements CardDao {
     }
 
 
-    @Override
-    public Card mapResultsToCard(SqlRowSet results) {
+
+    public Card mapResultsToCard(SqlRowSet results, List<String> colors, List<String> colorIdentity) {
         Card mappedCard = new Card();
         mappedCard.setId(results.getString("card_id"));
         mappedCard.setTcgId(results.getInt("tcg_id"));
@@ -304,6 +333,18 @@ public class JdbcCardDao implements CardDao {
         mappedCard.setSmallImgUrl(results.getString("card_small_image_url"));
         mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
+        mappedCard.setReverseImageUrl("card_reverse_image_url");
+        mappedCard.setCardColors(colors);
+        mappedCard.setCardColorIdentity(colorIdentity);
+        mappedCard.setSetId(results.getString("card_set_id"));
+        mappedCard.setSetCode(results.getString("card_set_code"));
+        mappedCard.setSetName(results.getString("card_set_name"));
+        mappedCard.setCollectorNumber(results.getString("card_collector_number"));
+        mappedCard.setLegalities(results.getString("card_legalities"));
+        mappedCard.setLayout(results.getString("card_layout"));
+        mappedCard.setCmc(results.getDouble("card_cmc"));
+        mappedCard.setEdhrecRank(results.getInt("card_edhrec_rank"));
+
         return mappedCard;
     }
 

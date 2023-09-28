@@ -23,7 +23,7 @@ CREATE TABLE cards(
 	card_small_image_url varchar(256),
 	card_normal_image_url varchar(256),
 	card_reverse_image_url varchar(256),
-	card_colors varchar(256),
+	card_colors varchar(10),
 	card_color_identity varchar(256) NOT NULL,
 	card_set_id varchar(256) NOT NULL,
 	card_set_code varchar(256) NOT NULL,
