@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -84,8 +86,20 @@ public class ScryfallBulkLoader {
         String id = cardJson.get("id").asText();
         String scryfallUrl = cardJson.get("scryfall_uri").asText();
         String name = cardJson.get("name").asText();
-        String imgUrl = null;
-        String smallImgUrl = null;
+        String imgUrl = null; //TODO: conditional
+        String smallImgUrl = null; //TODO: conditional
+        String reverseImgUrl = null; //TODO: conditional
+        String smallReverseImgUrl = null; //TODO: conditional
+        int setId = -1;
+        String set = cardJson.get("set").asText();
+        String setName = cardJson.get("set_name").asText();
+        List<String> colors = new ArrayList<>(); //TODO
+        List<String> colorIdentities = new ArrayList<>(); //TODO
+        String collectorNumber = cardJson.get("collector_number").asText();
+        List<String> legalities = new ArrayList<>(); //TODO
+        String layout = cardJson.get("layout").asText();
+        double cmc = cardJson.get("cmc").asDouble();
+        int edhrecRank = cardJson.get("edhrec_rank").asInt();
         if (cardJson.has("image_uris")) {
             JsonNode imgUris = cardJson.get("image_uris");
             if (imgUris.has("normal")) {
@@ -95,7 +109,8 @@ public class ScryfallBulkLoader {
                 smallImgUrl = imgUris.get("small").asText();
             }
         }
-        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl);
+        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl, colorIdentities, setId, set, setName,
+                collectorNumber, legalities, colors, reverseImgUrl, smallReverseImgUrl, layout, cmc, edhrecRank);
     }
 
     /**

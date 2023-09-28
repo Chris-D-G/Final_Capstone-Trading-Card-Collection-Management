@@ -3,7 +3,6 @@ package com.techelevator.model;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class Card {
     //id is scryfall-specific id
@@ -23,13 +22,14 @@ public class Card {
     @NotBlank
     private String scryfallUrl;
 
-    private String reverseImageUrl;
+    private String reverseImgUrl;
+    private String smallReverseImgUrl;
 
-    private List<String> cardColors = new ArrayList<>();
+    private List<String> colors = new ArrayList<>();
     @NotBlank
-    private List<String> cardColorIdentity = new ArrayList<>();
+    private List<String> colorIdentity = new ArrayList<>();
     @NotBlank
-    private String setId;
+    private int setId;
     @NotBlank
     private String setCode;
     @NotBlank
@@ -37,7 +37,7 @@ public class Card {
     @NotBlank
     private String collectorNumber;
     @NotBlank
-    private String legalities;
+    private List<String> legalities;
 
     private String layout;
 
@@ -50,18 +50,20 @@ public class Card {
 Full constructor used for testing purposes.
  */
     public Card(String id, int tcgId, String name, String imageUrl,
-                String smallImgUrl, String scryfallUrl, List<String> cardColorIdentity,
-                String setId, String setCode, String setName, String collectorNumber, String legalities,
-                List<String> cardColors, String reverseImageUrl, String layout, double cmc, int edhrecRank) {
+                String smallImgUrl, String scryfallUrl, List<String> colorIdentity,
+                int setId, String setCode, String setName, String collectorNumber, List<String> legalities,
+                List<String> colors, String reverseImgUrl, String smallReverseImgUrl, String layout, double cmc,
+                int edhrecRank) {
         this.id = id;
         this.tcgId = tcgId;
         this.name = name;
         this.imageUrl = imageUrl;
         this.scryfallUrl = scryfallUrl;
         this.smallImgUrl = smallImgUrl;
-        this.reverseImageUrl = reverseImageUrl;
-        this.cardColors = cardColors;
-        this.cardColorIdentity = cardColorIdentity;
+        this.reverseImgUrl = reverseImgUrl;
+        this.smallImgUrl = smallReverseImgUrl;
+        this.colors = colors;
+        this.colorIdentity = colorIdentity;
         this.setId = setId;
         this.setCode = setCode;
         this.setName = setName;
@@ -120,35 +122,35 @@ Full constructor used for testing purposes.
         this.scryfallUrl = scryfallUrl;
     }
 
-    public String getReverseImageUrl() {
-        return reverseImageUrl;
+    public String getReverseImgUrl() {
+        return reverseImgUrl;
     }
 
-    public void setReverseImageUrl(String reverseImageUrl) {
-        this.reverseImageUrl = reverseImageUrl;
+    public void setReverseImgUrl(String reverseImgUrl) {
+        this.reverseImgUrl = reverseImgUrl;
     }
 
-    public List<String> getCardColors() {
-        return cardColors;
+    public List<String> getColors() {
+        return colors;
     }
 
-    public void setCardColors(List<String> cardColors) {
-        this.cardColors = cardColors;
+    public void setColors(List<String> colors) {
+        this.colors = colors;
     }
 
-    public List<String> getCardColorIdentity() {
-        return cardColorIdentity;
+    public List<String> getColorIdentity() {
+        return colorIdentity;
     }
 
-    public void setCardColorIdentity(List<String> cardColorIdentity) {
-        this.cardColorIdentity = cardColorIdentity;
+    public void setColorIdentity(List<String> colorIdentity) {
+        this.colorIdentity = colorIdentity;
     }
 
-    public String getSetId() {
+    public int getSetId() {
         return setId;
     }
 
-    public void setSetId(String setId) {
+    public void setSetId(int setId) {
         this.setId = setId;
     }
 
@@ -176,11 +178,11 @@ Full constructor used for testing purposes.
         this.collectorNumber = collectorNumber;
     }
 
-    public String getLegalities() {
+    public List<String> getLegalities() {
         return legalities;
     }
 
-    public void setLegalities(String legalities) {
+    public void setLegalities(List<String> legalities) {
         this.legalities = legalities;
     }
 
