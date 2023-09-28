@@ -135,7 +135,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collection_id, cardId);
             if(rowSet.next()){
-               card = mapResultsToCard(rowSet);
+               card = cardDao.mapResultsToCard(rowSet);
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -160,7 +160,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
                 String cardsql = "select * from cards where card_id = ?;";
                 SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql, rowSet);
                 if(result.next()){
-                    cards.add(mapResultsToCard(result));
+                    cards.add(cardDao.mapResultsToCard(rowSet));
                 }
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -187,7 +187,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
                 String cardsql = "select * from cards where card_id = ?;";
                 SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
                 if(result.next()){
-                    cards.add(mapResultsToCard(result));
+                    cards.add(cardDao.mapResultsToCard(result));
                 }
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -313,17 +313,6 @@ public class JdbcCollectionsDao implements CollectionsDao{
         collection.setName(set.getString("collection_name"));
         collection.setTcgId(set.getInt("tcg_id"));
         return collection;
-    }
-    //ToDO remove this method and make a call to the cardDAO method
-    public Card mapResultsToCard(SqlRowSet results) {
-        Card mappedCard = new Card();
-        mappedCard.setId(results.getString("card_id"));
-        mappedCard.setTcgId(results.getInt("tcg_id"));
-        mappedCard.setName(results.getString("card_title"));
-        mappedCard.setSmallImgUrl(results.getString("card_small_image_url"));
-        mappedCard.setImageUrl(results.getString("card_normal_image_url"));
-        mappedCard.setScryfallUrl(results.getString("card_details_url"));
-        return mappedCard;
     }
 
 

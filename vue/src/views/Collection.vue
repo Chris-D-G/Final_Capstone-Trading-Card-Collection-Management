@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex-wrap me-2">
     <div
       class="collectionPreview d-flex flex-column align-items-center m-5 rounded-4 text-light py-2 border border-5 border-dark"
       v-for="collection in collectionList"
