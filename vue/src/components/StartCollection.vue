@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .field {
   flex-direction: column;
 }
@@ -67,9 +67,12 @@ label {
 }
 
 .form-label{
-font-family: 'Julius Sans One', sans-serif;
+font-family: 'Forzan', sans-serif;
 font-weight: bold;
 font-size: 16pt;
+}
+button{
+  font-family: 'Forzan', sans-serif;
 }
 
 </style>
