@@ -65,4 +65,10 @@ public class CollectionsController {
  public Collection getCollectionById(@PathVariable int collectionId){
         return cdao.getCollectionById(collectionId);
  }
+
+    @PreAuthorize("permitAll")
+    @RequestMapping(path = "/collections/{collectionId}/cards/a", method = RequestMethod.GET)
+    public List<Card> getCardsByCollectionAlph(@PathVariable int collectionId){
+        return cdao.getCardsByCollectionIdAlphabetized(collectionId);
+    }
 }
