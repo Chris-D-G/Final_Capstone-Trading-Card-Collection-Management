@@ -50,7 +50,6 @@ Full constructor used for testing purposes.
         this.tcgId = tcgId;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.scryfallUrl = scryfallUrl;
         this.smallImgUrl = smallImgUrl;
         this.reverseImgUrl = reverseImgUrl;
         this.smallReverseImgUrl = smallReverseImgUrl;
@@ -64,7 +63,31 @@ Full constructor used for testing purposes.
         this.layout = layout;
         this.cmc = cmc;
         this.edhrecRank = edhrecRank;
+        this.scryfallUrl = scryfallUrl;
     }
+
+//    public Card(String id, int tcgId, String name, String imageUrl,
+//                String smallImgUrl, String scryfallUrl, List<String> cardColorIdentity,
+//                String setId, String setCode, String setName, String collectorNumber, String legalities,
+//                List<String> cardColors, String reverseImageUrl, String layout, double cmc, int edhrecRank) {
+//        this.id = id;
+//        this.tcgId = tcgId;
+//        this.name = name;
+//        this.imageUrl = imageUrl;
+//        this.scryfallUrl = scryfallUrl;
+//        this.smallImgUrl = smallImgUrl;
+//        this.reverseImageUrl = reverseImageUrl;
+//        this.cardColors = cardColors;
+//        this.cardColorIdentity = cardColorIdentity;
+//        this.setId = setId;
+//        this.setCode = setCode;
+//        this.setName = setName;
+//        this.collectorNumber = collectorNumber;
+//        this.legalities = legalities;
+//        this.layout = layout;
+//        this.cmc = cmc;
+//        this.edhrecRank = edhrecRank;
+//    }
 
     public String getSmallImgUrl() {
         return smallImgUrl;

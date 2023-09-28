@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-wrap me-2">
+  <div class="d-flex flex-wrap me-2 justify-content-evenly ">
     <div
       class="collectionPreview d-flex flex-column align-items-center m-5 rounded-4 text-light py-2 border border-5 border-dark"
       v-for="collection in collectionList"
@@ -10,8 +10,10 @@
         v-on:click="displayCards(collection.id)"
         class="collection-image"
         v-bind:src="getCollectionImageURL(collection.tcgId)"
+        width="200px"
+        height="auto"
       />
-      <p>{{ getGameName(collection.tcgId) }}</p>
+      <p class="game fw-bolder fs-5" >{{ getGameName(collection.tcgId) }}</p>
     </div>
   </div>
 </template>

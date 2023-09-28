@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center mt-5 pt-5">
     <form @submit.prevent="register">
-      <h1 class="mb-5">Create Account</h1>
+      <h1 class="mb-5 pb-4">Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -18,10 +18,10 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" class="form-control w-25 text-center mx-auto" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <div class="mb-2">
+      <div class="mb-2 pt-5">
       <button class="btn btn-dark" type="submit">Create Account</button>
       </div>
-      <div id="ch"><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></div>
+      <router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link>
     </form>
   </div>
 </template>
@@ -89,7 +89,13 @@ label {
 
 h1{
   font-family: 'Forzan', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
+}
+a{
+  color: black;
+}
+button{
+  font-family: 'Forzan', sans-serif;
 }
 
 </style>
