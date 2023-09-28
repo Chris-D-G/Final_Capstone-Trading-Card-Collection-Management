@@ -11,20 +11,15 @@ public class Card {
     private int tcgId;
     @NotBlank
     private String name;
-
     //image url is of full card
     @NotBlank
     private String imageUrl;
-
     private String smallImgUrl;
-
     //url takes you to full page card notation on scryfall
     @NotBlank
     private String scryfallUrl;
-
     private String reverseImgUrl;
     private String smallReverseImgUrl;
-
     private List<String> colors = new ArrayList<>();
     @NotBlank
     private List<String> colorIdentity = new ArrayList<>();
@@ -38,13 +33,9 @@ public class Card {
     private String collectorNumber;
     @NotBlank
     private List<String> legalities;
-
     private String layout;
-
     private double cmc;
-
     private int edhrecRank;
-
     public Card() {}
 /*
 Full constructor used for testing purposes.
@@ -61,7 +52,7 @@ Full constructor used for testing purposes.
         this.scryfallUrl = scryfallUrl;
         this.smallImgUrl = smallImgUrl;
         this.reverseImgUrl = reverseImgUrl;
-        this.smallImgUrl = smallReverseImgUrl;
+        this.smallReverseImgUrl = smallReverseImgUrl;
         this.colors = colors;
         this.colorIdentity = colorIdentity;
         this.setId = setId;
@@ -208,5 +199,13 @@ Full constructor used for testing purposes.
 
     public void setEdhrecRank(int edhrecRank) {
         this.edhrecRank = edhrecRank;
+    }
+
+    public String getSmallReverseImgUrl() {
+        return smallReverseImgUrl;
+    }
+
+    public void setSmallReverseImgUrl(String smallReverseImgUrl) {
+        this.smallReverseImgUrl = smallReverseImgUrl;
     }
 }
