@@ -22,7 +22,6 @@ public class ScryfallBulkLoader {
     CardDao cardDao;
     ObjectMapper objectMapper;
     File jsonPath;
-    private BasicDataSource datasource;
 
 
 
