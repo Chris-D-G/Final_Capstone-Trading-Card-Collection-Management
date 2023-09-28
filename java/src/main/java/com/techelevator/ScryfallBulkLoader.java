@@ -87,7 +87,9 @@ public class ScryfallBulkLoader {
         String smallImgUrl = null;
         String reverseImgUrl = null;
         String smallReverseImgUrl = null;
-        if (cardJson.has("image_uris")) {
+        if (cardJson.get("image_status").asText().equals("missing")){
+            System.out.println("card is missing images!");
+        } else if (cardJson.has("image_uris")) {
             JsonNode imgUris = cardJson.get("image_uris");
             if (imgUris.has("normal")) {
                 imgUrl = imgUris.get("normal").asText();
@@ -138,7 +140,7 @@ public class ScryfallBulkLoader {
         legalities.put("commander", legalitiesJson.get("commander").asText());
         legalities.put("oathbreaker", legalitiesJson.get("oathbreaker").asText());
         String layout = cardJson.get("layout").asText();
-        double cmc = cardJson.get("cmc").asDouble();
+        double cmc = (cardJson.has("cmc"))? cardJson.get("cmc").asDouble(): 0.0;
         int edhrecRank = -1;
         if(cardJson.has("edhrec_rank"))
             edhrecRank = cardJson.get("edhrec_rank").asInt();
@@ -153,13 +155,13 @@ public class ScryfallBulkLoader {
      * @param card the java card object to upload onto the postgresql server
      */
     private void uploadCard(Card card){
-//        if (cardDao.getCardById(card.getId()) == null) {
-//            Card uploadedCard = cardDao.addCard(card);
-//            System.out.println(uploadedCard.getName() + " has been added! Card id: " + uploadedCard.getId());
-//        } else {
-//            System.out.println(card.getName() + " already exists! Card id: " + card.getId());
-//        }
-        if (!card.getLayout().equals("normal"))
-            System.out.println(card);
+        if (cardDao.getCardById(card.getId()) == null) {
+            Card uploadedCard = cardDao.addCard(card);
+            System.out.println(uploadedCard.getName() + " has been added! Card id: " + uploadedCard.getId());
+        } else {
+            System.out.println(card.getName() + " already exists! Card id: " + card.getId());
+        }
+//        if (!card.getLayout().equals("normal"))
+//            System.out.println(card);
     }
 }

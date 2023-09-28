@@ -25,9 +25,9 @@ public class JdbcCardDao implements CardDao {
     public Card getCardById(String cardID) {
 
         // query command to select card using an exact cardID using parameterized input
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                 "FROM cards WHERE card_id = ?;";
         // queried card initially set to null in case no results are returned
         Card queriedCard = null;
@@ -91,17 +91,17 @@ public class JdbcCardDao implements CardDao {
         List<Card> queriedCards = new ArrayList<>();
         String parameter = cardTitle;
         // query command to select card matches using a card title as parameterized input
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                 "FROM cards WHERE card_title LIKE ?;";
 
         if(!isExactMatch){
             parameter = "%"+ cardTitle+"%";
             // query command to select card matches using a card title as parameterized input
-            sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                    "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                    "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+            sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                    "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                    "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                     "FROM cards WHERE card_title ILIKE ?;";
         }
 
@@ -139,9 +139,9 @@ public class JdbcCardDao implements CardDao {
     @Override
     public List<Card> getCardsByColor(String cardColor) {
         List<Card> cardsOfSelectedColor = new ArrayList<>();
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                 "FROM cards WHERE card_colors ILIKE ?";
         String parameter = "%"+cardColor+"%";
 
@@ -171,9 +171,9 @@ public class JdbcCardDao implements CardDao {
     public List<Card> getCardsByColorIdentity(String cardColorIdentity) {
 
         List<Card> cardsOfSelectedColor = new ArrayList<>();
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                 "FROM cards WHERE card_colors_identity ILIKE ?;";
         String parameter = "%"+cardColorIdentity+"%";
 
@@ -208,9 +208,9 @@ public class JdbcCardDao implements CardDao {
     @Override
     public List<Card> getCardsBySetCode(String setCode) {
         List<Card> cardsOfSelectedSet = new ArrayList<>();
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                 "FROM cards WHERE card_set_code = ?;";
         String parameter = setCode;
 
@@ -240,9 +240,9 @@ public class JdbcCardDao implements CardDao {
     public List<Card> getCardsBySetId(String setId) {
 
         List<Card> cardsOfSelectedSet = new ArrayList<>();
-        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
-                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
-                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
                 "FROM cards WHERE card_set_id = ?;";
         String parameter = setId;
 
@@ -274,8 +274,11 @@ public class JdbcCardDao implements CardDao {
         Card createdCard;
         //query command to insert card into the database
         String sql = "INSERT INTO cards (card_id, tcg_id, card_title, card_small_image_url, " +
-                "card_normal_image_url, card_details_url, card_colors, card_color_identity, card_set_code, card_set_name, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank ) "+
-                                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "card_normal_image_url, card_details_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank," +
+                "card_reverse_image_url, card_reverse_small_image_url ) "+
+                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     try{
         int rowsInserted = jdbcTemplate.update(sql,cardToBeAdded.getId(),
                                 cardToBeAdded.getTcgId(),
@@ -283,16 +286,17 @@ public class JdbcCardDao implements CardDao {
                                 cardToBeAdded.getSmallImgUrl(),
                                 cardToBeAdded.getImageUrl(),
                                 cardToBeAdded.getScryfallUrl(),
-                                cardToBeAdded.getColors(),
-                                cardToBeAdded.getColorIdentity(),
+                                stringFromList(cardToBeAdded.getColors()),
+                                stringFromList(cardToBeAdded.getColorIdentity()),
                                 cardToBeAdded.getSetCode(),
                                 cardToBeAdded.getSetName(),
                                 cardToBeAdded.getCollectorNumber(),
-                                cardToBeAdded.getReverseImgUrl(),
-                                cardToBeAdded.getLegalities(),
+                                stringFromMap(cardToBeAdded.getLegalities()),
                                 cardToBeAdded.getLayout(),
                                 cardToBeAdded.getCmc(),
-                                cardToBeAdded.getEdhrecRank());
+                                cardToBeAdded.getEdhrecRank(),
+                                cardToBeAdded.getReverseImgUrl(),
+                                cardToBeAdded.getSmallReverseImgUrl());
 
         if(rowsInserted==1){
             createdCard = getCardById(cardToBeAdded.getId());
@@ -343,6 +347,30 @@ public class JdbcCardDao implements CardDao {
         mappedCard.setEdhrecRank(results.getInt("card_edhrec_rank"));
 
         return mappedCard;
+    }
+
+    private String stringFromList(List<String> list){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String str : list) {
+            stringBuilder.append(str).append(",");
+        }
+        String result = stringBuilder.toString();
+        if(!result.isEmpty()){
+            result = result.substring(0, result.length()-1);
+        }
+        return result;
+    }
+
+    private String stringFromMap(Map<String, String> map){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry entry : map.entrySet()) {
+            stringBuilder.append(entry.getKey()).append(":").append(entry.getValue()).append(",");
+        }
+        String result = stringBuilder.toString();
+        if(!result.isEmpty()){
+            result = result.substring(0, result.length()-1);
+        }
+        return result;
     }
 
 
