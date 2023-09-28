@@ -112,7 +112,6 @@ public class ScryfallBulkLoader {
                 smallReverseImgUrl = reverseImageUris.get("small").asText();
             }
         }
-        int setId = -1;
         String set = cardJson.get("set").asText();
         String setName = cardJson.get("set_name").asText();
         List<String> colors = new ArrayList<>();
@@ -144,7 +143,7 @@ public class ScryfallBulkLoader {
         if(cardJson.has("edhrec_rank"))
             edhrecRank = cardJson.get("edhrec_rank").asInt();
 
-        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl, colorIdentities, setId, set, setName,
+        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl, colorIdentities, set, setName,
                 collectorNumber, legalities, colors, reverseImgUrl, smallReverseImgUrl, layout, cmc, edhrecRank);
     }
 
@@ -161,6 +160,6 @@ public class ScryfallBulkLoader {
 //            System.out.println(card.getName() + " already exists! Card id: " + card.getId());
 //        }
         if (!card.getLayout().equals("normal"))
-            System.out.println(card.toString());
+            System.out.println(card);
     }
 }

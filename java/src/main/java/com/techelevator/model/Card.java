@@ -25,8 +25,6 @@ public class Card {
     @NotBlank
     private List<String> colorIdentity = new ArrayList<>();
     @NotBlank
-    private int setId;
-    @NotBlank
     private String setCode;
     @NotBlank
     private String setName;
@@ -41,11 +39,10 @@ public class Card {
 /*
 Full constructor used for testing purposes.
  */
-    public Card(String id, int tcgId, String name, String imageUrl,
-                String smallImgUrl, String scryfallUrl, List<String> colorIdentity,
-                int setId, String setCode, String setName, String collectorNumber, Map<String, String> legalities,
-                List<String> colors, String reverseImgUrl, String smallReverseImgUrl, String layout, double cmc,
-                int edhrecRank) {
+    public Card(String id, int tcgId, String name, String imageUrl, String smallImgUrl, String scryfallUrl,
+                List<String> colorIdentity, String setCode, String setName, String collectorNumber,
+                Map<String, String> legalities, List<String> colors, String reverseImgUrl, String smallReverseImgUrl,
+                String layout, double cmc, int edhrecRank) {
         this.id = id;
         this.tcgId = tcgId;
         this.name = name;
@@ -55,7 +52,6 @@ Full constructor used for testing purposes.
         this.smallReverseImgUrl = smallReverseImgUrl;
         this.colors = colors;
         this.colorIdentity = colorIdentity;
-        this.setId = setId;
         this.setCode = setCode;
         this.setName = setName;
         this.collectorNumber = collectorNumber;
@@ -161,14 +157,6 @@ Full constructor used for testing purposes.
         this.colorIdentity = colorIdentity;
     }
 
-    public int getSetId() {
-        return setId;
-    }
-
-    public void setSetId(int setId) {
-        this.setId = setId;
-    }
-
     public String getSetCode() {
         return setCode;
     }
@@ -243,7 +231,6 @@ Full constructor used for testing purposes.
                 + "\nsmallReverseImgUrl: " + getSmallImgUrl()
                 + "\ncolors: " + getColors().toString()
                 + "\ncolorIdentity: " + getColorIdentity().toString()
-                + "\nsetId: " + getSetId()
                 + "\nsetCode: " + getSetCode()
                 + "\nsetName: " + getSetName()
                 + "\ncollectorNumber: " + getCollectorNumber()
