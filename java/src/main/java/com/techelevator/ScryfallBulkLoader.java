@@ -109,6 +109,7 @@ public class ScryfallBulkLoader {
                 smallImgUrl = imgUris.get("small").asText();
             }
         }
+
         return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl, colorIdentities, setId, set, setName,
                 collectorNumber, legalities, colors, reverseImgUrl, smallReverseImgUrl, layout, cmc, edhrecRank);
     }
