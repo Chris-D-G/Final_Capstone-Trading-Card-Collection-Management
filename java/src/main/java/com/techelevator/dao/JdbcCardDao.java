@@ -195,6 +195,37 @@ public class JdbcCardDao implements CardDao {
      */
 
     @Override
+    public List<Card> getCardsBySetCode(String setCode) {
+        List<Card> cardsOfSelectedSet = new ArrayList<>();
+        String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_id, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank" +
+                "FROM cards WHERE card_set_code = ?;";
+        String parameter = setCode;
+
+        try{
+            // send SQL command and return the results as a SQL Row Set
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,parameter);
+            // while there are results
+            while(results.next()){
+                // add the mapped results to the list
+                cardsOfSelectedSet.add(mapResultsToCard(results));
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        }catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        }catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        //if there were valid results, this returns a list of card object with data otherwise an empty list is returned
+        return cardsOfSelectedSet;
+    }
+
+    @Override
     public List<Card> getCardsBySetId(String setId) {
         List<Card> cardsOfSelectedSet = new ArrayList<>();
         String sql = "SELECT card_id,tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
