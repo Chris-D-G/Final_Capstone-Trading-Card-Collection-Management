@@ -25,7 +25,7 @@
 
         <tr v-for="card in filteredCards" v-bind:key="card.id">
           <td>{{ card.cardTitle }}</td>
-          <td><img src="{{getCardImgUrl(this.card.id)}}" alt="card-art" /></td>
+          <td><img :src="card.smallImgUrl" alt="card-art" /></td>
           <td>{{ user.username }}</td>
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>

@@ -1,7 +1,7 @@
 <template>
-  <div id="login" class="">
+  <div id="login" class="text-center mt-5 pt-5">
     <form @submit.prevent="login">
-      <h1 >Please Sign In</h1>
+      <h1 class="mb-5 " >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -10,13 +10,15 @@
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" placeholder="type username here" v-model="user.username" required autofocus />
+        <input type="text" class="form-control w-25 text-center mx-auto" id="username" placeholder="type username here" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="type password here" v-model="user.password" required />
+        <input type="password" class="form-control w-25 text-center mx-auto" id="password" placeholder="type password here" v-model="user.password" required />
       </div>
+      <div class="mb-2" >
       <button class="btn btn-dark" type="submit">Sign in</button>
+      </div>
       <p>
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
@@ -67,5 +69,19 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+  font-family: 'Forzan', sans-serif;
+  font-weight: bold;
+  font-size: 14pt;
+}
+h1{
+  font-family: 'Forzan', sans-serif;
+  font-weight: 900;
+}
+a{
+  color:rgb(88, 25, 25);
+  font-weight: 500;
+}
+button{
+  font-family: 'Forzan', sans-serif;
 }
 </style>

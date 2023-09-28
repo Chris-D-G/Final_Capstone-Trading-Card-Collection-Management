@@ -6,9 +6,10 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Collection from '../views/Collection.vue'
-import CollectionDetails from "../views/CollectionDetails"
-import MyCollection from "../views/MyCollection"
-import NewCollection from "../views/NewCollection"
+import CollectionDetails from "../views/CollectionDetails.vue"
+import MyCollection from "../views/MyCollection.vue"
+import NewCollection from "../views/NewCollection.vue"
+import AddCardView from "../views/AddCardView.vue"
 
 Vue.use(Router)
 
@@ -85,6 +86,14 @@ const router = new Router({
       path: "/collections/add",
       name: "collectionForm",
       component: NewCollection,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/collections/:id/add",
+      name:"addCardToCollection",
+      component: AddCardView,
       meta: {
         requiresAuth: true
       }

@@ -19,11 +19,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto align-items-center flex-grow-1">
             <li class="nav-item text-">
-              <router-link :to="{ name: 'home' }">
-                <a class="nav-link active text-light fs-4" aria-current="page"
-                  >Home</a
-                >
-              </router-link>
+                <a class="nav-link active text-light fs-4" aria-current="page">
+                <router-link :to="{ name: 'home' }">
+                  Home
+                </router-link>
+                </a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -60,19 +60,25 @@
               </ul>
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'login' }">
-                <a class="nav-link text-light fs-4">Login</a>
-              </router-link>
+                <a class="nav-link text-light fs-4">
+                  <router-link :to="{ name: 'login' }">
+                  Login
+                  </router-link>
+                  </a>
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'logout' }">
-                <a class="nav-link text-light fs-4">Logout</a>
-              </router-link>
+                <a class="nav-link text-light fs-4">
+                <router-link :to="{ name: 'logout' }">
+                  Logout
+                </router-link>
+                </a>
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'register' }">
-                <a class="nav-link text-light fs-4">Register</a>
-              </router-link>
+                <a class="nav-link text-light fs-4">
+                <router-link :to="{ name: 'register' }">
+                  Register
+                </router-link>
+                </a>
             </li>
             <li class="d-none d-xl-inline">
               <img
@@ -146,5 +152,6 @@ div > ul > li > ul > li > a:hover {
 
 a {
   text-decoration: none;
+  color: white;
 }
 </style>

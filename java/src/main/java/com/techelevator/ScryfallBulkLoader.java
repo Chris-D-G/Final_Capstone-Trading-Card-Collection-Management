@@ -95,7 +95,7 @@ public class ScryfallBulkLoader {
                 smallImgUrl = imgUris.get("small").asText();
             }
         }
-        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl);
+        return new Card(id, name, imgUrl, smallImgUrl, scryfallUrl);
 
     }
 
