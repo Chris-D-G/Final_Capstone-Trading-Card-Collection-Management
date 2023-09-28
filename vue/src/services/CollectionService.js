@@ -15,5 +15,8 @@ export default {
     },
     getCollectionById(collectionId){
         return axios.get(`collections/${collectionId}`)
-    }
+    },
+    getAllCardsByCollectionAlph(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/a`);
+    },
 }

@@ -1,10 +1,13 @@
 <template>
-  <div>
-    <div  class="text-dark fs-1 text-center fw-bold text-decoration-underline title">
+  <div class="ms-5 me-5">
+    <h1  class="text-dark fs-1 text-center fw-bold title mt-3">
       {{this.collection.name}}
+    </h1>
+    <div>
+    <button class="btn btn-dark mt-4 mb-4" >Alphabetize</button>
     </div>
-    <div class="d-flex flex-wrap me-2">
-      <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
+    <div class="d-flex flex-wrap me-2 justify-content-evenly">
+      <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card"/>
     </div>
   </div>
 </template>
@@ -18,10 +21,18 @@ export default {
   data() {
     return {
       cards: [],
-      collection: []
+      alphcards:[],
+      collection: [],
+      // search: "",
+      // searched: false,
+      methods:{
+        changeDeck(){
+          this.cards = this.cards.toSorted();
+        }
+
+      }
     };
   },
-
   created() {
     CollectionService.getAllCardsByCollection(this.$route.params.id).then(
       (response) => {
@@ -33,7 +44,14 @@ export default {
       response =>{
         this.collection = response.data;
       }
-    )
+    );
+
+    // CollectionService.getAllCardsByCollectionAlph(this.$route.params.id).then(
+    //    (response) => {
+    //      this.alphcards =response.data;
+    //    }
+
+    // )
   },
 };
 </script>

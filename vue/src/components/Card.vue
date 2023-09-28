@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="card-container mx-3 mt-3">
     <img
       class="rounded-2"
@@ -17,8 +18,9 @@
       v-on:click="displayLargerImage"
     />
     <div class="card-title">
-      <h2>{{ this.card.title }}</h2>
+      <h2>{{ card.title }}</h2>
     </div>
+  </div>
   </div>
 </template>
 
