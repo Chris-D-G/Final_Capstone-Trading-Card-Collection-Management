@@ -6,7 +6,7 @@ CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
-	role varchar(50) NOT NULL,
+	role varchar(50) NOT NULL,	
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
@@ -52,8 +52,27 @@ CREATE TABLE collections_cards(
 	CONSTRAINT FK_collections_cards_cardID FOREIGN KEY (card_id) REFERENCES cards (card_id)
 );
 
+CREATE TABLE default_profile_img(
+	pic_id serial, NOT NULL,
+	img_loc varchar(256) NOT NULL
+	CONSTRAINT PK_profile_pic PRIMARY KEY (pic_id)	
+);
 
+CREATE TABLE users_profile(
+	user_id int UNIQUE NOT NULL ,
+	pic_id int NOT NULL,
+	about_me varchar(1000),
+	CONSTRAINT PK_users_profile PRIMARY KEY(user_id),
+	CONSTRAINT FK_users_profile_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+	CONSTRAINT FK_users_profile_pic FOREIGN KEY (pic_id) REFERENCES default_profile_img (pic_id)
+);
 
+CREATE TABLE users_friends(
+	user_id int NOT NULL,
+	friend_id int NOT NULL,
+	CONSTRAINT PK_users_friends PRIMARY KEY (user_id, friend_id),
+	CONSTRAINT FK_users_friends_users FOREIGN KEY (user_id, friend_id) REFERENCES users(user_id, user_id)
+);
 
 
 COMMIT TRANSACTION;
