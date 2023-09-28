@@ -26,7 +26,7 @@ public interface UserProfileDao {
      * @return list of user profiles that match
      * the query parameter
      */
-    List<UserProfile> findProfilesByUsername(String username);
+    List<String> findProfilesByUsername(String username);
 
 
 }

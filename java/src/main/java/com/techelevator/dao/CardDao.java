@@ -75,7 +75,7 @@ public interface CardDao {
     /**
      * Method that maps sql results to card object
      *
-     * @param results SQL row set  returned by database
+     * @param results SQL row set returned by database
      * @return Card object
      */
     Card mapResultsToCard(SqlRowSet results);
