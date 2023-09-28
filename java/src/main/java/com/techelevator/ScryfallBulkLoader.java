@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 
 @Component
@@ -20,12 +20,11 @@ public class ScryfallBulkLoader {
     CardDao cardDao;
     ObjectMapper objectMapper;
     File jsonPath;
-    private BasicDataSource datasource;
 
 
 
     /**
-     * Loads cards from the FILE_PATH json card array
+     * Run this!
      *
      * @param args redundant, leave as empty
      */
@@ -86,6 +85,8 @@ public class ScryfallBulkLoader {
         String name = cardJson.get("name").asText();
         String imgUrl = null;
         String smallImgUrl = null;
+        String reverseImgUrl = null;
+        String smallReverseImgUrl = null;
         if (cardJson.has("image_uris")) {
             JsonNode imgUris = cardJson.get("image_uris");
             if (imgUris.has("normal")) {
@@ -94,9 +95,57 @@ public class ScryfallBulkLoader {
             if (imgUris.has("small")) {
                 smallImgUrl = imgUris.get("small").asText();
             }
+        } else {
+            JsonNode cardFaces = cardJson.get("card_faces");
+            JsonNode frontImageUris = cardFaces.get(0).get("image_uris");
+            if (frontImageUris.has("normal")) {
+                imgUrl = frontImageUris.get("normal").asText();
+            }
+            if (frontImageUris.has("small")){
+                smallImgUrl = frontImageUris.get("small").asText();
+            }
+            JsonNode reverseImageUris = cardFaces.get(1).get("image_uris");
+            if (reverseImageUris.has("normal")){
+                reverseImgUrl = reverseImageUris.get("normal").asText();
+            }
+            if (reverseImageUris.has("small")){
+                smallReverseImgUrl = reverseImageUris.get("small").asText();
+            }
         }
-        return new Card(id, name, imgUrl, smallImgUrl, scryfallUrl);
+        int setId = -1;
+        String set = cardJson.get("set").asText();
+        String setName = cardJson.get("set_name").asText();
+        List<String> colors = new ArrayList<>();
+        if (cardJson.has("colors")){
+            JsonNode colorsJson = cardJson.get("colors");
+            for (int i = 0; i < colorsJson.size(); i++) {
+                colors.add(colorsJson.get(i).asText());
+            }
+        }
+        List<String> colorIdentities = new ArrayList<>();
+        if (cardJson.has("color_identity")){
+            JsonNode colorsJson = cardJson.get("color_identity");
+            for (int i = 0; i < colorsJson.size(); i++) {
+                colorIdentities.add(colorsJson.get(i).asText());
+            }
+        }
+        String collectorNumber = cardJson.get("collector_number").asText();
+        Map<String, String> legalities = new HashMap<>();
+        JsonNode legalitiesJson = cardJson.get("legalities");
+        legalities.put("standard", legalitiesJson.get("standard").asText());
+        legalities.put("pioneer", legalitiesJson.get("pioneer").asText());
+        legalities.put("modern", legalitiesJson.get("modern").asText());
+        legalities.put("vintage", legalitiesJson.get("vintage").asText());
+        legalities.put("commander", legalitiesJson.get("commander").asText());
+        legalities.put("oathbreaker", legalitiesJson.get("oathbreaker").asText());
+        String layout = cardJson.get("layout").asText();
+        double cmc = cardJson.get("cmc").asDouble();
+        int edhrecRank = -1;
+        if(cardJson.has("edhrec_rank"))
+            edhrecRank = cardJson.get("edhrec_rank").asInt();
 
+        return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl, colorIdentities, setId, set, setName,
+                collectorNumber, legalities, colors, reverseImgUrl, smallReverseImgUrl, layout, cmc, edhrecRank);
     }
 
     /**
@@ -105,12 +154,13 @@ public class ScryfallBulkLoader {
      * @param card the java card object to upload onto the postgresql server
      */
     private void uploadCard(Card card){
-        if (cardDao.getCardById(card.getId()) == null) {
-            Card uploadedCard = cardDao.addCard(card);
-            System.out.println(uploadedCard.getName() + " has been added! Card id: " + uploadedCard.getId());
-        } else {
-            System.out.println(card.getName() + " already exists! Card id: " + card.getId());
-        }
+//        if (cardDao.getCardById(card.getId()) == null) {
+//            Card uploadedCard = cardDao.addCard(card);
+//            System.out.println(uploadedCard.getName() + " has been added! Card id: " + uploadedCard.getId());
+//        } else {
+//            System.out.println(card.getName() + " already exists! Card id: " + card.getId());
+//        }
+        if (!card.getLayout().equals("normal"))
+            System.out.println(card.toString());
     }
-
 }
