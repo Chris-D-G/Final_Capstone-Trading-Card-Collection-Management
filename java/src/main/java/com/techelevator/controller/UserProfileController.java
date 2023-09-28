@@ -25,7 +25,7 @@ public class UserProfileController {
     /**
      * Method that returns the logged in user's profile
      *
-     * @param principal provides access to logged in username without using a url query parameter
+     * @param principal currently logged in user
      * @return User profile object
      */
     @GetMapping(path = "/myProfile")
@@ -41,11 +41,12 @@ public class UserProfileController {
 
 
     /**
-     * Methods
+     * Method that returns a list of friends associated with a
+     * logged in user
      *
-     * @param username
-     * @param principal
-     * @return
+     * @param username username to search for
+     * @param principal currently logged in user
+     * @return list of usernames that partially match the provided username
      */
     @GetMapping(path ="/search/users")
     public List<String> searchUserProfiles(@RequestParam String username, Principal principal){
