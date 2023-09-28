@@ -22,7 +22,18 @@ CREATE TABLE cards(
 	card_title varchar(256) NOT NULL,
 	card_small_image_url varchar(256),
 	card_normal_image_url varchar(256),
+	card_reverse_image_url varchar(256),
+	card_colors varchar(256),
+	card_color_identity varchar(256) NOT NULL,
+	card_set_id varchar(256) NOT NULL,
+	card_set_code varchar(256) NOT NULL,
+	card_set_name varchar(256) NOT NULL,
 	card_details_url varchar(256),
+	card_collector_number varchar(256) NOT NULL,
+	card_legalities varchar(256) NOT NULL,
+	card_layout varchar(256),
+	card_cmc varchar(256),
+	card_edhrec_rank varchar(256),
 	CONSTRAINT PK_cards PRIMARY KEY(card_id),
 	CONSTRAINT FK_cards_tcg FOREIGN KEY (tcg_id) REFERENCES tcg (tcg_id)
 );

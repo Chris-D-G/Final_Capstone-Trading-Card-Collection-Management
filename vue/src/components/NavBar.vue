@@ -19,12 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto align-items-center flex-grow-1">
             <li class="nav-item text-">
-              <a
+              <router-link :to="{name: 'home'}">
+                <a
                 class="nav-link active text-light fs-4"
                 aria-current="page"
-                href="http://localhost:8080/"
                 >Home</a
               >
+              </router-link>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -38,18 +39,20 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
+                  <router-link :to="{name: 'myCollections'}">
                   <a
                     class="dropdown-item text-dark"
-                    href="http://localhost:8080/myCollections"
                     >View My Collections</a
                   >
+                  </router-link>
                 </li>
                 <li>
+                  <router-link :to="{name: 'collectionForm'}">
                   <a
                     class="dropdown-item text-dark"
-                    href="http://localhost:8080/collections/add"
                     >Start New Collection</a
                   >
+                  </router-link>
                 </li>
                 <li>
                   <a class="dropdown-item text-dark" href="#"
@@ -58,34 +61,38 @@
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
+                  <router-link :to="{name: 'allCollections'}">
                   <a
                     class="dropdown-item text-dark"
-                    href="http://localhost:8080/allCollections"
                     >View All Collections</a
                   >
+                  </router-link>
                 </li>
               </ul>
             </li>
             <li class="nav-item" >
+              <router-link :to="{name: 'login'}">
               <a
                 class="nav-link text-light fs-4"
-                href="http://localhost:8080/login"
                 >Login</a
               >
+              </router-link>
             </li>
             <li class="nav-item" >
+              <router-link :to="{name: 'logout'}">
               <a
                 class="nav-link text-light fs-4"
-                href="http://localhost:8080/logout"
                 >Logout</a
               >
+              </router-link>
             </li>
             <li class="nav-item" >
+              <router-link :to="{name: 'register'}">
               <a
                 class="nav-link text-light fs-4"
-                href="http://localhost:8080/register"
                 >Register</a
               >
+              </router-link>
             </li>
             <li class="d-none d-xl-inline">
               <img
@@ -155,6 +162,10 @@ div > ul > li > ul > li > a:hover {
 }
 #nav {
   height: 160px;
+}
+
+a{
+  text-decoration: none;
 }
 
 </style>
