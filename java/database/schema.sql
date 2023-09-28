@@ -64,8 +64,8 @@ CREATE TABLE collections_cards(
 );
 
 CREATE TABLE default_profile_img(
-	pic_id serial, NOT NULL,
-	img_loc varchar(256) NOT NULL
+	pic_id serial NOT NULL,
+	img_loc varchar(256) NOT NULL,
 	CONSTRAINT PK_profile_pic PRIMARY KEY (pic_id)	
 );
 
@@ -82,8 +82,8 @@ CREATE TABLE users_friends(
 	user_id int NOT NULL,
 	friend_id int NOT NULL,
 	CONSTRAINT PK_users_friends PRIMARY KEY (user_id, friend_id),
-	CONSTRAINT FK_users_friends_users FOREIGN KEY (user_id, friend_id) REFERENCES users(user_id, user_id)
+	CONSTRAINT FK_users_friends_users FOREIGN KEY (user_id) REFERENCES users(user_id),
+	CONSTRAINT FK_users_friends_users2 FOREIGN KEY (friend_id) REFERENCES users(user_id)
 );
-
 
 COMMIT TRANSACTION;

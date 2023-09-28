@@ -96,6 +96,7 @@ public class ScryfallBulkLoader {
             }
         }
         return new Card(id, MTG_ID, name, imgUrl, smallImgUrl, scryfallUrl);
+
     }
 
     /**

@@ -226,6 +226,11 @@ public class JdbcCardDao implements CardDao {
     }
 
     @Override
+    public List<Card> getCardsBySetCode(String setCode) {
+        return null;
+    }
+
+    @Override
     public Card addCard(Card cardToBeAdded) {
         // Setting initially created card
         Card createdCard = null;
