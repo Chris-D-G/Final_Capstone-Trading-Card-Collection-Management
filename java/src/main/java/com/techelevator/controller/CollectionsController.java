@@ -3,6 +3,8 @@ package com.techelevator.controller;
 import com.techelevator.dao.CollectionsDao;
 import com.techelevator.model.Card;
 import com.techelevator.model.Collection;
+import com.techelevator.model.CollectionsDto;
+import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,7 +25,7 @@ public class CollectionsController {
 
     @PreAuthorize("permitAll")
   @RequestMapping(path = "/allCollections", method = RequestMethod.GET)
-  public List<Collection> getAllCollections(){
+  public List<CollectionsDto> getAllCollections(){
       return cdao.getAllCollections();
   }
   @RequestMapping(path = "/myCollections", method = RequestMethod.GET)
@@ -41,7 +43,7 @@ public class CollectionsController {
       return cdao.getUserCollectionsByTCG(principal.getName(),tcgId);
   }
 
-@RequestMapping(path = "/myCollections/{collectionId}/add", method = RequestMethod.POST)
+  @RequestMapping(path = "/myCollections/{collectionId}/add", method = RequestMethod.POST)
  public int addCardToCollection(@Valid @RequestBody Card card, @PathVariable int collectionId){
       return cdao.addCardToCollection(card, collectionId);
  }
@@ -66,9 +68,15 @@ public class CollectionsController {
         return cdao.getCollectionById(collectionId);
  }
 
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/a", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionAlph(@PathVariable int collectionId){
+ @PreAuthorize("permitAll")
+ @RequestMapping(path = "/collections/{collectionId}/cards/a", method = RequestMethod.GET)
+ public List<Card> getCardsByCollectionAlph(@PathVariable int collectionId){
         return cdao.getCardsByCollectionIdAlphabetized(collectionId);
+    }
+
+    @PreAuthorize("permitAll")
+    @GetMapping(path="/collections/{collectionId}/user")
+    public User getUserByCollection(@PathVariable int collectionId){
+        return cdao.getUserForCollectionId(collectionId);
     }
 }

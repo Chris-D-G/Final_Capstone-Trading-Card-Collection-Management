@@ -12,7 +12,7 @@
         <label for="username">Username</label>
         <input type="text" class="form-control w-25 text-center mx-auto" id="username" placeholder="type username here" v-model="user.username" required autofocus />
       </div>
-      <div class="form-input-group">
+      <div class="form-input-group mb-5">
         <label for="password">Password</label>
         <input type="password" class="form-control w-25 text-center mx-auto" id="password" placeholder="type password here" v-model="user.password" required />
       </div>
@@ -70,7 +70,7 @@ export default {
 label {
   margin-right: 0.5rem;
   font-family: 'Forzan', sans-serif;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 14pt;
 }
 h1{

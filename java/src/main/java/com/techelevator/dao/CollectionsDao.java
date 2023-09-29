@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Card;
 import com.techelevator.model.Collection;
+import com.techelevator.model.CollectionsDto;
+import com.techelevator.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,7 +16,7 @@ public interface CollectionsDao {
      *
      * @return list of Collections{id,name,tcg}
      */
-    List<Collection> getAllCollections();
+    List<CollectionsDto> getAllCollections();
 
 
     /**
@@ -105,6 +107,8 @@ public interface CollectionsDao {
     Collection getCollectionById(int collectionId);
 
     List<Card> getCardsByCollectionIdAlphabetized(int collectionId);
+
+    User getUserForCollectionId(int collectionID);
 
 
 }
