@@ -16,7 +16,7 @@
       <p class="game fw-bolder fs-5">{{ getGameName(collection.tcgId) }}</p>
       <button class="btn" v-on:click="addToCollection(collection.id)" >Add To My Collection</button>
     </div>
-    <button class="btn btn-outline-danger btn-dark" >Delete Collection</button>
+    <button class="btn btn-outline-danger btn-dark" v-on:click="deleteCollection(collection.id)" >Delete Collection</button>
     </div>
   </div>
 </template>
@@ -64,6 +64,7 @@ export default {
     },
 
     deleteCollection(collectionId){
+      confirm("Are you sure?");
       CollectionService.deleteCollection(collectionId);
       this.$router.push(`/myCollections`)
     }
