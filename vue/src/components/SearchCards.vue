@@ -7,6 +7,11 @@
           <th>Game Type</th>
           <th>Color</th>
           <th>Color Identity</th>
+          <th>Set Code</th>
+          <th>Collector Number</th>
+          <th>legalities</th>
+          <th>CMC</th>
+          <th>EDH Rank</th>
         </tr>
       </thead>
       <tbody>
