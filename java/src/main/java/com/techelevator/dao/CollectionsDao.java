@@ -103,4 +103,8 @@ public interface CollectionsDao {
     int addCardToCollection(Card card, int collectionId);
 
     Collection getCollectionById(int collectionId);
+
+    List<Card> getCardsByCollectionIdAlphabetized(int collectionId);
+
+
 }
