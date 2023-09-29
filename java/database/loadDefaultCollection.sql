@@ -1,6 +1,7 @@
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (100, 'default', 1),
-    (101, 'default2', 1);
+    (101, 'default2', 1),
+    (102, 'Red/White Commander');
 INSERT INTO collections_user (collection_id,user_id) VALUES (101,4);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES

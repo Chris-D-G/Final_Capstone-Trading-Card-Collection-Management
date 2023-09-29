@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-xl border-bottom border-2 border-black">
       <div class="container-fluid p-0 m-0">
         <a class="navbar-brand p-0 m-0" href="http://localhost:8080/">
-          <img :src="image" alt="..." height="150px" width="auto" />
+          <router-link :to="{ name: 'home' }"><img :src="image" alt="..." height="100px" width="auto" /></router-link>
         </a>
         <button
           class="navbar-toggler"
@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import image from "@/assets/Logo.jpg";
+import image from "@/assets/Cardomancy-Logo.png";
 import registerBubble from "@/assets/RegisterSuggestionBubble.png";
 
 export default {
