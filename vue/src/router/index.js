@@ -76,7 +76,7 @@ const router = new Router({
     }
     },
     {
-      path:"/allCollections/:id",
+      path:"/collections/:id",
       name:"CollectionCards",
       component: CollectionDetails,
       meta: {

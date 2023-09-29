@@ -1,11 +1,10 @@
 <template>
   <div class="d-flex flex-wrap me-2 justify-content-evenly" > 
-  
     <div
-      class="collectionPreview d-flex flex-column align-items-center m-5 rounded-4 text-light py-2 border border-5 border-dark"
       v-for="collection in collectionList"
       v-bind:key="collection.id"
     >
+    <div  class="collectionPreview d-flex flex-column align-items-center m-4 rounded-4 text-light py-2 border border-5 border-dark">
       <h2>{{ collection.name }}</h2>
       <img
         v-on:click="displayCards(collection.id)"
@@ -15,9 +14,10 @@
         height="auto"
       />
       <p class="game fw-bolder fs-5">{{ getGameName(collection.tcgId) }}</p>
-      <button class="btn"   v-on:click="addToCollection(collection.id)" >Add To My Collection</button>
+      <button class="btn" v-on:click="addToCollection(collection.id)" >Add To My Collection</button>
     </div>
-  
+    <button class="btn btn-outline-danger btn-dark" >Delete Collection</button>
+    </div>
   </div>
 </template>
 
@@ -56,11 +56,16 @@ export default {
     },
 
     displayCards(collectionId) {
-      this.$router.push(`/allCollections/${collectionId}`);
+      this.$router.push(`/collections/${collectionId}`);
     },
 
     addToCollection(collectionId){
       this.$router.push(`/collections/${collectionId}/add`)
+    },
+
+    deleteCollection(collectionId){
+      CollectionService.deleteCollection(collectionId);
+      this.$router.push(`/myCollections`)
     }
   },
 };
