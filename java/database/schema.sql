@@ -86,4 +86,15 @@ CREATE TABLE users_friends(
 	CONSTRAINT FK_users_friends_users2 FOREIGN KEY (friend_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE messages (
+    message_id SERIAL,
+    message_text varchar(500) NOT NULL,
+    message_sender_user_id int NOT NULL,
+    message_receiver_user_id int NOT NULL,
+    message_timestamp TIMESTAMP NOT NULL,
+    CONSTRAINT PK_messages_user_message PRIMARY KEY (message_id),
+    CONSTRAINT FK_messages_user_sender FOREIGN KEY (message_sender_user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_messages_user_receiver FOREIGN KEY (message_receiver_user_id) REFERENCES users(user_id)
+)
+
 COMMIT TRANSACTION;
