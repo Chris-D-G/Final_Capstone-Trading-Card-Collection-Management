@@ -6,6 +6,7 @@
           <th>Card Name</th>
           <th>Game Type</th>
           <th>Color</th>
+          <th>Color Identity</th>
         </tr>
       </thead>
       <tbody>
@@ -36,25 +37,25 @@
       </tbody>
     </table>
     <div class="d-flex flex-wrap me-2 justify-content-evenly">
-        <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card"/>
-        <button v-on:click.prevent="addCard(this.card.id)">Add To Collection</button>
+        <cardComponent v-for="card in cards" v-bind:key="card.id" v-bind:card="card"/>
     </div>
   </div>
 </template>
 
 <script>
 import service from '../services/CardService.js';
-import card from "../components/Card.vue";
+import cardComponent from '../components/Card.vue';
+
 
 export default {
   name: "card-list",
+  components: { cardComponent },
 
   data() {
     return {
-      components: { card },
       cards: [],
       search: { cardTitle: "", gameType: "", colors: "", colorIdentity: "", setCode: "", 
-      collectorNumber: "", legalities: "", cmc: "", edhRank: ""}
+      collectorNumber: "", legalities: "", cmc: "", edhRank: ""},
     };
   },
 
@@ -101,16 +102,6 @@ export default {
         }
       });
     },
-    addCard() {
-            service.addCard(card.id).then(
-                (response)=> {
-
-                    if(response.status == 200) {
-                        window.alert("Card Added!");
-                    }
-                }
-            )
-        }
     }
 }
 </script>

@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @PreAuthorize("isAuthenticated()")
 public class CardController{
@@ -43,7 +43,7 @@ public class CardController{
         }
     }
 
-    @GetMapping(path= "collections/:id/add")
+    @GetMapping(path= "/search-cards")
     public List<Card> getAllCards() {
         try {
             return cardDao.getCards();
@@ -54,8 +54,8 @@ public class CardController{
 
 
     @RequestMapping(path = "/collections/:id/add", method = RequestMethod.POST)
-    public Card addCardToCollection (String id){
-        return cardDao.addCard(id);
+    public Card addCardToCollection (Card card){
+        return cardDao.addCard(card);
     }
 
 

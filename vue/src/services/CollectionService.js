@@ -22,5 +22,8 @@ export default {
 
     getUserByCollectionId(collectionId){
         return axios.get(`/collections/${collectionId}/user`);
+    },
+    addCardToCollection(collectionId, card){
+        return axios.get(`/collections/${collectionId}/add`, card);
     }
 }

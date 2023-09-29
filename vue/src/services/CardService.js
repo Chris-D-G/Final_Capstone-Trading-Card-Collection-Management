@@ -2,9 +2,7 @@ import axios from 'axios';
 
 export default {
     getAllCards() {
-        return axios.get("/allCards");
+        return axios.get("/search-cards");
    },
-   addCard(id) {
-       return axios.get("/collections/:id/add", id);
-   }
+
 }

@@ -33,7 +33,7 @@ public class JdbcCardDao implements CardDao {
             // send SQL command and return the results as a SQL Row Set
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             // if there is a RowSet returned...
-            if (results.next()) {
+            while (results.next()) {
                 // use helper method to map sql row to card object
                 queriedCard = mapResultsToCard(results);
                 allCards.add(queriedCard);

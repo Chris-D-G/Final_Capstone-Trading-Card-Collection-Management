@@ -1,8 +1,6 @@
 <template>
   <div>
-
       <search/>
-      <button v-on:click.prevent="addCard(this.card.id)">Add To Collection</button>
   </div>
 </template>
 
@@ -10,7 +8,7 @@
 import search from "../components/SearchCards.vue"
 
 export default {
- name:"add-card-view",
+ name:"search-cards-view",
  components:{ search }
 }
 </script>
