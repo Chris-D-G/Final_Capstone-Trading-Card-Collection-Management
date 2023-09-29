@@ -1,17 +1,11 @@
 <template>
   <div class="home">
-    <body>
-     
-      <div>
-        <h2 v-if="loggedin"></h2>
-        <h3 v-if="!loggedin"></h3>
-      </div>
+    <body>   
+      
       <!-- bootstrap carousel -->
       <div id="MTG-carousel" class="carousel slide carousel-fade" data-bs-theme="dark">
-        <h1 class="text-center">Welcome to Cardomancy</h1>
-        <!-- <h1 class="text-center">Welcome to Deck-O-Naut</h1> -->
-        <!-- <h1 class="text-center">Welcome to Cardventory</h1> -->
-        <p class="text-center">Build, Create, and Showcase</p>
+        <h1 class="text-center mt-3 mb-3 fw-semibold">Welcome to Cardomancy</h1>        
+        <p class="text-center mt-3 mb-3 fs-3" >Build, Create, and Showcase</p>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
@@ -100,7 +94,5 @@ export default {
 
 
 <style scoped>
-h1 {
-  padding-top: 50px;
-}
+
 </style>
