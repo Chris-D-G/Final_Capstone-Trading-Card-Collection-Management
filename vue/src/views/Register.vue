@@ -18,7 +18,7 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" class="form-control w-25 text-center mx-auto" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <div class="mb-2 pt-5">
+      <div class="mb-2 pt-4">
       <button class="btn btn-dark" type="submit">Create Account</button>
       </div>
       <router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link>
@@ -83,7 +83,7 @@ export default {
 label {
   margin-right: 0.5rem;
   font-family: 'Forzan', sans-serif;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 14pt;
 }
 
