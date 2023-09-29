@@ -1,8 +1,11 @@
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (100, 'default', 1),
     (101, 'default2', 1),
-    (102, 'Red/White Commander');
+    (102, 'Red/White Deck', 1);
+
 INSERT INTO collections_user (collection_id,user_id) VALUES (101,4);
+INSERT INTO collections_user (collection_id,user_id) VALUES (100,1);
+INSERT INTO collections_user (collection_id,user_id) VALUES (102,5);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (100, (SELECT card_id FROM cards WHERE card_title = 'Abbot of Keral Keep' LIMIT 1), 4),
@@ -42,3 +45,5 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (101, (SELECT card_id FROM cards WHERE card_title = 'Temple of Mystery' LIMIT 1), 4),
     (101, (SELECT card_id FROM cards WHERE card_title = 'Chatter of the Squirrel' LIMIT 1), 4),
     (101, (SELECT card_id FROM cards WHERE card_title = 'Thragtusk' LIMIT 1), 4);
+
+    (102, (SELECT card_id FROM cards WHERE card_title = 'Aurelia, the Warleader' LIMIT 1), 1),

@@ -3,15 +3,16 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CardDao;
 import com.techelevator.model.Card;
+import com.techelevator.model.Collection;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @PreAuthorize("isAuthenticated()")
 public class CardController{
@@ -40,6 +41,21 @@ public class CardController{
         }catch (RuntimeException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Unable to locate any cards that match!");
         }
+    }
+
+    @GetMapping(path= "/search-cards")
+    public List<Card> getAllCards() {
+        try {
+            return cardDao.getCards();
+        }catch (RuntimeException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Unable to load cards!");
+        }
+    }
+
+
+    @RequestMapping(path = "/collections/:id/add", method = RequestMethod.POST)
+    public Card addCardToCollection (Card card){
+        return cardDao.addCard(card);
     }
 
 
