@@ -15,7 +15,7 @@
         height="auto"
       />
       <p class="game fw-bolder fs-5" >{{ getGameName(collection.tcgId) }}</p>
-      <div class="pb-1"><router-link :to="{name: 'Profile'}" class="username fs-4 p-2 m-0 ">{{collection.username}}</router-link></div>
+      <div class="pb-1"><router-link :to="{name: 'Profile'}" class="username fs-4 p-2 m-0">{{collection.username}}</router-link></div>
     </div>
   </div>
 </template>
@@ -67,6 +67,10 @@ export default {
 .collectionPreview {
   width: 250px;
   background-color: #4c2c2eec;  
+}
+
+a:hover{
+  color:rgb(150, 99, 192);
 }
 
 </style>

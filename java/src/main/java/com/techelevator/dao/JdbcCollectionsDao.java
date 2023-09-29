@@ -238,20 +238,20 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     @Override
     public int removeCollection(int collectionId) {
-        String CCsql = "delete from collections_cards where collection_id =?;";
+        String CCsql = "delete from collections_cards where collection_id = ?;";
         String CUsql = "delete from collections_user where collection_id = ?;";
         String Csql = "delete from collections where collection_id = ?;";
         int check =-1;
         try{
-            check = jdbcTemplate.update(CCsql);
+            check = jdbcTemplate.update(CCsql,collectionId);
             if(check == -1){
                 throw new RuntimeException("Failed to manipulate the database!");
             }else{
-                check = jdbcTemplate.update(CUsql);
+                check = jdbcTemplate.update(CUsql,collectionId);
                 if(check ==0){
                     throw new RuntimeException("Failed to manipulate the database!");
                 }else{
-                    check = jdbcTemplate.update(Csql);
+                    check = jdbcTemplate.update(Csql,collectionId);
                     if(check != 1){
                         throw new RuntimeException("Failed to manipulate the database!");
                     }

@@ -10,6 +10,9 @@ export default {
     addCollection(collection) {
         return axios.post("myCollections/add", collection);
     },
+    deleteCollection(collectionId){
+        return axios.delete(`/myCollections/${collectionId}`);
+    },
     getAllCardsByCollection(collectionId){
         return axios.get(`/collections/${collectionId}/cards`);
     },
@@ -22,5 +25,8 @@ export default {
 
     getUserByCollectionId(collectionId){
         return axios.get(`/collections/${collectionId}/user`);
+    },
+    addCardToCollection(collectionId, card){
+        return axios.get(`/collections/${collectionId}/add`, card);
     }
 }
