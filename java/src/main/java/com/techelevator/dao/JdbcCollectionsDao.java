@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Card;
 import com.techelevator.model.Collection;
+import com.techelevator.model.CollectionsDto;
+import com.techelevator.model.User;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -33,16 +35,22 @@ public class JdbcCollectionsDao implements CollectionsDao{
      */
 
     @Override
-    public List<Collection> getAllCollections() {
+    public List<CollectionsDto> getAllCollections() {
         //new list
-        List<Collection> collectionList = new ArrayList<>();
+        List<CollectionsDto> collectionList = new ArrayList<>();
+        Collection collection = new Collection();
+        CollectionsDto dto = new CollectionsDto();
         //grab all collections from database
         String sql = "select * from collections;";
+        String userSql = "select username from users join collections_user on users.user_id = collections_user.user_id where collection_id = ?;";
         try{
             SqlRowSet rowset = jdbcTemplate.queryForRowSet(sql);
             while(rowset.next()){
                 //if no database issues, map the rowset properties to a collection obj and add the obj to the list
-                collectionList.add(mapRowToCollection(rowset));
+                collection = (mapRowToCollection(rowset));
+                String username = jdbcTemplate.queryForObject(userSql, String.class, collection.getId());
+                dto = mapRowToCollectionsDto(collection,username);
+                collectionList.add(dto);
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -335,6 +343,30 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return cards;
     }
 
+    public User getUserForCollectionId(int collectionID){
+        User user = new User();
+
+        String sql = "select user_id from collections_user where collection_id = ?;";
+        try{
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql,collectionID);
+            if(result.next()){
+                int userId = result.getInt("user_id");
+                user = userDao.getUserById(userId);
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        return user;
+    }
+
+
     private Collection mapRowToCollection(SqlRowSet set){
         Collection collection = new Collection();
         collection.setId(set.getInt("collection_id"));
@@ -343,5 +375,13 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collection;
     }
 
+    private CollectionsDto mapRowToCollectionsDto(Collection col, String username){
+        CollectionsDto collection = new CollectionsDto();
+        collection.setCollectionId(col.getId());
+        collection.setCollectionName(col.getName());
+        collection.setTcgId(col.getTcgId());
+        collection.setUsername(username);
+        return collection;
+    }
 
 }

@@ -5,15 +5,18 @@
       v-for="collection in collectionList"
       v-bind:key="collection.id"
     >
-      <h2>{{ collection.name }}</h2>
+   
+      <h1>{{ collection.collectionName }}</h1>
       <img
-        v-on:click="displayCards(collection.id)"
+        v-on:click="displayCards(collection.collectionId)"
         class="collection-image"
         v-bind:src="getCollectionImageURL(collection.tcgId)"
         width="200px"
         height="auto"
       />
       <p class="game fw-bolder fs-5" >{{ getGameName(collection.tcgId) }}</p>
+      <p>Owner:</p>
+      <div class="pb-1"><button class="username fs-4 border rounded-3 p-2 m-0  ">{{collection.username}}</button></div>
     </div>
   </div>
 </template>
@@ -28,7 +31,7 @@ export default {
   data() {
     return {
       collectionList: [],
-      mtgImage,
+      mtgImage
     };
   },
 
@@ -37,6 +40,10 @@ export default {
       this.collectionList = response.data;
       this.isLoading = false;
     });
+
+
+    
+
   },
   methods: {
     getGameName(tcgId) {
@@ -52,7 +59,7 @@ export default {
 
     displayCards(collectionId) {
       this.$router.push(`/allCollections/${collectionId}`);
-    },
+    },    
   },
 };
 </script>
@@ -62,4 +69,5 @@ export default {
   width: 250px;
   background-color: #4c2c2eec;  
 }
+
 </style>
