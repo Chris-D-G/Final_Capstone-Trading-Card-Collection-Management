@@ -15,7 +15,7 @@ import java.util.*;
 
 @Component
 public class ScryfallBulkLoader {
-    private static final String FILE_PATH = "default-cards-20230925090459.json";
+    private static final String FILE_PATH = "BulkDownload.json";
     final int MTG_ID = 1;
     CardDao cardDao;
     ObjectMapper objectMapper;
