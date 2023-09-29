@@ -38,6 +38,11 @@ public class ScryfallBulkLoader {
      * in the postgresql database
      */
     public void run(){
+        if (!jsonPath.exists()){
+            System.out.println("Please download the latest bulk download file from " +
+                    "https://scryfall.com/docs/api/bulk-data and rename it to \"BulkDownload.json\" in /java");
+            System.exit(1);
+        }
         try {
             JsonNode cardArray = objectMapper.readTree(jsonPath);
             System.out.println("Enter amount of cards to parse through (-1 for all): ");
