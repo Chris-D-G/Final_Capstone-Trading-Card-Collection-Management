@@ -2,7 +2,7 @@
   <div id="nav">
     <nav class="navbar navbar-expand-xl border-bottom border-2 border-black">
       <div class="container-fluid p-0 m-0">
-        <a class="navbar-brand p-0 m-0" href="http://localhost:8080/">
+        <a class="navbar-brand p-0 m-0">
           <router-link :to="{ name: 'home' }"><img :src="image" alt="..." height="100px" width="auto" /></router-link>
         </a>
         <button
