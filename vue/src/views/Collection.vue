@@ -15,8 +15,7 @@
         height="auto"
       />
       <p class="game fw-bolder fs-5" >{{ getGameName(collection.tcgId) }}</p>
-      <p>Owner:</p>
-      <div class="pb-1"><button class="username fs-4 border rounded-3 p-2 m-0  ">{{collection.username}}</button></div>
+      <div class="pb-1"><router-link :to="{name: 'Profile'}" class="username fs-4 p-2 m-0 ">{{collection.username}}</router-link></div>
     </div>
   </div>
 </template>
