@@ -1,8 +1,8 @@
 <template>
 <div>
-  <div class="card-container mx-3 mt-3">
+  <div class="card-container mx-3 mt-3 shadow-lg rounded-5">
     <img
-      class="rounded-2"
+      class="rounded-2 shadow"
       v-bind:src="this.card.smallImgUrl"
       width="146px"
       height="204px"
@@ -10,7 +10,7 @@
       v-on:click="displayLargerImage"
     />
     <img
-      class="large-card rounded-5"
+      class="large-card rounded-5 shadow-lg bg-transparent"
       v-bind:src="this.card.imageUrl"
       width="488px"
       height="680px"
@@ -45,5 +45,6 @@ export default {
 <style scoped>
 .large-card {
   z-index: 3;
+
 }
 </style>

@@ -7,7 +7,7 @@
       <button class="btn btn-dark mt-4 mb-4">Alphabetize</button>
     </div>
 
-    <div class="d-flex flex-wrap me-2 justify-content-evenly">
+    <div class="d-flex flex-wrap gap-3">
       <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
     </div>
   </div>

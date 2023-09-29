@@ -1,9 +1,9 @@
 <template>
   <div id="nav">
     <nav class="navbar navbar-expand-xl border-bottom border-2 border-black">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080/">
-          <img :src="image" alt="..." height="150" />
+      <div class="container-fluid p-0 m-0">
+        <a class="navbar-brand p-0 m-0" href="http://localhost:8080/">
+          <img :src="image" alt="..." height="150px" width="auto" />
         </a>
         <button
           class="navbar-toggler"
@@ -19,15 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto align-items-center flex-grow-1">
             <li class="nav-item text-">
-                <a class="nav-link active text-light fs-4" aria-current="page">
-                <router-link :to="{ name: 'home' }">
-                  Home
-                </router-link>
-                </a>
+              <a class="nav-link active text-light fs-4 me-3" aria-current="page">
+                <router-link :to="{ name: 'home' }"> Home </router-link>
+              </a>
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle text-light fs-4 z-3"
+                class="nav-link dropdown-toggle text-light fs-4 z-1 me-3"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -35,7 +33,7 @@
               >
                 Manage Collections
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu shadow">
                 <li>
                   <router-link :to="{ name: 'myCollections' }">
                     <a class="dropdown-item text-dark">View My Collections</a>
@@ -60,25 +58,19 @@
               </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light fs-4">
-                  <router-link :to="{ name: 'login' }">
-                  Login
-                  </router-link>
-                  </a>
+              <a class="nav-link text-light fs-4 me-3">
+                <router-link :to="{ name: 'login' }"> Login </router-link>
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light fs-4">
-                <router-link :to="{ name: 'logout' }">
-                  Logout
-                </router-link>
-                </a>
+              <a class="nav-link text-light fs-4 me-3">
+                <router-link :to="{ name: 'logout' }"> Logout </router-link>
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light fs-4">
-                <router-link :to="{ name: 'register' }">
-                  Register
-                </router-link>
-                </a>
+              <a class="nav-link text-light fs-4">
+                <router-link :to="{ name: 'register' }"> Register </router-link>
+              </a>
             </li>
             <li class="d-none d-xl-inline">
               <img
@@ -89,11 +81,11 @@
               />
             </li>
           </ul>
-          <form class="flex-grow-3 d-flex" role="search">
+          <form class="d-flex d-xs w-100 mt-2 d-xl w-50" role="search">
             <input
               class="form-control me-2 fs-10"
               type="search"
-              placeholder="Search by Card Name or ID(scryfall)"
+              placeholder="Search by Card Name or ID (scryfall)"
               aria-label="Search"
             />
             <button class="btn btn-outline-light" type="submit">Search</button>
@@ -122,21 +114,16 @@ export default {
   background-color: #4c2c2e;
 }
 .nav-img {
-  padding-right: 100px;
   position: relative;
   top: -30px;
-  left: -80px;
-}
-
-div > ul > li {
-  padding-right: 40px;
+  left: -40px;
 }
 
 div > ul > li > a:hover {
   background-color: #e8b287;
   border-radius: 5px;
 }
-div > ul > li > ul > li > a:hover {
+div > ul > li >  ul > li > a:hover {
   background-color: #ae9890;
 }
 .navbar-toggler {
