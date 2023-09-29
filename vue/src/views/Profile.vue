@@ -53,10 +53,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #outer-shell{
     background-color: #ffffffcc
 }
-
+li{
+  list-style: square;
+}
 
 </style>
