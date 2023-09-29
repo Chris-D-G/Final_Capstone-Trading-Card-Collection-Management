@@ -41,8 +41,8 @@ public class UserProfileController {
 
 
     /**
-     * Method that returns a list of friends associated with a
-     * logged in user
+     * Method that returns a list of users that match the searched
+     * username
      *
      * @param username username to search for
      * @param principal currently logged in user

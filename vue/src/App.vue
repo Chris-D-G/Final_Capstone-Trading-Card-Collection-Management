@@ -39,7 +39,7 @@ body {
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   text-align: center;
-  background-repeat: repeat-y;
+  background-attachment: fixed;
   
 }
 

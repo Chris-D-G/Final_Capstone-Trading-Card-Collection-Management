@@ -4,7 +4,7 @@
       {{this.collection.name}}
     </div>
     <div class="d-flex flex-wrap me-2">
-      <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
+      <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />    
     </div>
   </div>
 </template>
