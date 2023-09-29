@@ -11,7 +11,7 @@ export default {
         return axios.post("myCollections/add", collection);
     },
     deleteCollection(collectionId){
-        return axios.delete("/myCollections",collectionId);
+        return axios.delete(`/myCollections/${collectionId}`);
     },
     getAllCardsByCollection(collectionId){
         return axios.get(`/collections/${collectionId}/cards`);
