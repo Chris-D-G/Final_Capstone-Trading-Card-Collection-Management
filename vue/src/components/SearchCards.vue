@@ -72,7 +72,7 @@ export default {
       let filteredCards = this.cards;
       if (this.search.cardTitle != "") {
         filteredCards = filteredCards.filter((card) =>
-          card.cardTitle
+          card.name
             .toLowerCase()
             .includes(this.search.cardTitle.toLowerCase())
         );
