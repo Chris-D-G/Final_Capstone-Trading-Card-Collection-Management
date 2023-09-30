@@ -9,7 +9,7 @@
             </div>
             <div id="aboutme" class="d-flex flex-column align-items-start ms-lg-5 me-lg-5 text-wrap">
                 <p class=" fs-2 fw-semibold mx-auto mx-lg-0 my-0">About Me:</p>
-                <p class="fs-4 mx-auto mx-lg-0 text-start">{{profile.aboutMe}}</p>
+                <p class="fs-4 px-5 px-lg-0 mx-lg-0 text-center text-lg-start">{{profile.aboutMe}}</p>
             </div>
             <div id="friendslist" class="">
                 <p class="fw-semibold fs-2 text-lg-start ms-lg-5">Username is friends with:</p>
@@ -30,7 +30,9 @@
 </template>
 
 <script>
+// import CollectionService from '../services/CollectionService.js'
 import ProfileService from "../services/ProfileService.js"
+
 
 export default {
     created(){
@@ -48,6 +50,8 @@ export default {
             }
         }
     }
+
+
 
 
 }
