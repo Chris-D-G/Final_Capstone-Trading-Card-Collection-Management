@@ -28,5 +28,8 @@ export default {
     },
     addCardToCollection(collectionId, card){
         return axios.get(`/collections/${collectionId}/add`, card);
+    },
+    deleteCardFromCollection(card, collectionId){
+        return axios.delete(`/collections/${collectionId}/delete`,card);
     }
 }

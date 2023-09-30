@@ -293,8 +293,28 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return check;
     }
 
-    @Override
-    public Collection getCollectionById(int collectionId) {
+
+        public void deleteCardFromCollection(Card card, int collectionId){
+            String sql ="delete from collections_cards where card_id = ? and collection_id =? ;";
+            try{
+                int check = jdbcTemplate.update(sql, card.getId(),collectionId);
+                if(check!=1){
+                    throw new RuntimeException("Failed to manipulate the database!");
+                }
+            }catch (CannotGetJdbcConnectionException e) {
+                // catch any database connection errors and throw a new error to be caught at next level
+                throw new RuntimeException("Unable to connect to the database!", e);
+            } catch (BadSqlGrammarException e) {
+                // catch any SQL command errors and throw a new error to be caught at next level
+                throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+            } catch (DataIntegrityViolationException e) {
+                // catch any database connection errors and throw a new error to be caught at next level
+                throw new RuntimeException("Database Integrity Violation!", e);
+            }
+        }
+
+        @Override
+        public Collection getCollectionById(int collectionId) {
         Collection collection = new Collection();
         String sql ="select * from collections where collection_id = ?";
         try{
@@ -312,7 +332,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
-      return collection;
+        return collection;
     }
 
     @Override

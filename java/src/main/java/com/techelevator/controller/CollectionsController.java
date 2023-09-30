@@ -57,7 +57,7 @@ public class CollectionsController {
  public List<Card> getCardsByCollection(@PathVariable int collectionId){
       return cdao.getCardsByCollectionId(collectionId);
  }
- @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
  @RequestMapping(path = "/myCollections/{collectionId}",method = RequestMethod.DELETE)
  public int removeCollection(@PathVariable int collectionId){
       return cdao.removeCollection(collectionId);
@@ -79,4 +79,13 @@ public class CollectionsController {
     public User getUserByCollection(@PathVariable int collectionId){
         return cdao.getUserForCollectionId(collectionId);
     }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/collections/{collectionId}/delete}")
+    public void deleteCardFromCollection(@Valid @RequestBody Card card, @PathVariable int collectionId){
+        cdao.deleteCardFromCollection(card,collectionId);
+    }
+
+
 }
+
+
