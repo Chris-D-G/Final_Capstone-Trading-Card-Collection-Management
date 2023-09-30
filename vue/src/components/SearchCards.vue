@@ -77,10 +77,10 @@
       </tbody>
     </table>
     </div>
-    <div class="d-flex flex-wrap me-2 justify-content-evenly">
+    <div class="d-flex flex-wrap me-2 justify-content-start">
           <card v-for="(card, index) in filteredCards.slice(findStartIndex, findEndIndex)" v-bind:key="index" v-bind:card="card"/>
     </div>
-    <div>
+    <div class="d-flex justify-content-center">
       <button class="pagination-button" @click="currentPage--" :disabled="currentPage === 1">Previous</button>
       <span class="pagination-page">{{currentPage}}</span>
       <button class="pagination-button" @click="currentPage++" :disabled="findEndIndex >= filteredCards.length">Next Page</button>
@@ -149,7 +149,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
  .search-table {
     border-collapse: collapse;
     margin: 25px; 
@@ -175,8 +175,7 @@ export default {
 .search-table td {
   padding: 12px 15px;
 }
-
- */
+ 
 .pagination-button {
   border-radius: 5px;
 }

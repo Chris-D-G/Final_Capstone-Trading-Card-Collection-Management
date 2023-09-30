@@ -152,7 +152,7 @@ div > ul > li > a:hover {
   background-color: #e8b287;
   border-radius: 5px;
 }
-div > ul > li > ul > li > a:hover {
+div > ul > li > ul > li  a:hover {
   background-color: #ae9890;
 }
 .navbar-toggler {
