@@ -39,6 +39,17 @@ public class UserProfileController {
         }
     }
 
+    @GetMapping(path = "/profile/{username}")
+    public UserProfile getProfile(@PathVariable String username){
+        try{
+            return userProfileDao.findUserProfileByName(username);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Unable to find profile");
+        }
+    }
+
+
 
     /**
      * Method that returns a list of users that match the searched

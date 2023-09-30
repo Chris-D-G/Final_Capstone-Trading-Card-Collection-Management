@@ -63,7 +63,6 @@ export default {
     return {
       cards: [],
       currentPage: 1,
-      pageCards: [],
       cardsPerPage: 94,
       exactMatch: false,
       search: { cardTitle: "", gameType: "", colors: "", colorIdentity: "", setCode: "", 

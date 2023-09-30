@@ -58,8 +58,8 @@ public class CollectionsController {
       return cdao.getCardsByCollectionId(collectionId);
  }
  @ResponseStatus(HttpStatus.NO_CONTENT)
- @RequestMapping(path = "/myCollections",method = RequestMethod.DELETE)
- public int removeCollection(@Valid @RequestBody int collectionId){
+ @RequestMapping(path = "/myCollections/{collectionId}",method = RequestMethod.DELETE)
+ public int removeCollection(@PathVariable int collectionId){
       return cdao.removeCollection(collectionId);
  }
  @PreAuthorize("permitAll")

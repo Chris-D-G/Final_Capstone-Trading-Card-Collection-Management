@@ -1,37 +1,31 @@
 <template>
   <div class="home">
-    <body>
-     
-      <div>
-        <h2 v-if="loggedin"></h2>
-        <h3 v-if="!loggedin"></h3>
-      </div>
+    <body>   
+      
       <!-- bootstrap carousel -->
       <div id="MTG-carousel" class="carousel slide carousel-fade" data-bs-theme="dark">
-        <h1 class="text-center">Welcome to Cardomancy</h1>
-        <!-- <h1 class="text-center">Welcome to Deck-O-Naut</h1> -->
-        <!-- <h1 class="text-center">Welcome to Cardventory</h1> -->
-        <p class="text-center">Build, Create, and Showcase</p>
+        <h1 class="text-center mt-3 mb-3 fw-semibold">Welcome to Cardomancy</h1>        
+        <p class="text-center mt-3 mb-3 fs-3" >Build, Create, and Showcase</p>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
               src="../assets/wayne-low-OvN4OkhkTLo-unsplash.jpg"
               class="d-block w-75 m-auto border border-dark border-1 rounded-5"
-              alt="..."
+              alt="Man holding a Magic the Gathering Card in his hand"
             />
           </div>
           <div class="carousel-item">
             <img
               src="../assets/ryan-quintal-Vp8RnXSnJ6I-unsplash.jpg"
               class="d-block w-75 m-auto border border-dark border-1 rounded-5"
-              alt="..."
+              alt="Five Magic the Gathering cards displaying each land type"
             />
           </div>
           <div class="carousel-item">
             <img
               src="../assets/depositphotos_469022238-stock-photo-bangkok-thailand-may-2021-magic.jpg"
               class="d-block w-75 m-auto border border-dark border-1 rounded-5"
-              alt="..."
+              alt="Many Magic the Gatheringc cards in a pile "
             />
           </div>
         </div>
@@ -67,6 +61,9 @@ export default {
   loggedin: false,
   isLoading: true,
 
+  // window: (onload = function () {
+  //   this.checkLoginStatus();
+  // }),
 
   data() {
     return {
@@ -97,7 +94,5 @@ export default {
 
 
 <style scoped>
-h1 {
-  padding-top: 50px;
-}
+
 </style>

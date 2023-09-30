@@ -77,7 +77,7 @@ const router = new Router({
     }
     },
     {
-      path:"/allCollections/:id",
+      path:"/collections/:id",
       name:"CollectionCards",
       component: CollectionDetails,
       meta: {
@@ -108,13 +108,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
-     { path:"/profile",
+     { 
+       path:"/myprofile",
       name:"Profile",
       component: Profile,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
-    }
+    },
   ]
 })
 

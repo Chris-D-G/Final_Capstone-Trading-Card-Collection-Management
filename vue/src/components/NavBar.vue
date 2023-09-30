@@ -81,7 +81,7 @@
               />
             </li>
           </ul>
-          <form class="d-flex d-xs w-100 mt-2 d-xl w-50" role="search">
+          <form class="d-flex d-xs w-100 mt-2 d-xl w-25" role="search">
             <input
               class="form-control me-2 fs-10"
               type="search"
@@ -141,4 +141,5 @@ a {
   text-decoration: none;
   color: white;
 }
+
 </style>
