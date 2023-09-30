@@ -1,6 +1,6 @@
 <template>
 <div class="mb-4">
-  <div class="card-container mx-3 mt-3 shadow-lg rounded-5">
+  <div class="card-container mx-3 mt-3">
     <img
       class="rounded-2 shadow-lg"
       v-bind:src="this.card.smallImgUrl"
@@ -17,10 +17,13 @@
       v-if="showLargeImg"
       v-on:click="displayLargerImage"
     />
+    <p class="mt-1 mb-1 fw-semibold">{{ card.name }}</p>
+    <!-- To DO: add boolean check for the checkbox -->
+    <label for="addToCollection" v-if="true" class="fs-6 text-start me-2" > Add </label>
+    <input type="checkbox" class="form-check-input" name="addToCollection" v-if="true">
+
   </div>
-  <div class="card-title">
-      <p class="mt-1 mb-1">{{ card.name }}</p>
-    </div>
+
   <!-- <button class="btn btn-dark p-1 btn-sm btn-outline-light ">Delete</button> -->
   </div>
 </template>
@@ -49,7 +52,6 @@ export default {
 
 }
 p{
- font-weight: 500;
  color:#360a0c
 }
 </style>

@@ -27,7 +27,8 @@ public class JdbcCardDao implements CardDao {
         String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
                 "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
                 "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
-                "FROM cards;";
+                "FROM cards "+
+                "ORDER BY card_title;";
         Card queriedCard = null;
         try {
             // send SQL command and return the results as a SQL Row Set

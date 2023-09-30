@@ -46,24 +46,24 @@
               </a>
               <ul class="dropdown-menu shadow">
                 <li>
-                  <router-link :to="{ name: 'myCollections' }">
-                    <a class="dropdown-item text-dark">View My Collections</a>
+                  <router-link :to="{ name: 'myCollections' }" class="dropdown-item text-dark text-decoration-none">
+                    View My Collections
                   </router-link>
                 </li>
                 <li>
-                  <router-link :to="{ name: 'collectionForm' }">
-                    <a class="dropdown-item text-dark">Start New Collection</a>
+                  <router-link :to="{ name: 'collectionForm' }" class="dropdown-item text-dark text-decoration-none">
+                    Start New Collection
                   </router-link>
                 </li>
                 <li>
-                  <a class="dropdown-item text-dark" href="#"
+                  <a class="dropdown-item text-dark text-decoration-none" href="#"
                     >View Favorited Collections</a
                   >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <router-link :to="{ name: 'allCollections' }">
-                    <a class="dropdown-item text-dark">View All Collections</a>
+                  <router-link :to="{ name: 'allCollections' }" class="dropdown-item text-dark text-decoration-none">
+                    View All Collections
                   </router-link>
                 </li>
               </ul>
