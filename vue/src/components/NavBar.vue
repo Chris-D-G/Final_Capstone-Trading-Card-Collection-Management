@@ -1,9 +1,13 @@
 <template>
   <div id="nav">
-    <nav class="navbar navbar-expand-xl border-bottom border-2 border-black">
+    <nav
+      class="navbar navbar-expand-xl border-bottom border-2 border-black p-0"
+    >
       <div class="container-fluid p-0 m-0">
         <a class="navbar-brand p-0 m-0">
-          <router-link :to="{ name: 'home' }"><img :src="image" alt="..." height="100px" width="auto" /></router-link>
+          <router-link :to="{ name: 'home' }"
+            ><img :src="image" alt="..." height="130px" width="auto"
+          /></router-link>
         </a>
         <button
           class="navbar-toggler"
@@ -17,15 +21,22 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto align-items-center flex-grow-1">
+          <ul
+            class="navbar-nav align-items-center justify-content-evenly w-100"
+          >
             <li class="nav-item text-">
-              <a class="nav-link active text-light fs-4 me-3" aria-current="page">
-                <router-link :to="{ name: 'home' }"> Home </router-link>
+              <a>
+                <router-link
+                  class="nav-link active text-light fs-3 me-3"
+                  :to="{ name: 'home' }"
+                >
+                  Home
+                </router-link>
               </a>
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle text-light fs-4 z-1 me-3"
+                class="nav-link dropdown-toggle text-light fs-3 z-1 me-3"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -57,19 +68,45 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item text-">
+              <a>
+                <router-link
+                  class="nav-link text-light fs-3"
+                  :to="{ name: 'searchCards' }"
+                >
+                  Search
+                </router-link>
+              </a>
+            </li>
+
             <li class="nav-item">
-              <a class="nav-link text-light fs-4 me-3">
-                <router-link :to="{ name: 'login' }"> Login </router-link>
+              <a>
+                <router-link
+                  class="nav-link text-light fs-3"
+                  :to="{ name: 'login' }"
+                >
+                  Login
+                </router-link>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light fs-4 me-3">
-                <router-link :to="{ name: 'logout' }"> Logout </router-link>
+              <a>
+                <router-link
+                  class="nav-link text-light fs-3"
+                  :to="{ name: 'logout' }"
+                >
+                  Logout
+                </router-link>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light fs-4">
-                <router-link :to="{ name: 'register' }"> Register </router-link>
+              <a>
+                <router-link
+                  class="nav-link text-light fs-3"
+                  :to="{ name: 'register' }"
+                >
+                  Register
+                </router-link>
               </a>
             </li>
             <li class="d-none d-xl-inline">
@@ -77,19 +114,11 @@
                 class="nav-img"
                 :src="registerBubble"
                 alt="register-now"
-                height="200"
+                height="130"
+                width="auto"
               />
             </li>
           </ul>
-          <form class="d-flex d-xs w-100 mt-2 d-xl w-25" role="search">
-            <input
-              class="form-control me-2 fs-10"
-              type="search"
-              placeholder="Search by Card Name or ID (scryfall)"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-light" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>
@@ -115,15 +144,15 @@ export default {
 }
 .nav-img {
   position: relative;
-  top: -30px;
-  left: -40px;
+  left: -110px;
+  top: -20px;
 }
 
 div > ul > li > a:hover {
   background-color: #e8b287;
   border-radius: 5px;
 }
-div > ul > li >  ul > li > a:hover {
+div > ul > li > ul > li > a:hover {
   background-color: #ae9890;
 }
 .navbar-toggler {
@@ -133,13 +162,4 @@ div > ul > li >  ul > li > a:hover {
 .navbar-toggler-icon {
   color: #4c2c2e;
 }
-#nav {
-  height: 160px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
 </style>

@@ -25,7 +25,7 @@ body {
 }
 .page-view {
   position: relative;
-  top: 220px;
+  top: 150px;
 }
 @media screen and (max-width: 992px) {
   .nav {
