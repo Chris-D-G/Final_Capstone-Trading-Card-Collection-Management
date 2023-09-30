@@ -57,7 +57,7 @@ export default {
     },
 
     displayCards(collectionId) {
-      this.$router.push(`/allCollections/${collectionId}`);
+      this.$router.push(`/collections/${collectionId}`);
     },    
   },
 };

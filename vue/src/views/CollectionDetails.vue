@@ -8,6 +8,7 @@
       <button
         class="btn btn-outline-danger btn-dark mb-5"
         v-on:click="deleteCollection(collection.name)"
+        v-if="isLoggedIn"
       >
         Delete Collection
       </button>
@@ -31,17 +32,28 @@ export default {
       collection: [],
       // search: "",
       // searched: false,
+      isOwner: false,
+      isLoggedIn: false,
     };
   },
 
   methods: {
+    checkLoginStatus(){
+      let token = this.$store.state.token;
+
+      if(token != "" ){
+        this.isLoggedIn = true;
+      }
+    },
     changeDeck() {
       this.cards = this.cards.toSorted();
     },
     deleteCollection(name) {
       if (
         confirm(
-          "*****PERMENANT***** \nComfirmation will delete the Collection named: \n\n~ " +  name + " ~ \n\nAll Cards associated, and your access to the Collection, will be revoked.\nThere will be no reccords, and it cannot be reanimated.\n\n\nARE YOU 'DEAD' SERIOUS?"
+          "*****PERMENANT***** \nComfirmation will delete the Collection named: \n\n~ " +
+            name +
+            " ~ \n\nAll Cards associated, and your access to the Collection, will be revoked.\nThere will be no reccords, and it cannot be reanimated.\n\n\nARE YOU 'DEAD' SERIOUS?"
         )
       ) {
         CollectionService.deleteCollection(this.$route.params.id).then(
@@ -67,6 +79,7 @@ export default {
         this.collection = response.data;
       }
     );
+    this.checkLoginStatus();
 
     // CollectionService.getAllCardsByCollectionAlph(this.$route.params.id).then(
     //    (response) => {
