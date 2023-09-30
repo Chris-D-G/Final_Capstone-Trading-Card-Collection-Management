@@ -21,7 +21,7 @@
   <div class="card-title">
       <p class="mt-1 mb-1">{{ card.name }}</p>
     </div>
-  <button class="btn btn-dark p-1 btn-sm btn-outline-light ">Delete</button>
+  <!-- <button class="btn btn-dark p-1 btn-sm btn-outline-light ">Delete</button> -->
   </div>
 </template>
 
