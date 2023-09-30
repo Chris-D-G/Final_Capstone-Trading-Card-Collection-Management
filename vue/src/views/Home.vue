@@ -11,21 +11,21 @@
             <img
               src="../assets/wayne-low-OvN4OkhkTLo-unsplash.jpg"
               class="d-block w-75 m-auto border border-dark border-1 rounded-5"
-              alt="..."
+              alt="Man holding a Magic the Gathering Card in his hand"
             />
           </div>
           <div class="carousel-item">
             <img
               src="../assets/ryan-quintal-Vp8RnXSnJ6I-unsplash.jpg"
               class="d-block w-75 m-auto border border-dark border-1 rounded-5"
-              alt="..."
+              alt="Five Magic the Gathering cards displaying each land type"
             />
           </div>
           <div class="carousel-item">
             <img
               src="../assets/depositphotos_469022238-stock-photo-bangkok-thailand-may-2021-magic.jpg"
               class="d-block w-75 m-auto border border-dark border-1 rounded-5"
-              alt="..."
+              alt="Many Magic the Gatheringc cards in a pile "
             />
           </div>
         </div>
