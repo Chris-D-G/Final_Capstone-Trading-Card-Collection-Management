@@ -44,6 +44,6 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (101, (SELECT card_id FROM cards WHERE card_title = 'Mana Confluence' LIMIT 1), 1),
     (101, (SELECT card_id FROM cards WHERE card_title = 'Temple of Mystery' LIMIT 1), 4),
     (101, (SELECT card_id FROM cards WHERE card_title = 'Chatter of the Squirrel' LIMIT 1), 4),
-    (101, (SELECT card_id FROM cards WHERE card_title = 'Thragtusk' LIMIT 1), 4);
+    (101, (SELECT card_id FROM cards WHERE card_title = 'Thragtusk' LIMIT 1), 4),
 
-    (102, (SELECT card_id FROM cards WHERE card_title = 'Aurelia, the Warleader' LIMIT 1), 1),
+    (102, (SELECT card_id FROM cards WHERE card_title = 'Aurelia, the Warleader' LIMIT 1), 1);

@@ -17,12 +17,12 @@ VALUES(1, 'https://randomuser.me/api/portraits/lego/1.jpg'),
 (6,'https://randomuser.me/api/portraits/lego/6.jpg'),
 (7,'https://randomuser.me/api/portraits/lego/7.jpg'),
 (8,'https://randomuser.me/api/portraits/lego/8.jpg'),
-(9,'https://randomuser.me/api/portraits/lego/9.jpg');
+(9,'https://randomuser.me/api/portraits/lego/9.jpg'),
 (10,'https://randomuser.me/api/portraits/lego/0.jpg');
 
 INSERT INTO users_profile (user_id, pic_id, about_me)
 VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default example user! I''m whatever the admin wants me to be' ),
-((SELECT user_id FROM users where username='admin'), 0, 'I''m the default admin user! I have the power?!' );
+((SELECT user_id FROM users where username='admin'), 10, 'I''m the default admin user! I have the power?!' );
 
 INSERT INTO users_friends (user_id, friend_id)
 VALUES(1,2),
