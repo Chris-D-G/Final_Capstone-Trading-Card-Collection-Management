@@ -110,5 +110,6 @@ public interface CollectionsDao {
 
     User getUserForCollectionId(int collectionID);
 
+    void deleteCardFromCollection(Card card, int collectionId);
 
 }
