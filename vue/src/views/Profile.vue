@@ -1,6 +1,6 @@
 <template>
    <!-- profile -->
-    <div class="d-flex flex-column flex-lg-row justify-content-around " >
+    <div class="d-flex flex-column flex-lg-row justify-content-center " >
         <div class="w-lg-50 rounded-5 mx-1 mx-lg-5 mt-lg-5" id="outer-shell">
             <div id="pic-username" class="d-flex flex-column  flex-lg-row align-items-center rounded-5 m-lg-5 ">
                 <img v-bind:src="profile.profilePic" alt="Profile Image"
@@ -37,8 +37,11 @@ import ProfileService from "../services/ProfileService.js"
 export default {
     created(){
         ProfileService.getMyProfile()
-        .then((response)=>
-            this.profile= response.data)
+        .then((response)=>{
+            if(response.status == 200){
+                this.profile= response.data
+            }            
+        })       
     },
     data(){
         return{
