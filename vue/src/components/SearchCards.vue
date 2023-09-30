@@ -17,15 +17,12 @@
       <tbody>
         <tr>
           <td>
-            <input
-              type="text"
-              id="cardTitleFilter"
-              v-model="search.cardTitle"
-            />
+            <input type="text" id="cardTitleFilter" v-model="search.cardTitle"/>
           </td>
           <td>
             <select id="statusFilter" v-model="search.gameType">
-              <option value="">Magic: The Gathering</option>
+              <option value="">Choose TCG</option>
+              <option value="1">Magic: The Gathering</option>
               <option value="">Coming Soon!</option>
             </select>
           </td>
@@ -42,23 +39,26 @@
       </tbody>
     </table>
     <div class="d-flex flex-wrap me-2 justify-content-evenly">
-        <cardComponent v-for="card in cards" v-bind:key="card.id" v-bind:card="card"/>
+          <card v-for="card in filteredCards" v-bind:key="card.id" v-bind:card="card"/>
     </div>
   </div>
 </template>
 
 <script>
 import service from '../services/CardService.js';
-import cardComponent from '../components/Card.vue';
+import card from '../components/Card.vue';
 
 
 export default {
   name: "card-list",
-  components: { cardComponent },
+  components: { card },
 
   data() {
     return {
       cards: [],
+      pageCards: [],
+      
+      exactMatch: false,
       search: { cardTitle: "", gameType: "", colors: "", colorIdentity: "", setCode: "", 
       collectorNumber: "", legalities: "", cmc: "", edhRank: ""},
     };
@@ -73,31 +73,17 @@ export default {
   },
 
   computed: {
-    filteredCards() {
+    filteredCards: function() {
       let filteredCards = this.cards;
       if (this.search.cardTitle != "") {
         filteredCards = filteredCards.filter((card) =>
           card.name
             .toLowerCase()
             .includes(this.search.cardTitle.toLowerCase())
-        );
-      }
-      if (this.search.gameType != "") {
-        filteredCards = filteredCards.filter((card) =>
-          card.gameType
-            .toLowerCase()
-            .includes(this.search.gameType.toLowerCase())
-        );
-      }
-      if (this.search.gameType != "") {
-        filteredCards = filteredCards.filter((card) =>
-          card.gameType
-            .toLowerCase()
-            .includes(this.search.gameType.toLowerCase())
-        );
+            );
       }
       return filteredCards;
-    },
+    }
   },
   method: {
     getCardImgUrl(id) {
@@ -110,6 +96,7 @@ export default {
     }
 }
 </script>
+
 
 <style>
 </style>
