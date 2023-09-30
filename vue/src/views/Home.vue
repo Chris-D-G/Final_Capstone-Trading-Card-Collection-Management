@@ -61,9 +61,9 @@ export default {
   loggedin: false,
   isLoading: true,
 
-  window: (onload = function () {
-    this.checkLoginStatus();
-  }),
+  // window: (onload = function () {
+  //   this.checkLoginStatus();
+  // }),
 
   data() {
     return {
