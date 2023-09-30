@@ -1,17 +1,19 @@
 <template>
   <div>
-    <table>
-      <thead>
+    <div>
+    <table class="search-table">
+      <thead class="search-head">
         <tr>
-          <th>Card Name</th>
+          <th class="first-header">Card Name</th>
           <th>Game Type</th>
           <th>Color</th>
           <th>Color Identity</th>
           <th>Set Code</th>
+          <th>Set Name</th>
           <th>Collector Number</th>
           <th>legalities</th>
           <th>CMC</th>
-          <th>EDH Rank</th>
+          <th class="last-header">EDH Rank</th>
         </tr>
       </thead>
       <tbody>
@@ -29,23 +31,59 @@
           <td>
               <select id="colorFilter" v-model="search.colors">
               <option selected disabled hidden value="">Choose Color</option>
-              <option value="">Red</option>
-              <option value="">White</option>
-              <option value="">Green</option>
-              <option value="">Blue</option>
-              <option value="">Black</option>
+              <option value="R">Red</option>
+              <option value="W">White</option>
+              <option value="G">Green</option>
+              <option value="U">Blue</option>
+              <option value="B">Black</option>
             </select>
+          </td>
+          <td>
+              <select id="colorFilter" v-model="search.colorIdentity">
+              <option selected disabled hidden value="">Choose Color Identity</option>
+              <option value="R">Red</option>
+              <option value="W">White</option>
+              <option value="G">Green</option>
+              <option value="U">Blue</option>
+              <option value="B">Black</option>
+            </select>
+          </td>
+          <td>
+            <input type="text" id="setCodeFilter" v-model="search.setCode"/>
+          </td>
+          <td>
+            <input type="text" id="setNameFilter" v-model="search.setName"/>
+          </td>
+          <td>
+            <input type="number" id="collectorNumFilter" v-model="search.collectorNumber"/>
+          </td>
+          <td>
+              <select id="legalitiesFilter" v-model="search.legalities">
+              <option selected disabled hidden value="">Legalities</option>
+              <option value="R">Red</option>
+              <option value="W">White</option>
+              <option value="G">Green</option>
+              <option value="U">Blue</option>
+              <option value="B">Black</option>
+            </select>
+          </td>
+          <td>
+            <input type="number" id="cmcFilter" v-model="search.cmc"/>
+          </td>
+          <td>
+            <input type="number" id="edhRankFilter" v-model="search.edhRank"/>
           </td>
         </tr>
       </tbody>
     </table>
+    </div>
     <div class="d-flex flex-wrap me-2 justify-content-evenly">
           <card v-for="(card, index) in filteredCards.slice(findStartIndex, findEndIndex)" v-bind:key="index" v-bind:card="card"/>
     </div>
     <div>
-      <button @click="currentPage--" :disabled="currentPage === 1">Previous</button>
-      <span>{{currentPage}}</span>
-      <button @click="currentPage++" :disabled="findEndIndex >= filteredCards.length">Next Page</button>
+      <button class="pagination-button" @click="currentPage--" :disabled="currentPage === 1">Previous</button>
+      <span class="pagination-page">{{currentPage}}</span>
+      <button class="pagination-button" @click="currentPage++" :disabled="findEndIndex >= filteredCards.length">Next Page</button>
     </div>
   </div>
 </template>
@@ -65,7 +103,7 @@ export default {
       currentPage: 1,
       cardsPerPage: 94,
       exactMatch: false,
-      search: { cardTitle: "", gameType: "", colors: "", colorIdentity: "", setCode: "", 
+      search: { cardTitle: "", gameType: "", colors: "", colorIdentity: "", setCode: "", setName: "",
       collectorNumber: "", legalities: "", cmc: "", edhRank: ""},
     };
   },
@@ -112,4 +150,42 @@ export default {
 
 
 <style>
+ .search-table {
+    border-collapse: collapse;
+    margin: 25px; 
+    font-size: 0.9em;
+    font-family: 'Forzan', sans-serif;
+    min-width: 400px;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.4); 
+    background-color: #4c2c2e;
+    border-radius: 10px;
+} 
+ .search-head {
+    background-color: #a888a0;
+    color: white;
+    text-align: center;
+} 
+  .first-header {
+    border-top-left-radius: 10px;
+  }
+  .last-header {
+    border-top-right-radius: 10px;
+  }
+
+.search-table td {
+  padding: 12px 15px;
+}
+
+ */
+.pagination-button {
+  border-radius: 5px;
+}
+.pagination-page {
+  border-radius: 5px;
+  background-color: #4c2c2e;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  margin: 5px;
+}
 </style>
