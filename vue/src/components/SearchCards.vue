@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{collectionName}}
     <div>
     <table class="search-table">
       <thead class="search-head">
@@ -77,29 +78,56 @@
       </tbody>
     </table>
     </div>
-    <div class="d-flex flex-wrap me-2 justify-content-start">
-          <card v-for="(card, index) in filteredCards.slice(findStartIndex, findEndIndex)" v-bind:key="index" v-bind:card="card"/>
+
+    <div class="d-flex flex-wrap me-2 justify-content-start" v-if="isLoggedIn">
+      <addCard v-for="(addCard, index) in filteredCards.slice(findStartIndex, findEndIndex)" 
+      v-bind:key="index" v-bind:addCard="addCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      
     </div>
+
+    <!-- <div class="d-flex flex-wrap me-2 justify-content-start" v-else>collection
+          <card v-for="(card, index) in filteredCards.slice(findStartIndex, findEndIndex)" v-bind:key="index" v-bind:card="card" />
+          <button v-on:click.prevent="addCard(this.card.id)">Add To Collection</button>
+    </div> -->
+    
     <div class="d-flex justify-content-center">
       <button class="pagination-button" @click="currentPage--" :disabled="currentPage === 1">Previous</button>
       <span class="pagination-page">{{currentPage}}</span>
       <button class="pagination-button" @click="currentPage++" :disabled="findEndIndex >= filteredCards.length">Next Page</button>
+      
     </div>
+    <div>
+      <label for="choose-collection">Enter Name of Collection</label>
+      <input name="choose-collection" v-model="collectionName" type="text" @change.prevent="setCollectionId()">
+    </div>
+    <button @click="addCheckedCards()">Add Checked Cards to Queue</button>
+      <button @click="addCard()">Add Queued Cards To Collection</button>  
   </div>
 </template>
 
+
 <script>
 import service from '../services/CardService.js';
-import card from '../components/Card.vue';
+// import card from '../components/Card.vue';
+import addCard from '../components/addCardComponent.vue';
+import CollectionService from '../services/CollectionService.js';
 
 
 export default {
   name: "card-list",
-  components: { card },
+  components: { addCard },
 
   data() {
     return {
       cards: [],
+      isLoggedIn: false,
+      notLoggedIn: true,
+      collectionId: 0,
+      collectionName: "",
+      availableCollections: [],
+      checkboxStates: [], // Array to store checkbox states
+      checkedCards: [], // Array to store checked cards
       currentPage: 1,
       cardsPerPage: 94,
       exactMatch: false,
@@ -114,6 +142,56 @@ export default {
         this.cards = response.data;
       }
     );
+
+    this.checkLoginStatus();
+
+    CollectionService.getMyCollections().then((response) => {
+      this.availableCollections = response.data;
+      this.isLoading = false;
+    });
+  },
+
+  methods: {
+    checkLoginStatus(){
+      let token = this.$store.state.token;
+
+      if(token != ""){
+        this.isLoggedIn = true;
+        this.notLoggedIn = false;
+        
+      }
+    },
+
+    updateCheckboxState(index, value) {
+      // Update the checkbox state in the array
+      console.log(`Checkbox state updated for card at index ${index}: ${value}`);
+      this.checkboxStates[index] = value;
+    },
+    addCheckedCards() {
+      // Add checked cards to the checkedCards array
+      console.log("addCheckedCards method called");
+      console.log("Checkbox states:", this.checkboxStates);
+      this.checkedCards = this.cards.filter((_, index) => this.checkboxStates[index]);
+      console.log("Filtered checkedCards:", this.checkedCards);
+    },
+
+    addCard() {
+      this.checkedCards.forEach((card) => {
+        CollectionService.addCardToCollection(card, this.collectionId)
+      });
+      this.$router.push(`/myCollections`)
+    },
+
+    setCollectionId() {
+      if(this.collectionName != "") {
+        this.availableCollections.forEach((collection) => {
+          if(collection.name.toLowerCase().includes(this.collectionName.toLowerCase())) {
+            this.collectionId = collection.id;
+            this.collectionName = collection.name;
+          }
+        });
+      }
+    }
   },
 
   computed: {
@@ -134,17 +212,10 @@ export default {
     findEndIndex() {
       return (this.currentPage * this.cardsPerPage) - 1;
     }
-  },
     
-  method: {
-    getCardImgUrl(id) {
-      this.cards.forEach((card) => {
-        if (card.id == id) {
-          return card.smallImgUrl;
-        }
-      });
-    }
-    }
+  },
+
+  
 }
 </script>
 

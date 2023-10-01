@@ -18,9 +18,6 @@
       v-on:click="displayLargerImage"
     />
     <p class="mt-1 mb-1 fw-semibold">{{ card.name }}</p>
-    <!-- To DO: add boolean check for the checkbox -->
-    <label for="addToCollection" v-if="true" class="fs-6 text-start me-2" > Add </label>
-    <input type="checkbox" class="form-check-input" name="addToCollection" v-if="true">
 
   </div>
 
@@ -43,6 +40,7 @@ export default {
       showLargeImg: false,
     };
   },
+
 };
 </script>
 
