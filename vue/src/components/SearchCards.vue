@@ -3,7 +3,7 @@
     {{collectionName}}
     <div>
     <table class="search-table">
-      <thead class="search-head">
+      <thead class="search-head text-white">
         <tr>
           <th class="first-header">Card Name</th>
           <th>Game Type</th>
@@ -93,7 +93,7 @@
     
     <div class="d-flex justify-content-center">
       <button class="pagination-button" @click="currentPage--" :disabled="currentPage === 1">Previous</button>
-      <span class="pagination-page">{{currentPage}}</span>
+      <span class="pagination-page text-white">{{currentPage}}</span>
       <button class="pagination-button" @click="currentPage++" :disabled="findEndIndex >= filteredCards.length">Next Page</button>
       
     </div>
@@ -246,7 +246,7 @@ export default {
 } 
  .search-head {
     background-color: #a888a0;
-    color: white;
+    
     text-align: center;
 } 
   .first-header {
@@ -268,7 +268,7 @@ export default {
   background-color: #4c2c2e;
   padding-left: 10px;
   padding-right: 10px;
-  color: white;
+  /* color: white; */
   margin: 5px;
 }
 </style>
