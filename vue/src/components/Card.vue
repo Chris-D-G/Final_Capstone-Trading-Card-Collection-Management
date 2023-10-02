@@ -29,7 +29,8 @@
       Legalities : {{this.card.legalities}}<br/>
       Layout : {{this.card.layout}}<br/>
       CMC : {{this.card.cmc}}<br/>
-      EDHREC Rank : {{this.card.edhrecRank}}<br/><br/>
+      EDHREC Rank : {{this.card.edhrecRank}}<br/>
+      Quantity : {{this.card.qty}}<br/><br/>
       Want more stats or purchase information? Click 
       <a :href="this.card.scryfallUrl">Here!</a>
     </div>

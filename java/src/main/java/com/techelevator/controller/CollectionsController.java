@@ -1,10 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CollectionsDao;
-import com.techelevator.model.Card;
-import com.techelevator.model.Collection;
-import com.techelevator.model.CollectionsDto;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -59,7 +56,7 @@ public class CollectionsController {
 
     @PreAuthorize("permitAll")
     @RequestMapping(path = "/collections/{collectionId}/cards", method = RequestMethod.GET)
-    public List<Card> getCardsByCollection(@PathVariable int collectionId) {
+    public List<CardDto> getCardsByCollection(@PathVariable int collectionId) {
         return cdao.getCardsByCollectionId(collectionId);
     }
 

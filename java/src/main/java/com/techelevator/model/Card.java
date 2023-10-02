@@ -220,22 +220,22 @@ Full constructor used for testing purposes.
         this.smallReverseImgUrl = smallReverseImgUrl;
     }
 
-    public String toString(){
-        return
-                "id: " + getId()
-                + "\nname: " + getName()
-                + "\nimgUrl: " + getImageUrl()
-                + "\nsmallImg: " + getSmallImgUrl()
-                + "\nreverseImgUrl: " + getReverseImgUrl()
-                + "\nsmallReverseImgUrl: " + getSmallImgUrl()
-                + "\ncolors: " + getColors().toString()
-                + "\ncolorIdentity: " + getColorIdentity().toString()
-                + "\nsetCode: " + getSetCode()
-                + "\nsetName: " + getSetName()
-                + "\ncollectorNumber: " + getCollectorNumber()
-                + "\nlegalities: " + getLegalities().toString()
-                + "\nlayout: " + getLayout()
-                + "\ncmc: " + getCmc()
-                + "\nedhrecRank: " + getEdhrecRank();
-    }
+//    public String toString(){
+//        return
+//                "id: " + getId()
+//                + "\nname: " + getName()
+//                + "\nimgUrl: " + getImageUrl()
+//                + "\nsmallImg: " + getSmallImgUrl()
+//                + "\nreverseImgUrl: " + getReverseImgUrl()
+//                + "\nsmallReverseImgUrl: " + getSmallReverseImgUrl()
+//                + "\ncolors: " + getColors().toString()
+//                + "\ncolorIdentity: " + getColorIdentity().toString()
+//                + "\nsetCode: " + getSetCode()
+//                + "\nsetName: " + getSetName()
+//                + "\ncollectorNumber: " + getCollectorNumber()
+//                + "\nlegalities: " + getLegalities().toString()
+//                + "\nlayout: " + getLayout()
+//                + "\ncmc: " + getCmc()
+//                + "\nedhrecRank: " + getEdhrecRank();
+//    }
 }

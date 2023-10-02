@@ -1,9 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Card;
-import com.techelevator.model.Collection;
-import com.techelevator.model.CollectionsDto;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -186,18 +183,42 @@ public class JdbcCollectionsDao implements CollectionsDao{
     }
 
     @Override
-    public List<Card> getCardsByCollectionId(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select card_id from collections_cards where collection_id = ?;";
+    public List<CardDto> getCardsByCollectionId(int collectionId) {
+        Card card;
+        CardDto cardDto;
+        List<CardDto> cards = new ArrayList<>();
+        String sql = "select card_id, quantity from collections_cards where collection_id = ?;";
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
             while(rowSet.next()){
+                card = new Card();
+                cardDto = new CardDto();
                 String id = rowSet.getString("card_id");
+                int qty = rowSet.getInt("quantity");
                 String cardsql = "select * from cards where card_id = ?;";
                 SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
                 if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
+                    card = cardDao.mapResultsToCard(result);
                 }
+                cardDto.setQty(qty);
+                cardDto.setCmc(card.getCmc());
+                cardDto.setCollectorNumber(card.getCollectorNumber());
+                cardDto.setColorIdentity(card.getColorIdentity());
+                cardDto.setColors(card.getColors());
+                cardDto.setEdhrecRank(card.getEdhrecRank());
+                cardDto.setId(id);
+                cardDto.setImageUrl(card.getImageUrl());
+                cardDto.setLayout(card.getLayout());
+                cardDto.setLegalities(card.getLegalities());
+                cardDto.setName(card.getName());
+                cardDto.setReverseImgUrl(card.getReverseImgUrl());
+                cardDto.setScryfallUrl(card.getScryfallUrl());
+                cardDto.setSetCode(card.getSetCode());
+                cardDto.setSetName(card.getSetName());
+                cardDto.setSmallImgUrl(card.getSmallImgUrl());
+                cardDto.setSmallReverseImgUrl(card.getSmallReverseImgUrl());
+                cardDto.setTcgId(card.getTcgId());
+                cards.add(cardDto);
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
