@@ -1,6 +1,7 @@
 <template>
 <div class="mb-4">
   <div class="card-container mx-3 mt-3">
+    
     <img
       class="rounded-2 shadow-lg"
       v-bind:src="this.card.smallImgUrl"

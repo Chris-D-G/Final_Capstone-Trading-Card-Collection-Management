@@ -78,16 +78,17 @@
       </tbody>
     </table>
     </div>
-
+      <button v-on:click.prevent="addCard(this.card.id)"  v-if="isLoggedIn">Add To Collection</button>
     <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn">
       <addCard v-for="(addCard, index) in filteredCards.slice(findStartIndex, findEndIndex)" 
       v-bind:key="index" v-bind:addCard="addCard" :isChecked="checkboxStates[index]"
       @update:checked="updateCheckboxState(index, $event)"/>
-      <button v-on:click.prevent="addCard(this.card.id)">Add To Collection</button>
+       
     </div>
 
-    <div class="d-flex flex-wrap m-2 justify-content-between" v-if="!isLoggedIn">
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="!isLoggedIn">collection
           <card v-for="(card, index) in filteredCards.slice(findStartIndex, findEndIndex)" v-bind:key="index" v-bind:card="card" />
+         
     </div>
     
     <div class="d-flex justify-content-center">
@@ -96,14 +97,14 @@
       <button class="pagination-button" @click="currentPage++" :disabled="findEndIndex >= filteredCards.length">Next Page</button>
       
     </div>
-    <div  v-if="isLoggedIn" >
+    <div v-if="isLoggedIn">
     <div>
       <label for="choose-collection">Enter Name of Collection</label>
       <input name="choose-collection" v-model="collectionName" type="text" @change.prevent="setCollectionId()">
     </div>
     <button @click="addCheckedCards()">Add Checked Cards to Queue</button>
-      <button @click="addCard()">Add Queued Cards To Collection</button> 
-    </div> 
+      <button @click="addCard()">Add Queued Cards To Collection</button>  
+      </div>
   </div>
 </template>
 
@@ -117,7 +118,7 @@ import CollectionService from '../services/CollectionService.js';
 
 export default {
   name: "card-list",
-  components: { addCard, card },
+  components: { addCard,card },
 
   data() {
     return {
@@ -138,19 +139,11 @@ export default {
   },
 
   created() {
-    if(this.isLoggedIn === true) {
     service.getAllCards().then(
       (response) => {
         this.cards = response.data;
       }
     );
-    }else{
-      service.getAllCardsNotLoggedIn().then(
-        (response) => {
-        this.cards = response.data;
-      }
-      )
-    }
 
     this.checkLoginStatus();
 
