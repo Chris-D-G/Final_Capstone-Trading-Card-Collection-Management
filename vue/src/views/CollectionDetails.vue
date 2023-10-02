@@ -6,46 +6,49 @@
     <button
       class="btn btn-outline-dark btn-secondary mb-3 mt-2"
       v-on:click="deleteCollection(collection.name)"
-      v-if="isLoggedIn"
-    >
+      v-if="isLoggedIn">
       Delete Collection
     </button>
 
     <div class="d-flex flex-wrap m-4 bg-primary rounded-5 border border-2 border-danger-subtle" style="--bs-bg-opacity: .25;">
       <button
-        class="btn btn-dark m-4 flex-fill"
+        class="btn m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
-      >
+        v-bind:class="buttonClass(alpha)">
         Alphabetical
       </button>
       <button
-        class="btn btn-dark m-4 flex-fill"
+        class="btn m-4 flex-fill"
         v-on:click.prevent="colorDeck()"
-      >
+        v-bind:class="buttonClass(color)">
         Color
       </button>
       <button
-        class="btn btn-dark m-4 flex-fill"
+        class="btn m-4 flex-fill"
         v-on:click.prevent="identityDeck()"
-      >
+        v-bind:class="buttonClass(colorIden)">
         Color Identity
       </button>
-      <button class="btn btn-dark m-4 flex-fill" v-on:click.prevent="setDeck()">
+      <button 
+        class="btn m-4 flex-fill" 
+        v-on:click.prevent="setDeck()"
+        v-bind:class="buttonClass(set)">
         set
       </button>
-      <button class="btn btn-dark m-4 flex-fill" v-on:click.prevent="CMCDeck()">
+      <button class="btn m-4 flex-fill" 
+        v-on:click.prevent="CMCDeck()"
+        v-bind:class="buttonClass(CMC)">
         CMC
       </button>
       <button
-        class="btn btn-dark m-4 flex-fill"
+        class="btn m-4 flex-fill"
         v-on:click.prevent="EDHRECDeck()"
-      >
+        v-bind:class="buttonClass(EDHREC)">
         EDHREC Rank
       </button>
       <button
         class="btn btn-dark m-4 flex-fill"
-        v-on:click.prevent="resetDeck()"
-      >
+        v-on:click.prevent="resetDeck()">
         Reset
       </button>
     </div>
@@ -137,6 +140,10 @@ export default {
   },
 
   methods: {
+    buttonClass(isActive){
+      return isActive? 'btn-light': 'btn-dark';
+    },
+
     checkLoginStatus() {
       let token = this.$store.state.token;
 
@@ -249,7 +256,7 @@ export default {
       }
     );
     this.checkLoginStatus();
-  },
+  }
 };
 </script>
 
