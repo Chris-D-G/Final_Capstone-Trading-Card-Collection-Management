@@ -15,7 +15,7 @@
       width="488px"
       height="680px"
       v-if="showLargeImg"
-      v-on:click="displayLargerImage"
+      v-on:click="displayLargerImage" 
     />
     <p class="mt-1 mb-1 fw-semibold">{{ card.name }}</p>
 

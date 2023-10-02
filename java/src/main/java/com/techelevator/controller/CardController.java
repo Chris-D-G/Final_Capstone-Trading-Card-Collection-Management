@@ -42,9 +42,18 @@ public class CardController{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Unable to locate any cards that match!");
         }
     }
-
     @GetMapping(path= "/search-cards")
     public List<Card> getAllCards() {
+        try {
+            return cardDao.getCards();
+        }catch (RuntimeException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Unable to load cards!");
+        }
+    }
+
+    @PreAuthorize("permitAll")
+    @GetMapping(path= "/search-cards/free")
+    public List<Card> getAllCardsNoLogin() {
         try {
             return cardDao.getCards();
         }catch (RuntimeException e){

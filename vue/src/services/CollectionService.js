@@ -19,10 +19,6 @@ export default {
     getCollectionById(collectionId){
         return axios.get(`collections/${collectionId}`)
     },
-    getAllCardsByCollectionAlph(collectionId){
-        return axios.get(`/collections/${collectionId}/cards/a`);
-    },
-
     getUserByCollectionId(collectionId){
         return axios.get(`/collections/${collectionId}/user`);
     },
@@ -31,5 +27,29 @@ export default {
     },
     deleteCardFromCollection(card, collectionId){
         return axios.delete(`/collections/${collectionId}/delete`,card);
+    },
+
+// sorted lists for collections display
+
+    getAllCardsByCollectionAlph(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/a`);
+    },
+    getAllCardsByCollectionColor(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/c`);
+    },
+    getAllCardsByCollectionColorIdentity(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/ci`);
+    },
+    getAllCardsByCollectionSet(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/s`);
+    },
+    getAllCardsByCollectionLegality(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/l`);
+    },
+    getAllCardsByCollectionCMC(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/cmc`);
+    },
+    getAllCardsByCollectionEDHREC(collectionId){
+        return axios.get(`/collections/${collectionId}/cards/ed`);
     }
 }
