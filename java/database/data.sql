@@ -9,18 +9,21 @@ INSERT INTO tcg (tcg_name) VALUES ('Magic The Gathering');
 
 
 INSERT INTO default_profile_img (pic_id, img_loc)
-VALUES(1, 'https://drive.google.com/file/d/1an0YmG4T_Mv_Rtz3oxFoE9wpn1SZNJwT/view?usp=sharing'),
-(2, 'https://drive.google.com/file/d/1X0Vqv-TyFfZM1xQGOnA2pluoIq51UMcm/view?usp=sharing'),
-(3, 'https://drive.google.com/file/d/1VykS7Ga0bFHdrp5TX1XBQtn5k-OkBbVC/view?usp=sharing'),
-(4,'https://drive.google.com/file/d/1s-R2hNLaYRC5COJKKQmFGwXGtgycikRS/view?usp=sharing'),
-(5,'https://drive.google.com/file/d/11jHbfoApvemMovMy4WkzEIouyVB8nOHP/view?usp=sharing'),
-(6,'https://drive.google.com/file/d/1b1RC15_G1ASibnC58snTN4omNaORTdD8/view?usp=sharing');
-
-
+VALUES(1, 'https://randomuser.me/api/portraits/lego/1.jpg'),
+(2, 'https://randomuser.me/api/portraits/lego/2.jpg'),
+(3, 'https://randomuser.me/api/portraits/lego/3.jpg'),
+(4,'https://randomuser.me/api/portraits/lego/4.jpg'),
+(5,'https://randomuser.me/api/portraits/lego/5.jpg'),
+(6,'https://randomuser.me/api/portraits/lego/6.jpg'),
+(7,'https://randomuser.me/api/portraits/lego/5.jpg'),
+(8,'https://randomuser.me/api/portraits/lego/5.jpg'),
+(9,'https://randomuser.me/api/portraits/lego/5.jpg'),
+(10,'https://randomuser.me/api/portraits/lego/5.jpg');
 
 INSERT INTO users_profile (user_id, pic_id, about_me)
 VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default example user! I''m whatever the admin wants me to be' ),
-((SELECT user_id FROM users where username='admin'), 10, 'I''m the default admin user! I have the power?!' );
+((SELECT user_id FROM users where username='admin'), 1, 'I''m the default admin user! I have the power?!' );
+
 
 INSERT INTO users_friends (user_id, friend_id)
 VALUES(1,2),

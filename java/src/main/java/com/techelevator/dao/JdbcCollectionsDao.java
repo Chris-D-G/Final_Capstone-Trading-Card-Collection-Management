@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -274,6 +275,8 @@ public class JdbcCollectionsDao implements CollectionsDao{
     public int addCardToCollection(Card card, int collectionId) {
         int qty =1;
         String sql = "insert into collections_cards (collection_id, card_id, quantity) values(?,?,?);";
+        String update = "update collections_cards set quantity = ? where card_id =? and collection_id =?";
+        String quansql = "select quantity from collections_cards where card_id =? and collection_id =?";
         int check = -1;
         try{
             check = jdbcTemplate.update(sql,collectionId,card.getId(),qty);
@@ -288,6 +291,9 @@ public class JdbcCollectionsDao implements CollectionsDao{
             throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
+            qty = jdbcTemplate.queryForObject(quansql,int.class,card.getId(),collectionId);
+            qty++;
+            jdbcTemplate.update(update,qty,card.getId(),collectionId);
             throw new RuntimeException("Database Integrity Violation!", e);
         }
         return check;
