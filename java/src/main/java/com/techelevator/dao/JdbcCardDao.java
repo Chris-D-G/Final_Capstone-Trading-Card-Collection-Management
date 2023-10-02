@@ -360,6 +360,7 @@ public class JdbcCardDao implements CardDao {
         mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
         mappedCard.setReverseImgUrl("card_reverse_image_url");
+        mappedCard.setSmallReverseImgUrl("card_reverse_small_image_url");
         List <String> colors = List.of(results.getString("card_colors").split(","));
         mappedCard.setColors(colors);
         List <String> colorIdentity = List.of(results.getString("card_color_identity").split(","));

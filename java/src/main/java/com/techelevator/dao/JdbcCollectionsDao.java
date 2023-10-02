@@ -184,13 +184,15 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     @Override
     public List<CardDto> getCardsByCollectionId(int collectionId) {
-        Card card = new Card();
-        CardDto cardDto = new CardDto();
+        Card card;
+        CardDto cardDto;
         List<CardDto> cards = new ArrayList<>();
         String sql = "select card_id, quantity from collections_cards where collection_id = ?;";
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
             while(rowSet.next()){
+                card = new Card();
+                cardDto = new CardDto();
                 String id = rowSet.getString("card_id");
                 int qty = rowSet.getInt("quantity");
                 String cardsql = "select * from cards where card_id = ?;";
@@ -204,7 +206,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
                 cardDto.setColorIdentity(card.getColorIdentity());
                 cardDto.setColors(card.getColors());
                 cardDto.setEdhrecRank(card.getEdhrecRank());
-                cardDto.setId(card.getId());
+                cardDto.setId(id);
                 cardDto.setImageUrl(card.getImageUrl());
                 cardDto.setLayout(card.getLayout());
                 cardDto.setLegalities(card.getLegalities());
