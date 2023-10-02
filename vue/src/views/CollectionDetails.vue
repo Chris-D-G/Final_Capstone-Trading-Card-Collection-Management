@@ -57,7 +57,7 @@
     </div>
 
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="
         !this.alpha &&
         !this.color &&
@@ -72,18 +72,18 @@
         v-for="card in cards"
         v-bind:key="card.id"
         v-bind:card="card"
-        class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+        class="d-flex flex-wrap gap-2 justify-content-evenly"
       />
     </div>
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="this.alpha"
     >
       <card v-for="card in alphcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="this.color"
     >
       <card
@@ -94,7 +94,7 @@
     </div>
 
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="this.colorIden"
     >
       <card
@@ -105,14 +105,14 @@
     </div>
 
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="this.set"
     >
       <card v-for="card in setcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="this.legality"
     >
       <card
@@ -122,12 +122,12 @@
       />
     </div>
 
-    <div class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start" v-if="this.CMC">
+    <div class="d-flex flex-wrap gap-2 justify-content-evenly" v-if="this.CMC">
       <card v-for="card in CMCcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
     <div
-      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      class="d-flex flex-wrap gap-2 justify-content-evenly"
       v-if="this.EDHREC"
     >
       <card
