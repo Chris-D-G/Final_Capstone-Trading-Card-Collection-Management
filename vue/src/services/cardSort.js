@@ -39,7 +39,7 @@ export default {
      */
     sortByColor(list) {
         const compare = (card1, card2) =>
-            colorHash(card1.colors) >  colorHash(card2.colors);
+            this.colorHash(card1.colors) >  this.colorHash(card2.colors);
         return selectionSort(list, compare);
     },
 
@@ -77,7 +77,7 @@ export default {
 
     sortByColorId(list) {
         const compare = (card1, card2) => 
-            colorHash(card1.colorIdentity) > colorHash(card2.colorIdentity);
+            this.colorHash(card1.colorIdentity) > this.colorHash(card2.colorIdentity);
         return selectionSort(list, compare);
     },
     
@@ -91,6 +91,24 @@ export default {
         const compare = (card1, card2) =>
             card1.edhrecRank > card2.edhrecRank;
         return selectionSort(list, compare);
+    },
+
+    /**
+     * method to hash the color array in a way to make it easier to compare to other color arrays
+     *
+     * @param {Color[]} colors array to hash
+     * @returns {Number} hash of colors
+     */
+    colorHash (colors) {
+        let val = 0;
+
+        val += colors.includes("W")? "1" : "";
+        val += colors.includes("U")? "2" : "";
+        val += colors.includes("B")? "3" : "";
+        val += colors.includes("R")? "4" : "";
+        val += colors.includes("G")? "5" : "";
+
+        return Number(val);
     }
 
 }
@@ -116,23 +134,6 @@ function selectionSort (list, compare) {
     return list;
 }
 
-/**
- * method to hash the color array in a way to make it easier to compare to other color arrays
- *
- * @param {Color[]} colors array to hash
- * @returns {Number} hash of colors
- */
-function colorHash (colors) {
-    let val = 0;
-
-    val += colors.includes("W")? "1" : "";
-    val += colors.includes("U")? "2" : "";
-    val += colors.includes("B")? "3" : "";
-    val += colors.includes("R")? "4" : "";
-    val += colors.includes("G")? "5" : "";
-
-    return Number(val);
-}
 
 /*
 {
