@@ -1,6 +1,6 @@
 <template>
 <div class="mb-4">
-  <div class="card-container mx-3 mt-3">
+  <div class="card-container mx-3 mt-3 d-flex flex-column">
     
     <img
       class="rounded-2 shadow-lg"
@@ -20,7 +20,7 @@
     />
     <p class="mt-1 mb-1 fw-semibold text-wrap">{{ card.name }}</p>
 
-    <div id="cardInfo" v-if="displayInfo" class="bg-white rounded-5 border border-1 border-white w-50 mx-auto" style="--bs-bg-opacity: .15;" >
+    <div id="cardInfo" v-if="displayInfo" class="bg-white rounded-5 border border-1 border-white w-25 ms-1 d-inline" style="--bs-bg-opacity: .15;" >
       Card Name : {{this.card.name}}<br/>
       Colors : {{this.card.colors}}<br/>
       Color-Identities : {{this.card.colorIdentity}}<br/>
