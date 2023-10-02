@@ -22,17 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul
-            class="navbar-nav align-items-center justify-content-evenly w-100"
+            class="navbar-nav align-items-center justify-content-between w-100"
           >
-            <li class="nav-item text-">
-              <a>
+            <li class="nav-item text-">              
                 <router-link
                   class="nav-link active text-light fs-3 me-3"
                   :to="{ name: 'home' }"
                 >
                   Home
-                </router-link>
-              </a>
+                </router-link>              
             </li>
             <li class="nav-item dropdown">
               <a
@@ -109,16 +107,14 @@
                 </router-link>
               </a>
             </li>
-            <li class="d-none d-xl-inline">
-              <img
-                class="nav-img"
-                :src="registerBubble"
-                alt="register-now"
-                height="130"
-                width="auto"
-              />
-            </li>
           </ul>
+          <img
+              class="nav-img d-none d-xl-inline-block"
+              :src="registerBubble"
+              alt="register-now"
+              height="130"
+              width="auto"
+            />
         </div>
       </div>
     </nav>
@@ -144,8 +140,8 @@ export default {
 }
 .nav-img {
   position: relative;
-  left: -110px;
   top: -20px;
+  right: 40px; 
 }
 
 div > ul > li > a:hover {
