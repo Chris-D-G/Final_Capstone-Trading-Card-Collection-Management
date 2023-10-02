@@ -61,7 +61,7 @@ public class CardController{
         }
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/collections/:id/add", method = RequestMethod.POST)
     public Card addCardToCollection (Card card){
         return cardDao.addCard(card);
