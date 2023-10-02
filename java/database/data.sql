@@ -24,6 +24,7 @@ INSERT INTO users_profile (user_id, pic_id, about_me)
 VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default example user! I''m whatever the admin wants me to be' ),
 ((SELECT user_id FROM users where username='admin'), 10, 'I''m the default admin user! I have the power?!' );
 
+
 INSERT INTO users_friends (user_id, friend_id)
 VALUES(1,2),
 (1,3),
