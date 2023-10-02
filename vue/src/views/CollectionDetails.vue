@@ -1,6 +1,9 @@
 <template>
   <div class="ms-5 me-5">
-    <h1 class="text-light fs-1 text-center fw-bold title mt-4 p-3 w-25 mx-auto bg-white  rounded-5 border border-1 border-white shadow" style="--bs-bg-opacity: .10;">
+    <h1
+      class="text-light fs-1 text-center fw-bold title mt-4 p-3 w-25 mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.15"
+    >
       {{ this.collection.name }}
     </h1>
     <button
@@ -11,7 +14,10 @@
       Delete Collection
     </button>
 
-    <div class="d-flex flex-wrap m-4 bg-primary rounded-5 border border-2 border-danger-subtle" style="--bs-bg-opacity: .25;">
+    <div
+      class="d-flex flex-wrap m-4 bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.15"
+    >
       <button
         class="btn btn-dark m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
@@ -51,7 +57,7 @@
     </div>
 
     <div
-      class="d-flex flex-wrap me-2 justify-content-evenly"
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
       v-if="
         !this.alpha &&
         !this.color &&
@@ -62,13 +68,24 @@
         !this.CMC
       "
     >
-      <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
+      <card
+        v-for="card in cards"
+        v-bind:key="card.id"
+        v-bind:card="card"
+        class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      />
     </div>
-    <div class="d-flex flex-wrap me-2 justify-content-center" v-if="this.alpha">
+    <div
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      v-if="this.alpha"
+    >
       <card v-for="card in alphcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
-    <div class="d-flex flex-wrap me-2 justify-content-evenly" v-if="this.color">
+    <div
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      v-if="this.color"
+    >
       <card
         v-for="card in colorcards"
         v-bind:key="card.id"
@@ -77,7 +94,7 @@
     </div>
 
     <div
-      class="d-flex flex-wrap me-2 justify-content-evenly"
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
       v-if="this.colorIden"
     >
       <card
@@ -87,12 +104,15 @@
       />
     </div>
 
-    <div class="d-flex flex-wrap me-2 justify-content-evenly" v-if="this.set">
+    <div
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
+      v-if="this.set"
+    >
       <card v-for="card in setcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
     <div
-      class="d-flex flex-wrap me-2 justify-content-evenly"
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
       v-if="this.legality"
     >
       <card
@@ -102,12 +122,12 @@
       />
     </div>
 
-    <div class="d-flex flex-wrap me-2 justify-content-evenly" v-if="this.CMC">
+    <div class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start" v-if="this.CMC">
       <card v-for="card in CMCcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
     <div
-      class="d-flex flex-wrap me-2 justify-content-evenly"
+      class="d-flex flex-wrap gap-2 flex-column flex-md-row justify-content-center justify-content-lg-start"
       v-if="this.EDHREC"
     >
       <card
@@ -296,7 +316,6 @@ export default {
 <style>
 .title {
   z-index: 1;
-  font-family: 'Forzan', sans-serif;
+  font-family: "Forzan", sans-serif;
 }
-
 </style>

@@ -18,9 +18,9 @@
       v-if="showLargeImg"
       v-on:click="displayLargerImage" 
     />
-    <p class="mt-1 mb-1 fw-semibold">{{ card.name }}</p>
+    <p class="mt-1 mb-1 fw-semibold text-wrap">{{ card.name }}</p>
 
-    <div id="cardInfo" v-if="displayInfo" class="bg-primary rounded-5 border border-2 border-danger-subtle w-50 mx-auto" style="--bs-bg-opacity: .5;">
+    <div id="cardInfo" v-if="displayInfo" class="bg-white rounded-5 border border-1 border-white w-50 mx-auto" style="--bs-bg-opacity: .15;" >
       Card Name : {{this.card.name}}<br/>
       Colors : {{this.card.colors}}<br/>
       Color-Identities : {{this.card.colorIdentity}}<br/>
@@ -71,6 +71,7 @@ p{
 }
 #cardInfo{
   color:#360a0c;
-  font-weight: 500
+  font-weight: 500;
+  
 }
 </style>

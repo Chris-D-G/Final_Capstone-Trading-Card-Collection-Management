@@ -72,9 +72,9 @@ export default {
       }
     }),
       CollectionService.getMyCollections().then((response) => {
-        // if (response.status == 200) {
+        if (response.status == 200) {
           this.collectionList = response.data;
-        // }
+        }
       });
   },
   data() {
