@@ -1,6 +1,6 @@
 <template>
   <div class="ms-5 me-5">
-    <h1 class="text-dark fs-1 text-center fw-bold title mt-4 text center p-3 w-25 mx-auto bg-primary  rounded-5 border border-2 border-danger-subtle" style="--bs-bg-opacity: .25;">
+    <h1 class="text-light fs-1 text-center fw-bold title mt-4 p-3 w-25 mx-auto bg-white  rounded-5 border border-1 border-white shadow" style="--bs-bg-opacity: .10;">
       {{ this.collection.name }}
     </h1>
     <button

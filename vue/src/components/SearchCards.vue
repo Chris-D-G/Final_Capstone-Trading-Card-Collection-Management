@@ -20,7 +20,7 @@
       <tbody>
         <tr>
           <td>
-            <input type="text" id="cardTitleFilter" v-model="search.cardTitle" @change="currentPage = 1"/>
+            <input type="text" id="cardTitleFilter" v-model="search.cardTitle"/>
           </td>
           <td>
             <select id="statusFilter" v-model="search.gameType">
@@ -78,7 +78,7 @@
       </tbody>
     </table>
     </div>
-      <button v-on:click.prevent="addCard(this.card.id)"  v-if="isLoggedIn">Add To Collection</button>
+     
     <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn">
       <addCard v-for="(addCard, index) in filteredCards.slice(findStartIndex, findEndIndex)" 
       v-bind:key="index" v-bind:addCard="addCard" :isChecked="checkboxStates[index]"
@@ -100,7 +100,7 @@
     <div v-if="isLoggedIn">
     <div class="m-1">
       <label class="me-1" for="choose-collection">Enter Name of Collection</label>
-      <input name="choose-collection" v-model="collectionName" type="text" @change.prevent="setCollectionId()">
+      <input @change="setCollectionId()" name="choose-collection" v-model="collectionName" type="text" @change.prevent="setCollectionId()">
     </div>
     <button class="btn btn-dark m-2"  @click="addCheckedCards()">Add Checked Cards to Queue</button>
       <button class="btn btn-dark" @click="addCard()">Add Queued Cards To Collection</button>  
@@ -182,18 +182,20 @@ export default {
       // Add checked cards to the checkedCards array
       console.log("addCheckedCards method called");
       console.log("Checkbox states:", this.checkboxStates);
-      this.checkedCards = this.cards.filter((_, index) => this.checkboxStates[index]);
+      this.checkedCards = this.filteredCards.filter((_, index) => this.checkboxStates[index]);
       console.log("Filtered checkedCards:", this.checkedCards);
     },
 
     addCard() {
       this.checkedCards.forEach((card) => {
-        CollectionService.addCardToCollection(card, this.collectionId)
+        CollectionService.addCardToCollection(this.collectionId, card)
       });
       this.$router.push(`/myCollections`)
     },
 
     setCollectionId() {
+      console.log("setCollectionId method called");
+      console.log("Current Collection Id:", this.collectionId);
       if(this.collectionName != "") {
         this.availableCollections.forEach((collection) => {
           if(collection.name.toLowerCase().includes(this.collectionName.toLowerCase())) {

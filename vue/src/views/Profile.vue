@@ -48,15 +48,13 @@
     >
       <p class="fs-2 fw-semibold pt-lg-5 px-lg-5">My Collections</p>
       <ul class="ps-lg-5 d-flex flex-column align-items-center d-lg-block">
-        <router-link
-          class="fs-4 text-capitalize text-lg-start"
+        <li><router-link
+          class="fs-4 text-capitalize text-lg-start text-dark"
           v-for="collection in collectionList"
           v-bind:collection="collection"
           v-bind:key="collection.id"
-          v-bind:to ="{name: 'CollectionCards', params:{id:Collection.id}}"
-          >{{ collection.name }}</router-link
-        >
-        <li>collection 1</li>
+          v-bind:to ="{name: 'CollectionCards', params:{id:collection.id}}"
+          >{{ collection.name }}</router-link></li>                    
       </ul>
     </aside>
   </div>
@@ -74,9 +72,9 @@ export default {
       }
     }),
       CollectionService.getMyCollections().then((response) => {
-        if (response.status == 200) {
+        // if (response.status == 200) {
           this.collectionList = response.data;
-        }
+        // }
       });
   },
   data() {

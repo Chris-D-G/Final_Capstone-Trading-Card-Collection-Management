@@ -9,20 +9,18 @@ INSERT INTO tcg (tcg_name) VALUES ('Magic The Gathering');
 
 
 INSERT INTO default_profile_img (pic_id, img_loc)
-VALUES(1, 'https://randomuser.me/api/portraits/lego/1.jpg'),
-(2, 'https://randomuser.me/api/portraits/lego/2.jpg'),
-(3, 'https://randomuser.me/api/portraits/lego/3.jpg'),
-(4,'https://randomuser.me/api/portraits/lego/4.jpg'),
-(5,'https://randomuser.me/api/portraits/lego/5.jpg'),
-(6,'https://randomuser.me/api/portraits/lego/6.jpg'),
-(7,'https://randomuser.me/api/portraits/lego/7.jpg'),
-(8,'https://randomuser.me/api/portraits/lego/8.jpg'),
-(9,'https://randomuser.me/api/portraits/lego/9.jpg'),
-(10,'https://randomuser.me/api/portraits/lego/0.jpg');
+VALUES(1, 'https://lh3.googleusercontent.com/drive-viewer/AK7aPaDmJfUDUZbsBpN10kDEy2KpYbYBqQA6rxvVfJ_bw81_FE-uk44VtHxKZME4z04yjGimLJThDrA8JZ4FmZjEQMs6mhsm=s2560'),
+(2, 'https://lh3.googleusercontent.com/drive-viewer/AK7aPaD8A7yCRqzKz1bsZHCyIWaxiiKKDw6W1hLyWtGDtgwMTW9RLuoJ_F0MWFTYqL7maf8H5fIgkm1etd-Vpt7Hjs-S_HK9=s2560'),
+(3, 'https://lh3.googleusercontent.com/drive-viewer/AK7aPaCMd8isbQeG5kgmgltM1TpPWSqXgWqsWlAGfIfPA7BW5lQnFUpeY8FAyLK8i9g06AHPkiyavfygxCbtVnX0m5lCd77kmA=s2560'),
+(4,'https://lh3.googleusercontent.com/drive-viewer/AK7aPaBY5_Nbk4NHhh1QoPjBu0leEWKCUUyjVA8i3MS3ZWBTj9Y8XAMVV9ZPdwB55uxzYsFCVPWLG3nDqxtTa3cC_oXVWU1UHw=s2560'),
+(5,'https://lh3.googleusercontent.com/drive-viewer/AK7aPaAcAEAgGxoqETOpWEwU71rskFqj7RRSn-aEB2cs-KzL7R8l5Zay4lLWcvEr4Hq05KJ016uICSUEzDwLhyeHIYZUBbN1=s2560'),
+(6,'https://lh3.googleusercontent.com/drive-viewer/AK7aPaC6I79iJGrj65PiYDGyLd9FdCC_LGYTID8yB8YxKRrJHKOWMsENPMcGy33Zuww15eBw7nWCcBlX_M9vTXIFeQulXDWXuw=s2560');
+
 
 INSERT INTO users_profile (user_id, pic_id, about_me)
 VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default example user! I''m whatever the admin wants me to be' ),
-((SELECT user_id FROM users where username='admin'), 10, 'I''m the default admin user! I have the power?!' );
+((SELECT user_id FROM users where username='admin'), 1, 'I''m the default admin user! I have the power?!' );
+
 
 INSERT INTO users_friends (user_id, friend_id)
 VALUES(1,2),
