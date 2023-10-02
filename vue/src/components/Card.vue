@@ -20,6 +20,20 @@
     />
     <p class="mt-1 mb-1 fw-semibold">{{ card.name }}</p>
 
+    <div id="cardInfo" v-if="displayInfo" class="bg-primary rounded-5 border border-2 border-danger-subtle w-50 mx-auto" style="--bs-bg-opacity: .5;">
+      Card Name : {{this.card.name}}<br/>
+      Colors : {{this.card.colors}}<br/>
+      Color-Identities : {{this.card.colorIdentity}}<br/>
+      Set Information : {{this.card.setCode}} / {{this.card.setName}}<br/>
+      Collector # : {{this.card.collectorNumber}}<br/>
+      Legalities : {{this.card.legalities}}<br/>
+      Layout : {{this.card.layout}}<br/>
+      CMC : {{this.card.cmc}}<br/>
+      EDHREC Rank : {{this.card.edhrecRank}}<br/><br/>
+      Want more stats or purchase information? Click 
+      <a :href="this.card.scryfallUrl">Here!</a>
+    </div>
+
   </div>
 
   <!-- <button class="btn btn-dark p-1 btn-sm btn-outline-light ">Delete</button> -->
@@ -34,11 +48,13 @@ export default {
   methods: {
     displayLargerImage() {
       this.showLargeImg = !this.showLargeImg;
+      this.displayInfo=!this.displayInfo;
     },
   },
   data() {
     return {
       showLargeImg: false,
+      displayInfo:false
     };
   },
 
@@ -52,5 +68,9 @@ export default {
 }
 p{
  color:#360a0c
+}
+#cardInfo{
+  color:#360a0c;
+  font-weight: 500
 }
 </style>

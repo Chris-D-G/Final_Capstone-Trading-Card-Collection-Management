@@ -98,12 +98,12 @@
       
     </div>
     <div v-if="isLoggedIn">
-    <div>
-      <label for="choose-collection">Enter Name of Collection</label>
+    <div class="m-1">
+      <label class="me-1" for="choose-collection">Enter Name of Collection</label>
       <input name="choose-collection" v-model="collectionName" type="text" @change.prevent="setCollectionId()">
     </div>
-    <button @click="addCheckedCards()">Add Checked Cards to Queue</button>
-      <button @click="addCard()">Add Queued Cards To Collection</button>  
+    <button class="btn btn-dark m-2"  @click="addCheckedCards()">Add Checked Cards to Queue</button>
+      <button class="btn btn-dark" @click="addCard()">Add Queued Cards To Collection</button>  
       </div>
   </div>
 </template>
