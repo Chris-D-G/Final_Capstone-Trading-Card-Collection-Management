@@ -16,37 +16,37 @@
         class="btn btn-dark m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
       >
-        {{ alpha ? "Reset" : "Alphabetical" }}
+        Alphabetical
       </button>
       <button
         class="btn btn-dark m-4 flex-fill"
         v-on:click.prevent="colorDeck()"
       >
-        {{ color ? "Reset" : "Color" }}
+        Color
       </button>
       <button
         class="btn btn-dark m-4 flex-fill"
         v-on:click.prevent="identityDeck()"
       >
-        {{ colorIden ? "Reset" : "Color Identity" }}
+        Color Identity
       </button>
       <button class="btn btn-dark m-4 flex-fill" v-on:click.prevent="setDeck()">
-        {{ set ? "Reset" : "Sets" }}
-      </button>
-      <button
-        class="btn btn-dark m-4 flex-fill"
-        v-on:click.prevent="lagalityDeck()"
-      >
-        {{ legality ? "Reset" : "Legality" }}
+        set
       </button>
       <button class="btn btn-dark m-4 flex-fill" v-on:click.prevent="CMCDeck()">
-        {{ CMC ? "Reset" : "CMC" }}
+        CMC
       </button>
       <button
         class="btn btn-dark m-4 flex-fill"
         v-on:click.prevent="EDHRECDeck()"
       >
-        {{ EDHREC ? "Reset" : "EDHREC Rank" }}
+        EDHREC Rank
+      </button>
+      <button
+        class="btn btn-dark m-4 flex-fill"
+        v-on:click.prevent="resetDeck()"
+      >
+        Reset
       </button>
     </div>
 
@@ -57,7 +57,6 @@
         !this.color &&
         !this.colorIden &&
         !this.set &&
-        !this.legality &&
         !this.EDHREC &&
         !this.CMC
       "
@@ -91,17 +90,6 @@
       <card v-for="card in setcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
-    <div
-      class="d-flex flex-wrap me-2 justify-content-evenly"
-      v-if="this.legality"
-    >
-      <card
-        v-for="card in legalitycards"
-        v-bind:key="card.id"
-        v-bind:card="card"
-      />
-    </div>
-
     <div class="d-flex flex-wrap me-2 justify-content-evenly" v-if="this.CMC">
       <card v-for="card in CMCcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
@@ -122,6 +110,8 @@
 <script>
 import CollectionService from "../services/CollectionService.js";
 import card from "../components/Card.vue";
+import CardSort from "../services/cardSort.js";
+
 export default {
   name: "collection-details",
   components: { card },
@@ -132,7 +122,6 @@ export default {
       colorcards: [],
       colorIdencards: [],
       setcards: [],
-      legalitycards: [],
       CMCcards: [],
       EDHRECcards: [],
       collection: [],
@@ -140,7 +129,6 @@ export default {
       color: false,
       colorIden: false,
       set: false,
-      legality: false,
       CMC: false,
       EDHREC: false,
       isOwner: false,
@@ -157,29 +145,26 @@ export default {
       }
     },
     alphaDeck() {
-      this.alpha = !this.alpha;
+      this.alpha = true;
       this.color = false;
       this.colorIden = false;
       this.set = false;
-      this.legality = false;
       this.CMC = false;
       this.EDHREC = false;
     },
     colorDeck() {
-      this.color = !this.color;
+      this.color = true;
       this.alpha = false;
       this.colorIden = false;
       this.set = false;
-      this.legality = false;
       this.CMC = false;
       this.EDHREC = false;
     },
     identityDeck() {
       this.alpha = false;
       this.color = false;
-      this.colorIden = !this.colorIden;
+      this.colorIden = true;
       this.set = false;
-      this.legality = false;
       this.CMC = false;
       this.EDHREC = false;
     },
@@ -187,17 +172,7 @@ export default {
       this.alpha = false;
       this.color = false;
       this.colorIden = false;
-      this.set = !this.set;
-      this.legality = false;
-      this.CMC = false;
-      this.EDHREC = false;
-    },
-    lagalityDeck() {
-      this.alpha = false;
-      this.color = false;
-      this.colorIden = false;
-      this.set = false;
-      this.legality = !this.legality;
+      this.set = true;
       this.CMC = false;
       this.EDHREC = false;
     },
@@ -206,8 +181,7 @@ export default {
       this.color = false;
       this.colorIden = false;
       this.set = false;
-      this.legality = false;
-      this.CMC = !this.CMC;
+      this.CMC = true;
       this.EDHREC = false;
     },
     EDHRECDeck() {
@@ -215,9 +189,17 @@ export default {
       this.color = false;
       this.colorIden = false;
       this.set = false;
-      this.legality = false;
       this.CMC = false;
-      this.EDHREC = !this.EDHREC;
+      this.EDHREC = true;
+    },
+
+    resetDeck() {
+      this.alpha = false;
+      this.color = false;
+      this.colorIden = false;
+      this.set = false;
+      this.CMC = false;
+      this.EDHREC = false;
     },
 
     deleteCollection(name) {
@@ -243,6 +225,21 @@ export default {
     CollectionService.getAllCardsByCollection(this.$route.params.id).then(
       (response) => {
         this.cards = response.data;
+        for (let i = 0; i < this.cards.length; i++) {
+          const element = this.cards[i];
+          this.alphcards.push(element);
+          this.CMCcards.push(element);
+          this.colorcards.push(element);
+          this.colorIdencards.push(element);
+          this.setcards.push(element);
+          this.EDHRECcards.push(element);
+        }
+        this.alphcards = CardSort.sortByName(this.alphcards);
+        this.CMCcards = CardSort.sortByCmc(this.CMCcards);
+        this.colorcards = CardSort.sortByColor(this.colorcards);
+        this.colorIdencards = CardSort.sortByColorId(this.colorIdencards);
+        this.setcards = CardSort.sortBySetId(this.setcards);
+        this.EDHRECcards = CardSort.sortByEdhrec(this.EDHRECcards);
       }
     );
 
@@ -252,43 +249,6 @@ export default {
       }
     );
     this.checkLoginStatus();
-
-    CollectionService.getAllCardsByCollectionAlph(this.$route.params.id).then(
-      (response) => {
-        this.alphcards = response.data;
-      }
-    );
-
-    CollectionService.getAllCardsByCollectionColor(this.$route.params.id).then(
-      (response) => {
-        this.colorcards = response.data;
-      }
-    );
-    CollectionService.getAllCardsByCollectionColorIdentity(
-      this.$route.params.id
-    ).then((response) => {
-      this.colorIdencards = response.data;
-    });
-    CollectionService.getAllCardsByCollectionSet(this.$route.params.id).then(
-      (response) => {
-        this.setcards = response.data;
-      }
-    );
-    CollectionService.getAllCardsByCollectionLegality(
-      this.$route.params.id
-    ).then((response) => {
-      this.legalitycards = response.data;
-    });
-    CollectionService.getAllCardsByCollectionCMC(this.$route.params.id).then(
-      (response) => {
-        this.CMCcards = response.data;
-      }
-    );
-    CollectionService.getAllCardsByCollectionEDHREC(this.$route.params.id).then(
-      (response) => {
-        this.EDHRECcards = response.data;
-      }
-    );
   },
 };
 </script>

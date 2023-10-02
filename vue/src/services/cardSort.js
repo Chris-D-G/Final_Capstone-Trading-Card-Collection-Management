@@ -73,6 +73,24 @@ export default {
             (card1, card2) => card1.cmc > card2.cmc
             : (card1, card2) => card1.cmc < card2.cmc;
         return selectionSort(list, compare);
+    },
+
+    sortByColorId(list) {
+        const compare = (card1, card2) => 
+            colorHash(card1.colorIdentity) > colorHash(card2.colorIdentity);
+        return selectionSort(list, compare);
+    },
+    
+    sortBySetId(list) {
+        const compare = (card1, card2) =>
+            card1.setCode > card2.setCode;
+        return selectionSort(list, compare);
+    },
+
+    sortByEdhrec(list) {
+        const compare = (card1, card2) =>
+            card1.edhrecRank > card2.edhrecRank;
+        return selectionSort(list, compare);
     }
 
 }
