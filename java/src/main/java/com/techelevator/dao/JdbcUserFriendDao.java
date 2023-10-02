@@ -19,7 +19,7 @@ public class JdbcUserFriendDao implements UserFriendDao{
         String sql = "SELECT friend_id " +
                 "FROM users_friends " +
                 "WHERE user_id = ? " +
-                "AND friendId = ?;";
+                "AND friend_Id = ?;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, friendId);
             return results.next();
@@ -36,7 +36,7 @@ public class JdbcUserFriendDao implements UserFriendDao{
 
     @Override
     public int friendUser(int userId, int friendId){
-        String sql = "INSERT INTO user_friends (user_id, friend_id) VALUES " +
+        String sql = "INSERT INTO users_friends (user_id, friend_id) VALUES " +
                 "(?, ?);";
         try{
             int rowsCreated = jdbcTemplate.update(sql, userId, friendId);
@@ -56,7 +56,7 @@ public class JdbcUserFriendDao implements UserFriendDao{
 
     @Override
     public int unfriendUser (int userId, int friendId){
-        String sql = "DELETE FROM user_friends " +
+        String sql = "DELETE FROM users_friends " +
                 "WHERE user_id = ? " +
                 "AND friend_id = ?;";
         try{
@@ -75,4 +75,8 @@ public class JdbcUserFriendDao implements UserFriendDao{
         }
     }
 
+    @Override
+    public boolean isBothFriends(int user1Id, int user2Id){
+        return isFriended(user1Id, user2Id) && isFriended(user2Id, user1Id);
+    }
 }

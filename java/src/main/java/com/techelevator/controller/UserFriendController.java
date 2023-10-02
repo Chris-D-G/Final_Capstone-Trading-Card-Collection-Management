@@ -38,8 +38,8 @@ public class UserFriendController {
                 -1;
     }
 
-    @RequestMapping(path = "/isFriends", method = RequestMethod.GET)
-    public boolean isFriends(@RequestParam int friendId, Principal principal){
+    @RequestMapping(path = "/isFriend", method = RequestMethod.GET)
+    public boolean isFriend(@RequestParam int friendId, Principal principal){
         int userId = userDao.findIdByUsername(principal.getName());
         return userFriendDao.isFriended(userId, friendId);
     }

@@ -25,4 +25,12 @@ public interface UserFriendDao {
      */
     int unfriendUser (int userId, int friendId);
 
+    /**
+     * this method reports of two users added each other
+     * @param user1 any one of the two users
+     * @param user2 the other of the two users
+     * @return
+     */
+    boolean isBothFriends (int user1, int user2);
+
 }
