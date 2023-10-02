@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{collectionName}}
     <div>
     <table class="search-table">
       <thead class="search-head text-white">
@@ -217,8 +216,20 @@ export default {
             .includes(this.search.cardTitle.toLowerCase())
             );
       }
+      if(this.search.gameType != "") {
+        filteredCards = filteredCards.filter((card) => 
+        card.tcgId = 1);
+      }
+      if (this.search.colors != "") {
+        filteredCards = filteredCards.filter((card) =>
+          card.colors
+            .toLowerCase()
+            .includes(this.search.colors.toLowerCase())
+            );
+      }
       return filteredCards;
     },
+
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
     },
