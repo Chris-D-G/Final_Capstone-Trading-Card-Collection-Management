@@ -1,8 +1,9 @@
 <template>
-<div>
-  <div class="card-container mx-3 mt-3 shadow-lg rounded-5">
+<div class="mb-4">
+  <div class="card-container mx-3 mt-3">
+    
     <img
-      class="rounded-2 shadow"
+      class="rounded-2 shadow-lg"
       v-bind:src="this.card.smallImgUrl"
       width="146px"
       height="204px"
@@ -15,12 +16,27 @@
       width="488px"
       height="680px"
       v-if="showLargeImg"
-      v-on:click="displayLargerImage"
+      v-on:click="displayLargerImage" 
     />
-    <div class="card-title">
-      <h2>{{ card.title }}</h2>
+    <p class="mt-1 mb-1 fw-semibold">{{ card.name }}</p>
+
+    <div id="cardInfo" v-if="displayInfo" class="bg-primary rounded-5 border border-2 border-danger-subtle w-50 mx-auto" style="--bs-bg-opacity: .5;">
+      Card Name : {{this.card.name}}<br/>
+      Colors : {{this.card.colors}}<br/>
+      Color-Identities : {{this.card.colorIdentity}}<br/>
+      Set Information : {{this.card.setCode}} / {{this.card.setName}}<br/>
+      Collector # : {{this.card.collectorNumber}}<br/>
+      Legalities : {{this.card.legalities}}<br/>
+      Layout : {{this.card.layout}}<br/>
+      CMC : {{this.card.cmc}}<br/>
+      EDHREC Rank : {{this.card.edhrecRank}}<br/><br/>
+      Want more stats or purchase information? Click 
+      <a :href="this.card.scryfallUrl">Here!</a>
     </div>
+
   </div>
+
+  <!-- <button class="btn btn-dark p-1 btn-sm btn-outline-light ">Delete</button> -->
   </div>
 </template>
 
@@ -32,13 +48,16 @@ export default {
   methods: {
     displayLargerImage() {
       this.showLargeImg = !this.showLargeImg;
+      this.displayInfo=!this.displayInfo;
     },
   },
   data() {
     return {
       showLargeImg: false,
+      displayInfo:false
     };
   },
+
 };
 </script>
 
@@ -46,5 +65,12 @@ export default {
 .large-card {
   z-index: 3;
 
+}
+p{
+ color:#360a0c
+}
+#cardInfo{
+  color:#360a0c;
+  font-weight: 500
 }
 </style>
