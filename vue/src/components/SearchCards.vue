@@ -78,7 +78,7 @@
       </tbody>
     </table>
     </div>
-      <button v-on:click.prevent="addCard(this.card.id)"  v-if="isLoggedIn">Add To Collection</button>
+     
     <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn">
       <addCard v-for="(addCard, index) in filteredCards.slice(findStartIndex, findEndIndex)" 
       v-bind:key="index" v-bind:addCard="addCard" :isChecked="checkboxStates[index]"
