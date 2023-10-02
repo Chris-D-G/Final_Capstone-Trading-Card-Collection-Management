@@ -1,9 +1,17 @@
 <template>
   <div class="ms-5 me-5">
-    <h1 class="text-dark fs-1 text-center fw-bold title mt-3">
+    <h1 class="text-dark fs-1 text-center fw-bold title mt-4 p-3 w-25 mx-auto bg-primary  rounded-5 border border-2 border-danger-subtle" style="--bs-bg-opacity: .25;">
       {{ this.collection.name }}
     </h1>
-    <div class="d-flex">
+    <button
+      class="btn btn-outline-dark btn-secondary mb-3 mt-2"
+      v-on:click="deleteCollection(collection.name)"
+      v-if="isLoggedIn"
+    >
+      Delete Collection
+    </button>
+
+    <div class="d-flex flex-wrap m-4 bg-primary rounded-5 border border-2 border-danger-subtle" style="--bs-bg-opacity: .25;">
       <button
         class="btn btn-dark m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
@@ -41,13 +49,7 @@
         {{ EDHREC ? "Reset" : "EDHREC Rank" }}
       </button>
     </div>
-    <button
-      class="btn btn-outline-danger btn-dark mb-5"
-      v-on:click="deleteCollection(collection.name)"
-      v-if="isLoggedIn"
-    >
-      Delete Collection
-    </button>
+
     <div
       class="d-flex flex-wrap me-2 justify-content-evenly"
       v-if="
@@ -62,7 +64,7 @@
     >
       <card v-for="card in cards" v-bind:key="card.id" v-bind:card="card" />
     </div>
-    <div class="d-flex flex-wrap me-2 justify-content-evenly" v-if="this.alpha">
+    <div class="d-flex flex-wrap me-2 justify-content-center" v-if="this.alpha">
       <card v-for="card in alphcards" v-bind:key="card.id" v-bind:card="card" />
     </div>
 
@@ -295,4 +297,5 @@ export default {
 .title {
   z-index: 1;
 }
+
 </style>
