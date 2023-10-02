@@ -24,7 +24,7 @@
           <ul
             class="navbar-nav align-items-center justify-content-between w-100"
           >
-            <li class="nav-item text-">              
+            <li class="nav-item ">              
                 <router-link
                   class="nav-link active text-light fs-3 me-3"
                   :to="{ name: 'home' }"
@@ -32,6 +32,15 @@
                   Home
                 </router-link>              
             </li>
+            <li class="nav-item ">              
+                <router-link
+                  class="nav-link text-light fs-3 me-3"
+                  v-bind:to="{ name: 'Profile' }"
+                >
+                  My Profile
+                </router-link>              
+            </li>
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle text-light fs-3 z-1 me-3"
@@ -141,7 +150,7 @@ export default {
 .nav-img {
   position: relative;
   top: -20px;
-  right: 40px; 
+  right: 35px; 
 }
 
 div > ul > li > a:hover {

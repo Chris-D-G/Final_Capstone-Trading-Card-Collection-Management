@@ -7,7 +7,7 @@
       {{ this.collection.name }}
     </h1>
     <button
-      class="btn btn-outline-dark btn-secondary mb-3 mt-2"
+      class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2"
       v-on:click="deleteCollection(collection.name)"
       v-if="isLoggedIn"
     >
