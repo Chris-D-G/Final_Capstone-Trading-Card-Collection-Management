@@ -86,7 +86,7 @@
        
     </div>
 
-    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="!isLoggedIn">collection
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-else>
           <card v-for="(card, index) in filteredCards.slice(findStartIndex, findEndIndex)" v-bind:key="index" v-bind:card="card" />
          
     </div>
@@ -139,11 +139,20 @@ export default {
   },
 
   created() {
+
+    if(this.isLoggedIn){
     service.getAllCards().then(
       (response) => {
         this.cards = response.data;
       }
     );
+    }else{
+      service.getAllCardsNotLoggedIn().then(
+      (response) => {
+        this.cards = response.data;
+      }
+      )
+    }
 
     this.checkLoginStatus();
 
