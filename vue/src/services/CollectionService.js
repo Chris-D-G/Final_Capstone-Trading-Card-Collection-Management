@@ -53,6 +53,6 @@ export default {
         return axios.get(`/collections/${collectionId}/cards/ed`);
     },
     getCountOfCardsInCollection(collectionId) {
-        return axios.get('/collections/allCollections/stats', collectionId)
+        return axios.get(`/collections/allCollections/${collectionId}/stats`)
     }
 }
