@@ -5,8 +5,8 @@ export default{
         return axios.get('/messages/myMessages');
     },
 
-    sendNewMessage(){
-        return axios.post('/messages/new-message');
+    sendNewMessage(messageToSend){
+        return axios.post('/messages/new-message', messageToSend);
     },
 
     deleteMessage(messageID){
