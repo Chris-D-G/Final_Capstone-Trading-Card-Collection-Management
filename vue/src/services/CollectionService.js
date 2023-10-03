@@ -25,8 +25,8 @@ export default {
     addCardToCollection(collectionId, card){
         return axios.post(`/myCollections/${collectionId}/add`, card);
     },
-    deleteCardFromCollection(card, collectionId){
-        return axios.delete(`/collections/${collectionId}/delete`,card);
+    deleteCardFromCollection(cardId, collectionId){
+        return axios.delete(`/collections/${collectionId}/${cardId}/delete`);
     },
 
 // sorted lists for collections display

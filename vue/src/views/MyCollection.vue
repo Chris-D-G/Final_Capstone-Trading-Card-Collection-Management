@@ -41,7 +41,7 @@ export default {
     return {
       collectionList: [],
       mtgImage,
-      blackHat
+      blackHat,
     };
   },
 
@@ -79,7 +79,7 @@ export default {
 
     sendToCreate(){
       this.$router.push({name: 'collectionForm'})
-    }
+    },
   },
 };
 </script>
