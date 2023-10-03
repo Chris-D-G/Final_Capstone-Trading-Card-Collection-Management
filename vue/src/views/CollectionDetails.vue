@@ -9,7 +9,7 @@
     <button
       class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2"
       v-on:click="deleteCollection(collection.name)"
-      v-if="isLoggedIn">
+      v-if="isLoggedIn && isOwner">
       Delete Collection
     </button>
 
@@ -20,41 +20,41 @@
       <button
         class="btn m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
-        v-bind:class="buttonClass(alpha)">
+        v-bind:class="buttonClass(alpha)" v-if="isLoggedIn && isOwner">
         Alphabetical
       </button>
       <button
         class="btn m-4 flex-fill"
         v-on:click.prevent="colorDeck()"
-        v-bind:class="buttonClass(color)">
+        v-bind:class="buttonClass(color)" v-if="isLoggedIn && isOwner">
         Color
       </button>
       <button
         class="btn m-4 flex-fill"
         v-on:click.prevent="identityDeck()"
-        v-bind:class="buttonClass(colorIden)">
+        v-bind:class="buttonClass(colorIden)" v-if="isLoggedIn && isOwner">
         Color Identity
       </button>
       <button 
         class="btn m-4 flex-fill" 
         v-on:click.prevent="setDeck()"
-        v-bind:class="buttonClass(set)">
+        v-bind:class="buttonClass(set)" v-if="isLoggedIn && isOwner">
         set
       </button>
       <button class="btn m-4 flex-fill" 
         v-on:click.prevent="CMCDeck()"
-        v-bind:class="buttonClass(CMC)">
+        v-bind:class="buttonClass(CMC)" v-if="isLoggedIn && isOwner">
         CMC
       </button>
       <button
         class="btn m-4 flex-fill"
         v-on:click.prevent="EDHRECDeck()"
-        v-bind:class="buttonClass(EDHREC)">
+        v-bind:class="buttonClass(EDHREC)" v-if="isLoggedIn && isOwner">
         EDHREC Rank
       </button>
       <button
         class="btn btn-dark m-4 flex-fill"
-        v-on:click.prevent="resetDeck()">
+        v-on:click.prevent="resetDeck()" v-if="isLoggedIn && isOwner">
         Reset
       </button>
     </div>
@@ -70,7 +70,7 @@
         !this.CMC
       "
     >
-    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn">
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn && isOwner">
       <deleteCard v-for="(deleteCard, index) in cards" 
       v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
       @update:checked="updateCheckboxState(index, $event)"/>
@@ -85,57 +85,53 @@
        
     
     </div>
-    <div
-      class="d-flex flex-wrap gap-2 justify-content-evenly"
-      v-if="this.alpha"
-    >
-      <card v-for="card in alphcards" v-bind:key="card.id" v-bind:card="card" />
-    </div>
+    
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.alpha && isLoggedIn && isOwner">
+      <deleteCard v-for="(deleteCard, index) in alphcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
 
-    <div
-      class="d-flex flex-wrap gap-2 justify-content-evenly"
-      v-if="this.color"
-    >
-      <card
-        v-for="card in colorcards"
-        v-bind:key="card.id"
-        v-bind:card="card"
-      />
-    </div>
+   
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.color && isLoggedIn && isOwner">
+      <deleteCard v-for="(deleteCard, index) in colorcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
 
-    <div
-      class="d-flex flex-wrap gap-2 justify-content-evenly"
-      v-if="this.colorIden"
-    >
-      <card
-        v-for="card in colorIdencards"
-        v-bind:key="card.id"
-        v-bind:card="card"
-      />
-    </div>
+    
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.colorIden && isLoggedIn && isOwner">
+      <deleteCard v-for="(deleteCard, index) in colorIdencards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
 
-    <div
-      class="d-flex flex-wrap gap-2 justify-content-evenly"
-      v-if="this.set"
-    >
-      <card v-for="card in setcards" v-bind:key="card.id" v-bind:card="card" />
-    </div>
-    <div class="d-flex flex-wrap me-2 justify-content-evenly" v-if="this.CMC">
-      <card v-for="card in CMCcards" v-bind:key="card.id" v-bind:card="card" />
-    </div>
+    
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn && isOwner && this.set">
+      <deleteCard v-for="(deleteCard, index) in setcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
+    
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.CMC && isLoggedIn && isOwner && this.set">
+      <deleteCard v-for="(deleteCard, index) in CMCcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
 
-    <div
-      class="d-flex flex-wrap gap-2 justify-content-evenly"
-      v-if="this.EDHREC"
-    >
-      <card
-        v-for="card in EDHRECcards"
-        v-bind:key="card.id"
-        v-bind:card="card"
-      />
-    </div>
-    <button class="btn btn-dark m-2"  @click="addCheckedCards()">Add Checked Cards to Queue</button>
-      <button class="btn btn-dark" @click="deleteCard()">Delete Queued Cards From Collection</button>
+   
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.EDHREC && isLoggedIn && isOwner && this.set">
+      <deleteCard v-for="(deleteCard, index) in EDHRECcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+
+    <button class="btn btn-dark m-2"  @click="addCheckedCards()" v-if="isLoggedIn && isOwner">Add Checked Cards to Queue</button>
+      <button class="btn btn-dark" @click="deleteCard()" v-if="isLoggedIn && isOwner">Delete Queued Cards From Collection</button>
   </div>
 </template>
 
@@ -144,7 +140,8 @@ import CollectionService from "../services/CollectionService.js";
 import card from "../components/Card.vue";
 import CardSort from "../services/cardSort.js";
 import deleteCard from "../components/deleteCardComponent.vue";
-// import profileService from "../services/ProfileService.js";
+import profileService from "../services/ProfileService.js";
+import authService from "../services/AuthService.js";
 
 export default {
   name: "collection-details",
@@ -169,8 +166,10 @@ export default {
       isLoggedIn: false,
       checkboxStates: [], // Array to store checkbox states
       checkedCards: [], // Array to store checked cards
-      user: [],
-      loggedInUser: []
+      collectionOwnerUserId: 0,
+      loggedInUsername: "",
+      loggedInUserId: 0,
+      collectionOwner: {}
     };
   },
 
@@ -186,6 +185,13 @@ export default {
         this.isLoggedIn = true;
       }
     },
+
+    checkOwnerStatus() {
+      if(this.loggedInUserId === this.collectionOwnerUserId) {
+        this.isOwner = true;
+      }
+    },
+
     alphaDeck() {
       this.alpha = true;
       this.color = false;
@@ -313,18 +319,33 @@ export default {
     );
     this.checkLoginStatus();
 
-    CollectionService.getUserByCollectionId(this.$route.params.id).then(
+    this.checkOwnerStatus();
+
+
+// This method is responsible for finding and assigning the user.id for the collection owner.
+    CollectionService.getUserForCollectionId(this.$route.params.id).then(
       (response) => {
-        this.user = response.data;
+        this.collectionOwner = response.data;
+        this.collectionOwnerUserId = parseInt(this.collectionOwner.id);
+        console.log(this.collectionOwnerUserId);
       }
     );
 
-    // profileService.getMyProfile().then(
-    //   (response) => {
-    //    let profile = response.data;
-    //   }
+// This method is responsible for finding and assigning the user.id for the logged in user.
+    profileService.getMyProfile().then(
+      (response) => {
+       let profile = response.data;
+       this.loggedInUsername = profile.username;
+       authService.userValidation(this.loggedInUsername).then(
+      (response) => {
+        this.loggedInUserId = response.data;
+        console.log(this.loggedInUserId);
+      }
+    );
+      }
+    );
 
-    // );
+    
   }
 };
 </script>

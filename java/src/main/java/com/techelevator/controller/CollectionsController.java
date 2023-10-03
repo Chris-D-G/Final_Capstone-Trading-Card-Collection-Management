@@ -76,7 +76,7 @@ public class CollectionsController {
     @PreAuthorize("permitAll")
     @GetMapping(path = "/collections/{collectionId}/user")
     public User getUserByCollection(@PathVariable int collectionId) {
-        return userForCollectionId;
+        return cdao.getUserForCollectionId(collectionId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

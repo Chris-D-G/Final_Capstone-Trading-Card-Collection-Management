@@ -19,7 +19,7 @@ export default {
     getCollectionById(collectionId){
         return axios.get(`collections/${collectionId}`)
     },
-    getUserByCollectionId(collectionId){
+    getUserForCollectionId(collectionId){
         return axios.get(`/collections/${collectionId}/user`);
     },
     addCardToCollection(collectionId, card){
