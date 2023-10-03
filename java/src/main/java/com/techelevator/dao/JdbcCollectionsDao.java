@@ -384,6 +384,26 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return user;
     }
 
+    public int getCountOfCardsInCollection(int collectionId) {
+        int count = 0;
+        String sql = "Select Count (Distinct card_id) From collections_cards Where collection_id = ?;";
+
+        try{
+
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+
+        return  count;
+    };
+
 
     private Collection mapRowToCollection(SqlRowSet set){
         Collection collection = new Collection();
