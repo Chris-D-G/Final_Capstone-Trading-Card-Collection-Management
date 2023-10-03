@@ -45,10 +45,6 @@
             >Need an account? Sign up.</router-link
           >
         </p>
-        <!-- <img v-bind:src='whiteHat' class="w-25 p-5 mt-2"/>
-      <img v-bind:src='blackHat' class="w-25 p-1 mt-2"/>
-      <img v-bind:src='whiteHat' class="w-25 p-5 mt-2"/> -->
-        <!-- <img v-bind:src='colorWHat' class="w-25 p-5 mt-2"/> -->
       </form>
     </div>
     <div class="z-n1 position-absolute top-150 start-50 translate-middle mt-5 pt-5">
