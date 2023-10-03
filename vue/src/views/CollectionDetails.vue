@@ -7,11 +7,17 @@
       {{ this.collection.name }}
     </h1>
     <button
-      class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2"
+      class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space"
       v-on:click="deleteCollection(collection.name)"
       v-if="isLoggedIn && isOwner">
       Delete Collection
     </button>
+
+    
+    <button
+    class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space linkbtn"
+    ><router-link class="text-light fs-6 linkbtn" v-bind:to="{ name: 'searchCards' }"> Add Cards to Collection </router-link></button>
+    
 
     <div
       class="d-flex flex-wrap m-4 bg-white rounded-5 border border-1 border-white shadow"
@@ -361,5 +367,14 @@ export default {
 .title {
   z-index: 1;
   font-family: "Forzan", sans-serif;
+}
+
+.btn-space {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.linkbtn {
+  text-decoration: none;
 }
 </style>
