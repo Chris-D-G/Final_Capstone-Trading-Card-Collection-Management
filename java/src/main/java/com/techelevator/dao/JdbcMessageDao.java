@@ -17,6 +17,14 @@ public class JdbcMessageDao implements MessageDao
 
     @Override
     public Message sendNewMessage(Message messageToSend) {
+
+        String sql = "INSERT INTO messages (message_sender_user_id, message_receiver_user_id, " +
+                "message_text, message_timestamp, message_read_status) " +
+                "VALUES ( (SELECT user_id FROM users WHERE username = ? ), " +
+                "(SELECT user_id FROM users WHERE username = ?), " +
+                "?, CURRENT_TIMESTAMP(0), false) " +
+                "RETURNING message_id;";
+
         return null;
     }
 
@@ -27,6 +35,9 @@ public class JdbcMessageDao implements MessageDao
 
     @Override
     public boolean deleteMessage(int messageId) {
+
+        String sql = "DELETE * FROM messages"
+
         return false;
     }
 

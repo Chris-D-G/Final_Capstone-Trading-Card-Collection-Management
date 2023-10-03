@@ -96,6 +96,6 @@ CREATE TABLE messages (
     CONSTRAINT PK_messages_user_message PRIMARY KEY (message_id),
     CONSTRAINT FK_messages_user_sender FOREIGN KEY (message_sender_user_id) REFERENCES users(user_id),
     CONSTRAINT FK_messages_user_receiver FOREIGN KEY (message_receiver_user_id) REFERENCES users(user_id)
-)
+);
 
 COMMIT TRANSACTION;
