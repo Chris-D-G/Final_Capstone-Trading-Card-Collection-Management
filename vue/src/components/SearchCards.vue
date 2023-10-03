@@ -80,6 +80,9 @@
       </div>
     </div>
     <!-- end alternative -->
+
+    <img :src="catHat" v-if="isLoading"/>
+
     <div
       class="d-flex flex-wrap me-2 justify-content-between"
       v-if="isLoggedIn"
@@ -165,6 +168,7 @@ import service from "../services/CardService.js";
 import card from "../components/Card.vue";
 import addCard from "../components/addCardComponent.vue";
 import CollectionService from "../services/CollectionService.js";
+import catHat from "@/assets/catHat.gif"
 
 export default {
   name: "card-list",
@@ -183,6 +187,8 @@ export default {
       currentPage: 1,
       cardsPerPage: 94,
       exactMatch: false,
+      isLoading: true,
+      catHat,
       search: {
         cardTitle: "",
         gameType: "",
@@ -202,10 +208,12 @@ export default {
     if (this.isLoggedIn) {
       service.getAllCards().then((response) => {
         this.cards = response.data;
+        this.isLoading =false;
       });
     } else {
       service.getAllCardsNotLoggedIn().then((response) => {
         this.cards = response.data;
+        this.isLoading =false;
       });
     }
 
@@ -213,7 +221,6 @@ export default {
 
     CollectionService.getMyCollections().then((response) => {
       this.availableCollections = response.data;
-      this.isLoading = false;
     });
   },
 
@@ -322,14 +329,14 @@ export default {
       return filteredCards;
     },
 
-    // cardsCurrentPage : function() {
-    //   let cardsCurrentPage = 
-    //   this.filteredCards.slice(
-    //     this.findStartIndex,
-    //     this.findEndIndex
-    //   )
-    //   return cardsCurrentPage;
-    // },
+    cardsCurrentPage : function() {
+      let cardsCurrentPage = 
+      this.filteredCards.slice(
+        this.findStartIndex,
+        this.findEndIndex
+      )
+      return cardsCurrentPage;
+    },
 
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
