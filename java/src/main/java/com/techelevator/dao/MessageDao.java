@@ -26,7 +26,7 @@ public interface MessageDao {
      */
     List<Message> retrieveMessages(String username);
 
-    //Delete Messages
+    //DELETE Messages
 
     /**
      * Method to delete a message
@@ -44,5 +44,9 @@ public interface MessageDao {
      * @return message object queried by ID
      */
     Message getMessageByID (int messageID);
+
+    //UPDATE Message
+
+    boolean updateReadStatus (int messageID);
 
 }

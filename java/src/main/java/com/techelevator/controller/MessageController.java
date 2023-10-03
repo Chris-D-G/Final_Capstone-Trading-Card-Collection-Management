@@ -21,7 +21,7 @@ public class MessageController {
         this.messageDao = messageDao;
     }
 
-    @GetMapping(path = "/myMessages")
+    @GetMapping(path = "/messages/myMessages")
     List<Message> getMessagesForUser (Principal principal){
       String username = principal.getName();
       try{
@@ -31,7 +31,7 @@ public class MessageController {
           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to retrieve any messages associated with " + username + "!");
       }
     }
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path= "/messages/new-message")
     Message sendNewMessage(@RequestBody Message messageToSend){
         try{
@@ -43,14 +43,23 @@ public class MessageController {
 
     }
 
-    @DeleteMapping(path="/messages/{id}")
-    boolean deleteMessage( @PathVariable int id){
+    @DeleteMapping(path="/messages/{messageID}")
+    boolean deleteMessage( @PathVariable int messageID){
         try{
-            return messageDao.deleteMessage(id);
+            return messageDao.deleteMessage(messageID);
         }catch (RuntimeException e){
             System.out.println(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to delete the message");
         }
+    }
+
+    @PutMapping(path="/messages/{messageID}")
+    boolean updateReadStatus (@PathVariable int messageID){
+        try{
+            return messageDao.updateReadStatus(messageID);
+        }catch(RuntimeException e){
+            System.out.println(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to process read status change!");        }
     }
 
 

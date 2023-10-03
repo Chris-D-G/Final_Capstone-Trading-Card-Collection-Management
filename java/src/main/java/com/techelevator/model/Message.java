@@ -17,10 +17,8 @@ public class Message {
     @NotEmpty
     private String messageReceiver;
 
-    @NotNull
-    @NotEmpty
     private LocalDateTime messageTimestamp;
-    @NotNull
+
     private boolean read;
 
     public Message() {
