@@ -36,4 +36,13 @@ public interface MessageDao {
      */
     boolean deleteMessage(int messageId);
 
+    /**
+     * Method to retrieve a single message based on a
+     * provided ID
+     *
+     * @param messageID ID of message to retrieve
+     * @return message object queried by ID
+     */
+    Message getMessageByID (int messageID);
+
 }

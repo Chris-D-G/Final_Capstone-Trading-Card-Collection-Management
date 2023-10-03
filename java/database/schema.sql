@@ -88,7 +88,7 @@ CREATE TABLE users_friends(
 
 CREATE TABLE messages (
     message_id SERIAL,
-    message_text varchar(500) NOT NULL,
+    message_text varchar(250) NOT NULL,
     message_sender_user_id int NOT NULL,
     message_receiver_user_id int NOT NULL,
     message_timestamp TIMESTAMP NOT NULL,
