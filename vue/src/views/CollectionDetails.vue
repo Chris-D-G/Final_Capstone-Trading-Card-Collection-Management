@@ -112,31 +112,30 @@
       </div>
     </div>
 
-    <div
-      class="d-flex flex-wrap me-2 justify-content-between"
-      v-if="this.alpha && isLoggedIn && isOwner"
-    >
-      <deleteCard
-        v-for="(deleteCard, index) in alphcards"
-        v-bind:key="index"
-        v-bind:deleteCard="deleteCard"
-        :isChecked="checkboxStates[index]"
-        @update:checked="updateCheckboxState(index, $event)"
-      />
-    </div>
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.alpha && isLoggedIn && isOwner">
+      <deleteCard v-for="(deleteCard, index) in alphcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
 
-    <div
-      class="d-flex flex-wrap me-2 justify-content-between"
-      v-if="this.color && isLoggedIn && isOwner"
-    >
-      <deleteCard
-        v-for="(deleteCard, index) in colorcards"
-        v-bind:key="index"
-        v-bind:deleteCard="deleteCard"
-        :isChecked="checkboxStates[index]"
-        @update:checked="updateCheckboxState(index, $event)"
-      />
-    </div>
+   
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.color && isLoggedIn && isOwner">
+      <deleteCard v-for="(deleteCard, index) in colorcards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
+
+    
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.colorIden && isLoggedIn && isOwner">
+      <deleteCard v-for="(deleteCard, index) in colorIdencards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    
+
+    
       <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn && isOwner && this.set">
       <deleteCard v-for="(deleteCard, index) in setcards" 
       v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
@@ -156,32 +155,6 @@
       v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
       @update:checked="updateCheckboxState(index, $event)"/>
       </div>
-
-    <div
-      class="d-flex flex-wrap me-2 justify-content-between"
-      v-if="this.CMC && isLoggedIn && isOwner && this.set"
-    >
-      <deleteCard
-        v-for="(deleteCard, index) in CMCcards"
-        v-bind:key="index"
-        v-bind:deleteCard="deleteCard"
-        :isChecked="checkboxStates[index]"
-        @update:checked="updateCheckboxState(index, $event)"
-      />
-    </div>
-
-    <div
-      class="d-flex flex-wrap me-2 justify-content-between"
-      v-if="this.EDHREC && isLoggedIn && isOwner && this.set"
-    >
-      <deleteCard
-        v-for="(deleteCard, index) in EDHRECcards"
-        v-bind:key="index"
-        v-bind:deleteCard="deleteCard"
-        :isChecked="checkboxStates[index]"
-        @update:checked="updateCheckboxState(index, $event)"
-      />
-    </div>
 
     <div
       v-if="this.checkedCards.length > 0"
