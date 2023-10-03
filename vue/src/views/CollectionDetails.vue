@@ -120,14 +120,14 @@
       </div>
     
     
-    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.CMC && isLoggedIn && isOwner && this.set">
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.CMC && isLoggedIn && isOwner">
       <deleteCard v-for="(deleteCard, index) in CMCcards" 
       v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
       @update:checked="updateCheckboxState(index, $event)"/>
       </div>
 
    
-      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.EDHREC && isLoggedIn && isOwner && this.set">
+      <div class="d-flex flex-wrap me-2 justify-content-between" v-if="this.EDHREC && isLoggedIn && isOwner">
       <deleteCard v-for="(deleteCard, index) in EDHRECcards" 
       v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
       @update:checked="updateCheckboxState(index, $event)"/>
