@@ -107,12 +107,5 @@ public interface CollectionsDao {
 
     void deleteCardFromCollection(String cardId, int collectionId);
 
-    List<Card> getCardsByCollectionIdAlphabetized(int collectionId);
-    List<Card> getCardsByCollectionIdColor(int collectionId);
-    List<Card> getCardsByCollectionIdColorIdentity(int collectionId);
-    List<Card> getCardsByCollectionIdSet(int collectionId);
-    List<Card> getCardsByCollectionIdLegality(int collectionId);
-    List<Card> getCardsByCollectionIdCmc(int collectionId);
-    List<Card> getCardsByCollectionIdEDHREC(int collectionId);
 
 }
