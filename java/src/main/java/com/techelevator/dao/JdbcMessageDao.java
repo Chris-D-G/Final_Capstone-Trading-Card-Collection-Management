@@ -36,11 +36,9 @@ public class JdbcMessageDao implements MessageDao
                      "false) " +
                      "RETURNING message_id;";
         try {
-<<<<<<< HEAD
+
             int messageID = jdbcTemplate.update(sql, int.class, sender, receiver, messageBody);
-=======
-            int messageID = jdbcTemplate.queryForObject(sql,int.class, sender, receiver, messageBody);
->>>>>>> 142c896a96e1016abac7b160e79637ea5a72693a
+
             // need a method to retrieve a single message from the database when given an ID #
             createdMessage = getMessageByID(messageID);
 
