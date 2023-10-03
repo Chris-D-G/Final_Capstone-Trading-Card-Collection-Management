@@ -16,7 +16,7 @@ public class JdbcMessageDao implements MessageDao
     }
 
     @Override
-    public List<Message> getMessagesByReceivingUsersID(int usersID, int receiversID) {
+    public List<Message> getMessagesByUsersID(int usersID, int receiversID) {
         List<Message> conversation = new ArrayList<>();
 
         String sql = "SELECT message_text, message_timestamp, users.username " +
