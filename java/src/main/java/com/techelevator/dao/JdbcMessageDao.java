@@ -36,7 +36,11 @@ public class JdbcMessageDao implements MessageDao
                      "false) " +
                      "RETURNING message_id;";
         try {
+<<<<<<< HEAD
             int messageID = jdbcTemplate.update(sql, int.class, sender, receiver, messageBody);
+=======
+            int messageID = jdbcTemplate.queryForObject(sql,int.class, sender, receiver, messageBody);
+>>>>>>> 142c896a96e1016abac7b160e79637ea5a72693a
             // need a method to retrieve a single message from the database when given an ID #
             createdMessage = getMessageByID(messageID);
 
@@ -89,6 +93,32 @@ public class JdbcMessageDao implements MessageDao
         return messageToRetrieve;
     }
 
+    @Override
+    public boolean updateReadStatus(int messageID) {
+        String sql = "UPDATE messages SET message_read_status = true " +
+                     "WHERE message_id = ?;";
+        boolean readStatusChanged = false;
+        try{
+            int rowsUpdated = jdbcTemplate.update(sql, messageID);
+            if(rowsUpdated == 1){
+                readStatusChanged = true;
+            }else{
+                throw new RuntimeException("Unexpected number of rows updated! " + rowsUpdated + "row(s)");
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!" + e.getMessage(), e);
+        }  catch (NullPointerException e){
+            throw new RuntimeException("Null value encountered in mapping", e);
+        }
+        return readStatusChanged;
+    }
 
 
     @Override
@@ -101,7 +131,7 @@ public class JdbcMessageDao implements MessageDao
                      "FROM messages " +
                      "JOIN users AS user1 ON messages.message_sender_user_id = user1.user_id " +
                      "JOIN users AS user2 ON messages.message_receiver_user_id = user2.user_id " +
-                     "WHERE sender = ? OR receiver = ? " +
+                     "WHERE user1.username = ? OR user2.username = ? " +
                      "ORDER BY message_timestamp DESC;";
 
         try {
