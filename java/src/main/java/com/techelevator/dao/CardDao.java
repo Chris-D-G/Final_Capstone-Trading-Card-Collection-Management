@@ -67,10 +67,17 @@ public interface CardDao {
     /**
      * Method to add a new card to source.
      *
-     * @param cardToBeAdded card object to be added
+     * @param card card object to be added
      * @return returns the card object directly queried from the source
      */
-    Card addCard(Card cardToBeAdded);
+    Card addCard(Card card);
+
+    /** Method to view all cards in database. Will be limited by filtered list on front end
+     *
+     * @return returns all cards
+     */
+
+    List<Card> getCards();
 
     /**
      * Method that maps sql results to card object

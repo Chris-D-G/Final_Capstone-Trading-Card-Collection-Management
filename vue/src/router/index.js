@@ -10,6 +10,8 @@ import CollectionDetails from "../views/CollectionDetails.vue"
 import MyCollection from "../views/MyCollection.vue"
 import NewCollection from "../views/NewCollection.vue"
 import AddCardView from "../views/AddCardView.vue"
+import SearchCardsView from "../views/SearchCardsView"
+import Profile from "../views/Profile.vue"
 
 Vue.use(Router)
 
@@ -75,7 +77,7 @@ const router = new Router({
     }
     },
     {
-      path:"/allCollections/:id",
+      path:"/collections/:id",
       name:"CollectionCards",
       component: CollectionDetails,
       meta: {
@@ -97,7 +99,23 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/search-cards",
+      name: "searchCards",
+      component: SearchCardsView,
+      meta: {
+        requiresAuth: false
+      }
+    },
+     { 
+       path:"/myprofile",
+      name:"Profile",
+      component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 

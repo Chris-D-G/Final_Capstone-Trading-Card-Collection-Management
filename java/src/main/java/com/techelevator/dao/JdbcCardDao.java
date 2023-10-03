@@ -22,6 +22,38 @@ public class JdbcCardDao implements CardDao {
     }
 
     @Override
+    public List<Card> getCards() {
+        List<Card> allCards = new ArrayList<>();
+        String sql = "SELECT card_id, tcg_id, card_title, card_small_image_url,card_normal_image_url, " +
+                "card_details_url, card_reverse_image_url, card_colors, card_color_identity, card_set_code, " +
+                "card_set_name, card_details_url, card_collector_number, card_legalities, card_layout, card_cmc, card_edhrec_rank " +
+                "FROM cards "+
+                "ORDER BY card_title;";
+        Card queriedCard = null;
+        try {
+            // send SQL command and return the results as a SQL Row Set
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            // if there is a RowSet returned...
+            while (results.next()) {
+                // use helper method to map sql row to card object
+                queriedCard = mapResultsToCard(results);
+                allCards.add(queriedCard);
+            }
+        }  catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        //if there was a valid result, this returns a card object with data otherwise a null is returned
+        return allCards;
+    }
+
+    @Override
     public Card getCardById(String cardID) {
 
         // query command to select card using an exact cardID using parameterized input
@@ -328,6 +360,7 @@ public class JdbcCardDao implements CardDao {
         mappedCard.setImageUrl(results.getString("card_normal_image_url"));
         mappedCard.setScryfallUrl(results.getString("card_details_url"));
         mappedCard.setReverseImgUrl("card_reverse_image_url");
+        mappedCard.setSmallReverseImgUrl("card_reverse_small_image_url");
         List <String> colors = List.of(results.getString("card_colors").split(","));
         mappedCard.setColors(colors);
         List <String> colorIdentity = List.of(results.getString("card_color_identity").split(","));

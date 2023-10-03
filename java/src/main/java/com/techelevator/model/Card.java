@@ -17,20 +17,19 @@ public class Card {
     private String imageUrl;
     private String smallImgUrl;
     //url takes you to full page card notation on scryfall
-    @NotBlank
+
     private String scryfallUrl;
     private String reverseImgUrl;
     private String smallReverseImgUrl;
     private List<String> colors = new ArrayList<>();
-    @NotBlank
     private List<String> colorIdentity = new ArrayList<>();
-    @NotBlank
+
     private String setCode;
-    @NotBlank
+
     private String setName;
-    @NotBlank
+
     private String collectorNumber;
-    @NotBlank
+
     private Map<String, String> legalities;
     private String layout;
     private double cmc;
@@ -221,22 +220,22 @@ Full constructor used for testing purposes.
         this.smallReverseImgUrl = smallReverseImgUrl;
     }
 
-    public String toString(){
-        return
-                "id: " + getId()
-                + "\nname: " + getName()
-                + "\nimgUrl: " + getImageUrl()
-                + "\nsmallImg: " + getSmallImgUrl()
-                + "\nreverseImgUrl: " + getReverseImgUrl()
-                + "\nsmallReverseImgUrl: " + getSmallImgUrl()
-                + "\ncolors: " + getColors().toString()
-                + "\ncolorIdentity: " + getColorIdentity().toString()
-                + "\nsetCode: " + getSetCode()
-                + "\nsetName: " + getSetName()
-                + "\ncollectorNumber: " + getCollectorNumber()
-                + "\nlegalities: " + getLegalities().toString()
-                + "\nlayout: " + getLayout()
-                + "\ncmc: " + getCmc()
-                + "\nedhrecRank: " + getEdhrecRank();
-    }
+//    public String toString(){
+//        return
+//                "id: " + getId()
+//                + "\nname: " + getName()
+//                + "\nimgUrl: " + getImageUrl()
+//                + "\nsmallImg: " + getSmallImgUrl()
+//                + "\nreverseImgUrl: " + getReverseImgUrl()
+//                + "\nsmallReverseImgUrl: " + getSmallReverseImgUrl()
+//                + "\ncolors: " + getColors().toString()
+//                + "\ncolorIdentity: " + getColorIdentity().toString()
+//                + "\nsetCode: " + getSetCode()
+//                + "\nsetName: " + getSetName()
+//                + "\ncollectorNumber: " + getCollectorNumber()
+//                + "\nlegalities: " + getLegalities().toString()
+//                + "\nlayout: " + getLayout()
+//                + "\ncmc: " + getCmc()
+//                + "\nedhrecRank: " + getEdhrecRank();
+//    }
 }
