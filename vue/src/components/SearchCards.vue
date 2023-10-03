@@ -85,7 +85,7 @@
       v-if="isLoggedIn"
     >
       <addCard
-        v-for="(addCard, index) in filteredCards.slice(
+        v-for="(addCard, index) in cardsCurrentPage.slice(
           findStartIndex,
           findEndIndex
         )"
@@ -316,6 +316,15 @@ export default {
 
       return filteredCards;
     },
+
+    // cardsCurrentPage : function() {
+    //   let cardsCurrentPage = 
+    //   this.filteredCards.slice(
+    //     this.findStartIndex,
+    //     this.findEndIndex
+    //   )
+    //   return cardsCurrentPage;
+    // },
 
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
