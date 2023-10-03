@@ -125,10 +125,15 @@
         Next Page
       </button>
     </div>
-    <div v-for="card in this.checkedCards" v-bind:key="card.id" class="d-flex flex-column justify-content-start">
-      <ul>
-        <li>{{card.name}}</li>
-        <li>{{card.collectorNumber}}</li>
+    <div v-if="this.checkedCards.length >0" class="d-flex w-25 ms-5 mb-4 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
+          style="--bs-bg-opacity: 0.6">
+    QUEUED CARDS
+    </div>
+    <div v-for="card in this.checkedCards" v-bind:key="card.id" class="w-100 ms-5 d-flex">
+      <ul class="d-flex w-25 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
+          style="--bs-bg-opacity: 0.6">
+        <li>| {{card.name}} |</li>
+        <li>C# {{card.collectorNumber}}</li>
       </ul>
     </div>
     <div v-if="isLoggedIn">
@@ -331,5 +336,8 @@ export default {
 <style scoped>
 #alternative-search-bar, #pagination-page {
   background-color: #4c2c2e;
+}
+ul{
+  list-style-type: none;
 }
 </style>
