@@ -22,7 +22,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul
-            class="navbar-nav align-items-center justify-content-between w-100"
+            class="navbar-nav align-items-center justify-content-around w-100"
           >
             <li class="nav-item ">              
                 <router-link
@@ -86,8 +86,8 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a>
+            <li class="nav-item" v-if="!isLoggedIn">
+              <a v-on:click="refresh" >
                 <router-link
                   class="nav-link text-light fs-3"
                   :to="{ name: 'login' }"
@@ -96,8 +96,8 @@
                 </router-link>
               </a>
             </li>
-            <li class="nav-item">
-              <a>
+            <li class="nav-item" v-if="isLoggedIn" >
+              <a v-on:click="refresh">
                 <router-link
                   class="nav-link text-light fs-3"
                   :to="{ name: 'logout' }"
@@ -106,7 +106,7 @@
                 </router-link>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!isLoggedIn" >
               <a>
                 <router-link
                   class="nav-link text-light fs-3"
@@ -118,6 +118,7 @@
             </li>
           </ul>
           <img
+              v-if="!isLoggedIn" 
               class="nav-img d-none d-xl-inline-block"
               :src="registerBubble"
               alt="register-now"
@@ -139,8 +140,26 @@ export default {
     return {
       image,
       registerBubble,
+      isLoggedIn: false
     };
   },
+  created(){
+    this.checkLoginStatus()
+  },
+  methods :{
+    checkLoginStatus(){
+      let token = this.$store.state.token;
+
+      if(token != ""){
+        this.isLoggedIn = true;
+        this.notLoggedIn = false;
+        
+      }
+    },
+    refresh(){
+      this.$router.go(this.$router.currentRoute)
+    }
+  }
 };
 </script>
 <style >
