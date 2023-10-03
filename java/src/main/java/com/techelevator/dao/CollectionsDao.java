@@ -105,7 +105,7 @@ public interface CollectionsDao {
 
     User getUserForCollectionId(int collectionID);
 
-    void deleteCardFromCollection(Card card, int collectionId);
+    void deleteCardFromCollection(String cardId, int collectionId);
 
     List<Card> getCardsByCollectionIdAlphabetized(int collectionId);
     List<Card> getCardsByCollectionIdColor(int collectionId);

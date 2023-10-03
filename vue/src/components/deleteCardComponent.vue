@@ -1,9 +1,9 @@
 <template>
 <div class="mb-4">
-  <div class="addCard-container mx-3 mt-3">
+  <div class="deleteCard-container mx-3 mt-3">
     <img
       class="rounded-2 shadow-lg"
-      v-bind:src="this.addCard.smallImgUrl"
+      v-bind:src="this.deleteCard.smallImgUrl"
       width="146px"
       height="204px"
       v-if="!showLargeImg"
@@ -11,29 +11,29 @@
     />
     <img
       class="large-addCard rounded-5 shadow-lg bg-transparent"
-      v-bind:src="this.addCard.imageUrl"
+      v-bind:src="this.deleteCard.imageUrl"
       width="488px"
       height="680px"
       v-if="showLargeImg"
       v-on:click="displayLargerImage"
     />
-    <p class="mt-1 mb-1 fw-semibold">{{ addCard.name }}</p>
+    <p class="mt-1 mb-1 fw-semibold">{{ deleteCard.name }}</p>
     <!-- To DO: add boolean check for the checkbox -->
-    <label for="addToCollection"  class="fs-6 text-start me-2" > ADD </label>
-    <input type="checkbox" class="form-check-input" name="addToCollection" v-model="localChecked" @change="emitChecked" >
+    <label for="deleteFromCollection"  class="fs-6 text-start me-2" > DELETE </label>
+    <input type="checkbox" class="form-check-input" name="deleteFromCollection" v-model="localChecked" @change="emitChecked" >
 
     <div id="cardInfo" v-if="displayInfo" class="bg-white rounded-5 border border-1 border-white w-50 mx-auto" style="--bs-bg-opacity: .15;">
-      Card Name : {{this.addCard.name}}<br/>
-      Colors : {{this.addCard.colors}}<br/>
-      Color-Identities : {{this.addCard.colorIdentity}}<br/>
-      Set Information : {{this.addCard.setCode}} / {{this.addCard.setName}}<br/>
-      Collector # : {{this.addCard.collectorNumber}}<br/>
-      Legalities : {{this.addCard.legalities}}<br/>
-      Layout : {{this.addCard.layout}}<br/>
-      CMC : {{this.addCard.cmc}}<br/>
-      EDHREC Rank : {{this.addCard.edhrecRank}}<br/><br/>
+      Card Name : {{this.deleteCard.name}}<br/>
+      Colors : {{this.deleteCard.colors}}<br/>
+      Color-Identities : {{this.deleteCard.colorIdentity}}<br/>
+      Set Information : {{this.deleteCard.setCode}} / {{this.addCard.setName}}<br/>
+      Collector # : {{this.deleteCard.collectorNumber}}<br/>
+      Legalities : {{this.deleteCard.legalities}}<br/>
+      Layout : {{this.deleteCard.layout}}<br/>
+      CMC : {{this.deleteCard.cmc}}<br/>
+      EDHREC Rank : {{this.deleteCard.edhrecRank}}<br/><br/>
       Want more stats or purchase information? Click 
-      <a :href="this.addCard.scryfallUrl">Here!</a>
+      <a :href="this.deleteCard.scryfallUrl">Here!</a>
     </div>
 </div>
 
@@ -43,15 +43,15 @@
 
 <script>
 export default {
-  name: "add-card-component",
+  name: "delete-card-component",
   props: {
-    addCard: Object,
+    deleteCard: Object,
     isChecked: Boolean // Receive the checkbox state as a prop
   },
 
   methods: {
     emitChecked() {
-      console.log(`Checkbox state changed for ${this.addCard.cardTitle}: ${this.localChecked}`);
+      console.log(`Checkbox state changed for ${this.deleteCard.cardTitle}: ${this.localChecked}`);
       this.$emit("update:checked", this.localChecked);
     },
     displayLargerImage() {

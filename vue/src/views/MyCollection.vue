@@ -1,5 +1,12 @@
 <template>
   <div class="d-flex flex-wrap me-2 justify-content-evenly" > 
+      <div v-if="collectionList.length < 1">
+      <h2 class="text-dark fs-1 text-center fw-bold title mt-5 p-5  mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.15" v-on:click="sendToCreate" >No Collections to View. Go Start One!</h2>
+      <img v-bind:src='blackHat' class="w-25 p-4 mt-5"/>
+      </div>
+
+
     <div
       v-for="collection in collectionList"
       v-bind:key="collection.id"
@@ -23,6 +30,7 @@
 <script>
 import CollectionService from "../services/CollectionService.js";
 import mtgImage from "@/assets/Updated MTG Collections Image Transparent.png";
+import blackHat from "@/assets/Hat-Icon-Black.png";
 
 
 
@@ -33,6 +41,7 @@ export default {
     return {
       collectionList: [],
       mtgImage,
+      blackHat,
     };
   },
 
@@ -66,7 +75,11 @@ export default {
       confirm("Are you sure?");
       CollectionService.deleteCollection(collectionId);
       this.$router.push(`/myCollections`)
-    }
+    },
+
+    sendToCreate(){
+      this.$router.push({name: 'collectionForm'})
+    },
   },
 };
 </script>
