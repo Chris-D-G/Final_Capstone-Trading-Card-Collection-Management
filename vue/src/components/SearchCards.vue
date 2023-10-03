@@ -3,7 +3,7 @@
     <!-- start alternative -->
     <div
       id="alternative-search-bar"
-      class="d-flex flex-column flex-lg-row flex-lg-wrap justify-content-between text-white mx-5 my-2 p-2 rounded-2 shadow"
+      class="d-flex flex-column flex-lg-row flex-lg-wrap justify-content-evenly text-white mx-5 my-2 p-2 rounded-2 shadow"
     >
       <div class="d-flex flex-column">
         Card Name
