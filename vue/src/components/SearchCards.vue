@@ -1,5 +1,5 @@
 <template>
-  <div>   
+  <div>
     <!-- start alternative -->
     <div
       id="alternative-search-bar"
@@ -81,7 +81,7 @@
     </div>
     <!-- end alternative -->
 
-    <img :src="catHat" v-if="isLoading"/>
+    <img :src="catHat" v-if="isLoading" />
 
     <div
       class="d-flex flex-wrap me-2 justify-content-between"
@@ -111,15 +111,17 @@
     </div>
 
     <div class="d-flex flex-row justify-content-center align-items-center">
-      <button        
-        class=" rounded-2"
+      <button
+        class="rounded-2"
         @click="currentPage--"
         :disabled="currentPage === 1"
       >
         Previous
       </button>
-      
-      <span id="pagination-page" class="text-white px-2 m-1 rounded-2">{{ currentPage }}</span>
+
+      <span id="pagination-page" class="text-white px-2 m-1 rounded-2">{{
+        currentPage
+      }}</span>
       <button
         class="rounded-2"
         @click="currentPage++"
@@ -128,15 +130,24 @@
         Next Page
       </button>
     </div>
-    <div v-if="this.checkedCards.length >0" class="d-flex w-25 ms-5 mb-4 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
-          style="--bs-bg-opacity: 0.6">
-    QUEUED CARDS
+    <div
+      v-if="this.checkedCards.length > 0"
+      class="d-flex w-25 ms-5 mb-4 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.6"
+    >
+      QUEUED CARDS
     </div>
-    <div v-for="card in this.checkedCards" v-bind:key="card.id" class="w-100 ms-5 d-flex">
-      <ul class="d-flex w-25 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
-          style="--bs-bg-opacity: 0.6">
-        <li>| {{card.name}} |</li>
-        <li>C# {{card.collectorNumber}}</li>
+    <div
+      v-for="card in this.checkedCards"
+      v-bind:key="card.id"
+      class="w-100 ms-5 d-flex"
+    >
+      <ul
+        class="d-flex w-25 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
+        style="--bs-bg-opacity: 0.6"
+      >
+        <li>| {{ card.name }} |</li>
+        <li>C# {{ card.collectorNumber }}</li>
       </ul>
     </div>
     <div v-if="isLoggedIn">
@@ -144,13 +155,10 @@
         <label class="me-1" for="choose-collection"
           >Enter Name of Collection</label
         >
-        <input
-          @change="setCollectionId()"
-          name="choose-collection"
-          v-model="collectionName"
-          type="text"
-          @change.prevent="setCollectionId()"
-        />
+        <select id="legalitiesFilter" v-model="collectionName" v-for="collection in availableCollections" v-bind:key="collection.id" v-bind:collection="collection" @change="setCollectionId()"  @change.prevent="setCollectionId()">
+          <option selected disabled hidden value="">Collections</option>
+          <option :value="collection.name">{{collection.name}}</option>
+        </select>
       </div>
       <button class="btn btn-dark m-2" @click="addCheckedCards()">
         Add Checked Cards to Queue
@@ -168,7 +176,7 @@ import service from "../services/CardService.js";
 import card from "../components/Card.vue";
 import addCard from "../components/addCardComponent.vue";
 import CollectionService from "../services/CollectionService.js";
-import catHat from "@/assets/catHat.gif"
+import catHat from "@/assets/catHat.gif";
 
 export default {
   name: "card-list",
@@ -208,20 +216,22 @@ export default {
     if (this.isLoggedIn) {
       service.getAllCards().then((response) => {
         this.cards = response.data;
-        this.isLoading =false;
+        this.isLoading = false;
       });
     } else {
       service.getAllCardsNotLoggedIn().then((response) => {
         this.cards = response.data;
-        this.isLoading =false;
+        this.isLoading = false;
       });
     }
 
     this.checkLoginStatus();
 
-    CollectionService.getMyCollections().then((response) => {
-      this.availableCollections = response.data;
-    });
+    if (this.isLoggedIn) {
+      CollectionService.getMyCollections().then((response) => {
+        this.availableCollections = response.data;
+      });
+    }
   },
 
   methods: {
@@ -329,12 +339,11 @@ export default {
       return filteredCards;
     },
 
-    cardsCurrentPage : function() {
-      let cardsCurrentPage = 
-      this.filteredCards.slice(
+    cardsCurrentPage: function () {
+      let cardsCurrentPage = this.filteredCards.slice(
         this.findStartIndex,
         this.findEndIndex
-      )
+      );
       return cardsCurrentPage;
     },
 
@@ -350,10 +359,11 @@ export default {
 
 
 <style scoped>
-#alternative-search-bar, #pagination-page {
+#alternative-search-bar,
+#pagination-page {
   background-color: #4c2c2e;
 }
-ul{
+ul {
   list-style-type: none;
 }
 </style>
