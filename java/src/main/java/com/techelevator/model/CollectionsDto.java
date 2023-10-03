@@ -5,15 +5,17 @@ public class CollectionsDto {
     private String username;
     private int tcgId;
     private String collectionName;
+    private int quantity;
 
     public CollectionsDto() {
     }
 
-    public CollectionsDto(int collectionId, String username, int tcgId, String collectionName) {
-        this.collectionId = collectionId;
-        this.username = username;
-        this.tcgId = tcgId;
-        this.collectionName = collectionName;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getCollectionId() {

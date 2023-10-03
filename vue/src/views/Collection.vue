@@ -16,16 +16,17 @@
       />
       <p class="game fs-5" >{{ getGameName(collection.tcgId) }}</p>
       <div class="pb-1"><router-link :to="{name: 'Profile'}" class="username fs-4 text-uppercase fw-semibold p-2 m-0 text-white ">{{collection.username}}</router-link></div>
-    </div>
-    <div
+      <div
         id="collectionInfo"
         class=" bg-white rounded-5 border border-1 border-white fw-bold d-flex flex-column justify-content-center align-items-start mx-1 p-4 h-auto"
         style="--bs-bg-opacity: 0.15"
       >
-        <p class="my-0 py-0">Total Cards: {{ getCountOfCardsInCollection() }}</p>
-        <p class="my-0 py-0">Cards by Colors: {{ this.card.colors }}</p>
+        <p class="my-0 py-0">Total Cards: {{ collection.quantity }}</p>
+        <!-- <p class="my-0 py-0">Colors(Red:  White: Blue: Green: Black: )</p> -->
         
       </div>
+    </div>
+    
   </div>
 </template>
 
@@ -39,7 +40,7 @@ export default {
   data() {
     return {
       collectionList: [],
-      mtgImage
+      mtgImage,
     };
   },
 
@@ -48,8 +49,6 @@ export default {
       this.collectionList = response.data;
       this.isLoading = false;
     });
-
-
     
 
   },
@@ -69,6 +68,10 @@ export default {
       this.$router.push(`/collections/${collectionId}`);
     },    
   },
+
+  computed : {
+    
+  }
 };
 </script>
 

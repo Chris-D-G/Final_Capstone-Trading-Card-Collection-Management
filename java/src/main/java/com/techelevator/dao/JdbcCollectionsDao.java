@@ -41,13 +41,15 @@ public class JdbcCollectionsDao implements CollectionsDao{
         //grab all collections from database
         String sql = "select * from collections;";
         String userSql = "select username from users join collections_user on users.user_id = collections_user.user_id where collection_id = ?;";
+        String quansql = "select sum(quantity) as quantity from collections_cards where collection_id = ?;";
         try{
             SqlRowSet rowset = jdbcTemplate.queryForRowSet(sql);
             while(rowset.next()){
                 //if no database issues, map the rowset properties to a collection obj and add the obj to the list
                 collection = (mapRowToCollection(rowset));
                 String username = jdbcTemplate.queryForObject(userSql, String.class, collection.getId());
-                dto = mapRowToCollectionsDto(collection,username);
+                int quantity = jdbcTemplate.queryForObject(quansql,int.class,collection.getId());
+                dto = mapRowToCollectionsDto(collection,username,quantity);
                 collectionList.add(dto);
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -237,6 +239,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
     public int addCollection(Collection collection, String username) {
         String sql = "insert into collections (collection_name, tcg_id) values (?, ?) returning collection_id;";
         String connectingSql = "insert into collections_user (collection_id, user_id) values (?,?);";
+
         int newCollectionId;
         try{
             int userId = userDao.findIdByUsername(username);
@@ -386,9 +389,10 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     public int getCountOfCardsInCollection(int collectionId) {
         int count = 0;
-        String sql = "Select Count (Distinct card_id) From collections_cards Where collection_id = ?;";
+        String sql = "Select Count (Distinct card_id) AS card_count From collections_cards Where collection_id = ?;";
 
         try{
+            count = jdbcTemplate.queryForObject(sql, int.class, collectionId);
 
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -402,7 +406,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         }
 
         return  count;
-    };
+    }
 
 
     private Collection mapRowToCollection(SqlRowSet set){
@@ -413,12 +417,13 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collection;
     }
 
-    private CollectionsDto mapRowToCollectionsDto(Collection col, String username){
+    private CollectionsDto mapRowToCollectionsDto(Collection col, String username, int quantity){
         CollectionsDto collection = new CollectionsDto();
         collection.setCollectionId(col.getId());
         collection.setCollectionName(col.getName());
         collection.setTcgId(col.getTcgId());
         collection.setUsername(username);
+        collection.setQuantity(quantity);
         return collection;
     }
 
