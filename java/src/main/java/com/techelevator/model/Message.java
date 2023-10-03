@@ -1,24 +1,41 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class Message {
 
+    @NotEmpty
     private int messageID;
+
+    @NotNull
+    @NotEmpty
     private String messageText;
-    private int messageSenderID;
-    private int messageReceiverID;
+
+    @NotNull
+    @NotEmpty
+    private String messageSender;
+
+    @NotNull
+    @NotEmpty
+    private String messageReceiver;
+
+    @NotNull
+    @NotEmpty
     private LocalDateTime messageTimestamp;
+
+    private boolean read;
 
     public Message() {
     }
 
     public Message(int messageID, String messageText, int messageSenderID,
-                   int messageReceiverID, LocalDateTime messageTimestamp)
+                   int messageReceiver, LocalDateTime messageTimestamp)
     {
         this.messageID = messageID;
         this.messageText = messageText;
-        this.messageSenderID = messageSenderID;
+        this.messageSender = messageSenderID;
         this.messageReceiverID = messageReceiverID;
         this.messageTimestamp = messageTimestamp;
     }
