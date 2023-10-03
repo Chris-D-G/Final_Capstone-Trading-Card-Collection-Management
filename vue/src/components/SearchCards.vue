@@ -11,7 +11,7 @@
           <th>Set Code</th>
           <th>Set Name</th>
           <th>Collector Number</th>
-          <th>legalities</th>
+          <!-- <th>legalities</th> -->
           <th>CMC</th>
           <th class="last-header">EDH Rank</th>
         </tr>
@@ -36,16 +36,18 @@
               <option value="G">Green</option>
               <option value="U">Blue</option>
               <option value="B">Black</option>
+              <option value="">Reset</option>
             </select>
           </td>
           <td>
-              <select id="colorFilter" v-model="search.colorIdentity">
+              <select id="colorIdenFilter" v-model="search.colorIdentity">
               <option selected disabled hidden value="">Choose Color Identity</option>
               <option value="R">Red</option>
               <option value="W">White</option>
               <option value="G">Green</option>
               <option value="U">Blue</option>
               <option value="B">Black</option>
+              <option value="">Reset</option>
             </select>
           </td>
           <td>
@@ -57,7 +59,7 @@
           <td>
             <input type="number" id="collectorNumFilter" v-model="search.collectorNumber"/>
           </td>
-          <td>
+          <!-- <td>
               <select id="legalitiesFilter" v-model="search.legalities">
               <option selected disabled hidden value="">Legalities</option>
               <option value="R">Red</option>
@@ -66,7 +68,7 @@
               <option value="U">Blue</option>
               <option value="B">Black</option>
             </select>
-          </td>
+          </td> -->
           <td>
             <input type="number" id="cmcFilter" v-model="search.cmc"/>
           </td>
@@ -216,17 +218,52 @@ export default {
             .includes(this.search.cardTitle.toLowerCase())
             );
       }
-      if(this.search.gameType != "") {
-        filteredCards = filteredCards.filter((card) => 
-        card.tcgId = 1);
-      }
-      if (this.search.colors != "") {
+
+      if(this.search.colors != ""){
         filteredCards = filteredCards.filter((card) =>
-          card.colors
+        card.colors.includes(this.search.colors)
+        )
+      }
+
+      if(this.search.colorIdentity != ""){
+        filteredCards = filteredCards.filter((card) =>
+        card.colorIdentity.includes(this.search.colorIdentity)
+        )
+      }
+
+      if (this.search.setCode != "") {
+        filteredCards = filteredCards.filter((card) =>
+          card.setCode
             .toLowerCase()
-            .includes(this.search.colors.toLowerCase())
+            .includes(this.search.setCode.toLowerCase())
             );
       }
+       if (this.search.setName != "") {
+        filteredCards = filteredCards.filter((card) =>
+          card.setName
+            .toLowerCase()
+            .includes(this.search.setName.toLowerCase())
+            );
+      }
+
+      if(this.search.cmc != ""){
+        filteredCards = filteredCards.filter((card) =>
+        card.cmc == this.search.cmc)
+      }
+
+      if(this.search.collectorNumber != ""){
+        filteredCards = filteredCards.filter((card) =>
+        card.collectorNumber == this.search.collectorNumber)
+      }
+      
+      if(this.search.edhRank != ""){
+        filteredCards = filteredCards.filter((card) =>
+        card.edhrecRank == this.search.edhRank)
+      }
+
+
+
+
       return filteredCards;
     },
 
@@ -256,8 +293,6 @@ export default {
     border-radius: 10px;
 } 
  .search-head {
-    background-color: #a888a0;
-    
     text-align: center;
 } 
   .first-header {
