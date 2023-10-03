@@ -5,16 +5,6 @@ import com.techelevator.model.Message;
 import java.util.List;
 
 public interface MessageDao {
-
-<<<<<<< HEAD
-    /**
-    *
-    *
-    */
-    List<Message> getMessagesByUsersID(int usersID, int receiversID);
-
-=======
-
     //CREATE messages
 
     /**
@@ -45,6 +35,5 @@ public interface MessageDao {
      * @return true if successful or false otherwise
      */
     boolean deleteMessage(int messageId);
->>>>>>> 35b9495f6be25e13d5da969e708aa9884836bdf1
 
 }

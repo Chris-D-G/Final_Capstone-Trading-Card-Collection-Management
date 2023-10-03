@@ -5,24 +5,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class Message {
-<<<<<<< HEAD
-
-    @NotEmpty
-    private int messageID;
-
-    @NotNull
-    @NotEmpty
-    private String messageText;
-
-    @NotNull
-    @NotEmpty
-    private String messageSender;
-
-    @NotNull
-    @NotEmpty
-    private String messageReceiver;
-
-=======
     @NotEmpty
     private int messageID;
     @NotNull
@@ -34,27 +16,23 @@ public class Message {
     @NotNull
     @NotEmpty
     private String messageReceiver;
->>>>>>> 35b9495f6be25e13d5da969e708aa9884836bdf1
+
     @NotNull
     @NotEmpty
     private LocalDateTime messageTimestamp;
     @NotNull
     private boolean read;
 
-    private boolean read;
-
     public Message() {
     }
 
-<<<<<<< HEAD
-    public Message(int messageID, String messageText, int messageSenderID,
-                   int messageReceiver, LocalDateTime messageTimestamp)
-    {
+    public Message(int messageID, String messageText, String messageSender, String messageReceiver, LocalDateTime messageTimestamp, boolean read) {
         this.messageID = messageID;
         this.messageText = messageText;
-        this.messageSender = messageSenderID;
-        this.messageReceiverID = messageReceiverID;
+        this.messageSender = messageSender;
+        this.messageReceiver = messageReceiver;
         this.messageTimestamp = messageTimestamp;
+        this.read = read;
     }
 
     public int getMessageID() {
@@ -73,10 +51,48 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public int getMessageSenderID() {
-        return messageSenderID;
+    public String getMessageSender() {
+        return messageSender;
     }
-=======
->>>>>>> 35b9495f6be25e13d5da969e708aa9884836bdf1
 
+    public void setMessageSender(String messageSender) {
+        this.messageSender = messageSender;
+    }
+
+    public String getMessageReceiver() {
+        return messageReceiver;
+    }
+
+    public void setMessageReceiver(String messageReceiver) {
+        this.messageReceiver = messageReceiver;
+    }
+
+    public LocalDateTime getMessageTimestamp() {
+        return messageTimestamp;
+    }
+
+    public void setMessageTimestamp(LocalDateTime messageTimestamp) {
+        this.messageTimestamp = messageTimestamp;
+    }
+
+    public boolean isRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "messageID=" + messageID +
+                ", messageText='" + messageText + '\'' +
+                ", messageSender='" + messageSender + '\'' +
+                ", messageReceiver='" + messageReceiver + '\'' +
+                ", messageTimestamp=" + messageTimestamp +
+                ", read=" + read +
+                '}';
+    }
 }
+
