@@ -22,7 +22,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul
-            class="navbar-nav align-items-center justify-content-around w-100"
+            class="navbar-nav align-items-center justify-content-between w-100"
           >
             <li class="nav-item ">              
                 <router-link
@@ -169,7 +169,7 @@ export default {
 .nav-img {
   position: relative;
   top: -20px;
-  right: 35px; 
+  right: 30px; 
 }
 
 div > ul > li > a:hover {
