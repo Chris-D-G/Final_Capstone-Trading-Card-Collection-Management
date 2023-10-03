@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, tcg, cards, collections, collections_user, collections_cards, default_profile_img, users_profile, users_friends CASCADE;
+DROP TABLE IF EXISTS users, tcg, cards, collections, collections_user, collections_cards, default_profile_img, users_profile, users_friends, messages CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
