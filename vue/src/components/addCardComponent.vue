@@ -22,7 +22,7 @@
     <label for="addToCollection"  class="fs-6 text-start me-2" > ADD </label>
     <input type="checkbox" class="form-check-input" name="addToCollection" v-model="localChecked" @change="emitChecked" >
 
-    <div id="cardInfo" v-if="displayInfo" class="bg-primary rounded-5 border border-2 border-danger-subtle w-50 mx-auto" style="--bs-bg-opacity: .5;">
+    <div id="cardInfo" v-if="displayInfo" class="bg-white rounded-5 border border-1 border-white w-50 mx-auto" style="--bs-bg-opacity: .15;">
       Card Name : {{this.addCard.name}}<br/>
       Colors : {{this.addCard.colors}}<br/>
       Color-Identities : {{this.addCard.colorIdentity}}<br/>
