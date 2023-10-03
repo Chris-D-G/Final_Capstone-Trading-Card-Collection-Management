@@ -20,23 +20,21 @@ public class JdbcMessageDao implements MessageDao
 
     @Override
     public Message sendNewMessage(Message messageToSend) {
-
-        String sender = messageToSend.getMessageSender();
-        String receiver = messageToSend.getMessageReceiver();
-        String messageBody = messageToSend.getMessageText();
+        String sender = messageToSend.getMessageSender().trim();
+        String receiver = messageToSend.getMessageReceiver().trim();
+        String messageBody = messageToSend.getMessageText().trim();
 
         Message createdMessage = null;
 
         String sql = "INSERT INTO messages (message_sender_user_id, message_receiver_user_id, " +
-                "message_text, message_timestamp, message_read_status) " +
-                "VALUES ( (SELECT user_id FROM users WHERE username = ? ), " +
-                "(SELECT user_id FROM users WHERE username = ?), " +
-                "?, " +
-                "CURRENT_TIMESTAMP(0), " +
-                "false) " +
-                "RETURNING message_id;";
+                     "message_text, message_timestamp, message_read_status) " +
+                     "VALUES ( (SELECT user_id FROM users WHERE username = ? ), " +
+                     "(SELECT user_id FROM users WHERE username = ?), " +
+                     "?, " +
+                     "CURRENT_TIMESTAMP(0), " +
+                     "false) " +
+                     "RETURNING message_id;";
         try {
-
             int messageID = jdbcTemplate.update(sql, sender, receiver, messageBody, int.class);
             // need a method to retrieve a single message from the database when given an ID #
             createdMessage = getMessageByID(messageID);
@@ -61,11 +59,11 @@ public class JdbcMessageDao implements MessageDao
         Message messageToRetrieve = null;
 
         String sql = "SELECT message_id, user1.username = Sender, user2.username = Receiver, " +
-                "message_text, message_timestamp, message_read_status " +
-                "FROM messages " +
-                "JOIN users AS user1 ON messages.message_sender_user_id = user1.user_id " +
-                "JOIN users AS user2 ON messages.message_sender_user_id = user2.user_id " +
-                "WHERE message_id = ?;";
+                     "message_text, message_timestamp, message_read_status " +
+                     "FROM messages " +
+                     "JOIN users AS user1 ON messages.message_sender_user_id = user1.user_id " +
+                     "JOIN users AS user2 ON messages.message_sender_user_id = user2.user_id " +
+                     "WHERE message_id = ?;";
 
         try {
             SqlRowSet message = jdbcTemplate.queryForRowSet(sql, messageID);
@@ -83,6 +81,8 @@ public class JdbcMessageDao implements MessageDao
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
+        } catch (NullPointerException e){
+            throw new RuntimeException("Null value encountered in mapping", e);
         }
 
         return messageToRetrieve;
@@ -96,14 +96,14 @@ public class JdbcMessageDao implements MessageDao
         List<Message> allMessages = new ArrayList<>();
 
         String sql = "SELECT message_id, user1.username AS Sender, user2.username AS Receiver, " +
-                "message_text, message_timestamp, message_read_status FROM messages " +
-                "JOIN users AS user1 ON messages.message_sender_user_id = u1.user_id " +
-                "JOIN users AS user2 ON messages.message_receiver_user_id = u2.user_id " +
-                "WHERE sender = ? OR receiver = ? " +
-                "ORDER BY message_timestamp DESC;";
+                     "message_text, message_timestamp, message_read_status FROM messages " +
+                     "JOIN users AS user1 ON messages.message_sender_user_id = u1.user_id " +
+                     "JOIN users AS user2 ON messages.message_receiver_user_id = u2.user_id " +
+                     "WHERE sender = ? OR receiver = ? " +
+                     "ORDER BY message_timestamp DESC;";
 
         try {
-            SqlRowSet messages = jdbcTemplate.queryForRowSet(sql, username);
+            SqlRowSet messages = jdbcTemplate.queryForRowSet(sql, username, username);
             while (messages.next()) {
                 allMessages.add(mapRowToMessage(messages));
             }
@@ -116,6 +116,8 @@ public class JdbcMessageDao implements MessageDao
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
+        }  catch (NullPointerException e){
+            throw new RuntimeException("Null value encountered in mapping", e);
         }
 
         return allMessages;
@@ -127,11 +129,17 @@ public class JdbcMessageDao implements MessageDao
     public boolean deleteMessage(int messageId) {
 
         int numberOfRows = 0;
-
+        boolean deleteConfirmed = false;
         String sql = "DELETE FROM messages WHERE message_id = ?;";
 
         try {
             numberOfRows = jdbcTemplate.update(sql, messageId);
+            if (numberOfRows == 1){
+                deleteConfirmed = true;
+            } else {
+                throw new RuntimeException("Unexpected number of rows deleted: " + numberOfRows + " rows.");
+            }
+
         } catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Unable to connect to the database!", e);
@@ -141,18 +149,17 @@ public class JdbcMessageDao implements MessageDao
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
+        }catch (RuntimeException e){
+            throw new RuntimeException(e);
         }
 
-        if (numberOfRows == 0){
-            return true;
-        } else {
-            return false; }
+        return deleteConfirmed;
+
     }
 
 
     private Message mapRowToMessage(SqlRowSet results){
         Message message = new Message();
-
         message.setMessageID(results.getInt("message_id"));
         message.setMessageText(results.getString("message_text"));
         message.setMessageSender(results.getString("Sender"));
