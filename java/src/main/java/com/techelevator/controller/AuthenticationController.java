@@ -60,5 +60,10 @@ public class AuthenticationController {
         }
     }
 
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
+    public int userValidation(@PathVariable String username){
+        return userDao.findIdByUsername(username);
+    }
+
 }
 

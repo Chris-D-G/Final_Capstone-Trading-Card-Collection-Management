@@ -1,10 +1,11 @@
 package com.techelevator.dao;
+import com.techelevator.model.Message;
 
-import org.apache.logging.log4j.message.Message;
 
 import java.util.List;
 
 public interface MessageDao {
+
 
     //CREATE messages
 
