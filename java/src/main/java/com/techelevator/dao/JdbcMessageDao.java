@@ -6,10 +6,11 @@ import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcMessageDao implements MessageDao
 {
     private final JdbcTemplate jdbcTemplate;
@@ -58,11 +59,11 @@ public class JdbcMessageDao implements MessageDao
 
         Message messageToRetrieve = null;
 
-        String sql = "SELECT message_id, user1.username = Sender, user2.username = Receiver, " +
+        String sql = "SELECT message_id, user1.username AS sender, user2.username AS receiver, " +
                      "message_text, message_timestamp, message_read_status " +
                      "FROM messages " +
                      "JOIN users AS user1 ON messages.message_sender_user_id = user1.user_id " +
-                     "JOIN users AS user2 ON messages.message_sender_user_id = user2.user_id " +
+                     "JOIN users AS user2 ON messages.message_receiver_user_id = user2.user_id " +
                      "WHERE message_id = ?;";
 
         try {
@@ -95,10 +96,11 @@ public class JdbcMessageDao implements MessageDao
 
         List<Message> allMessages = new ArrayList<>();
 
-        String sql = "SELECT message_id, user1.username AS Sender, user2.username AS Receiver, " +
-                     "message_text, message_timestamp, message_read_status FROM messages " +
-                     "JOIN users AS user1 ON messages.message_sender_user_id = u1.user_id " +
-                     "JOIN users AS user2 ON messages.message_receiver_user_id = u2.user_id " +
+        String sql = "SELECT message_id, user1.username AS sender, user2.username AS receiver, " +
+                     "message_text, message_timestamp, message_read_status " +
+                     "FROM messages " +
+                     "JOIN users AS user1 ON messages.message_sender_user_id = user1.user_id " +
+                     "JOIN users AS user2 ON messages.message_receiver_user_id = user2.user_id " +
                      "WHERE sender = ? OR receiver = ? " +
                      "ORDER BY message_timestamp DESC;";
 
@@ -162,8 +164,8 @@ public class JdbcMessageDao implements MessageDao
         Message message = new Message();
         message.setMessageID(results.getInt("message_id"));
         message.setMessageText(results.getString("message_text"));
-        message.setMessageSender(results.getString("Sender"));
-        message.setMessageReceiver(results.getString("Receiver"));
+        message.setMessageSender(results.getString("sender"));
+        message.setMessageReceiver(results.getString("receiver"));
         message.setMessageTimestamp(results.getTimestamp("message_timestamp").toLocalDateTime());
         message.setRead(results.getBoolean("message_read_status"));
 

@@ -51,5 +51,8 @@ export default {
     },
     getAllCardsByCollectionEDHREC(collectionId){
         return axios.get(`/collections/${collectionId}/cards/ed`);
+    },
+    getCountOfCardsInCollection(collectionId) {
+        return axios.get(`/collections/allCollections/${collectionId}/stats`)
     }
 }

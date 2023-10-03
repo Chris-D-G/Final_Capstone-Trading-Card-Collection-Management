@@ -88,7 +88,7 @@
       v-if="isLoggedIn"
     >
       <addCard
-        v-for="(addCard, index) in cardsCurrentPage.slice(
+        v-for="(addCard, index) in filteredCards.slice(
           findStartIndex,
           findEndIndex
         )"
