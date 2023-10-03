@@ -125,6 +125,12 @@
         Next Page
       </button>
     </div>
+    <div v-for="card in this.checkedCards" v-bind:key="card.id" class="d-flex flex-column justify-content-start">
+      <ul>
+        <li>{{card.name}}</li>
+        <li>{{card.collectorNumber}}</li>
+      </ul>
+    </div>
     <div v-if="isLoggedIn">
       <div class="m-1">
         <label class="me-1" for="choose-collection"

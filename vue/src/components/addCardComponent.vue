@@ -1,7 +1,7 @@
 <template>
 <div class="mb-4">
   <div id="card-stats-container" class="d-flex flex-row align-items-center">
-  <div class="addCard-container mx-3 mt-3">
+  <div class="addCard-container mx-3 mt-3 d-flex flex-column align-items-center">
     <img
       class="rounded-2 shadow-lg"
       v-bind:src="this.addCard.smallImgUrl"
