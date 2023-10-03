@@ -3,7 +3,7 @@
       <div v-if="collectionList.length < 1">
       <h2 class="text-dark fs-1 text-center fw-bold title mt-5 p-5  mx-auto bg-white rounded-5 border border-1 border-white shadow"
       style="--bs-bg-opacity: 0.15" v-on:click="sendToCreate" >No Collections to View. Go Start One!</h2>
-      <img v-bind:src='blackHat' class="w-25 p-4 mt-5"/>
+      <img v-bind:src='danceHat' v-if="!pause" v-on:click="toggleOff" class="w-25 p-4 mt-5"/>
       </div>
 
 
@@ -31,6 +31,7 @@
 import CollectionService from "../services/CollectionService.js";
 import mtgImage from "@/assets/Updated MTG Collections Image Transparent.png";
 import blackHat from "@/assets/Hat-Icon-Black.png";
+import danceHat from "@/assets/dancingHat.gif"
 
 
 
@@ -42,6 +43,8 @@ export default {
       collectionList: [],
       mtgImage,
       blackHat,
+      danceHat,
+      pause: false,
     };
   },
 
@@ -80,6 +83,9 @@ export default {
     sendToCreate(){
       this.$router.push({name: 'collectionForm'})
     },
+    toggleOff(){
+      this.pause =!this.pause
+    }
   },
 };
 </script>

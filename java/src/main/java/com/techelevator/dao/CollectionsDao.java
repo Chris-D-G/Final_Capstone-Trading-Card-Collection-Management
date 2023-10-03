@@ -107,5 +107,7 @@ public interface CollectionsDao {
 
     void deleteCardFromCollection(String cardId, int collectionId);
 
+    int getCountOfCardsInCollection(int collectionId);
+
 
 }

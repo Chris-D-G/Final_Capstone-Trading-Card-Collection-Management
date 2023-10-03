@@ -80,12 +80,15 @@
       </div>
     </div>
     <!-- end alternative -->
+
+    <img :src="catHat" v-if="isLoading"/>
+
     <div
       class="d-flex flex-wrap me-2 justify-content-between"
       v-if="isLoggedIn"
     >
       <addCard
-        v-for="(addCard, index) in filteredCards.slice(
+        v-for="(addCard, index) in cardsCurrentPage.slice(
           findStartIndex,
           findEndIndex
         )"
@@ -125,10 +128,15 @@
         Next Page
       </button>
     </div>
-    <div v-for="card in this.checkedCards" v-bind:key="card.id" class="d-flex flex-column justify-content-start">
-      <ul>
-        <li>{{card.name}}</li>
-        <li>{{card.collectorNumber}}</li>
+    <div v-if="this.checkedCards.length >0" class="d-flex w-25 ms-5 mb-4 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
+          style="--bs-bg-opacity: 0.6">
+    QUEUED CARDS
+    </div>
+    <div v-for="card in this.checkedCards" v-bind:key="card.id" class="w-100 ms-5 d-flex">
+      <ul class="d-flex w-25 justify-content-evenly bg-white rounded-5 border border-1 border-white shadow"
+          style="--bs-bg-opacity: 0.6">
+        <li>| {{card.name}} |</li>
+        <li>C# {{card.collectorNumber}}</li>
       </ul>
     </div>
     <div v-if="isLoggedIn">
@@ -160,6 +168,7 @@ import service from "../services/CardService.js";
 import card from "../components/Card.vue";
 import addCard from "../components/addCardComponent.vue";
 import CollectionService from "../services/CollectionService.js";
+import catHat from "@/assets/catHat.gif"
 
 export default {
   name: "card-list",
@@ -178,6 +187,8 @@ export default {
       currentPage: 1,
       cardsPerPage: 94,
       exactMatch: false,
+      isLoading: true,
+      catHat,
       search: {
         cardTitle: "",
         gameType: "",
@@ -197,10 +208,12 @@ export default {
     if (this.isLoggedIn) {
       service.getAllCards().then((response) => {
         this.cards = response.data;
+        this.isLoading =false;
       });
     } else {
       service.getAllCardsNotLoggedIn().then((response) => {
         this.cards = response.data;
+        this.isLoading =false;
       });
     }
 
@@ -208,7 +221,6 @@ export default {
 
     CollectionService.getMyCollections().then((response) => {
       this.availableCollections = response.data;
-      this.isLoading = false;
     });
   },
 
@@ -317,6 +329,15 @@ export default {
       return filteredCards;
     },
 
+    cardsCurrentPage : function() {
+      let cardsCurrentPage = 
+      this.filteredCards.slice(
+        this.findStartIndex,
+        this.findEndIndex
+      )
+      return cardsCurrentPage;
+    },
+
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
     },
@@ -331,5 +352,8 @@ export default {
 <style scoped>
 #alternative-search-bar, #pagination-page {
   background-color: #4c2c2e;
+}
+ul{
+  list-style-type: none;
 }
 </style>

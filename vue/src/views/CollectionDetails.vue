@@ -70,6 +70,9 @@
         !this.CMC
       "
     >
+
+    <img :src="catHat" v-if="isLoading"/>
+
     <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn && isOwner">
       <deleteCard v-for="(deleteCard, index) in cards" 
       v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
@@ -142,6 +145,7 @@ import CardSort from "../services/cardSort.js";
 import deleteCard from "../components/deleteCardComponent.vue";
 import profileService from "../services/ProfileService.js";
 import authService from "../services/AuthService.js";
+import catHat from "@/assets/catHat.gif"
 
 export default {
   name: "collection-details",
@@ -169,7 +173,9 @@ export default {
       collectionOwnerUserId: 0,
       loggedInUsername: "",
       loggedInUserId: 0,
-      collectionOwner: {}
+      collectionOwner: {},
+      isLoading: true,
+      catHat
     };
   },
 
@@ -309,6 +315,7 @@ export default {
         this.colorIdencards = CardSort.sortByColorId(this.colorIdencards);
         this.setcards = CardSort.sortBySetId(this.setcards);
         this.EDHRECcards = CardSort.sortByEdhrec(this.EDHRECcards);
+        this.isLoading = false;
       }
     );
 
