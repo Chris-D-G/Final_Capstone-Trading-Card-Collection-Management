@@ -144,6 +144,7 @@ import CollectionService from "../services/CollectionService.js";
 import card from "../components/Card.vue";
 import CardSort from "../services/cardSort.js";
 import deleteCard from "../components/deleteCardComponent.vue";
+// import profileService from "../services/ProfileService.js";
 
 export default {
   name: "collection-details",
@@ -168,7 +169,8 @@ export default {
       isLoggedIn: false,
       checkboxStates: [], // Array to store checkbox states
       checkedCards: [], // Array to store checked cards
-      user: []
+      user: [],
+      loggedInUser: []
     };
   },
 
@@ -316,6 +318,13 @@ export default {
         this.user = response.data;
       }
     );
+
+    // profileService.getMyProfile().then(
+    //   (response) => {
+    //    let profile = response.data;
+    //   }
+
+    // );
   }
 };
 </script>
