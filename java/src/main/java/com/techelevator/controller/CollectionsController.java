@@ -80,9 +80,9 @@ public class CollectionsController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/collections/{collectionId}/delete}")
-    public void deleteCardFromCollection(@Valid @RequestBody Card card, @PathVariable int collectionId) {
-        cdao.deleteCardFromCollection(card, collectionId);
+    @RequestMapping(path = "/collections/{collectionId}/{cardId}/delete", method = RequestMethod.DELETE)
+    public void deleteCardFromCollection(@PathVariable String cardId, @PathVariable int collectionId) {
+        cdao.deleteCardFromCollection(cardId, collectionId);
     }
 
     @PreAuthorize("permitAll")

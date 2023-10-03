@@ -70,12 +70,20 @@
         !this.CMC
       "
     >
+    <div class="d-flex flex-wrap me-2 justify-content-between" v-if="isLoggedIn">
+      <deleteCard v-for="(deleteCard, index) in cards" 
+      v-bind:key="index" v-bind:deleteCard="deleteCard" :isChecked="checkboxStates[index]"
+      @update:checked="updateCheckboxState(index, $event)"/>
+      </div>
+    <div class="d-flex flex-wrap gap-2 justify-content-evenly" v-else>
       <card
         v-for="card in cards"
         v-bind:key="card.id"
         v-bind:card="card"
-        class="d-flex flex-wrap gap-2 justify-content-evenly"
       />
+      </div>
+       
+    
     </div>
     <div
       class="d-flex flex-wrap gap-2 justify-content-evenly"
@@ -126,6 +134,8 @@
         v-bind:card="card"
       />
     </div>
+    <button class="btn btn-dark m-2"  @click="addCheckedCards()">Add Checked Cards to Queue</button>
+      <button class="btn btn-dark" @click="deleteCard()">Delete Queued Cards From Collection</button>
   </div>
 </template>
 
@@ -133,10 +143,11 @@
 import CollectionService from "../services/CollectionService.js";
 import card from "../components/Card.vue";
 import CardSort from "../services/cardSort.js";
+import deleteCard from "../components/deleteCardComponent.vue";
 
 export default {
   name: "collection-details",
-  components: { card },
+  components: { card, deleteCard },
   data() {
     return {
       cards: [],
@@ -155,6 +166,9 @@ export default {
       EDHREC: false,
       isOwner: false,
       isLoggedIn: false,
+      checkboxStates: [], // Array to store checkbox states
+      checkedCards: [], // Array to store checked cards
+      user: []
     };
   },
 
@@ -245,6 +259,27 @@ export default {
         );
       }
     },
+
+    updateCheckboxState(index, value) {
+      // Update the checkbox state in the array
+      console.log(`Checkbox state updated for card at index ${index}: ${value}`);
+      this.checkboxStates[index] = value;
+    },
+
+    addCheckedCards() {
+      // Add checked cards to the checkedCards array
+      console.log("addCheckedCards method called");
+      console.log("Checkbox states:", this.checkboxStates);
+      this.checkedCards = this.cards.filter((_, index) => this.checkboxStates[index]);
+      console.log("Filtered checkedCards:", this.checkedCards);
+    },
+
+    deleteCard() {
+      this.checkedCards.forEach((card) => {
+        CollectionService.deleteCardFromCollection(card.id, this.collection.id)
+      });
+      this.$router.push(`/myCollections`)
+    },
   },
 
   created() {
@@ -275,6 +310,12 @@ export default {
       }
     );
     this.checkLoginStatus();
+
+    CollectionService.getUserByCollectionId(this.$route.params.id).then(
+      (response) => {
+        this.user = response.data;
+      }
+    );
   }
 };
 </script>

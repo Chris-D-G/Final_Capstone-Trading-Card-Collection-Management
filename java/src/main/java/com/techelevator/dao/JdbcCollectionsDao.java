@@ -321,10 +321,10 @@ public class JdbcCollectionsDao implements CollectionsDao{
     }
 
 
-        public void deleteCardFromCollection(Card card, int collectionId){
+        public void deleteCardFromCollection(String cardId, int collectionId){
             String sql ="delete from collections_cards where card_id = ? and collection_id =? ;";
             try{
-                int check = jdbcTemplate.update(sql, card.getId(),collectionId);
+                int check = jdbcTemplate.update(sql, cardId,collectionId);
                 if(check!=1){
                     throw new RuntimeException("Failed to manipulate the database!");
                 }
