@@ -322,14 +322,14 @@ export default {
       return filteredCards;
     },
 
-    // cardsCurrentPage : function() {
-    //   let cardsCurrentPage = 
-    //   this.filteredCards.slice(
-    //     this.findStartIndex,
-    //     this.findEndIndex
-    //   )
-    //   return cardsCurrentPage;
-    // },
+    cardsCurrentPage : function() {
+      let cardsCurrentPage = 
+      this.filteredCards.slice(
+        this.findStartIndex,
+        this.findEndIndex
+      )
+      return cardsCurrentPage;
+    },
 
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;

@@ -22,8 +22,8 @@
         class=" bg-white rounded-5 border border-1 border-white fw-bold d-flex flex-column justify-content-center align-items-start mx-1 p-4 h-auto"
         style="--bs-bg-opacity: 0.15"
       >
-        <p class="my-0 py-0">Total Cards: {{ getCountOfCardsInCollection() }}</p>
-        <p class="my-0 py-0">Cards by Colors: {{ this.card.colors }}</p>
+        <p class="my-0 py-0">Total Cards: {{ getCountOfCardsInCollection(collection.collectionId) }}</p>
+        <p class="my-0 py-0">Cards by Colors: Red  || White  || Blue  || Green  || Black  </p>
         
       </div>
   </div>

@@ -84,6 +84,11 @@ public class CollectionsController {
     public void deleteCardFromCollection(@PathVariable String cardId, @PathVariable int collectionId) {
         cdao.deleteCardFromCollection(cardId, collectionId);
     }
+    @PreAuthorize("permitAll")
+    @RequestMapping(path = "/collections/allCollections/stats", method = RequestMethod.GET)
+    public int getCountOfCardsInCollection(@Valid @RequestBody int collectionId) {
+        return cdao.getCountOfCardsInCollection(collectionId);
+    }
 }
 
 
