@@ -389,9 +389,10 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     public int getCountOfCardsInCollection(int collectionId) {
         int count = 0;
-        String sql = "Select Count (Distinct card_id) From collections_cards Where collection_id = ?;";
+        String sql = "Select Count (Distinct card_id) AS card_count From collections_cards Where collection_id = ?;";
 
         try{
+            count = jdbcTemplate.queryForObject(sql, int.class, collectionId);
 
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -405,7 +406,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         }
 
         return  count;
-    };
+    }
 
 
     private Collection mapRowToCollection(SqlRowSet set){
