@@ -1,8 +1,21 @@
 <template>
+<div class="d-flex flex-wrap me-2 justify-content-evenly">
+  <h2
+          class="bg-white p-3 rounded-5 border border-1 border-white shadow w-75"
+          style="--bs-bg-opacity: 0.35"
+        >
+          Created Collections 
+          <p class="fs-5">Here you can view all user created Collections!</p>
+          <br />
+
+          <p class="fs-6"><label for="viewWishlists">Include Wishlists?</label>
+    <input type="checkbox" name="viewWishlists" @change="viewWishlists = !viewWishlists"></p>
+        </h2>
+  
   <div class="d-flex flex-wrap me-2 justify-content-evenly align-items-stretch">
     <div
       class="collectionPreview d-flex flex-column align-items-center justify-content-between m-5 rounded-4 text-light py-2 px-3 border border-3 border-dark"
-      v-for="collection in collectionList"
+      v-for="collection in getCorrectList()"
       v-bind:key="collection.id"
     >
    
@@ -26,6 +39,7 @@
         
       </div>
     </div>
+  </div>
     
   </div>
 </template>
@@ -41,6 +55,10 @@ export default {
     return {
       collectionList: [],
       mtgImage,
+      Wishlist : {
+        name : "Wishlist"
+      },
+      viewWishlists : false
     };
   },
 
@@ -66,11 +84,26 @@ export default {
 
     displayCards(collectionId) {
       this.$router.push(`/collections/${collectionId}`);
-    },    
+    },
+    
+    getCorrectList() {
+      if(this.viewWishlists) {
+        return this.collectionList
+      } else {
+        return this.filteredCollections
+      }
+    }
   },
 
   computed : {
-    
+    filteredCollections : function() {
+      let filteredCollections = this.collectionList
+      filteredCollections = filteredCollections.filter((collection) =>
+          !collection.collectionName.toLowerCase().includes(this.Wishlist.name.toLowerCase())
+        );
+
+      return filteredCollections;
+    }
   }
 };
 </script>
@@ -79,5 +112,9 @@ export default {
 .collectionPreview {
   width: 275px;
   background-color: #4c2c2eec;  
+}
+
+h2 {
+  color: black;
 }
 </style>
