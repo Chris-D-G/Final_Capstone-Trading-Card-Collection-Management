@@ -143,9 +143,9 @@
         <label class="me-1" for="choose-collection"
           >Enter Name of Collection</label
         >
-        <select id="legalitiesFilter" v-model="collectionName" v-for="collection in availableCollections" v-bind:key="collection.id" v-bind:collection="collection" @change="setCollectionId()"  @change.prevent="setCollectionId()">
+        <select id="legalitiesFilter" v-model="collectionName"  @change="setCollectionId()"  @change.prevent="setCollectionId()">
           <option selected disabled hidden value="">Collections</option>
-          <option :value="collection.name">{{collection.name}}</option>
+          <option :value="collection.name" v-for="collection in availableCollections" v-bind:key="collection.id" v-bind:collection="collection">{{collection.name}}</option>
         </select>
       </div>
       <button class="btn btn-dark m-2" @click="addCheckedCards()">
