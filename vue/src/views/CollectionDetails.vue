@@ -1,7 +1,7 @@
 <template>
   <div class="ms-5 me-5">
     <h1
-      class="text-dark fs-1 text-center fw-bold title mt-4 p-3 w-25 mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      class="text-dark fs-1 text-center fw-bold title mt-4 p-3 w-35 mx-auto bg-white rounded-5 border border-1 border-white shadow"
       style="--bs-bg-opacity: 0.15"
     >
       {{ this.collection.name }}
