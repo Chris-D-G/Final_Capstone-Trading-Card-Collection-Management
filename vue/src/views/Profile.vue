@@ -17,6 +17,18 @@
           {{ profile.username.toUpperCase() }}
         </h1>
       </div>
+      <div id="addFriend"
+      class="d-flex flex-column"
+      v-show="isFriended !== 'cannotFriend'">
+      <button v-show="isFriended == 'true'"
+      v-on:click.prevent="unFriend()">
+        Remove Friend
+      </button>
+      <button v-show="isFriended == 'false'"
+      v-on:click.prevent="addFriend()">
+        Add Friend
+      </button>
+      </div>
       <div
         id="aboutme"
         class="d-flex flex-column align-items-start ms-lg-5 me-lg-5 text-wrap"
@@ -63,19 +75,25 @@
 <script>
 import CollectionService from "../services/CollectionService.js";
 import ProfileService from "../services/ProfileService.js";
+import FriendService from "../services/FriendService.js";
 
 export default {
   created() {
-    ProfileService.getMyProfile().then((response) => {
+    ProfileService.getAProfile(this.$route.params.username).then((response) => {
       if (response.status == 200) {
         this.profile = response.data;
+        this.profile.profilePic = this.getPfp();
       }
     }),
-      CollectionService.getMyCollections().then((response) => {
-        if (response.status == 200) {
-          this.collectionList = response.data;
-        }
-      });
+    CollectionService.getMyCollections().then((response) => {
+      if (response.status == 200) {
+        this.collectionList = response.data;
+      }
+    });
+    const loggedIn = this.$store.state.token != "";
+    if(loggedIn && this.$store.state.user.username === this.profile.username){
+      this.isFriended = FriendService.isFriended(this.profile.username);
+    }
   },
   data() {
     return {
@@ -86,8 +104,35 @@ export default {
         friends: [],
       },
       collectionList: [],
+      isFriended: 'cannotFriend' //either 'cannotFriend', 'true' or 'false'
     };
   },
+  methods: {
+    getPfp() {
+      switch(this.profile.profilePic) {
+        case 'Logo-Default-Icon':
+          return require('@/assets/Profile-Icons/Logo-Default-Icon.png');
+        case 'MTG-Symbols':
+          return require('@/assets/Profile-Icons/MTG-Symbols.png');
+        case 'Plains-Default-Icon':
+          return require('@/assets/Profile-Icons/Plains-Default-Icon.png');
+        case 'Blue-Default-Icon':
+          return require('@/assets/Profile-Icons/Blue-Default-Icon.png');
+        case 'Swamp-Default-Icon':
+          return require('@/assets/Profile-Icons/Swamp-Default-Icon.png');
+        case 'Red-Default-Icon':
+          return require('@/assets/Profile-Icons/Red-Default-Icon.png');
+        case 'Forest-Default-Icon':
+          return require('@/assets/Profile-Icons/Forest-Default-Icon.png');
+      }
+    },
+    addFriend() {
+      FriendService.addFriend(this.profile.username);
+    },
+    unFriend() {
+      FriendService.unFriend(this.profile.username);
+    }
+  }
 };
 </script>
 
