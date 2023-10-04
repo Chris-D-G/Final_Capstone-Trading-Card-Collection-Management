@@ -91,9 +91,10 @@
           findStartIndex,
           findEndIndex
         )"
-        v-bind:key="index"
+        v-bind:key="getCardIndex(index)"
         v-bind:card="card"
-        :isChecked="checkboxStates[index]"
+        :isChecked="checkboxStates[getCardIndex(index)]"
+        :checkBoxStatesPage="checkBoxStatesPage"
         @update:checked="updateCheckboxState(index, $event)"
       />
     </div>
@@ -175,10 +176,10 @@ export default {
     return {
       cards: [],
       isLoggedIn: false,
-      notLoggedIn: true,
       collectionId: 0,
       collectionName: "",
       availableCollections: [],
+      checkBoxStatesPage: [], //Array to store checkbox states on current page
       checkboxStates: [], // Array to store checkbox states
       checkedCards: [], // Array to store checked cards
       currentPage: 1,
@@ -186,6 +187,9 @@ export default {
       exactMatch: false,
       isLoading: true,
       catHat,
+      pageIndexes : {
+        indexSelected: []
+        },
       search: {
         cardTitle: "",
         gameType: "",
@@ -236,10 +240,13 @@ export default {
     updateCheckboxState(index, value) {
       // Update the checkbox state in the array
       console.log(
-        `Checkbox state updated for card at index ${index}: ${value}`
+        `Checkbox state updated for card at index ${((this.currentPage-1) * this.cardsPerPage) + index}: ${value}`
       );
-      this.checkboxStates[index] = value;
+        console.log("Current Page " + this.currentPage );
+        console.log("Index " + index);
+        this.checkboxStates[((this.currentPage-1) * this.cardsPerPage) + index] = value;
     },
+
     addCheckedCards() {
       // Add checked cards to the checkedCards array
       console.log("addCheckedCards method called");
@@ -273,6 +280,43 @@ export default {
         });
       }
     },
+
+    // getPageIndexes(switchPage) {
+    //   if(switchPage) {
+    //     this.currentPage++
+    //     }else {
+    //       this.currentPage--
+    //     }
+    //   let page = this.checkBoxStatesPage.pageIndexes.find(
+    //     (pageIndex) => {
+    //       if(pageIndex.pageNumber == this.currentPage) {
+    //         return this.currentPage
+    //       } else {
+    //         return null
+    //       }
+    //     });
+    //     this.checkBoxStatesPage.pageIndexes.pageNumber = this.currentPage; 
+    //   if(page == null) {
+    //     this.checkBoxStatesPage.push(this.pageIndexes)
+    //   }
+    // },
+
+    // addPageIndexes(index, value) {
+    //   // if(this.checkBoxStatesPage.pageIndexes.pageNumber == undefined) {
+    //   //   this.checkBoxStatesPage.pageIndexes.pageNumber = this.currentPage; 
+        
+    //   //   }
+    //   let cardIndex = this.currentPage * index;
+    //   if(value) {
+    //   this.pageIndexes.indexSelected.push(cardIndex)
+    //   }
+      
+    // },
+
+    getCardIndex(index) {
+      console.log("getCardIndex method called");
+      return ((this.currentPage-1) * this.cardsPerPage) + index;
+    }
   },
 
   computed: {
@@ -328,13 +372,13 @@ export default {
       return filteredCards;
     },
 
-    cardsCurrentPage: function () {
-      let cardsCurrentPage = this.filteredCards.slice(
-        this.findStartIndex,
-        this.findEndIndex
-      );
-      return cardsCurrentPage;
-    },
+    // cardsCurrentPage: function () {
+    //   let cardsCurrentPage = this.filteredCards.slice(
+    //     this.findStartIndex,
+    //     this.findEndIndex
+    //   );
+    //   return cardsCurrentPage;
+    // },
 
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
@@ -342,6 +386,8 @@ export default {
     findEndIndex() {
       return this.currentPage * this.cardsPerPage - 1;
     },
+
+    
   },
 };
 </script>

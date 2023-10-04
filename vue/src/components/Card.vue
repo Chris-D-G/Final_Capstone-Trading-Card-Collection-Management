@@ -95,7 +95,7 @@ export default {
 
   props: {
     card: Object,
-    isChecked: Boolean,
+    isChecked: Boolean, // Receive the checkbox state as a prop
   },
 
   methods: {
@@ -105,6 +105,7 @@ export default {
       );
       this.$emit("update:checked", this.localChecked);
     },
+    
     displayLargerImage() {
       this.showLargeImg = !this.showLargeImg;
       this.displayInfo = !this.displayInfo;
