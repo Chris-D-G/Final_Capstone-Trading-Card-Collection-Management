@@ -9,8 +9,9 @@
         <h5 class="offcanvas-title" id="offcanvasBottomLabel">New Message</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-        INSERT FORM FIELD IN HERE
+        <div class="offcanvas-body">        
+          <new-message-form />
+          
         </div>
       </div>
     </div>
@@ -22,10 +23,14 @@
 
 <script>
 import messageTable from '../components/MessageTable.vue'
+import newMessageForm from '../components/NewMessageForm.vue'
+
+
 
 export default {
     components:{
-        messageTable
+        messageTable,
+        newMessageForm
     }
 
 }

@@ -32,7 +32,7 @@ public class CollectionsController {
         return cdao.getAllUserCollections(principal.getName());
     }
     @PreAuthorize("permitAll")
-    @RequestMapping(path="/collections/{username}", method = RequestMethod.GET)
+    @RequestMapping(path="/userCollections/{username}", method = RequestMethod.GET)
     public List<Collection> getCollectionsByUsername(@PathVariable String username){
         return cdao.getAllUserCollections(username);
     }

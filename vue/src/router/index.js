@@ -112,12 +112,20 @@ const router = new Router({
         requiresAuth: false
       }
     },
-     { 
-       path:"/myprofile",
+    // { 
+    //    path:"/myprofile",
+    //   name:"myProfile",
+    //   component: Profile,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
+    // },
+    { 
+       path:"/profile/:username",
       name:"Profile",
       component: Profile,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     { 

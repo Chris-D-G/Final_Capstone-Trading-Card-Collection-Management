@@ -8,21 +8,21 @@ INSERT INTO users (username,password_hash,role) VALUES ('jayburd','$2a$10$FZeGVV
 INSERT INTO tcg (tcg_name) VALUES ('Magic The Gathering');
 
 
-INSERT INTO default_profile_img (pic_id, img_loc)
-VALUES(1, 'https://randomuser.me/api/portraits/lego/1.jpg'),
-(2, 'https://randomuser.me/api/portraits/lego/2.jpg'),
-(3, 'https://randomuser.me/api/portraits/lego/3.jpg'),
-(4,'https://randomuser.me/api/portraits/lego/4.jpg'),
-(5,'https://randomuser.me/api/portraits/lego/5.jpg'),
-(6,'https://randomuser.me/api/portraits/lego/6.jpg'),
-(7,'https://randomuser.me/api/portraits/lego/5.jpg'),
-(8,'https://randomuser.me/api/portraits/lego/5.jpg'),
-(9,'https://randomuser.me/api/portraits/lego/5.jpg'),
-(10,'https://randomuser.me/api/portraits/lego/5.jpg');
+INSERT INTO default_profile_img (pic_id, img_loc) VALUES
+(1, 'Logo-Default-Icon'),
+(2, 'MTG-Symbols'),
+(3, 'Plains-Default-Icon'),
+(4, 'Blue-Default-Icon'),
+(5, 'Swamp-Default-Icon'),
+(6, 'Red-Default-Icon'),
+(7, 'Forest-Default-Icon');
 
 INSERT INTO users_profile (user_id, pic_id, about_me)
 VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default example user! I''m whatever the admin wants me to be' ),
-((SELECT user_id FROM users where username='admin'), 1, 'I''m the default admin user! I have the power?!' );
+((SELECT user_id FROM users where username='admin'), 1, 'I''m the default admin user! I have the power?!' ),
+((SELECT user_id FROM users where username='firagablast'), 1, 'Hi welcome to my profile!' ),
+((SELECT user_id FROM users where username='jewels'), 1, 'Hi welcome to my profile!' ),
+((SELECT user_id FROM users where username='jayburd'), 1, 'Hi welcome to my profile!' );
 
 
 INSERT INTO users_friends (user_id, friend_id)
