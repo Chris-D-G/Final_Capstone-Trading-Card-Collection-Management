@@ -19,8 +19,8 @@
       v-on:click="displayLargerImage"
     />
     <p class="mt-1 mb-1 fw-semibold">{{ addCard.name }}</p>
-    <label for="addToCollection"  class="fs-6 text-start me-2" > ADD </label>
-    <input type="checkbox" class="form-check-input" name="addToCollection" v-model="localChecked" @change="emitChecked" >
+    <label for="addToCollection"  class="fs-6 text-start me-2" v-show="isLoggedIn"> ADD </label>
+    <input type="checkbox" class="form-check-input" name="addToCollection" v-model="localChecked" @change="emitChecked" v-show="isLoggedIn">
     <div
         id="cardInfo"
         v-if="displayInfo"
@@ -62,8 +62,7 @@
       </div>
       </div>
 
-
-    <!-- To DO: add boolean check for the checkbox -->
+    
     
 </div>
 
@@ -88,12 +87,24 @@ export default {
       this.showLargeImg = !this.showLargeImg;
       this.displayInfo=!this.displayInfo;
     },
+    checkLoginStatus(){
+      let token = this.$store.state.token;
+
+      if(token != ""){
+        this.isLoggedIn = true;       
+      }
+    },
   },
+  created(){
+    this.checkLoginStatus()
+  },
+
   data() {
     return {
       showLargeImg: false,
       localChecked: this.isChecked, // Initialize localChecked with the prop value
-      displayInfo:false
+      displayInfo:false,
+      isLoggedIn: false
     
     };
   },
@@ -101,11 +112,5 @@ export default {
 </script>
 
 <style scoped>
-.large-card {
-  z-index: 3;
 
-}
-p{
- color:#360a0c
-}
 </style>

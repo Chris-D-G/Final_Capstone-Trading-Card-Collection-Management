@@ -31,6 +31,17 @@ public class MessageController {
           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to retrieve any messages associated with " + username + "!");
       }
     }
+
+    @GetMapping(path = "/messages/{messageID}")
+    Message getSingleMessageById(@PathVariable int messageID){
+        try{
+            return messageDao.getMessageByID(messageID);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to retrieve message associated with ID# " + messageID + "!");
+        }
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path= "/messages/new-message")
     Message sendNewMessage(@RequestBody Message messageToSend){

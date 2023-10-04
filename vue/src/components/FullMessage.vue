@@ -13,14 +13,29 @@
 </template>
 
 <script>
+import MessageService from '../services/MessageService'
 
 
 
 export default {
     
     name: "message",
-
-    props:["oneMessage"]
+    data(){
+        return{
+            oneMessage:{}
+        }
+        
+    },
+    created(){
+        MessageService.getSingleMessageByID(this.$route.params.id)
+        .then((response)=>{
+            this.oneMessage = response.data
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+        
+    }
 
 
 }

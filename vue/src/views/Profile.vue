@@ -68,22 +68,17 @@
           v-bind:to ="{name: 'CollectionCards', params:{id:collection.id}}"
           >{{ collection.name }}</router-link></li>                    
       </ul>
-    </aside>
-    <!-- Message table -->
-    <message-table class= "mx-5 mt-5 rounded-5 px-lg-5 pt-lg-5 bg-white"/>
+    </aside>    
   </div>
 </template>
 
 <script>
-import messageTable from '../components/MessageTable.vue';
 import CollectionService from "../services/CollectionService.js";
 import ProfileService from "../services/ProfileService.js";
 import FriendService from "../services/FriendService.js";
 
 
-export default {
-  
-  components: { messageTable},
+export default {  
   created() {
     ProfileService.getAProfile(this.$route.params.username).then((response) => {
       if (response.status == 200) {

@@ -4,6 +4,9 @@ export default{
     getMessagesForUser (){
         return axios.get('/messages/myMessages');
     },
+    getSingleMessageByID(messageID){
+        return axios.get(`/messages/${messageID}`)
+    },
 
     sendNewMessage(messageToSend){
         return axios.post('/messages/new-message', messageToSend);

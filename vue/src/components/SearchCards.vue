@@ -84,22 +84,8 @@
     <img :src="catHat" v-if="isLoading" />
 
     <div
-      class="d-flex flex-wrap me-2 justify-content-between"
-      v-if="isLoggedIn"
+      class="d-flex flex-wrap me-2 justify-content-between"      
     >
-      <addCard
-        v-for="(addCard, index) in filteredCards.slice(
-          findStartIndex,
-          findEndIndex
-        )"
-        v-bind:key="index"
-        v-bind:addCard="addCard"
-        :isChecked="checkboxStates[index]"
-        @update:checked="updateCheckboxState(index, $event)"
-      />
-    </div>
-
-    <div class="d-flex flex-wrap me-2 justify-content-between" v-else>
       <card
         v-for="(card, index) in filteredCards.slice(
           findStartIndex,
@@ -107,6 +93,8 @@
         )"
         v-bind:key="index"
         v-bind:card="card"
+        :isChecked="checkboxStates[index]"
+        @update:checked="updateCheckboxState(index, $event)"
       />
     </div>
 
@@ -155,9 +143,9 @@
         <label class="me-1" for="choose-collection"
           >Enter Name of Collection</label
         >
-        <select id="legalitiesFilter" v-model="collectionName" v-for="collection in availableCollections" v-bind:key="collection.id" v-bind:collection="collection" @change="setCollectionId()"  @change.prevent="setCollectionId()">
+        <select id="legalitiesFilter" v-model="collectionName"  @change="setCollectionId()"  @change.prevent="setCollectionId()">
           <option selected disabled hidden value="">Collections</option>
-          <option :value="collection.name">{{collection.name}}</option>
+          <option :value="collection.name" v-for="collection in availableCollections" v-bind:key="collection.id" v-bind:collection="collection">{{collection.name}}</option>
         </select>
       </div>
       <button class="btn btn-dark m-2" @click="addCheckedCards()">
@@ -174,13 +162,14 @@
 <script>
 import service from "../services/CardService.js";
 import card from "../components/Card.vue";
-import addCard from "../components/addCardComponent.vue";
+
 import CollectionService from "../services/CollectionService.js";
 import catHat from "@/assets/catHat.gif";
 
+
 export default {
   name: "card-list",
-  components: { addCard, card },
+  components: {card },
 
   data() {
     return {
