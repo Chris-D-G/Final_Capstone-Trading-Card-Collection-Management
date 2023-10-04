@@ -1,5 +1,5 @@
 <template>
-  <full-message />
+  <full-message class="shadow-lg" />
 </template>
 
 <script>
