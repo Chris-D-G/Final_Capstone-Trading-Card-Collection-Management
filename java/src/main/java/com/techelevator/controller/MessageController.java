@@ -32,7 +32,7 @@ public class MessageController {
       }
     }
 
-    @GetMapping(path = "/messages/{id}")
+    @GetMapping(path = "/messages/{messageID}")
     Message getSingleMessageById(@PathVariable int messageID){
         try{
             return messageDao.getMessageByID(messageID);
