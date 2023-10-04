@@ -12,6 +12,7 @@ import NewCollection from "../views/NewCollection.vue"
 import AddCardView from "../views/AddCardView.vue"
 import SearchCardsView from "../views/SearchCardsView"
 import Profile from "../views/Profile.vue"
+import updateCollection from "../views/updateCollection.vue"
 
 Vue.use(Router)
 
@@ -116,6 +117,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    { 
+      path:"/updateCollection/:id",
+     name:"edit-collection",
+     component: updateCollection,
+     meta: {
+       requiresAuth: true
+     }
+   },
   ]
 })
 

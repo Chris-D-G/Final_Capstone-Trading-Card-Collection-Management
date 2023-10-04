@@ -36,7 +36,6 @@
       >
         <p class="my-0 py-0">Total Cards: {{ collection.quantity }}</p>
         <!-- <p class="my-0 py-0">Colors(Red:  White: Blue: Green: Black: )</p> -->
-        
       </div>
     </div>
   </div>
