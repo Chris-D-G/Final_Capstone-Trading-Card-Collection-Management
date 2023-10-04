@@ -5,11 +5,11 @@
           style="--bs-bg-opacity: 0.35"
         >
           Created Collections 
-          <p class="fs-5">Here you can view all user created Collections!</p>
+          <p class="fs-5 p-4">Here you can view all user created Collections!</p>
           <br />
 
-          <p class="fs-6"><label for="viewWishlists">Include Wishlists?</label>
-    <input type="checkbox" name="viewWishlists" @change="viewWishlists = !viewWishlists"></p>
+          <p class="fs-6 "><label for="viewWishlists">Include Wishlists?</label>
+    <input type="checkbox"  name="viewWishlists" @change="viewWishlists = !viewWishlists"></p>
         </h2>
   
   <div class="d-flex flex-wrap me-2 justify-content-evenly align-items-stretch">
