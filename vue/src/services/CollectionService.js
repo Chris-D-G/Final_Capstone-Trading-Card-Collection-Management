@@ -29,6 +29,11 @@ export default {
         return axios.delete(`/collections/${collectionId}/${cardId}/delete`);
     },
 
+    getUserCollections(username){
+        return axios.get(`/collections/${username}`);
+    },
+
+
 // sorted lists for collections display
 
     getAllCardsByCollectionAlph(collectionId){
