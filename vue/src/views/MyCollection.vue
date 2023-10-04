@@ -26,6 +26,9 @@
       />
       <p class="game fw-bolder fs-5">{{ getGameName(collection.tcgId) }}</p>
       <button class="btn" v-on:click="addToCollection(collection.id)" >Add To My Collection</button>
+      <button class="btn"><router-link class="editLink"
+          v-bind:to ="{name: 'edit-collection', params:{id:collection.id}}"
+          >Edit Collection</router-link></button>
     </div>
     </div>
   </div>
@@ -102,6 +105,13 @@ export default {
 }
 button{
   color:rgb(202, 114, 114);
+}
+.editLink{
+  color:rgb(202, 114, 114);
+  text-decoration: none;
+}
+.editLink:hover{
+  color: white;
 }
 
 

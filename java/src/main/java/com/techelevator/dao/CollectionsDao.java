@@ -109,5 +109,7 @@ public interface CollectionsDao {
 
     int getCountOfCardsInCollection(int collectionId);
 
+    Collection updateCollection(int collectionId, Collection collection);
+
 
 }

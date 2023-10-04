@@ -415,6 +415,29 @@ public class JdbcCollectionsDao implements CollectionsDao{
     }
 
 
+    public Collection updateCollection(int collectionId, Collection collection) {
+        Collection result = new Collection();
+        String sql = "UPDATE collections SET collection_name = ? WHERE collection_id = ?";
+        try {
+            int rowsAffected = jdbcTemplate.update(sql, collection.getName(), collectionId);
+
+            if (rowsAffected != 1) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+        return result;
+    }
+
+
     private Collection mapRowToCollection(SqlRowSet set){
         Collection collection = new Collection();
         collection.setId(set.getInt("collection_id"));

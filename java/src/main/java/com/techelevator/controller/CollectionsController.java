@@ -89,6 +89,10 @@ public class CollectionsController {
     public int getCountOfCardsInCollection(@PathVariable int collectionId) {
         return cdao.getCountOfCardsInCollection(collectionId);
     }
+    @RequestMapping(path = "/collections/{collectionId}/update", method = RequestMethod.PUT)
+    public Collection updateCollection(@PathVariable int collectionId, @Valid @RequestBody Collection collection) {
+        return cdao.updateCollection(collectionId, collection);
+    }
 }
 
 

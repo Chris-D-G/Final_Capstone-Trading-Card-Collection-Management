@@ -14,6 +14,8 @@ import SearchCardsView from "../views/SearchCardsView"
 import Profile from "../views/Profile.vue"
 import MessageTableView from "../views/MyMessagesView.vue"
 import MessageView from "../views/SingleMessageView.vue"
+import updateCollection from "../views/updateCollection.vue"
+
 
 Vue.use(Router)
 
@@ -119,13 +121,22 @@ const router = new Router({
       }
     },
     { 
-      path:"/messages",
-     name:"messages",
-     component: MessageTableView,
+      path:"/updateCollection/:id",
+     name:"edit-collection",
+     component: updateCollection,
      meta: {
        requiresAuth: true
      }
    },
+   {
+    path:"/messages",
+    name:"messages",
+    component: MessageTableView,
+    meta: {
+      requiresAuth: true
+    }
+   },
+
    {
     path:"/messages/:id",
     name:"messagesByID",
@@ -134,6 +145,7 @@ const router = new Router({
       requiresAuth: false
     }
   },
+
   ]
 })
 

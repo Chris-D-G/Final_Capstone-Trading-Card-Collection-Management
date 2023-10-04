@@ -54,5 +54,8 @@ export default {
     },
     getCountOfCardsInCollection(collectionId) {
         return axios.get(`/collections/allCollections/${collectionId}/stats`)
+    },
+    updateCollection(collectionId, collection) {
+        return axios.put(`/collections/${collectionId}/update`, collection);
     }
 }
