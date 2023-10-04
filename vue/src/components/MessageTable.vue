@@ -1,6 +1,6 @@
 <template>
           <div>
-            <div class="d-flex">
+            <div class="d-flex" id="messageTable">
                 <div class="d-flex flex-column border border-primary">
                     <p class="border-bottom border-danger">Message ID </p>
                     <p
@@ -67,6 +67,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+#messageTable{
+    background-color: #ffffffcc;
+}
 
 </style>

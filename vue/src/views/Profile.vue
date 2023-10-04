@@ -58,7 +58,7 @@
       </ul>
     </aside>
     <!-- Message table -->
-    <message-table class= "mx-5 mt-5 rounded-5 px-lg-5 pt-lg-5 bg-white"/>
+    <message-table class= "mx-5 mt-5 rounded-5 px-lg-5 pt-lg-5"/>
   </div>
 </template>
 

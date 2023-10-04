@@ -84,22 +84,8 @@
     <img :src="catHat" v-if="isLoading" />
 
     <div
-      class="d-flex flex-wrap me-2 justify-content-between"
-      v-if="isLoggedIn"
+      class="d-flex flex-wrap me-2 justify-content-between"      
     >
-      <addCard
-        v-for="(addCard, index) in filteredCards.slice(
-          findStartIndex,
-          findEndIndex
-        )"
-        v-bind:key="index"
-        v-bind:addCard="addCard"
-        :isChecked="checkboxStates[index]"
-        @update:checked="updateCheckboxState(index, $event)"
-      />
-    </div>
-
-    <div class="d-flex flex-wrap me-2 justify-content-between" v-else>
       <card
         v-for="(card, index) in filteredCards.slice(
           findStartIndex,
@@ -107,6 +93,8 @@
         )"
         v-bind:key="index"
         v-bind:card="card"
+        :isChecked="checkboxStates[index]"
+        @update:checked="updateCheckboxState(index, $event)"
       />
     </div>
 
@@ -174,13 +162,14 @@
 <script>
 import service from "../services/CardService.js";
 import card from "../components/Card.vue";
-import addCard from "../components/addCardComponent.vue";
+
 import CollectionService from "../services/CollectionService.js";
 import catHat from "@/assets/catHat.gif";
 
+
 export default {
   name: "card-list",
-  components: { addCard, card },
+  components: {card },
 
   data() {
     return {
