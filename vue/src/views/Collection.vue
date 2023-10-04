@@ -5,11 +5,11 @@
           style="--bs-bg-opacity: 0.35"
         >
           Created Collections 
-          <p class="fs-5">Here you can view all user created Collections!</p>
+          <p class="fs-5 p-4">Here you can view all user created Collections!</p>
           <br />
 
-          <p class="fs-6"><label for="viewWishlists">Include Wishlists?</label>
-    <input type="checkbox" name="viewWishlists" @change="viewWishlists = !viewWishlists"></p>
+          <p class="fs-6 "><label for="viewWishlists">Include Wishlists?</label>
+    <input type="checkbox"  name="viewWishlists" @change="viewWishlists = !viewWishlists"></p>
         </h2>
   
   <div class="d-flex flex-wrap me-2 justify-content-evenly align-items-stretch">
@@ -28,7 +28,7 @@
         height="auto"
       />
       <p class="game fs-5" >{{ getGameName(collection.tcgId) }}</p>
-      <div class="pb-1"><router-link :to="{name: 'Profile'}" class="username fs-4 text-uppercase fw-semibold p-2 m-0 text-white ">{{collection.username}}</router-link></div>
+      <div class="pb-1"><router-link :to="{name: 'Profile', params: {username: collection.username}}" class="username fs-4 text-uppercase fw-semibold p-2 m-0 text-white ">{{collection.username}}</router-link></div>
       <div
         id="collectionInfo"
         class=" bg-white rounded-5 border border-1 border-white fw-bold d-flex flex-column justify-content-center align-items-start mx-1 p-4 h-auto"

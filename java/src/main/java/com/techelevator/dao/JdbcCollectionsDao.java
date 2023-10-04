@@ -118,6 +118,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collectionList;
     }
 
+
     @Override
     public List<Collection> getUserCollectionsByTCG(String username, int tcgId) {
         List<Collection> collectionList = new ArrayList<>();
