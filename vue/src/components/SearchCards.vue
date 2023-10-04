@@ -239,6 +239,7 @@ export default {
 
     updateCheckboxState(index, value) {
       // Update the checkbox state in the array
+      //index has once again been adjusted for pagination
       console.log(
         `Checkbox state updated for card at index ${((this.currentPage-1) * this.cardsPerPage) + index}: ${value}`
       );
@@ -281,38 +282,8 @@ export default {
       }
     },
 
-    // getPageIndexes(switchPage) {
-    //   if(switchPage) {
-    //     this.currentPage++
-    //     }else {
-    //       this.currentPage--
-    //     }
-    //   let page = this.checkBoxStatesPage.pageIndexes.find(
-    //     (pageIndex) => {
-    //       if(pageIndex.pageNumber == this.currentPage) {
-    //         return this.currentPage
-    //       } else {
-    //         return null
-    //       }
-    //     });
-    //     this.checkBoxStatesPage.pageIndexes.pageNumber = this.currentPage; 
-    //   if(page == null) {
-    //     this.checkBoxStatesPage.push(this.pageIndexes)
-    //   }
-    // },
-
-    // addPageIndexes(index, value) {
-    //   // if(this.checkBoxStatesPage.pageIndexes.pageNumber == undefined) {
-    //   //   this.checkBoxStatesPage.pageIndexes.pageNumber = this.currentPage; 
-        
-    //   //   }
-    //   let cardIndex = this.currentPage * index;
-    //   if(value) {
-    //   this.pageIndexes.indexSelected.push(cardIndex)
-    //   }
-      
-    // },
-
+    // This method gets the correct index 
+    //based on filteredList.length for the cards on each page
     getCardIndex(index) {
       console.log("getCardIndex method called");
       return ((this.currentPage-1) * this.cardsPerPage) + index;
@@ -372,14 +343,7 @@ export default {
       return filteredCards;
     },
 
-    // cardsCurrentPage: function () {
-    //   let cardsCurrentPage = this.filteredCards.slice(
-    //     this.findStartIndex,
-    //     this.findEndIndex
-    //   );
-    //   return cardsCurrentPage;
-    // },
-
+    // Methods to set beginning and end index per page. 
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
     },
