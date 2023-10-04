@@ -9,6 +9,7 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 
+
 export default {
   name: "app",
   components: {
@@ -33,7 +34,12 @@ body {
   }
 }
 
+template {
+  cursor: url("@/assets/Cardomancy-Cursor.png"),auto;
+}
+
 body {
+  cursor: url("@/assets/Cardomancy-Cursor.png"),auto;
   /* BACKGROUND FOR CARDOMANCY */
   background: linear-gradient(-45deg, #ae9890, #a888a0, #e8b287, #4c2c2e);
   background-size: 400% 400%;

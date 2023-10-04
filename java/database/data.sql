@@ -37,7 +37,9 @@ INSERT INTO messages (message_text,message_sender_user_id,message_receiver_user_
 ('Lets connect!',1,3,'2023-10-2 01:10:10', true),
 ('Where did you get your AWESOME profile photo?',3,1,'2023-10-1 10:45:01', true),
 ('Isnt Cardomancy, like, the coolest website ever created?',4,2,'2023-09-27 11:15:21', true),
-('Sorry, I am not open to trades right now!',3,4,'2023-10-2 05:34:50', false);
-
+('Sorry, I am not open to trades right now!',5,4,'2023-10-2 05:34:50', false),
+('Lets connect!',5,3,'2023-10-2 01:10:10', true),
+('Where did you get your AWESOME profile photo?',3,4,'2023-10-1 10:45:01', true),
+('Isnt Cardomancy, like, the coolest website ever created?',5,2,'2023-09-27 11:15:21', true);
 
 COMMIT TRANSACTION;
