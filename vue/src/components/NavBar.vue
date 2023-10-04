@@ -36,6 +36,13 @@
               </router-link>
             </a>
           </li>
+          <li class="nav-item">
+            <router-link
+              class="nav-link text-light fs-3 me-3"
+              v-bind:to="{name: 'messages'}">
+              My Messages
+            </router-link>
+          </li>
           <li class="nav-item dropdown">
             <a
             class="nav-link dropdown-toggle text-light fs-3 z-1 me-3"
