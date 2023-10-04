@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class Message {
-    @NotEmpty
     private int messageID;
     @NotNull
     @NotEmpty

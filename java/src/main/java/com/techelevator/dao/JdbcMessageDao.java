@@ -21,9 +21,9 @@ public class JdbcMessageDao implements MessageDao
 
     @Override
     public Message sendNewMessage(Message messageToSend) {
-        String sender = messageToSend.getMessageSender().trim();
-        String receiver = messageToSend.getMessageReceiver().trim();
-        String messageBody = messageToSend.getMessageText().trim();
+        String sender = messageToSend.getMessageSender();
+        String receiver = messageToSend.getMessageReceiver();
+        String messageBody = messageToSend.getMessageText();
 
         Message createdMessage = null;
 
@@ -37,7 +37,7 @@ public class JdbcMessageDao implements MessageDao
                      "RETURNING message_id;";
         try {
 
-            int messageID = jdbcTemplate.update(sql, int.class, sender, receiver, messageBody);
+            int messageID = jdbcTemplate.queryForObject(sql, int.class, sender, receiver, messageBody);
 
             // need a method to retrieve a single message from the database when given an ID #
             createdMessage = getMessageByID(messageID);
