@@ -1,9 +1,9 @@
 <template>
   <div>
-    <message-table />
+    <message-table class="shadow-lg"/>
     <!-- off canvas field -->
     <div id="buttonContainer" class="mt-5 ">
-      <button class="btn btn-primary fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Create a new message</button>
+      <button class="btn btn-primary fs-4 shadow-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Create a new message</button>
       <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
         <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasBottomLabel">New Message</h5>
