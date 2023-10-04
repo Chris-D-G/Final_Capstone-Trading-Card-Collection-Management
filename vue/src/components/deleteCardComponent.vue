@@ -35,7 +35,9 @@
           @change="emitChecked"
         />
 
-        <div
+       
+      </div>
+       <div
           id="cardInfo"
           v-if="displayInfo"
           class="bg-white rounded-5 border border-1 border-white fw-bold d-flex flex-column justify-content-center align-items-start mx-1 p-4 h-auto"
@@ -87,11 +89,8 @@
             Want more stats or purchase information? Click
             <a :href="this.deleteCard.scryfallUrl">Here!</a>
           </p>
-        </div>
       </div>
     </div>
-
-    <!-- <button class="btn btn-dark p-1 btn-sm btn-outline-light ">Delete</button> -->
   </div>
 </template>
 
