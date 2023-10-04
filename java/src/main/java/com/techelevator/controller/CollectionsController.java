@@ -31,17 +31,22 @@ public class CollectionsController {
     public List<Collection> getUserCollections(Principal principal) {
         return cdao.getAllUserCollections(principal.getName());
     }
-
     @PreAuthorize("permitAll")
-    @RequestMapping(path = "/allCollections/{tcgId}", method = RequestMethod.GET)
-    public List<Collection> getCollectionsByTCG(@PathVariable int tcgId) {
-        return cdao.getCollectionsByTCG(tcgId);
+    @RequestMapping(path="/collections/{username}", method = RequestMethod.GET)
+    public List<Collection> getCollectionsByUsername(@PathVariable String username){
+        return cdao.getAllUserCollections(username);
     }
 
-    @RequestMapping(path = "/myCollections/{tcgId}", method = RequestMethod.GET)
-    public List<Collection> getUserCollectionsByTCG(Principal principal, @PathVariable int tcgId) {
-        return cdao.getUserCollectionsByTCG(principal.getName(), tcgId);
-    }
+//    @PreAuthorize("permitAll")
+//    @RequestMapping(path = "/allCollections/{tcgId}", method = RequestMethod.GET)
+//    public List<Collection> getCollectionsByTCG(@PathVariable int tcgId) {
+//        return cdao.getCollectionsByTCG(tcgId);
+//    }
+
+//    @RequestMapping(path = "/myCollections/{tcgId}", method = RequestMethod.GET)
+//    public List<Collection> getUserCollectionsByTCG(Principal principal, @PathVariable int tcgId) {
+//        return cdao.getUserCollectionsByTCG(principal.getName(), tcgId);
+//    }
 
     @RequestMapping(path = "/myCollections/{collectionId}/add", method = RequestMethod.POST)
     public int addCardToCollection(@Valid @RequestBody Card card, @PathVariable int collectionId) {
