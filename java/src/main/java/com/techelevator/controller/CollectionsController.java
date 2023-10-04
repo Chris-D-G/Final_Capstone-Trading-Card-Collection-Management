@@ -76,7 +76,7 @@ public class CollectionsController {
     @PreAuthorize("permitAll")
     @GetMapping(path = "/collections/{collectionId}/user")
     public User getUserByCollection(@PathVariable int collectionId) {
-        return userForCollectionId;
+        return cdao.getUserForCollectionId(collectionId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -84,49 +84,15 @@ public class CollectionsController {
     public void deleteCardFromCollection(@PathVariable String cardId, @PathVariable int collectionId) {
         cdao.deleteCardFromCollection(cardId, collectionId);
     }
-
     @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/a", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionAlph(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdAlphabetized(collectionId);
+    @GetMapping(path = "/collections/allCollections/{collectionId}/stats")
+    public int getCountOfCardsInCollection(@PathVariable int collectionId) {
+        return cdao.getCountOfCardsInCollection(collectionId);
     }
-
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/c", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionColor(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdColor(collectionId);
+    @RequestMapping(path = "/collections/{collectionId}/update", method = RequestMethod.PUT)
+    public Collection updateCollection(@PathVariable int collectionId, @Valid @RequestBody Collection collection) {
+        return cdao.updateCollection(collectionId, collection);
     }
-
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/ci", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionColorIdentity(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdColorIdentity(collectionId);
-    }
-
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/s", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionSet(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdSet(collectionId);
-    }
-
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/l", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionLegality(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdLegality(collectionId);
-    }
-
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/cmc", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionCmc(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdCmc(collectionId);
-    }
-
-    @PreAuthorize("permitAll")
-    @RequestMapping(path = "/collections/{collectionId}/cards/ed", method = RequestMethod.GET)
-    public List<Card> getCardsByCollectionEDHREC(@PathVariable int collectionId) {
-        return cdao.getCardsByCollectionIdEDHREC(collectionId);
-    }
-
 }
 
 

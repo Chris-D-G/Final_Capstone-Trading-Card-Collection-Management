@@ -75,11 +75,22 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public boolean create(String username, String password, String role) {
+        boolean created = false;
+        int wishlistCollectionId;
         String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
+        if(jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1) {
+            created = true;
+        }
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        String insertWishListSql = "Insert into collections (collection_name, tcg_id) values ('Wishlist', 1) returning collection_id;";
+        String connectingSql = "insert into collections_user (collection_id, user_id) values (?,?);";
+        wishlistCollectionId = jdbcTemplate.queryForObject(insertWishListSql, int.class);
+        int userId = jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, username);
+        jdbcTemplate.update(connectingSql, wishlistCollectionId, userId);
+
+        return created;
     }
 
     private User mapRowToUser(SqlRowSet rs) {

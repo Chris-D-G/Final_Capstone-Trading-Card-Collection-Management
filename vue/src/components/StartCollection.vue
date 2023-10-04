@@ -14,12 +14,15 @@
     </div>
     <button class="btn btn-dark" type="submit" @click.prevent="saveCollection">Create</button>
   </form>
+  <!-- <img :src="catHat"/> -->
   </div>
 </template>
 
 <script>
 import collectionService from "../services/CollectionService";
 import mtgImage from "@/assets/Updated MTG Collections Image Transparent.png";
+import danceHat from "@/assets/dancingHat.gif"
+import catHat from "@/assets/catHat.gif"
 
 export default {
   name: "start-collection",
@@ -29,7 +32,9 @@ export default {
         name: "",
         tcgId: "",
       },
-      mtgImage
+      mtgImage,
+      danceHat,
+      catHat
     };
   },
   methods: {

@@ -19,7 +19,7 @@ export default {
     getCollectionById(collectionId){
         return axios.get(`collections/${collectionId}`)
     },
-    getUserByCollectionId(collectionId){
+    getUserForCollectionId(collectionId){
         return axios.get(`/collections/${collectionId}/user`);
     },
     addCardToCollection(collectionId, card){
@@ -51,5 +51,11 @@ export default {
     },
     getAllCardsByCollectionEDHREC(collectionId){
         return axios.get(`/collections/${collectionId}/cards/ed`);
+    },
+    getCountOfCardsInCollection(collectionId) {
+        return axios.get(`/collections/allCollections/${collectionId}/stats`)
+    },
+    updateCollection(collectionId, collection) {
+        return axios.put(`/collections/${collectionId}/update`, collection);
     }
 }

@@ -41,13 +41,21 @@ public class JdbcCollectionsDao implements CollectionsDao{
         //grab all collections from database
         String sql = "select * from collections;";
         String userSql = "select username from users join collections_user on users.user_id = collections_user.user_id where collection_id = ?;";
+        String quansql = "select sum(quantity) as quantity from collections_cards where collection_id = ?;";
         try{
             SqlRowSet rowset = jdbcTemplate.queryForRowSet(sql);
             while(rowset.next()){
                 //if no database issues, map the rowset properties to a collection obj and add the obj to the list
                 collection = (mapRowToCollection(rowset));
                 String username = jdbcTemplate.queryForObject(userSql, String.class, collection.getId());
-                dto = mapRowToCollectionsDto(collection,username);
+                // set initial quantity to zero in case there are no cards in the collection after query is performed
+                int quantity=0;
+                // if the query does not return null...
+                if(jdbcTemplate.queryForObject(quansql,int.class,collection.getId())!=null){
+                    // update the quantity with the returned sum
+                    quantity = jdbcTemplate.queryForObject(quansql,int.class,collection.getId());
+                }
+                dto = mapRowToCollectionsDto(collection,username,quantity);
                 collectionList.add(dto);
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -237,6 +245,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
     public int addCollection(Collection collection, String username) {
         String sql = "insert into collections (collection_name, tcg_id) values (?, ?) returning collection_id;";
         String connectingSql = "insert into collections_user (collection_id, user_id) values (?,?);";
+
         int newCollectionId;
         try{
             int userId = userDao.findIdByUsername(username);
@@ -384,28 +393,36 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return user;
     }
 
-    /**
-     *
-     * @param collectionId
-     * @return  All getCards methods return a sorted list
-     * by a specified parameter
-     */
+    public int getCountOfCardsInCollection(int collectionId) {
+        int count = 0;
+        String sql = "Select Count (Distinct card_id) AS card_count From collections_cards Where collection_id = ?;";
 
-
-    @Override
-    public List<Card> getCardsByCollectionIdAlphabetized(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_title ;";
         try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
+            count = jdbcTemplate.queryForObject(sql, int.class, collectionId);
+
+        }catch (CannotGetJdbcConnectionException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Unable to connect to the database!", e);
+        } catch (BadSqlGrammarException e) {
+            // catch any SQL command errors and throw a new error to be caught at next level
+            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
+        } catch (DataIntegrityViolationException e) {
+            // catch any database connection errors and throw a new error to be caught at next level
+            throw new RuntimeException("Database Integrity Violation!", e);
+        }
+
+        return  count;
+    }
+
+
+    public Collection updateCollection(int collectionId, Collection collection) {
+        Collection result = new Collection();
+        String sql = "UPDATE collections SET collection_name = ? WHERE collection_id = ?";
+        try {
+            int rowsAffected = jdbcTemplate.update(sql, collection.getName(), collectionId);
+
+            if (rowsAffected != 1) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             }
         }catch (CannotGetJdbcConnectionException e) {
             // catch any database connection errors and throw a new error to be caught at next level
@@ -417,176 +434,9 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
-        return cards;
+        return result;
     }
 
-    @Override
-    public List<Card> getCardsByCollectionIdColor(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title, card_colors from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_colors ;";
-        try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
-            }
-        }catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        return cards;
-    }
-
-    @Override
-    public List<Card> getCardsByCollectionIdColorIdentity(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title, card_color_identity from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_color_identity;";
-        try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
-            }
-        }catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        return cards;
-    }
-
-    @Override
-    public List<Card> getCardsByCollectionIdSet(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title, card_set_code, card_set_name from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_set_code ;";
-        try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
-            }
-        }catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        return cards;
-    }
-
-    @Override
-    public List<Card> getCardsByCollectionIdLegality(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title, card_legalities from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_legalities ;";
-        try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
-            }
-        }catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        return cards;
-    }
-
-    @Override
-    public List<Card> getCardsByCollectionIdCmc(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title, card_cmc from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_cmc ;";
-        try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
-            }
-        }catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        return cards;
-    }
-
-    @Override
-    public List<Card> getCardsByCollectionIdEDHREC(int collectionId) {
-        List<Card> cards = new ArrayList<>();
-        String sql = "select cards.card_id, card_title, card_edhrec_rank from collections_cards join cards " +
-                "on collections_cards.card_id = cards.card_id where collections_cards.collection_id = ? order by card_edhrec_rank ;";
-        try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,collectionId);
-            while(rowSet.next()){
-                String id = rowSet.getString("card_id");
-                String cardsql = "select * from cards where card_id = ?;";
-                SqlRowSet result = jdbcTemplate.queryForRowSet(cardsql,id);
-                if(result.next()){
-                    cards.add(cardDao.mapResultsToCard(result));
-                }
-            }
-        }catch (CannotGetJdbcConnectionException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Unable to connect to the database!", e);
-        } catch (BadSqlGrammarException e) {
-            // catch any SQL command errors and throw a new error to be caught at next level
-            throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
-        } catch (DataIntegrityViolationException e) {
-            // catch any database connection errors and throw a new error to be caught at next level
-            throw new RuntimeException("Database Integrity Violation!", e);
-        }
-        return cards;
-    }
 
     private Collection mapRowToCollection(SqlRowSet set){
         Collection collection = new Collection();
@@ -596,12 +446,13 @@ public class JdbcCollectionsDao implements CollectionsDao{
         return collection;
     }
 
-    private CollectionsDto mapRowToCollectionsDto(Collection col, String username){
+    private CollectionsDto mapRowToCollectionsDto(Collection col, String username, int quantity){
         CollectionsDto collection = new CollectionsDto();
         collection.setCollectionId(col.getId());
         collection.setCollectionName(col.getName());
         collection.setTcgId(col.getTcgId());
         collection.setUsername(username);
+        collection.setQuantity(quantity);
         return collection;
     }
 

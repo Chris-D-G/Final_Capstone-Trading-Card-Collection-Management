@@ -27,16 +27,15 @@
               Home
             </router-link>              
           </li>
-          <li class="nav-item text-" v-show="isLoggedIn">
+          <li class="nav-item" v-show="isLoggedIn">
             <a>
               <router-link
-              class="nav-link text-light fs-3"
+              class="nav-link text-light fs-3 me-3"
               :to="{ name: 'Profile', params: { username: this.$store.state.user.username }}">
                 My Profile
               </router-link>
             </a>
           </li>
-
           <li class="nav-item dropdown">
             <a
             class="nav-link dropdown-toggle text-light fs-3 z-1 me-3"
@@ -163,7 +162,7 @@ export default {
 .nav-img {
   position: relative;
   top: -20px;
-  right: 35px; 
+  right: 30px; 
 }
 
 div > ul > li > a:hover {

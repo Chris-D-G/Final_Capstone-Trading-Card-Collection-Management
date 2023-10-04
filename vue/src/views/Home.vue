@@ -1,30 +1,53 @@
 <template>
   <div class="home">
-    <body>   
-      
+    <body>
+      <div
+        class="d-flex justify-content-center align-items-center mt-3 mb-3 fw-semibold"
+      >
+        <img :src="stars" v-if="!pause" v-on:click="toggleOff" />
+        <h2
+          class="bg-white p-5 rounded-5 border border-1 border-white shadow"
+          style="--bs-bg-opacity: 0.35"
+        >
+          Welcome to Cardomancy <br /><br />
+          Display Your Cards, Showcase Your Magic!
+        </h2>
+        <img :src="stars" v-if="!pause" v-on:click="toggleOff"  />
+      </div>
+      <div class="bg-white w-75 mx-auto mb-4 p-5 rounded-5 border border-1 border-white shadow d-flex justify-content-evenly"
+          style="--bs-bg-opacity: 0.35"
+        >
+        <h4>Coming Soon:</h4>
+        <h5>NEW! Friends!</h5>
+        <h5>NEW! Trading Options!</h5>
+        <h5>NEW! Pokémon!</h5>
+        <h5>NEW! Messaging!</h5>
+      </div>
       <!-- bootstrap carousel -->
-      <div id="MTG-carousel" class="carousel slide carousel-fade" data-bs-theme="dark">
-        <h1 class="text-center mt-3 mb-3 fw-semibold">Welcome to Cardomancy</h1>        
-        <p class="text-center mt-3 mb-3 fs-3" >Build, Create, and Showcase</p>
+      <div
+        id="MTG-carousel"
+        class="carousel slide carousel-fade"
+        data-bs-theme="dark"
+      >
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
               src="../assets/wayne-low-OvN4OkhkTLo-unsplash.jpg"
-              class="d-block w-75 m-auto border border-dark border-1 rounded-5"
+              class="d-block w-50 m-auto border border-dark border-1 rounded-5"
               alt="Man holding a Magic the Gathering Card in his hand"
             />
           </div>
           <div class="carousel-item">
             <img
               src="../assets/ryan-quintal-Vp8RnXSnJ6I-unsplash.jpg"
-              class="d-block w-75 m-auto border border-dark border-1 rounded-5"
+              class="d-block w-50 m-auto border border-dark border-1 rounded-5"
               alt="Five Magic the Gathering cards displaying each land type"
             />
           </div>
           <div class="carousel-item">
             <img
               src="../assets/depositphotos_469022238-stock-photo-bangkok-thailand-may-2021-magic.jpg"
-              class="d-block w-75 m-auto border border-dark border-1 rounded-5"
+              class="d-block w-50 m-auto border border-dark border-1 rounded-5"
               alt="Many Magic the Gatheringc cards in a pile "
             />
           </div>
@@ -55,7 +78,7 @@
 
 <script>
 import CollectionService from "../services/CollectionService";
-
+import stars from "@/assets/stars.gif";
 export default {
   name: "home",
   loggedin: false,
@@ -69,6 +92,8 @@ export default {
     return {
       topCollections: [],
       isLoading: true,
+      stars,
+      pause:false
     };
   },
 
@@ -78,7 +103,12 @@ export default {
       this.isLoading = false;
     });
   },
-// To DO: figure out what to do with this method
+  methods: {
+    toggleOff(){
+      this.pause = !this.pause;
+    }
+  }
+  // To DO: figure out what to do with this method
   // method: {
   //   checkLoginStatus() {
   //     let token = this.$state.state.token;
@@ -94,5 +124,4 @@ export default {
 
 
 <style scoped>
-
 </style>

@@ -19,7 +19,7 @@ public class JdbcUserFriendDao implements UserFriendDao{
         String sql = "SELECT friend_id " +
                 "FROM users_friends " +
                 "WHERE user_id = ? " +
-                "AND friend_Id = ?;";
+                "AND friend_id = ?;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, friendId);
             return results.next();

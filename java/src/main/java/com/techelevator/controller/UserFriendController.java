@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 @RestController
 public class UserFriendController {
@@ -34,6 +35,7 @@ public class UserFriendController {
                 userFriendDao.unfriendUser(userId, friendId):
                 -1;
     }
+
 
     @RequestMapping(path = "/isFriend/{username}", method = RequestMethod.GET)
     public boolean isFriend(@PathVariable String username, Principal principal){

@@ -20,14 +20,14 @@
       <div id="addFriend"
       class="d-flex flex-column"
       v-show="isFriended !== 'cannotFriend'">
-      <button v-show="isFriended == 'true'"
-      v-on:click.prevent="unFriend()">
-        Remove Friend
-      </button>
-      <button v-show="isFriended == 'false'"
-      v-on:click.prevent="addFriend()">
-        Add Friend
-      </button>
+        <button v-show="isFriended === true"
+        v-on:click.prevent="unFriend()">
+          Remove Friend
+        </button>
+        <button v-show="isFriended === false"
+        v-on:click.prevent="addFriend()">
+          Add Friend
+        </button>
       </div>
       <div
         id="aboutme"
@@ -69,15 +69,21 @@
           >{{ collection.name }}</router-link></li>                    
       </ul>
     </aside>
+    <!-- Message table -->
+    <message-table class= "mx-5 mt-5 rounded-5 px-lg-5 pt-lg-5 bg-white"/>
   </div>
 </template>
 
 <script>
+import messageTable from '../components/MessageTable.vue';
 import CollectionService from "../services/CollectionService.js";
 import ProfileService from "../services/ProfileService.js";
 import FriendService from "../services/FriendService.js";
 
+
 export default {
+  
+  components: { messageTable},
   created() {
     ProfileService.getAProfile(this.$route.params.username).then((response) => {
       if (response.status == 200) {
@@ -90,10 +96,7 @@ export default {
         this.collectionList = response.data;
       }
     });
-    const loggedIn = this.$store.state.token != "";
-    if(loggedIn && this.$store.state.user.username === this.profile.username){
-      this.isFriended = FriendService.isFriended(this.profile.username);
-    }
+    this.updateIsFriended();
   },
   data() {
     return {
@@ -127,10 +130,23 @@ export default {
       }
     },
     addFriend() {
-      FriendService.addFriend(this.profile.username);
+      FriendService.addFriend(this.$route.params.username).then(()=>
+        this.updateIsFriended());
     },
     unFriend() {
-      FriendService.unFriend(this.profile.username);
+      FriendService.unFriend(this.$route.params.username).then(()=>
+        this.updateIsFriended());
+    },
+    updateIsFriended() {
+    const loggedIn = this.$store.state.token != "";
+    const isntSameUser = this.$store.state.user.username !== this.profile.username;
+      if(loggedIn && isntSameUser){
+      FriendService.isFriended(this.$route.params.username).then(response => {
+        if (response.status == 200) {
+          this.isFriended = response.data;
+        }
+      });
+    }
     }
   }
 };

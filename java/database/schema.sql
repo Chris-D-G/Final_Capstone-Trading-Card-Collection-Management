@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, tcg, cards, collections, collections_user, collections_cards, default_profile_img, users_profile, users_friends CASCADE;
+DROP TABLE IF EXISTS users, tcg, cards, collections, collections_user, collections_cards, default_profile_img, users_profile, users_friends, messages CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -84,6 +84,18 @@ CREATE TABLE users_friends(
 	CONSTRAINT PK_users_friends PRIMARY KEY (user_id, friend_id),
 	CONSTRAINT FK_users_friends_users FOREIGN KEY (user_id) REFERENCES users(user_id),
 	CONSTRAINT FK_users_friends_users2 FOREIGN KEY (friend_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE messages (
+    message_id SERIAL,
+    message_text varchar(250) NOT NULL,
+    message_sender_user_id int NOT NULL,
+    message_receiver_user_id int NOT NULL,
+    message_timestamp TIMESTAMP NOT NULL,
+    message_read_status boolean,
+    CONSTRAINT PK_messages_user_message PRIMARY KEY (message_id),
+    CONSTRAINT FK_messages_user_sender FOREIGN KEY (message_sender_user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_messages_user_receiver FOREIGN KEY (message_receiver_user_id) REFERENCES users(user_id)
 );
 
 COMMIT TRANSACTION;
