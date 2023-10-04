@@ -130,7 +130,7 @@ public class JdbcMessageDao implements MessageDao
                      "JOIN users AS user1 ON messages.message_sender_user_id = user1.user_id " +
                      "JOIN users AS user2 ON messages.message_receiver_user_id = user2.user_id " +
                      "WHERE user1.username = ? OR user2.username = ? " +
-                     "ORDER BY message_timestamp DESC;";
+                     "ORDER BY message_id;";
 
         try {
             SqlRowSet messages = jdbcTemplate.queryForRowSet(sql, username, username);
