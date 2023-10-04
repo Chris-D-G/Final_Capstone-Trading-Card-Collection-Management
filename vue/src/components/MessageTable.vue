@@ -1,7 +1,7 @@
 <template>
   <div
     class="d-flex justify-content-center mx-5 mt-5 border border-dark rounded-4 "
-    id="messageTabe"
+    id="messageTable"
   >
     <div class="d-flex flex-column flex-lg-row justify-content-between flex-fill px-5">
       <div id="messageId" class="d-flex flex-column">

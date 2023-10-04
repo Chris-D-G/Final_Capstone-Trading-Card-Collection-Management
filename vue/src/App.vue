@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" class="position-fixed top-0 start-0 w-100 z-3">
+    <div id="nav" class="position-fixed top-0 start-0 w-100 z-1">
       <nav-bar />
     </div>
     <router-view class="page-view z-0" />
