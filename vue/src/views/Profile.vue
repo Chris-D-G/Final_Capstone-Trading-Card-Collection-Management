@@ -44,7 +44,8 @@
         <p class="fw-semibold fs-2 text-lg-start ms-lg-5">
           Username is friends with:
         </p>
-        <ul class="d-flex flex-column align-items-center d-lg-block ms-lg-3">
+        <ul class="d-flex flex-column align-items-center d-lg-block ms-lg-3"
+        v-show="profile.friends > 0">
           <li
             class="fs-4 text-capitalize ms-lg-5 text-lg-start"
             v-for="friend in profile.friends"
@@ -88,7 +89,7 @@ export default {
         this.profile.profilePic = this.getPfp();
       }
     }),
-    CollectionService.getMyCollections().then((response) => {
+    CollectionService.getUserCollections(this.$route.params.username).then((response) => {
       if (response.status == 200) {
         this.collectionList = response.data;
       }
@@ -136,7 +137,8 @@ export default {
     },
     updateIsFriended() {
     const loggedIn = this.$store.state.token != "";
-    const isntSameUser = this.$store.state.user.username !== this.profile.username;
+    const isntSameUser = this.$store.state.user.username !== this.$route.params.username;
+    console.log("isnt same user: " + isntSameUser);
       if(loggedIn && isntSameUser){
       FriendService.isFriended(this.$route.params.username).then(response => {
         if (response.status == 200) {

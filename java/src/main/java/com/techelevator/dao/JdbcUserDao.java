@@ -90,6 +90,10 @@ public class JdbcUserDao implements UserDao {
         int userId = jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, username);
         jdbcTemplate.update(connectingSql, wishlistCollectionId, userId);
 
+        String insertUserProfileSql = "INSERT INTO users_profile (user_id, pic_id, about_me) VALUES (?, ?, ?);";
+        int inserted = jdbcTemplate.update(insertUserProfileSql, userId, 1, "Hi welcome to my profile!");
+        System.out.println(inserted);
+
         return created;
     }
 
