@@ -30,7 +30,7 @@ export default {
     },
 
     getUserCollections(username){
-        return axios.get(`/collections/${username}`);
+        return axios.get(`/userCollections/${username}`);
     },
 
 
