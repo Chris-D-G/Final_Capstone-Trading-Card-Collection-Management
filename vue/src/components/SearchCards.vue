@@ -179,7 +179,6 @@ export default {
       collectionId: 0,
       collectionName: "",
       availableCollections: [],
-      checkBoxStatesPage: [], //Array to store checkbox states on current page
       checkboxStates: [], // Array to store checkbox states
       checkedCards: [], // Array to store checked cards
       currentPage: 1,
