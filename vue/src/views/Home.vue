@@ -22,6 +22,7 @@
         <h5>NEW! Trading Options!</h5>
         <h5>NEW! Pokémon!</h5>
         <h5>NEW! Messaging!</h5>
+        <h5>NEW! Favourites!</h5>
       </div>
       <!-- bootstrap carousel -->
       <div

@@ -30,4 +30,14 @@ VALUES(1,2),
 (1,3),
 (1,4);
 
+
+INSERT INTO messages (message_text,message_sender_user_id,message_receiver_user_id, message_timestamp, message_read_status) VALUES
+('Wow youre really cool!',2,1,'2023-10-4 12:23:34', false),
+('Can we trade cards? You have some interesting pieces!',2,4,'2023-09-10 04:35:31', true),
+('Lets connect!',1,3,'2023-10-2 01:10:10', true),
+('Where did you get your AWESOME profile photo?',3,1,'2023-10-1 10:45:01', true),
+('Isnt Cardomancy, like, the coolest website ever created?',4,2,'2023-09-27 11:15:21', true),
+('Sorry, I am not open to trades right now!',3,4,'2023-10-2 05:34:50', false);
+
+
 COMMIT TRANSACTION;
