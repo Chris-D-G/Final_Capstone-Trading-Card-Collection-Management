@@ -16,15 +16,15 @@
 
     
     <button
-    class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space linkbtn"
-    ><router-link class="text-light fs-6 linkbtn" v-bind:to="{ name: 'searchCards' }"> Add Cards to Collection </router-link></button>
+    class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space linkbtn"  v-if="isLoggedIn && isOwner"
+    ><router-link class="text-light fs-6 linkbtn"  v-bind:to="{ name: 'searchCards' }"> Add Cards to Collection </router-link></button>
     
 
     <div
       class="d-flex flex-wrap m-4 bg-white rounded-5 border border-1 border-white shadow"
-      style="--bs-bg-opacity: 0.15"
+      style="--bs-bg-opacity: 0.15" v-if="isLoggedIn && isOwner"
     >
-      <h2 class="btn m-4 flex-fill bg-light">Sort By :</h2>
+      <h2   class="btn m-4 flex-fill bg-light">Sort By :</h2>
       <button
         class="btn m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
@@ -251,6 +251,8 @@ export default {
     checkOwnerStatus() {
       if (this.loggedInUserId === this.collectionOwnerUserId) {
         this.isOwner = true;
+        console.log(this.loggedInUserId)
+        console.log(this.collectionOwnerUserId)
       }
     },
 
@@ -357,6 +359,7 @@ export default {
   },
 
   created() {
+    this.checkLoginStatus();
     CollectionService.getAllCardsByCollection(this.$route.params.id).then(
       (response) => {
         this.cards = response.data;
@@ -384,9 +387,7 @@ export default {
         this.collection = response.data;
       }
     );
-    this.checkLoginStatus();
-
-    this.checkOwnerStatus();
+    
 
     // This method is responsible for finding and assigning the user.id for the collection owner.
     CollectionService.getUserForCollectionId(this.$route.params.id).then(
@@ -395,17 +396,27 @@ export default {
         this.collectionOwnerUserId = parseInt(this.collectionOwner.id);
         console.log(this.collectionOwnerUserId);
       }
+      
     );
 
-    // This method is responsible for finding and assigning the user.id for the logged in user.
-    profileService.getMyProfile().then((response) => {
+      profileService.getMyProfile().then((response) => {
       let profile = response.data;
       this.loggedInUsername = profile.username;
       authService.userValidation(this.loggedInUsername).then((response) => {
         this.loggedInUserId = response.data;
         console.log(this.loggedInUserId);
+        this.checkOwnerStatus();
       });
     });
+
+
+
+
+    
+    
+
+    // This method is responsible for finding and assigning the user.id for the logged in user.
+    
   },
 
   
