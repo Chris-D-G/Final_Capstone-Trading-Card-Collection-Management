@@ -48,7 +48,13 @@ public class JdbcCollectionsDao implements CollectionsDao{
                 //if no database issues, map the rowset properties to a collection obj and add the obj to the list
                 collection = (mapRowToCollection(rowset));
                 String username = jdbcTemplate.queryForObject(userSql, String.class, collection.getId());
-                int quantity = jdbcTemplate.queryForObject(quansql,int.class,collection.getId());
+                // set initial quantity to zero in case there are no cards in the collection after query is performed
+                int quantity=0;
+                // if the query does not return null...
+                if(jdbcTemplate.queryForObject(quansql,int.class,collection.getId())!=null){
+                    // update the quantity with the returned sum
+                    quantity = jdbcTemplate.queryForObject(quansql,int.class,collection.getId());
+                }
                 dto = mapRowToCollectionsDto(collection,username,quantity);
                 collectionList.add(dto);
             }
