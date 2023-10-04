@@ -21,11 +21,13 @@
       class="d-flex flex-column"
       v-show="isFriended !== 'cannotFriend'">
         <button v-show="isFriended === true"
-        v-on:click.prevent="unFriend()">
+        v-on:click.prevent="unFriend()"
+        class="btn btn-danger w-25 mx-auto p-2">
           Remove Friend
         </button>
         <button v-show="isFriended === false"
-        v-on:click.prevent="addFriend()">
+        v-on:click.prevent="addFriend()"
+        class="btn btn-success w-25 mx-auto p-2">
           Add Friend
         </button>
       </div>
