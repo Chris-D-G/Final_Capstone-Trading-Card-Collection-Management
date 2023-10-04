@@ -7,7 +7,8 @@
       {{ this.collection.name }}
     </h1>
     <button
-      class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space"
+      id="deleteButton"
+      class="btn btn-outline-dark text-dark fw-bold mb-3 mt-2 btn-space shadow-sm"
       v-on:click="deleteCollection(collection.name)"
       v-if="isLoggedIn && isOwner"
     >
@@ -16,7 +17,8 @@
 
     
     <button
-    class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space linkbtn"
+    id="addButton"
+    class="btn btn-outline-dark text-dark fw-bold mb-3 mt-2 btn-space linkbtn shadow-sm"
     ><router-link class="text-light fs-6 linkbtn" v-bind:to="{ name: 'searchCards' }"> Add Cards to Collection </router-link></button>
     
 
@@ -428,5 +430,11 @@ ul {
 
 .linkbtn {
   text-decoration: none;
+}
+#deleteButton{
+  background-color:lightcoral
+}
+#addButton{
+  background-color:#e8b287
 }
 </style>

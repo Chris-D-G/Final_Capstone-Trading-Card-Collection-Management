@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-content-center">
     <div
-      class="bg-secondary-subtle m-1 p-2 rounded-3 d-flex flex-column border border-dark w-75"
+      class="bg-secondary-subtle m-1 p-2 rounded-3 d-flex flex-column border border-dark w-75 shadow-lg"
     >
       <p class="ms-2 my-1 fs-4 ps-3 text-start">
         FROM:
