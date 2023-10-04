@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="d-flex flex-wrap me-2 justify-content-evenly">
   <h2
-          class="bg-white p-5 rounded-5 border border-1 border-white shadow"
+          class="bg-white p-3 rounded-5 border border-1 border-white shadow w-75"
           style="--bs-bg-opacity: 0.35"
         >
           Created Collections 
