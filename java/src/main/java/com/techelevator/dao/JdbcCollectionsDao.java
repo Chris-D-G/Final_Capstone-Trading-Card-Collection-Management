@@ -315,7 +315,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
             jdbcTemplate.update(update,qty,card.getId(),collectionId);
             throw new RuntimeException("Database Integrity Violation!", e);
         }
-        //returns final num of collections deleted-should always be one.
+        //returns final num of collections added -should always be one.
         return check;
     }
 
@@ -418,7 +418,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     /////updates collection name//////
     public Collection updateCollection(int collectionId, Collection collection) {
-        Collection result = new Collection();
+//        Collection result = new Collection();
         String sql = "UPDATE collections SET collection_name = ? WHERE collection_id = ?";
         try {
             int rowsAffected = jdbcTemplate.update(sql, collection.getName(), collectionId);
@@ -436,7 +436,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
-        return result;
+        return collection;
     }
 
 
