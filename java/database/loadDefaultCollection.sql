@@ -1,11 +1,23 @@
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
-    (100, 'default', 1),
-    (101, 'default2', 1),
-    (102, 'Red/White Deck', 1);
+    (100, 'My Collection', 1),
+    (101, 'Cigar Party for Squirrels', 1),
+    (102, 'Red/White Deck', 1),
+    (103, 'Wishlist', 1),
+    (104, 'Wishlist', 1),
+    (105, 'Wishlist', 1),
+    (106, 'Wishlist', 1),
+    (107, 'Wishlist', 1),
+    (108,'Meowty-Mitts Mega-Cat',1);
 
 INSERT INTO collections_user (collection_id,user_id) VALUES (101,4);
 INSERT INTO collections_user (collection_id,user_id) VALUES (100,1);
 INSERT INTO collections_user (collection_id,user_id) VALUES (102,5);
+INSERT INTO collections_user (collection_id,user_id) VALUES (107,1);
+INSERT INTO collections_user (collection_id,user_id) VALUES (103,2);
+INSERT INTO collections_user (collection_id,user_id) VALUES (104,3);
+INSERT INTO collections_user (collection_id,user_id) VALUES (108,3);
+INSERT INTO collections_user (collection_id,user_id) VALUES (105,4);
+INSERT INTO collections_user (collection_id,user_id) VALUES (106,5);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (100, (SELECT card_id FROM cards WHERE card_title = 'Abbot of Keral Keep' LIMIT 1), 4),
@@ -133,4 +145,49 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (102, (SELECT card_id FROM cards WHERE card_title = 'Wear // Tear' LIMIT 1), 1),
     (102, (SELECT card_id FROM cards WHERE card_title = 'Wrath of God' LIMIT 1), 1),
     (102, (SELECT card_id FROM cards WHERE card_title = 'Plains' LIMIT 1), 12),
-    (102, (SELECT card_id FROM cards WHERE card_title = 'Mountain' LIMIT 1), 11);
+    (102, (SELECT card_id FROM cards WHERE card_title = 'Archaeomancer''s Map' LIMIT 1), 1),
+    (102, (SELECT card_id FROM cards WHERE card_title = 'Mountain' LIMIT 1), 11),
+
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Chandra''s Embercat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'A-Skyclave Shadowcat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cats' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Warrior' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Warriors' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Blistering Firecat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Colossification' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Falthis, Shadowcat Familiar' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Firecat Blitz' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Mirri, Cat Warrior' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Dinosaur Cat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Nacatl Savage' LIMIT 1), 9),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Black Cat' LIMIT 1), 3),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Garrison Cat' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Nacatl War-Pride' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Nacatl Outlander' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Pardic Firecat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Canyon Wildcat' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'A-Mischievous Catgeist // A-Catlike Curiosity' LIMIT 1), 5),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Sanctuary Cat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Savage Firecat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Penumbra Bobcat' LIMIT 1), 3),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Sacred Cat' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Scoria Cat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Skycat Sovereign' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Regathan Firecat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Territorial Scythecat' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Uktabi Wildcats' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cat' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Dragon' LIMIT 1), 3),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Soldier' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Bird' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'White Sun''s Twilight // White Sun''s Twilight' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'White Sun''s Zenith' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Adorned Pouncer' LIMIT 1), 5),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Keeper of Fables' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Masked Vandal' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Mirror Entity' LIMIT 1), 3),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Path to Exile' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Regal Caracal' LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Whitemane Lion' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Pridemalkin' LIMIT 1), 4);
+
