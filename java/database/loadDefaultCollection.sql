@@ -148,12 +148,11 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (102, (SELECT card_id FROM cards WHERE card_title = 'Archaeomancer''s Map' LIMIT 1), 1),
     (102, (SELECT card_id FROM cards WHERE card_title = 'Mountain' LIMIT 1), 11),
 
-    (108, (SELECT card_id FROM cards WHERE card_title = "Chandra's Embercat" LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Chandra''s Embercat' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'A-Skyclave Shadowcat' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Cats' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Warrior' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Warriors' LIMIT 1), 2),
-    (108, (SELECT card_id FROM cards WHERE card_title = 'Canyon Wildcat' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Blistering Firecat' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Colossification' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Falthis, Shadowcat Familiar' LIMIT 1), 4),
@@ -181,14 +180,14 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Dragon' LIMIT 1), 3),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Soldier' LIMIT 1), 2),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Cat Bird' LIMIT 1), 4),
-    (108, (SELECT card_id FROM cards WHERE card_title = "White Sun's Twilight // White Sun's Twilight" LIMIT 1), 2),
-    (108, (SELECT card_id FROM cards WHERE card_title = "White Sun's Zenith" LIMIT 1), 4),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'White Sun''s Twilight // White Sun''s Twilight' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'White Sun''s Zenith' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Adorned Pouncer' LIMIT 1), 5),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Keeper of Fables' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Masked Vandal' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Mirror Entity' LIMIT 1), 3),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Path to Exile' LIMIT 1), 2),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Regal Caracal' LIMIT 1), 4),
-    (108, (SELECT card_id FROM cards WHERE card_title = "Whitemane Lion" LIMIT 1), 2),
-    (108, (SELECT card_id FROM cards WHERE card_title = "Pridemalkin" LIMIT 1), 4);
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Whitemane Lion' LIMIT 1), 2),
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Pridemalkin' LIMIT 1), 4);
 
