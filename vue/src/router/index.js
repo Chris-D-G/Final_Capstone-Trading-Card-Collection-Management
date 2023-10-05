@@ -15,6 +15,9 @@ import Profile from "../views/Profile.vue"
 import MessageTableView from "../views/MyMessagesView.vue"
 import MessageView from "../views/SingleMessageView.vue"
 import updateCollection from "../views/updateCollection.vue"
+import RequestTrade from "../components/RequestTradeForm.vue"
+import FAQ from "../components/FAQ.vue"
+import AboutUsView from "../views/AboutUsView.vue"
 
 
 Vue.use(Router)
@@ -112,14 +115,22 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    // { 
-    //    path:"/myprofile",
-    //   name:"myProfile",
-    //   component: Profile,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
-    // },
+    { 
+       path:"/FAQ",
+      name:"FAQ",
+      component: FAQ,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path:"/about",
+      name:"About",
+      component:AboutUsView,
+      meta: {
+        requiresAuth: false
+      }
+    },
     { 
        path:"/profile/:username",
       name:"Profile",
@@ -149,10 +160,16 @@ const router = new Router({
     path:"/messages/:id",
     name:"messagesByID",
     component: MessageView,
-    meta: {
-      requiresAuth: false
-    }
+    
   },
+  {
+    path:"/user/:username/request-trade",
+    name:"request-trade-form",
+    component: RequestTrade,
+    meta: {
+      requiresAuth: true
+    }
+  }
 
   ]
 })

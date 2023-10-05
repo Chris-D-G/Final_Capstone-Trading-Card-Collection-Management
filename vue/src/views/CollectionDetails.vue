@@ -1,13 +1,14 @@
 <template>
   <div class="ms-5 me-5">
     <h1
-      class="text-dark fs-1 text-center fw-bold title mt-4 p-3 w-25 mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      class="text-dark fs-1 text-center fw-bold title mt-4 p-3 w-35 mx-auto bg-white rounded-5 border border-1 border-white shadow"
       style="--bs-bg-opacity: 0.15"
     >
       {{ this.collection.name }}
     </h1>
     <button
-      class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space"
+      id="deleteButton"
+      class="btn btn-outline-dark text-dark fw-bold mb-3 mt-2 btn-space shadow-sm"
       v-on:click="deleteCollection(collection.name)"
       v-if="isLoggedIn && isOwner"
     >
@@ -16,15 +17,17 @@
 
     
     <button
-    class="btn btn-outline-dark btn-danger text-light fw-bold mb-3 mt-2 btn-space linkbtn"
+    id="addButton"
+    class="btn btn-outline-dark text-dark fw-bold mb-3 mt-2 btn-space linkbtn shadow-sm" v-if="isLoggedIn && isOwner"
     ><router-link class="text-light fs-6 linkbtn" v-bind:to="{ name: 'searchCards' }"> Add Cards to Collection </router-link></button>
+
     
 
     <div
       class="d-flex flex-wrap m-4 bg-white rounded-5 border border-1 border-white shadow"
-      style="--bs-bg-opacity: 0.15"
+      style="--bs-bg-opacity: 0.15" v-if="isLoggedIn && isOwner"
     >
-      <h2 class="btn m-4 flex-fill bg-light">Sort By :</h2>
+      <h2   class="btn m-4 flex-fill bg-light">Sort By :</h2>
       <button
         class="btn m-4 flex-fill"
         v-on:click.prevent="alphaDeck()"
@@ -251,6 +254,8 @@ export default {
     checkOwnerStatus() {
       if (this.loggedInUserId === this.collectionOwnerUserId) {
         this.isOwner = true;
+        console.log(this.loggedInUserId)
+        console.log(this.collectionOwnerUserId)
       }
     },
 
@@ -357,6 +362,7 @@ export default {
   },
 
   created() {
+    this.checkLoginStatus();
     CollectionService.getAllCardsByCollection(this.$route.params.id).then(
       (response) => {
         this.cards = response.data;
@@ -384,9 +390,7 @@ export default {
         this.collection = response.data;
       }
     );
-    this.checkLoginStatus();
-
-    this.checkOwnerStatus();
+    
 
     // This method is responsible for finding and assigning the user.id for the collection owner.
     CollectionService.getUserForCollectionId(this.$route.params.id).then(
@@ -395,17 +399,27 @@ export default {
         this.collectionOwnerUserId = parseInt(this.collectionOwner.id);
         console.log(this.collectionOwnerUserId);
       }
+      
     );
 
-    // This method is responsible for finding and assigning the user.id for the logged in user.
-    profileService.getMyProfile().then((response) => {
+      profileService.getMyProfile().then((response) => {
       let profile = response.data;
       this.loggedInUsername = profile.username;
       authService.userValidation(this.loggedInUsername).then((response) => {
         this.loggedInUserId = response.data;
         console.log(this.loggedInUserId);
+        this.checkOwnerStatus();
       });
     });
+
+
+
+
+    
+    
+
+    // This method is responsible for finding and assigning the user.id for the logged in user.
+    
   },
 
   
@@ -428,5 +442,11 @@ ul {
 
 .linkbtn {
   text-decoration: none;
+}
+#deleteButton{
+  background-color:lightcoral
+}
+#addButton{
+  background-color:#e8b287
 }
 </style>

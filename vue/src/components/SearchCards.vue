@@ -91,9 +91,10 @@
           findStartIndex,
           findEndIndex
         )"
-        v-bind:key="index"
+        v-bind:key="getCardIndex(index)"
         v-bind:card="card"
-        :isChecked="checkboxStates[index]"
+        :isChecked="checkboxStates[getCardIndex(index)]"
+        :checkBoxStatesPage="checkBoxStatesPage"
         @update:checked="updateCheckboxState(index, $event)"
       />
     </div>
@@ -175,7 +176,6 @@ export default {
     return {
       cards: [],
       isLoggedIn: false,
-      notLoggedIn: true,
       collectionId: 0,
       collectionName: "",
       availableCollections: [],
@@ -186,6 +186,9 @@ export default {
       exactMatch: false,
       isLoading: true,
       catHat,
+      pageIndexes : {
+        indexSelected: []
+        },
       search: {
         cardTitle: "",
         gameType: "",
@@ -235,11 +238,15 @@ export default {
 
     updateCheckboxState(index, value) {
       // Update the checkbox state in the array
+      //index has once again been adjusted for pagination
       console.log(
-        `Checkbox state updated for card at index ${index}: ${value}`
+        `Checkbox state updated for card at index ${((this.currentPage-1) * this.cardsPerPage) + index}: ${value}`
       );
-      this.checkboxStates[index] = value;
+        console.log("Current Page " + this.currentPage );
+        console.log("Index " + index);
+        this.checkboxStates[((this.currentPage-1) * this.cardsPerPage) + index] = value;
     },
+
     addCheckedCards() {
       // Add checked cards to the checkedCards array
       console.log("addCheckedCards method called");
@@ -273,6 +280,13 @@ export default {
         });
       }
     },
+
+    // This method gets the correct index 
+    //based on filteredList.length for the cards on each page
+    getCardIndex(index) {
+      console.log("getCardIndex method called");
+      return ((this.currentPage-1) * this.cardsPerPage) + index;
+    }
   },
 
   computed: {
@@ -328,20 +342,15 @@ export default {
       return filteredCards;
     },
 
-    cardsCurrentPage: function () {
-      let cardsCurrentPage = this.filteredCards.slice(
-        this.findStartIndex,
-        this.findEndIndex
-      );
-      return cardsCurrentPage;
-    },
-
+    // Methods to set beginning and end index per page. 
     findStartIndex() {
       return (this.currentPage - 1) * this.cardsPerPage;
     },
     findEndIndex() {
       return this.currentPage * this.cardsPerPage - 1;
     },
+
+    
   },
 };
 </script>

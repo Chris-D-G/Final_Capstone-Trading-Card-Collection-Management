@@ -19,10 +19,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav align-items-center justify-content-around w-100">
+        <ul class="navbar-nav align-items-center justify-content-between w-100">
           <li class="nav-item ">              
             <router-link
-            class="nav-link active text-light fs-3 me-3"
+            class="nav-link active text-light fs-3 ms-4 me-3"
             :to="{ name: 'home' }">
               Home
             </router-link>              
@@ -36,7 +36,7 @@
               </router-link>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="isLoggedIn">
             <router-link
               class="nav-link text-light fs-3 me-3"
               v-bind:to="{name: 'messages'}">
@@ -64,11 +64,6 @@
                 </router-link>
               </li>
               <li>
-                <a class="dropdown-item text-dark text-decoration-none" href="#">
-                  View Favorited Collections
-                </a>
-              </li>
-              <li>
                 <hr class="dropdown-divider" />
               </li>
               <li>
@@ -84,6 +79,24 @@
               class="nav-link text-light fs-3"
               :to="{ name: 'searchCards' }">
                 Search
+              </router-link>
+            </a>
+          </li>
+          <li class="nav-item text-">
+            <a>
+              <router-link
+              class="nav-link text-light fs-3"
+              :to="{ name: 'FAQ' }">
+                FAQ's
+              </router-link>
+            </a>
+          </li>
+          <li class="nav-item text-">
+            <a>
+              <router-link
+              class="nav-link text-light fs-3"
+              :to="{ name: 'About' }">
+                About
               </router-link>
             </a>
           </li>
@@ -118,7 +131,7 @@
         </ul>
         <img
         v-if="!isLoggedIn" 
-        class="nav-img d-none d-xl-inline-block"
+        class="nav-img d-none d-xl-inline"
         :src="registerBubble"
         alt="register-now"
         height="130"

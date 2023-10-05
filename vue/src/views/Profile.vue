@@ -30,6 +30,11 @@
         class="btn btn-success w-25 mx-auto p-2">
           Add Friend
         </button>
+        <button
+        v-on:click.prevent="goToTradeForm"
+        class="btn btn-success w-25 mx-auto p-2">
+          Request Trade
+          </button> 
       </div>
       <div
         id="aboutme"
@@ -81,6 +86,7 @@ import ProfileService from "../services/ProfileService.js";
 import FriendService from "../services/FriendService.js";
 
 
+
 export default {  
   created() {
     ProfileService.getAProfile(this.$route.params.username).then((response) => {
@@ -105,7 +111,8 @@ export default {
         friends: [],
       },
       collectionList: [],
-      isFriended: 'cannotFriend' //either 'cannotFriend', 'true' or 'false'
+      isFriended: 'cannotFriend', //either 'cannotFriend', 'true' or 'false'
+      
     };
   },
   methods: {
@@ -135,6 +142,11 @@ export default {
       FriendService.unFriend(this.$route.params.username).then(()=>
         this.updateIsFriended());
     },
+    goToTradeForm() {
+      let username = this.$route.params.username;
+      this.$router.push(`/user/${username}/request-trade`);
+    },
+
     updateIsFriended() {
     const loggedIn = this.$store.state.token != "";
     const isntSameUser = this.$store.state.user.username !== this.$route.params.username;
@@ -146,7 +158,7 @@ export default {
         }
       });
     }
-    }
+    },
   }
 };
 </script>
