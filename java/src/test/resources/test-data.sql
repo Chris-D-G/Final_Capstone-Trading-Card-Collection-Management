@@ -26,7 +26,7 @@ VALUES(1,2),
 INSERT INTO messages (message_text,message_sender_user_id,message_receiver_user_id, message_timestamp, message_read_status) VALUES
 ('Wow youre really cool!',2,1,'2023-10-4 12:23:34', false),
 ('Can we trade cards? You have some interesting pieces!',1,2,'2023-09-10 04:35:31', true),
-('Lets connect!',1,3,'2023-10-2 01:10:10', true);
+('Lets connect!',1,3,'2023-10-2 01:10:10', false);
 
 INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (100, 'test1', 1),
