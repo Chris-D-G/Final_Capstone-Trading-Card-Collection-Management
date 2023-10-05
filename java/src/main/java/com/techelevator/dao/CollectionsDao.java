@@ -46,13 +46,6 @@ public interface CollectionsDao {
      */
     List<Collection> getUserCollectionsByTCG(String username, int tcgId);
 
-    //ToDo: determine if method is needed
-    Card getCollectionEntryByIds(int entryId, String cardId);
-
-
-    //ToDo: determine if method is needed
-    List<Card> getCollectionEntryByQty(int qty, int collectionId);
-
     /*
     returns a list of card objects by collectionId
      */
