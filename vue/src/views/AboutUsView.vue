@@ -30,8 +30,8 @@
       id="JA"
     />
     <about
-      :imgSrc="''"
-      :name="'Julie Irons'"
+      :imgSrc="require('@/assets/Julianna.jpg')"
+      :name="'Julianna Irons'"
       :aboutMe="Julie"
       :linkedin="'linkedin.com/in/juliannaclaicher'"
       :github="'github.com/JuliannaCynthia'"
@@ -63,7 +63,7 @@ export default {
       Johnna:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
       Julie:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
+        "Hi im thinking hold on :)",
       Chris:`How I feel about...
         Front-End Development: It's alright, but I won't make it out alive if I have do it all day.
         Back-End Development: Won't break a sweat! Can I have more?`
