@@ -55,7 +55,7 @@
             class="fs-4 text-capitalize ms-lg-5 text-lg-start"
             v-for="friend in profile.friends"
             v-bind:key="friend"
-            @click="this.$route.go(this.$route.push(`/profile/${friend.username}`))"
+            @click="this.$route.go(this.$route.push(`/profile/${friend}`))"
           >
             {{ friend }}
           </li>
