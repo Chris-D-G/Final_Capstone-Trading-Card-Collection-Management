@@ -250,19 +250,23 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     @Override
     public int removeCollection(int collectionId) {
+        //cascading delete
         String CCsql = "delete from collections_cards where collection_id = ?;";
         String CUsql = "delete from collections_user where collection_id = ?;";
         String Csql = "delete from collections where collection_id = ?;";
         int check =-1;
         try{
+            //remove cards
             check = jdbcTemplate.update(CCsql,collectionId);
             if(check == -1){
                 throw new RuntimeException("Failed to manipulate the database!");
             }else{
+                //remove user association
                 check = jdbcTemplate.update(CUsql,collectionId);
                 if(check ==0){
                     throw new RuntimeException("Failed to manipulate the database!");
                 }else{
+                    //remove collection
                     check = jdbcTemplate.update(Csql,collectionId);
                     if(check != 1){
                         throw new RuntimeException("Failed to manipulate the database!");
@@ -279,17 +283,20 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
+        //returns final num of collections deleted-should always be one.
         return check;
     }
 
     @Override
     public int addCardToCollection(Card card, int collectionId) {
+        //manual initial card set
         int qty =1;
         String sql = "insert into collections_cards (collection_id, card_id, quantity) values(?,?,?);";
         String update = "update collections_cards set quantity = ? where card_id =? and collection_id =?";
         String quansql = "select quantity from collections_cards where card_id =? and collection_id =?";
         int check = -1;
         try{
+            //set quantity to quantity +1
             check = jdbcTemplate.update(sql,collectionId,card.getId(),qty);
             if(check == -1){
                 throw new RuntimeException("Failed to manipulate the database!");
@@ -302,18 +309,22 @@ public class JdbcCollectionsDao implements CollectionsDao{
             throw new RuntimeException("Bad SQL grammar: " + e.getSql() + "\n" + e.getSQLException(), e);
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
+            //increments the amount of cards
             qty = jdbcTemplate.queryForObject(quansql,int.class,card.getId(),collectionId);
             qty++;
             jdbcTemplate.update(update,qty,card.getId(),collectionId);
             throw new RuntimeException("Database Integrity Violation!", e);
         }
+        //returns final num of collections deleted-should always be one.
         return check;
     }
 
 
         public void deleteCardFromCollection(String cardId, int collectionId){
+        //removes one card from the connected database
             String sql ="delete from collections_cards where card_id = ? and collection_id =? ;";
             try{
+                //deletes
                 int check = jdbcTemplate.update(sql, cardId,collectionId);
                 if(check!=1){
                     throw new RuntimeException("Failed to manipulate the database!");
@@ -332,11 +343,15 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
         @Override
         public Collection getCollectionById(int collectionId) {
+        //new collection
         Collection collection = new Collection();
+        //grab one collection
         String sql ="select * from collections where collection_id = ?";
         try{
+            //
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql,collectionId);
             if(result.next()){
+                //maps the rowset to a collection
                 collection = mapRowToCollection(result);
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -348,17 +363,21 @@ public class JdbcCollectionsDao implements CollectionsDao{
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
-        }
+        }//returns created collection
         return collection;
     }
     public User getUserForCollectionId(int collectionID){
+        //initializes a new user obj
         User user = new User();
-
+        //returns user associated with the collection
         String sql = "select user_id from collections_user where collection_id = ?;";
         try{
+            //gets user
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql,collectionID);
             if(result.next()){
+                //gets user id
                 int userId = result.getInt("user_id");
+                //returns user associated with user_id
                 user = userDao.getUserById(userId);
             }
         }catch (CannotGetJdbcConnectionException e) {
@@ -370,15 +389,17 @@ public class JdbcCollectionsDao implements CollectionsDao{
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
-        }
+        }//returns users
         return user;
     }
 
     public int getCountOfCardsInCollection(int collectionId) {
         int count = 0;
+        //adds the quantity from each card together and returns that
         String sql = "Select Count (Distinct card_id) AS card_count From collections_cards Where collection_id = ?;";
 
         try{
+            //returns count and casts to int
             count = jdbcTemplate.queryForObject(sql, int.class, collectionId);
 
         }catch (CannotGetJdbcConnectionException e) {
@@ -391,11 +412,11 @@ public class JdbcCollectionsDao implements CollectionsDao{
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         }
-
+        //returns quantity of cards
         return  count;
     }
 
-
+    /////updates collection name//////
     public Collection updateCollection(int collectionId, Collection collection) {
         Collection result = new Collection();
         String sql = "UPDATE collections SET collection_name = ? WHERE collection_id = ?";
