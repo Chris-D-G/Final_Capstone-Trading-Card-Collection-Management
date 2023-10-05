@@ -137,10 +137,12 @@ export default {
     addFriend() {
       FriendService.addFriend(this.$route.params.username).then(()=>
         this.updateIsFriended());
+        this.$router.go(this.$router.push(`/`))
     },
     unFriend() {
       FriendService.unFriend(this.$route.params.username).then(()=>
         this.updateIsFriended());
+         this.$router.go(this.$router.push(`/`))
     },
     goToTradeForm() {
       let username = this.$route.params.username;
