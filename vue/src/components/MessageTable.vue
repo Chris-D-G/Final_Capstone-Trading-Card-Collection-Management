@@ -11,9 +11,10 @@
           v-for="(message, index) in messageList"
           v-bind:message="message"
           v-bind:key="index"
+          
           v-bind:to="{name:'messagesByID', params:{id: message.messageID}}"
         >
-          {{ message.messageID }}
+          <div v-on:click="toggleStatus(message.messageID)" >{{ message.messageID }}</div>
         </router-link>
       </div>
       <div id="sender" class="d-flex flex-row justify-content-between flex-lg-column">
@@ -76,6 +77,15 @@ export default {
       this.messageList = response.data;
     });
   },
+  methods:{
+    toggleStatus(messageId){
+      MessageService.updateReadStatus(messageId).then(
+        response => {
+         this.message.read = response
+        }
+      )
+  }
+  }
 };
 </script>
 
