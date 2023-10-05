@@ -15,6 +15,7 @@ import Profile from "../views/Profile.vue"
 import MessageTableView from "../views/MyMessagesView.vue"
 import MessageView from "../views/SingleMessageView.vue"
 import updateCollection from "../views/updateCollection.vue"
+import RequestTrade from "../components/RequestTradeForm.vue"
 import FAQ from "../components/FAQ.vue"
 import AboutUsView from "../views/AboutUsView.vue"
 
@@ -159,10 +160,16 @@ const router = new Router({
     path:"/messages/:id",
     name:"messagesByID",
     component: MessageView,
-    meta: {
-      requiresAuth: false
-    }
+    
   },
+  {
+    path:"/user/:username/request-trade",
+    name:"request-trade-form",
+    component: RequestTrade,
+    meta: {
+      requiresAuth: true
+    }
+  }
 
   ]
 })
