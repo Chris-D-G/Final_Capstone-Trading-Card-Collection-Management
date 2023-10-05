@@ -11,6 +11,12 @@ public class Collection {
     @Positive
     private int tcgId;
 
+    public Collection(int id, String name, int tcgId) {
+        this.id = id;
+        this.name = name;
+        this.tcgId = tcgId;
+    }
+
     public Collection() {
     }
 
