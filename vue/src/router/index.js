@@ -16,7 +16,7 @@ import MessageTableView from "../views/MyMessagesView.vue"
 import MessageView from "../views/SingleMessageView.vue"
 import updateCollection from "../views/updateCollection.vue"
 import FAQ from "../components/FAQ.vue"
-import About from "../components/About.vue"
+import AboutUsView from "../views/AboutUsView.vue"
 
 
 Vue.use(Router)
@@ -125,7 +125,7 @@ const router = new Router({
     {
       path:"/about",
       name:"About",
-      component: About,
+      component:AboutUsView,
       meta: {
         requiresAuth: false
       }
