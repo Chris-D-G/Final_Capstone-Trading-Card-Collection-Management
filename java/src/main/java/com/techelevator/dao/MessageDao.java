@@ -1,7 +1,6 @@
 package com.techelevator.dao;
+
 import com.techelevator.model.Message;
-
-
 import java.util.List;
 
 public interface MessageDao {
@@ -46,6 +45,14 @@ public interface MessageDao {
     Message getMessageByID (int messageID);
 
     //UPDATE Message
+
+    /**
+     * Method that updates the read status of a
+     * message
+     *
+     * @param messageID message ID to update the read status of
+     * @return boolean that returns true if a successful update was made
+     */
 
     boolean updateReadStatus (int messageID);
 
