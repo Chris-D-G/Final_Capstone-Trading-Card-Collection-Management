@@ -55,7 +55,7 @@
             class="fs-4 text-capitalize ms-lg-5 text-lg-start"
             v-for="friend in profile.friends"
             v-bind:key="friend"
-            @click="this.$route.go(this.$route.push(`/profile/${friend}`))"
+            @click="pushToProfile(friend)"
           >
             {{ friend }}
           </li>
@@ -138,12 +138,12 @@ export default {
     addFriend() {
       FriendService.addFriend(this.$route.params.username).then(()=>
         this.updateIsFriended());
-        this.$router.go(this.$router.push(`/profile/${this.$store.state.user.username}`))
+        this.$router.go(this.$router.push(`/profile/${this.$route.params.username}`))
     },
     unFriend() {
       FriendService.unFriend(this.$route.params.username).then(()=>
         this.updateIsFriended());
-         this.$router.go(this.$router.push(`/profile/${this.$store.state.user.username}`))
+         this.$router.go(this.$router.push(`/profile/${this.$route.params.username}`))
     },
     goToTradeForm() {
       let username = this.$route.params.username;
@@ -155,13 +155,17 @@ export default {
     const isntSameUser = this.$store.state.user.username !== this.$route.params.username;
     console.log("isnt same user: " + isntSameUser);
       if(loggedIn && isntSameUser){
-      FriendService.isFriended(this.$route.params.username).then(response => {
-        if (response.status == 200) {
-          this.isFriended = response.data;
-        }
-      });
-    }
+        FriendService.isFriended(this.$route.params.username).then(response => {
+          if (response.status == 200) {
+            this.isFriended = response.data;
+          }
+        });
+      }
     },
+
+    pushToProfile(username) {
+      this.$router.go(this.$router.push(username));
+    }
   }
 };
 </script>

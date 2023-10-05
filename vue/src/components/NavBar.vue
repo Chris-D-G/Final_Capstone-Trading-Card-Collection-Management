@@ -28,12 +28,10 @@
             </router-link>              
           </li>
           <li class="nav-item" v-show="isLoggedIn">
-            <a>
-              <router-link
-              class="nav-link text-light fs-3 me-3"
-              :to="{ name: 'Profile', params: { username: this.$store.state.user.username }}">
-                My Profile
-              </router-link>
+            <a
+            class="nav-link text-light fs-3 me-3"
+            @click="myProfile()">
+              My Profile
             </a>
           </li>
           <li class="nav-item" v-if="isLoggedIn">
@@ -169,8 +167,7 @@ export default {
       this.checkLoginStatus;
     },
     myProfile(){
-      const username = this.$store.token.user;
-      this.$router.push(`/profile/${username}`)
+      this.$router.go(this.$router.push('/profile/'+this.$store.state.user.username));
     }
   }
 };
