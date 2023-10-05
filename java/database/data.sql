@@ -28,7 +28,10 @@ VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default e
 INSERT INTO users_friends (user_id, friend_id)
 VALUES(1,2),
 (1,3),
-(1,4);
+(1,4),
+(2,1),
+(3,1),
+(4,1);
 
 
 INSERT INTO messages (message_text,message_sender_user_id,message_receiver_user_id, message_timestamp, message_read_status) VALUES
