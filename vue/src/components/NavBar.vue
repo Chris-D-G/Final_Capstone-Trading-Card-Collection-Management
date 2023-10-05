@@ -87,6 +87,24 @@
               </router-link>
             </a>
           </li>
+          <li class="nav-item text-">
+            <a>
+              <router-link
+              class="nav-link text-light fs-3"
+              :to="{ name: 'FAQ' }">
+                FAQ's
+              </router-link>
+            </a>
+          </li>
+          <li class="nav-item text-">
+            <a>
+              <router-link
+              class="nav-link text-light fs-3"
+              :to="{ name: 'About' }">
+                About
+              </router-link>
+            </a>
+          </li>
 
           <li class="nav-item" v-if="!isLoggedIn">
             <a v-on:click="refresh" >

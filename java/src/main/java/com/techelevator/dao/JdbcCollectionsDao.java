@@ -96,6 +96,7 @@ public class JdbcCollectionsDao implements CollectionsDao{
 
     @Override
     public List<Collection> getAllUserCollections(String username) {
+        //create's an empty list of collections
         List<Collection> collectionList = new ArrayList<>();
         String sql = "select * from collections join collections_user on " +
                 "collections.collection_id = collections_user.collection_id where user_id = ?;";
