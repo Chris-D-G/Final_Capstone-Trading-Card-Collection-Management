@@ -18,11 +18,11 @@ INSERT INTO default_profile_img (pic_id, img_loc) VALUES
 (7, 'Forest-Default-Icon');
 
 INSERT INTO users_profile (user_id, pic_id, about_me)
-VALUES((SELECT user_id FROM users where username='user'), 1, 'I''m the default example user! I''m whatever the admin wants me to be' ),
+VALUES((SELECT user_id FROM users where username='user'), 2, 'I''m the default example user! I''m whatever the admin wants me to be' ),
 ((SELECT user_id FROM users where username='admin'), 1, 'I''m the default admin user! I have the power?!' ),
 ((SELECT user_id FROM users where username='firagablast'), 1, 'Hi welcome to my profile!' ),
 ((SELECT user_id FROM users where username='jewels'), 1, 'Hi welcome to my profile!' ),
-((SELECT user_id FROM users where username='jayburd'), 1, 'Hi welcome to my profile!' );
+((SELECT user_id FROM users where username='jayburd'), 3, 'Hi welcome to my profile!' );
 
 
 INSERT INTO users_friends (user_id, friend_id)
