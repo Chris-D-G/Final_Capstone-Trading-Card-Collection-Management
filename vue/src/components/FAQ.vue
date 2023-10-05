@@ -6,39 +6,46 @@
 <h3>What is Cardomancy?</h3>
 <ul class="d-flex text-start">
     <li>
-        Cardomancy is a versitile virtual card manegement system. The intent is for users to have the at-hand
-         ability to view, add to, and sort collections of popular TCGs modeling their own collection irl.
+        Cardomancy is a versatile virtual card management system with the primary goal of providing users with immediate access to view, augment, and organize collections of popular Trading Card Games (TCGs), allowing them to replicate and manage their real-life card collections!
     </li>
 </ul >
 <h3>What is a TCG?</h3>
 <ul class="d-flex text-start">
     <li>
-        TCG is an acronym meaning "Trading Card Game"
+        TCG is an acronym meaning- "Trading Card Game"
     </li>
 </ul>
 <h3>How do I make a collection?</h3>
 <ul class="d-flex text-start">
     <li>
-        Registered users can create a collection by logging in, navigating to the 'Manage Collections' tab, and selecting 'Start New Collection'. Enter in a title, and choose a TCG. Then, submit! Cardomancy will redirect you to your new collection.
+        For registered users, initiating a collection is easy. Simply log in, go to the 'Manage Collections' tab, and click on 'Start New Collection.' Input a title for your collection, select a TCG, and hit the 'Submit' button. Cardomancy will then guide you to your freshly created collection.
     </li>
 </ul>
 <h3>How do I add cards to my collection?</h3>
 <ul class="d-flex text-start">
     <li>
-        Registered users can create a collection, and add cards to that collection. Once logged in, 
-        users can navigate to the 'Search' tab to view an exauhstiv list of your chosen TCG. 
-        Select any number of cards from any page or view, and click the button entitled 'Add Checked Cards to Queue'.
-        For your convinience, a list of chosen cards will be available for you. Un-checking any box will de-select the chosen cards.
-        Finaly, choose which collection to add your cards to, and click 'Add Queued Cards to Collection'.
-         Cardomancy will redirect you to your collection.
+       
+
+For registered users, creating a collection and adding cards to it is a straightforward process. Here's how it works:<br/>
+
+1. After logging in, head over to the 'Search' tab to access a comprehensive list of cards from your selected TCG.<br/>
+2. You can select any number of cards from any page or view that catches your interest.<br/>
+3. Click the button labeled 'Add Checked Cards to Queue' to conveniently compile a list of your selected cards.<br/>
+4. If you change your mind about certain cards, simply uncheck the respective boxes to remove them from your selection.<br/>
+5. Finally, choose the collection where you'd like to add your chosen cards and click 'Add Queued Cards to Collection.'<br/>
+
+Cardomancy will smoothly redirect you to your designated collection.
     </li>
 </ul>
 <h3>How do I delete cards from my collection?</h3>
 <ul class="d-flex text-start">
     <li>
-        From inside your collection, select any number of cards, and then select 'Add Checked Cards to Queue'.
-         For your convinience, a list of chosen cards will be available for you. Selecting 'Delete Queued Cards from Collection'
-         will permenantly remove selected cards.
+       When you're within your collection, follow these steps:<br/>
+
+1. Choose any number of cards from your collection.<br/>
+2. Next, select 'Add Checked Cards to Queue.'<br/>
+3. For your convenience, a list of your selected cards will be readily available.<br/>
+4. Should you wish to permanently remove the selected cards, simply click 'Delete Queued Cards from Collection.'<br/>
     </li>
 </ul>
 <h3>How do I send messages?</h3>
@@ -57,8 +64,12 @@
 <h3>How do I add friends/followers?</h3>
 <ul class="d-flex text-start">
     <li>
-        Users can view other users profile by selecting their username from a published collection. From there, they may toggle between
-        'Add' or 'Delete' friends to suit their needs.
+        After logging in, users can easily initiate a new message by following these steps:<br/>
+
+1. Click on the 'My Messages' tab.<br/>
+2. Select 'Create a new message' to open the message form.<br/>
+3. Enter the username of the recipient and compose your message.<br/>
+4. Finally, click 'Submit' to send your message.
     </li>
 </ul>
 <h3 >What is Magic: The Gathering?</h3>
