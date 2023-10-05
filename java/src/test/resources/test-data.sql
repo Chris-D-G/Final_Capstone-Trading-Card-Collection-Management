@@ -4,6 +4,15 @@ INSERT INTO users (username,password_hash,role) VALUES ('user1','user1','ROLE_US
 INSERT INTO users (username,password_hash,role) VALUES ('user2','user2','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('user3','user3','ROLE_USER');
 
+INSERT INTO default_profile_img (pic_id, img_loc) VALUES
+    (1, 'Logo-Default-Icon'),
+    (2, 'MTG-Symbols'),
+    (3, 'Plains-Default-Icon');
+
+INSERT INTO tcg (tcg_id,tcg_name) VALUES (1,'Magic: The Gathering');
+
+
+
 INSERT INTO users_profile (user_id, pic_id, about_me)
 VALUES((SELECT user_id FROM users where username='user1'), 1, 'Test User 1' ),
 ((SELECT user_id FROM users where username='user2'), 2, 'Test User 2' ),
@@ -28,6 +37,26 @@ INSERT INTO collections_user (collection_id,user_id) VALUES (101,1);
 INSERT INTO collections_user (collection_id,user_id) VALUES (100,2);
 INSERT INTO collections_user (collection_id,user_id) VALUES (102,3);
 
+INSERT INTO cards (card_id, tcg_id, card_title,card_color_identity, card_set_code, card_set_name,card_collector_number, card_legalities)
+    VALUES
+        (1, 1, 'Abbot of Keral Keep','Test','Test','Test','Test','Test'),
+        (2, 1, 'Acolyte of the Inferno','Test','Test','Test','Test','Test'),
+        (3, 1, 'Blightning','Test','Test','Test','Test','Test'),
+        (4, 1, 'Browbeat','Test','Test','Test','Test','Test'),
+        (5, 1, 'Crimson Muckwader','Test','Test','Test','Test','Test'),
+
+        (6, 1, 'Squirrel Mob','Test','Test','Test','Test','Test'),
+        (7, 1, 'Nut Collector','Test','Test','Test','Test','Test'),
+        (8, 1, 'Satyr Wayfinder','Test','Test','Test','Test','Test'),
+        (9, 1, 'Negate','Test','Test','Test','Test','Test'),
+        (10, 1, 'Forest','Test','Test','Test','Test','Test'),
+
+        (11, 1, 'Aurelia, the Warleader','Test','Test','Test','Test','Test'),
+        (12, 1, 'Moraug, Fury of Akoum','Test','Test','Test','Test','Test'),
+        (13, 1, 'Jeska’s Will','Test','Test','Test','Test','Test'),
+        (14, 1, 'Helm of the Host','Test','Test','Test','Test','Test'),
+        (15, 1, 'Sword of Hearth and Home','Test','Test','Test','Test','Test');
+
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (100, 1, 4),
     (100, 2, 4),
@@ -44,41 +73,11 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (101, 10, 6),
 
 
-    (102, 11, 1)
-    (102, 12, 1)
-    (102, 13, 1)
-    (102, 14, 1)
+    (102, 11, 1),
+    (102, 12, 1),
+    (102, 13, 1),
+    (102, 14, 1),
     (102, 15, 1);
-
-
-    INSERT INTO tcg (tcg_id,tcg_name) VALUES (1,'Magic: The Gathering');
-
-    INSERT INTO default_profile_img (pic_id, img_loc) VALUES
-    (1, 'Logo-Default-Icon'),
-    (2, 'MTG-Symbols'),
-    (3, 'Plains-Default-Icon');
-
-
-    INSERT INTO cards (card_id, tcg_id, card_title)
-    VALUES
-        (1, 1, 'Abbot of Keral Keep'),
-        (2, 1, 'Acolyte of the Inferno'),
-        (3, 1, 'Blightning'),
-        (4, 1, 'Browbeat'),
-        (5, 1, 'Crimson Muckwader'),
-
-        (6, 1, 'Squirrel Mob'),
-        (7, 1, 'Nut Collector'),
-        (8, 1, 'Satyr Wayfinder'),
-        (9, 1, 'Negate'),
-        (10, 1, 'Forest'),
-
-        (11, 1, 'Aurelia, the Warleader'),
-        (12, 1, 'Moraug, Fury of Akoum'),
-        (13, 1, 'Jeska’s Will'),
-        (14, 1, 'Helm of the Host'),
-        (15, 1, 'Sword of Hearth and Home');
-
 
 
 COMMIT TRANSACTION;

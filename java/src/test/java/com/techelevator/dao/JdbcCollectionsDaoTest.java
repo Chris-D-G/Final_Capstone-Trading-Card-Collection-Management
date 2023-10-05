@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.CardDto;
 import com.techelevator.model.Collection;
 import com.techelevator.model.CollectionsDto;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -16,7 +17,7 @@ public class JdbcCollectionsDaoTest extends BaseDaoTests{
     private final Collection TEST_COLLECTION1 = new Collection(400,"test1",1);
     private final Collection TEST_COLLECTION2 = new Collection(401,"test1",1);
     CollectionsDao cdao;
-
+    @Before
     public void setup() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         cdao = new JdbcCollectionsDao(jdbcTemplate);
@@ -25,15 +26,15 @@ public class JdbcCollectionsDaoTest extends BaseDaoTests{
     @Test
     public void getAllCollections() {
         List<CollectionsDto> actual = cdao.getAllCollections();
-        assertEquals(null,actual);
+        assertEquals(3,actual.size());
     }
 
     @Test
     public void getAllUserCollections() {
-        List<Collection> actual = cdao.getAllUserCollections("username");
-        assertEquals(null,actual);
-        List<Collection> actual2 = cdao.getAllUserCollections("username2");
-        assertEquals(null,actual);
+        List<Collection> actual = cdao.getAllUserCollections("user1");
+        assertEquals(1,actual.size());
+        List<Collection> actual2 = cdao.getAllUserCollections("user2");
+        assertEquals(1,actual.size());
     }
 
     @Test
@@ -59,7 +60,6 @@ public class JdbcCollectionsDaoTest extends BaseDaoTests{
 
     @Test
     public void addCardToCollection() {
-
     }
 
     @Test
