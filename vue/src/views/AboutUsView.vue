@@ -34,7 +34,7 @@
       :name="'Julie Irons'"
       :aboutMe="Julie"
       :linkedin="'linkedin.com/in/juliannaclaicher'"
-      :github="''"
+      :github="'github.com/JuliannaCynthia'"
       class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="JI"
     />
