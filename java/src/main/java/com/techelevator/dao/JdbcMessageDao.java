@@ -21,12 +21,7 @@ public class JdbcMessageDao implements MessageDao
 
     @Override
     public Message sendNewMessage(Message messageToSend) {
-        String sender = messageToSend.getMessageSender();
-        String receiver = messageToSend.getMessageReceiver();
-        String messageBody = messageToSend.getMessageText();
-
         Message createdMessage = null;
-
         String sql = "INSERT INTO messages (message_sender_user_id, message_receiver_user_id, " +
                      "message_text, message_timestamp, message_read_status) " +
                      "VALUES ( (SELECT user_id FROM users WHERE username = ? ), " +
@@ -36,6 +31,9 @@ public class JdbcMessageDao implements MessageDao
                      "false) " +
                      "RETURNING message_id;";
         try {
+            String sender = messageToSend.getMessageSender();
+            String receiver = messageToSend.getMessageReceiver();
+            String messageBody = messageToSend.getMessageText();
 
             int messageID = jdbcTemplate.queryForObject(sql, int.class, sender, receiver, messageBody);
 
@@ -51,6 +49,8 @@ public class JdbcMessageDao implements MessageDao
         } catch (DataIntegrityViolationException e) {
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
+        } catch (NullPointerException e){
+            throw new RuntimeException("Null value encountered or produced",e);
         }
 
         return createdMessage;
@@ -85,7 +85,7 @@ public class JdbcMessageDao implements MessageDao
             // catch any database connection errors and throw a new error to be caught at next level
             throw new RuntimeException("Database Integrity Violation!", e);
         } catch (NullPointerException e){
-            throw new RuntimeException("Null value encountered in mapping", e);
+            throw new RuntimeException("Null value encountered or produced", e);
         }
 
         return messageToRetrieve;
