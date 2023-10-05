@@ -10,7 +10,7 @@
             name="receiver"
             id="receiver"
             required="required"
-            class="ms-2 my-1 w-50"
+            class="ms-2 my-1 fs-4 ps-3 text-start"
           >{{message.messageReceiver}}</p>
         </div>
         <div class="d-flex flex-column p-2">
