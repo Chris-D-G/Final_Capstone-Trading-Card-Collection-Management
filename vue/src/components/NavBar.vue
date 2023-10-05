@@ -64,11 +64,6 @@
                 </router-link>
               </li>
               <li>
-                <a class="dropdown-item text-dark text-decoration-none" href="#">
-                  View Favorited Collections
-                </a>
-              </li>
-              <li>
                 <hr class="dropdown-divider" />
               </li>
               <li>
