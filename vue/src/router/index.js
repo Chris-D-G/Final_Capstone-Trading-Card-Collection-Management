@@ -15,6 +15,8 @@ import Profile from "../views/Profile.vue"
 import MessageTableView from "../views/MyMessagesView.vue"
 import MessageView from "../views/SingleMessageView.vue"
 import updateCollection from "../views/updateCollection.vue"
+import FAQ from "../components/FAQ.vue"
+import About from "../components/About.vue"
 
 
 Vue.use(Router)
@@ -112,14 +114,22 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    // { 
-    //    path:"/myprofile",
-    //   name:"myProfile",
-    //   component: Profile,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
-    // },
+    { 
+       path:"/FAQ",
+      name:"FAQ",
+      component: FAQ,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path:"/about",
+      name:"About",
+      component: About,
+      meta: {
+        requiresAuth: false
+      }
+    },
     { 
        path:"/profile/:username",
       name:"Profile",
