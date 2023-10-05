@@ -3,20 +3,20 @@
     <h1 class="text-decoration-underline fw-bold mb-5">Meet the Developers!</h1>
 
     <about
-      :imgSrc="''"
+      :imgSrc="require('@/assets/Shad.png')"
       :name="'Shadav Khan'"
       :aboutMe="Shad"
       :linkedin="'linkedin.com/in/shadavkhan'"
-      :github="''"
+      :github="'https://github.com/AmaranthShad'"
       class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="SK"
     />
     <about
-      :imgSrc="''"
+      :imgSrc="require('@/assets/amanda_selfie.jpg')"
       :name="'Amanda Schaffer'"
       :aboutMe="Amanda"
       :linkedin="'linkedin.com/in/amanda-schaffer-'"
-      :github="''"
+      :github="'https://github.com/babyschaffer'"
       class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="AS"
     />
@@ -25,7 +25,7 @@
       :name="'Johnna Anderson'"
       :aboutMe="Johnna"
       :linkedin="'linkedin.com/in/johnnaandersondeveloper'"
-      :github="''"
+      :github="'https://github.com/Jay-Burd'"
       class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="JA"
     />
