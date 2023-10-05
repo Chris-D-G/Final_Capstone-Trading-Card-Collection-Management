@@ -1,6 +1,8 @@
 <template>
   <div class="d-flex justify-content-center">
-    <div class="d-flex flex-column border border-black rounded-3 m-2 w-75">
+    <div
+      class="bg-secondary-subtle m-1 p-2 rounded-3 d-flex flex-column border border-dark w-75 shadow-lg"
+    >
       <form method="post" action="">
         <div class="d-flex border-bottom border-black p-2">
           <label for="receiver" class="ms-2 my-1">TO:</label>
@@ -72,6 +74,7 @@ export default {
   },
   methods:{
     submitNewMessage(message){
+        this.setMessageText();
       MessageService.sendNewMessage(message)
       this.$router.go(this.$router.push("/messages"))
     },
@@ -109,6 +112,12 @@ export default {
         this.senderCards = response.data;
         });
     },
+
+    setMessageText() {
+        this.message.messageText = "Hello! " + this.message.messageSender + " is requesting to trade with you! " + 
+         "They are offering " + this.tradeOfferName + " from their collection, " + this.senderCollectionName + ", " + 
+         "for your card, " + this.desiredCardName + " from " + this.receiverCollectionName + ". " + "Interested? Respond back to facilitate trading!";
+    }
     
   },
   created() {
@@ -129,16 +138,6 @@ export default {
     
   },
 
-//   computed: {
-//       checkForReceiverCollection() {
-//           if(this.receiverCollectionId != "") {
-              
-//           }
-//       },
-//       checkForSenderCollection(){
-//           if(this.senderCollectionId !=)
-//       }
-//   }
 };
 </script>
 
