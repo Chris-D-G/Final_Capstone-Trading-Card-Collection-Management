@@ -61,7 +61,7 @@ export default {
       Amanda:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
       Johnna:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
+        "Java doesn't have garbage collection, because if it did, it would delete itself.",
       Julie:
         "Hi im thinking hold on :)",
       Chris:`How I feel about...
