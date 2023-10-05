@@ -39,8 +39,8 @@ public class JdbcCollectionsDaoTest extends BaseDaoTests{
 
     @Test
     public void getCardsByCollectionId() {
-        List<CardDto> actual = cdao.getCardsByCollectionId(111111111);
-        assertEquals(null,actual);
+        List<CardDto> actual = cdao.getCardsByCollectionId(100);
+        assertEquals(5,actual.size());
     }
 
     @Test

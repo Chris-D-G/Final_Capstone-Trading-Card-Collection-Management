@@ -37,25 +37,26 @@ INSERT INTO collections_user (collection_id,user_id) VALUES (101,1);
 INSERT INTO collections_user (collection_id,user_id) VALUES (100,2);
 INSERT INTO collections_user (collection_id,user_id) VALUES (102,3);
 
-INSERT INTO cards (card_id, tcg_id, card_title,card_color_identity, card_set_code, card_set_name,card_collector_number, card_legalities)
+INSERT INTO cards (card_id, tcg_id, card_title,card_color_identity, card_colors,card_set_code, card_set_name,card_collector_number, card_legalities, card_small_image_url,card_normal_image_url,
+ card_reverse_image_url,card_reverse_small_image_url ,card_details_url,card_layout,card_cmc, card_edhrec_rank )
     VALUES
-        (1, 1, 'Abbot of Keral Keep','Test','Test','Test','Test','Test'),
-        (2, 1, 'Acolyte of the Inferno','Test','Test','Test','Test','Test'),
-        (3, 1, 'Blightning','Test','Test','Test','Test','Test'),
-        (4, 1, 'Browbeat','Test','Test','Test','Test','Test'),
-        (5, 1, 'Crimson Muckwader','Test','Test','Test','Test','Test'),
+        (1, 1, 'Abbot of Keral Keep','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (2, 1, 'Acolyte of the Inferno','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (3, 1, 'Blightning','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (4, 1, 'Browbeat','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (5, 1, 'Crimson Muckwader','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
 
-        (6, 1, 'Squirrel Mob','Test','Test','Test','Test','Test'),
-        (7, 1, 'Nut Collector','Test','Test','Test','Test','Test'),
-        (8, 1, 'Satyr Wayfinder','Test','Test','Test','Test','Test'),
-        (9, 1, 'Negate','Test','Test','Test','Test','Test'),
-        (10, 1, 'Forest','Test','Test','Test','Test','Test'),
+        (6, 1, 'Squirrel Mob','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (7, 1, 'Nut Collector','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (8, 1, 'Satyr Wayfinder','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (9, 1, 'Negate','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (10, 1, 'Forest','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
 
-        (11, 1, 'Aurelia, the Warleader','Test','Test','Test','Test','Test'),
-        (12, 1, 'Moraug, Fury of Akoum','Test','Test','Test','Test','Test'),
-        (13, 1, 'Jeska’s Will','Test','Test','Test','Test','Test'),
-        (14, 1, 'Helm of the Host','Test','Test','Test','Test','Test'),
-        (15, 1, 'Sword of Hearth and Home','Test','Test','Test','Test','Test');
+        (11, 1, 'Aurelia, the Warleader','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (12, 1, 'Moraug, Fury of Akoum','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (13, 1, 'Jeska’s Will','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (14, 1, 'Helm of the Host','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1),
+        (15, 1, 'Sword of Hearth and Home','Test','Test','Test','Test','Test','Test:Test,Test:Test','Test','Test','Test','Test','Test','Test',1.5,1);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (100, 1, 4),
