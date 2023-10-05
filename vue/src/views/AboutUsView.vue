@@ -8,7 +8,7 @@
       :aboutMe="Shad"
       :linkedin="'linkedin.com/in/shadavkhan'"
       :github="''"
-      class="m-2 ms-lg-5 me-lg-3 my-lg-3 "
+      class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="SK"
     />
     <about
@@ -17,16 +17,16 @@
       :aboutMe="Amanda"
       :linkedin="'linkedin.com/in/amanda-schaffer-'"
       :github="''"
-      class="m-2 ms-lg-5 me-lg-3 my-lg-3 "
+      class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="AS"
     />
     <about
-      :imgSrc="''"
+      :imgSrc="require('@/assets/ja-selfie.png')"
       :name="'Johnna Anderson'"
       :aboutMe="Johnna"
       :linkedin="'linkedin.com/in/johnnaandersondeveloper'"
       :github="''"
-      class="m-2 ms-lg-5 me-lg-3 my-lg-3 "
+      class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="JA"
     />
     <about
@@ -35,7 +35,7 @@
       :aboutMe="Julie"
       :linkedin="'linkedin.com/in/juliannaclaicher'"
       :github="''"
-      class="m-2 ms-lg-5 me-lg-3 my-lg-3 "
+      class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="JI"
     />
     <about
@@ -44,7 +44,7 @@
       :aboutMe="Chris"
       :linkedin="'linkedin.com/in/christopherdguerrero'"
       :github="'github.com/Chris-D-G/'"
-      class="m-2 ms-lg-5 me-lg-3 my-lg-3 "
+      class="m-2 ms-lg-5 me-lg-3 my-lg-3"
       id="CG"
     />
   </div>
@@ -64,29 +64,33 @@ export default {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
       Julie:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
-      Chris:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
+      Chris:`How I feel about...
+        Front-End Development: It's alright, but I won't make it out alive if I have do it all day.
+        Back-End Development: Won't break a sweat! Can I have more?`
     };
   },
 };
 </script>
 
 <style>
-@media screen and (min-width:769px) {
-    #SK,#JA,#CG{
+@media screen and (min-width: 769px) {
+  #SK,
+  #JA,
+  #CG {
     position: relative;
     left: 3vw;
-    }
-    #AS,#JI{
-        position: relative;
-        left:40vw
-    }
-    #SK,#AS,#JA,#JI,#CG{
-        max-width: 55vw;
-
-    }
+  }
+  #AS,
+  #JI {
+    position: relative;
+    left: 40vw;
+  }
+  #SK,
+  #AS,
+  #JA,
+  #JI,
+  #CG {
+    max-width: 55vw;
+  }
 }
-
-
-
 </style>
