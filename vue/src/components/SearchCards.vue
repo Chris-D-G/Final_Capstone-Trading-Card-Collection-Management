@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h2 class="text-dark fs-2 text-center fw-bold title my-4 p-3 w-50 mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.15">Card Catalogue</h2>
+    <message-table class="shadow-lg"/>
     <!-- start alternative -->
     <div
       id="alternative-search-bar"

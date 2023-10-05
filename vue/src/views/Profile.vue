@@ -32,7 +32,7 @@
         </button>
         <button
         v-on:click.prevent="goToTradeForm"
-        class="btn btn-success w-25 mx-auto p-2">
+        class="btn btn-success w-25 mx-auto my-2">
           Request Trade
           </button> 
       </div>
@@ -68,12 +68,12 @@
     >
       <p class="fs-2 fw-semibold pt-lg-5 px-lg-5">My Collections</p>
       <ul class="ps-lg-5 d-flex flex-column align-items-center d-lg-block">
-        <li><router-link
-          class="fs-4 text-capitalize text-lg-start text-dark"
-          v-for="collection in collectionList"
+        <li v-for="collection in collectionList"
           v-bind:collection="collection"
           v-bind:key="collection.id"
-          v-bind:to ="{name: 'CollectionCards', params:{id:collection.id}}"
+          >
+          <router-link v-bind:to ="{name: 'CollectionCards', params:{id:collection.id}}"
+          class="fs-4 text-capitalize text-lg-start text-dark"
           >{{ collection.name }}</router-link></li>                    
       </ul>
     </aside>    
