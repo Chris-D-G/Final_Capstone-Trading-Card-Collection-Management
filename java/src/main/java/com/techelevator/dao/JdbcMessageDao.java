@@ -168,6 +168,7 @@ public class JdbcMessageDao implements MessageDao
                 deleteConfirmed = true;
             } else {
                 throw new RuntimeException("Unexpected number of rows deleted: " + numberOfRows + " rows.");
+
             }
 
         } catch (CannotGetJdbcConnectionException e) {
