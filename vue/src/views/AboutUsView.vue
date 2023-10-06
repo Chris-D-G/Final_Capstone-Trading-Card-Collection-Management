@@ -58,7 +58,7 @@ export default {
   components: { About },
   data() {
     return {
-      Shad: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
+      Shad: "Lorem ipsum dolor just kidding, nice to meet you!",
       Amanda:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat mollitia quaerat quasi amet iste labore earum quisquam dolor obcaecati hic molestiae dicta quo et placeat consequuntur, autem excepturi ccusantium eveniet!",
       Johnna:
