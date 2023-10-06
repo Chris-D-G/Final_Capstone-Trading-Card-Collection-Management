@@ -7,7 +7,7 @@ INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (105, 'Wishlist', 1),
     (106, 'Wishlist', 1),
     (107, 'Wishlist', 1),
-    (108,'Meowty-Mitts Mega-Cat',1)
+    (108,'Meowty-Mitts Mega-Cat',1),
     (109, 'Stompy Bois', 1);
 
 INSERT INTO collections_user (collection_id,user_id) VALUES (101,4);
@@ -19,7 +19,7 @@ INSERT INTO collections_user (collection_id,user_id) VALUES (104,3);
 INSERT INTO collections_user (collection_id,user_id) VALUES (108,3);
 INSERT INTO collections_user (collection_id,user_id) VALUES (105,4);
 INSERT INTO collections_user (collection_id,user_id) VALUES (106,5);
-INSERT INTO collections_user (collection_id, user_id) VALUES (109, 5)
+INSERT INTO collections_user (collection_id,user_id) VALUES (109,5);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (100, (SELECT card_id FROM cards WHERE card_title = 'Abbot of Keral Keep' LIMIT 1), 4),
@@ -205,7 +205,7 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Ripjaw Raptor' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Ranging Raptors' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Verdant Sun''s Avatar' LIMIT 1), 1),
-	(109, (SELECT card_id FROM cards WHERE card_title = 'Etali, Primal Conqueror' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Etali, Primal Conqueror // Etali, Primal Sickness' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Ghalta and Mavren' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Cultivate' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Quartzwood Crasher' LIMIT 1), 1),
@@ -230,7 +230,6 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Polyraptor' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Raging Swordtooth' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Knight of the Stampede' LIMIT 1), 1),
-	(109, (SELECT card_id FROM cards WHERE card_title = 'Virtue of Strength' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Rogue''s Passage' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Sol Ring' LIMIT 1), 1),
 	(109, (SELECT card_id FROM cards WHERE card_title = 'Arcane Signet' LIMIT 1), 1),
