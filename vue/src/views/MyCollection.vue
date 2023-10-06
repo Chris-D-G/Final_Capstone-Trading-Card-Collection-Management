@@ -26,7 +26,8 @@
         height="auto"
       />
       <p class="game fw-bolder fs-5">{{ getGameName(collection.tcgId) }}</p>
-      <button class="btn" v-on:click="addToCollection(collection.id)" >Add To My Collection</button>
+      <button class="btn"><router-link class="editLink" 
+      v-bind:to="{ name: 'searchCards' }"> Add Cards to Collection </router-link></button>
       <button class="btn"><router-link class="editLink"
           v-bind:to ="{name: 'edit-collection', params:{id:collection.id}}"
           >Edit Collection</router-link></button>
@@ -79,9 +80,9 @@ export default {
       this.$router.push(`/collections/${collectionId}`);
     },
 
-    addToCollection(collectionId){
-      this.$router.push(`/collections/${collectionId}/add`)
-    },
+    // addToCollection(){
+    //   this.$router.push(`/search-cards`)
+    // },
 
     deleteCollection(collectionId){
       confirm("Are you sure?");
