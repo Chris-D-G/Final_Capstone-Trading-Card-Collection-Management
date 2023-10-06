@@ -4,7 +4,7 @@
       style="--bs-bg-opacity: 0.3">Meet the Developers!</h1>
 
     <about
-      :imgSrc="require('@/assets/Shad.png')"
+      :imgSrc="require('@/assets/AboutUs/Shad.png')"
       :name="'Shadav Khan'"
       :aboutMe="Shad"
       :linkedin="'linkedin.com/in/shadavkhan'"
@@ -13,7 +13,7 @@
       id="SK"
     />
     <about
-      :imgSrc="require('@/assets/amanda_selfie.jpg')"
+      :imgSrc="require('@/assets/AboutUs/amanda_selfie.jpg')"
       :name="'Amanda Schaffer'"
       :aboutMe="Amanda"
       :linkedin="'linkedin.com/in/amanda-schaffer-'"
@@ -22,7 +22,7 @@
       id="AS"
     />
     <about
-      :imgSrc="require('@/assets/ja-selfie.png')"
+      :imgSrc="require('@/assets/AboutUs/ja-selfie.png')"
       :name="'Johnna Anderson'"
       :aboutMe="Johnna"
       :linkedin="'linkedin.com/in/johnnaandersondeveloper'"
@@ -31,7 +31,7 @@
       id="JA"
     />
     <about
-      :imgSrc="require('@/assets/Julianna.jpg')"
+      :imgSrc="require('@/assets/AboutUs/Julianna.jpg')"
       :name="'Julianna Irons'"
       :aboutMe="Julie"
       :linkedin="'linkedin.com/in/juliannaclaicher'"
@@ -40,7 +40,7 @@
       id="JI"
     />
     <about
-      :imgSrc="require('@/assets/cg-selfie.jpg')"
+      :imgSrc="require('@/assets/AboutUs/cg-selfie.jpg')"
       :name="'Chris Guerrero'"
       :aboutMe="Chris"
       :linkedin="'linkedin.com/in/christopherdguerrero'"
