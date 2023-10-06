@@ -58,7 +58,8 @@ Cardomancy will smoothly redirect you to your designated collection.
 <h3 >How do I make trades?</h3>
 <ul class="d-flex text-start" >
     <li>
-        Users can view other users profile by selecting their username from a published collection.
+        Users can view other users profile by selecting their username from a published collection. All users have a 'Request Trade' button! Simple select the button,
+        and which cards and collections you want to trade, and an auto generated message will shoot to their inbox!
     </li>
 </ul>
 <h3>How do I add friends/followers?</h3>
