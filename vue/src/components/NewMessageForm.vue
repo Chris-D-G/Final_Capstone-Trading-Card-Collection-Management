@@ -50,7 +50,7 @@ export default {
   },
   methods:{
     submitNewMessage(message){
-      message.messageReceiver = message.messageReceiver.toLowerCase();
+     this.message.messageReceiver = this.message.messageReceiver.toLowerCase();
       MessageService.sendNewMessage(message)
       this.$router.go(this.$router.push("/messages"))
     }
