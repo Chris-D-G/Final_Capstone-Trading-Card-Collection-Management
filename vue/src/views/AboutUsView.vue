@@ -1,6 +1,7 @@
 <template>
-  <div class="mt-3">
-    <h1 class="text-decoration-underline fw-bold mb-5">Meet the Developers!</h1>
+  <div class="mt-3 p-3">
+    <h1 class="text-danger-emphasis fw-bold mb-5 p-4 mx-auto bg-white rounded-5 border border-1 border-white shadow w-25"
+      style="--bs-bg-opacity: 0.3">Meet the Developers!</h1>
 
     <about
       :imgSrc="require('@/assets/Shad.png')"

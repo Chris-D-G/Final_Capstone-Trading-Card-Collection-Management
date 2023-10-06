@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="text-dark fs-2 text-center fw-bold title mt-4 p-3 w-50 mx-auto bg-white rounded-5 border border-1 border-white shadow"
-      style="--bs-bg-opacity: 0.15">Your Sent/Received Messages</h2>
+    <h2 class="text-danger-emphasis fs-2 text-center fw-bold title mt-4 p-3 w-50 mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.3">{{this.$store.state.user.username}}'s Messages</h2>
     <message-table class="shadow-lg"/>
     <!-- off canvas field -->
     <div id="buttonContainer" class="mt-5 ">
