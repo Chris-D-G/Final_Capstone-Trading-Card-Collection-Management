@@ -65,7 +65,7 @@ export default {
         "Java doesn't have garbage collection, because if it did, it would delete itself.",
       Julie:
         "It's not working? Have you restarted the program? Are you sure?",
-      Chris:`How I feel about...
+      Chris:`Full Stack Development Skill Acquired! How I feel about the following after 2 weeks...
         Front-End Development: It's alright, but I won't make it out alive if I have do it all day.
         Back-End Development: Won't break a sweat! Can I have more?`
     };
