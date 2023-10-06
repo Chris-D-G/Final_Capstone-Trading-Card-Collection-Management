@@ -85,7 +85,7 @@
               <router-link
               class="nav-link text-light fs-3"
               :to="{ name: 'FAQ' }">
-                FAQ's
+                FAQ
               </router-link>
             </a>
           </li>
