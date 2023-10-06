@@ -7,8 +7,8 @@
       </div>
       
   <div v-else>
-         <h2 class="text-dark fs-6 text-center fw-bold title mt-5 p-2  mx-auto bg-white rounded-5 border border-1 border-white shadow w-25"
-      style="--bs-bg-opacity: 0.15" v-on:click="sendToCreate" >Start New Collection</h2>
+         <h2 class="text-body-emphasis fs-8 text-center fw-bold title mt-5 p-3 mx-auto bg-white rounded-5 border border-1 border-warning shadow w-25"
+      style="--bs-bg-opacity: 0.3" v-on:click="sendToCreate" >Start New Collection</h2>
       </div>
   <div class="d-flex flex-wrap me-2 justify-content-evenly" > 
      

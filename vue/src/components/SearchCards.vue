@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="text-dark fs-2 text-center fw-bold title my-4 p-3 w-50 mx-auto bg-white rounded-5 border border-1 border-white shadow"
-      style="--bs-bg-opacity: 0.15">Card Catalogue</h2>
+    <h2 class="text-danger-emphasis fs-22 text-center fw-bolder title my-4 p-3 w-50 mx-auto bg-white rounded-5 border border-1 border-white shadow"
+      style="--bs-bg-opacity: 0.3">Card Catalogue</h2>
     <message-table class="shadow-lg"/>
     <!-- start alternative -->
     <div
@@ -62,7 +62,7 @@
           v-model="search.collectorNumber"
         />
       </div>
-      <div class="d-flex flex-column">
+      <!-- <div class="d-flex flex-column">
         Legalities
         <select id="legalitiesFilter" v-model="search.legalities">
           <option selected disabled hidden value="">Legalities</option>
@@ -72,7 +72,7 @@
           <option value="U">Blue</option>
           <option value="B">Black</option>
         </select>
-      </div>
+      </div> -->
       <div class="d-flex flex-column">
         CMC
         <input type="number" id="cmcFilter" v-model="search.cmc" />
@@ -144,8 +144,8 @@
     </div>
     <div v-if="isLoggedIn">
       <div class="m-1">
-        <label class="me-1" for="choose-collection"
-          >Enter Name of Collection</label
+        <label class="me-1 fw-bold" for="choose-collection"
+          >Select Name of Collection : </label
         >
         <select id="legalitiesFilter" v-model="collectionName"  @change="setCollectionId()"  @change.prevent="setCollectionId()">
           <option selected disabled hidden value="">Collections</option>

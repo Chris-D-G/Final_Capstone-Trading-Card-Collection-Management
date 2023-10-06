@@ -7,7 +7,8 @@ INSERT INTO collections (collection_id, collection_name, tcg_id) VALUES
     (105, 'Wishlist', 1),
     (106, 'Wishlist', 1),
     (107, 'Wishlist', 1),
-    (108,'Meowty-Mitts Mega-Cat',1);
+    (108,'Meowty-Mitts Mega-Cat',1),
+    (109, 'Stompy Bois', 1);
 
 INSERT INTO collections_user (collection_id,user_id) VALUES (101,4);
 INSERT INTO collections_user (collection_id,user_id) VALUES (100,1);
@@ -18,6 +19,7 @@ INSERT INTO collections_user (collection_id,user_id) VALUES (104,3);
 INSERT INTO collections_user (collection_id,user_id) VALUES (108,3);
 INSERT INTO collections_user (collection_id,user_id) VALUES (105,4);
 INSERT INTO collections_user (collection_id,user_id) VALUES (106,5);
+INSERT INTO collections_user (collection_id,user_id) VALUES (109,5);
 
 INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (100, (SELECT card_id FROM cards WHERE card_title = 'Abbot of Keral Keep' LIMIT 1), 4),
@@ -189,5 +191,55 @@ INSERT INTO collections_cards (collection_id, card_id, quantity) VALUES
     (108, (SELECT card_id FROM cards WHERE card_title = 'Path to Exile' LIMIT 1), 2),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Regal Caracal' LIMIT 1), 4),
     (108, (SELECT card_id FROM cards WHERE card_title = 'Whitemane Lion' LIMIT 1), 2),
-    (108, (SELECT card_id FROM cards WHERE card_title = 'Pridemalkin' LIMIT 1), 4);
+    (108, (SELECT card_id FROM cards WHERE card_title = 'Pridemalkin' LIMIT 1), 4),
+
+
+    (109, (SELECT card_id FROM cards WHERE card_title = 'Gishath, Sun''s Avatar' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Regisaur Alpha' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Temple Altisaur' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Ghalta, Primal Hunger' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Etali, Primal Storm' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Kinjalli''s Sunwing' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Goring Ceratops' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Wakening Sun''s Avatar' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Ripjaw Raptor' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Ranging Raptors' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Verdant Sun''s Avatar' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Etali, Primal Conqueror // Etali, Primal Sickness' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Ghalta and Mavren' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Cultivate' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Quartzwood Crasher' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Silverclad Ferocidons' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Marauding Raptor' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Zacama, Primal Calamity' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Runic Armasaur' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Topiary Stomper' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Otepec Huntmaster' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Swords to Plowshares' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Boros Charm' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Heroic Intervention' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Return of the Wildspeaker' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Path to Exile' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Thrashing Brontodon' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Tranquil Frillback' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Apex Altisaur' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Wayward Swordtooth' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Forerunner of the Empire' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Kinjalli''s Caller' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Trapjaw Tyrant' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Polyraptor' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Raging Swordtooth' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Knight of the Stampede' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Rogue''s Passage' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Sol Ring' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Arcane Signet' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Farseek' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Kodama''s Reach' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Rampant Growth' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Last March of the Ents' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Blossoming Sands' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Rugged Highlands' LIMIT 1), 1),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Mountain' LIMIT 1), 11),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Plains' LIMIT 1), 8),
+	(109, (SELECT card_id FROM cards WHERE card_title = 'Forest' LIMIT 1), 8);
 

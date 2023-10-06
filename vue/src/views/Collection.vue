@@ -8,7 +8,7 @@
           <p class="fs-5 p-4">Here you can view all user created Collections!</p>
           <br />
 
-          <p class="fs-6 "><label for="viewWishlists">Include Wishlists?</label>
+          <p class="fs-6 fw-bolder"><label for="viewWishlists">Include Wishlists?</label>
     <input type="checkbox"  name="viewWishlists" @change="viewWishlists = !viewWishlists"></p>
         </h2>
   
