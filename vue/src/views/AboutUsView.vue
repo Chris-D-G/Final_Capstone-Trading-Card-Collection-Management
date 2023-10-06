@@ -63,7 +63,7 @@ export default {
       Johnna:
         "Java doesn't have garbage collection, because if it did, it would delete itself.",
       Julie:
-        "Hi im thinking hold on :)",
+        "It's not working? Have you restarted the program? Are you sure?",
       Chris:`How I feel about...
         Front-End Development: It's alright, but I won't make it out alive if I have do it all day.
         Back-End Development: Won't break a sweat! Can I have more?`

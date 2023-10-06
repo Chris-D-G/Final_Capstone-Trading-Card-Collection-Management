@@ -26,7 +26,7 @@
         <label
           for="addToCollection"
           class="fs-6 text-start me-2"
-          v-show="isLoggedIn"
+          v-show="isLoggedIn && routeCheck"
         >
           ADD
         </label>
@@ -36,7 +36,7 @@
           name="addToCollection"
           v-model="localChecked"
           @change="emitChecked"
-          v-show="isLoggedIn"
+          v-show="isLoggedIn && routeCheck"
         />
       </div>
       <div
@@ -117,6 +117,12 @@ export default {
         this.isLoggedIn = true;
       }
     },
+
+    checkroute(){
+      if(this.$route.params.id >-1){
+          this.routeCheck=false
+      }
+    }
   },
   data() {
     return {
@@ -124,10 +130,12 @@ export default {
       displayInfo: false,
       isLoggedIn: false,
       localChecked: this.isChecked, // Initialize localChecked with the prop value
-    };
+      routeCheck:true
+   };
   },
   created() {
     this.checkLoginStatus();
+    this.checkroute();
   },
 };
 </script>
