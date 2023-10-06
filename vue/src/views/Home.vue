@@ -2,20 +2,8 @@
   <div class="home">
     <body>
       <div
-        class="d-flex align-items-center mt-3 mb-3 fw-semibold"
+        class="d-flex justify-content-center align-items-center mt-3 mb-3 fw-semibold"
       >
-
-<div class="bg-white flex-column ms-5 p-4 rounded-5 border border-1 border-white shadow d-flex justify-content-evenly"
-          style="--bs-bg-opacity: 0.35"
-        >
-        <h4>Coming Soon:</h4><br/>
-        <h5>NEW! Friends!</h5>
-        <h5>NEW! Trading Options!</h5>
-        <h5>NEW! Pokémon!</h5>
-        <h5>NEW! Messaging!</h5>
-        <h5>NEW! Favourites!</h5>
-      </div>
-
         <img :src="stars" v-if="!pause" v-on:click="toggleOff" />
         <h2
           class="bg-white p-5 rounded-5 border border-1 border-white shadow"
@@ -25,9 +13,17 @@
           Display Your Cards, Showcase Your Magic!
         </h2>
         <img :src="stars" v-if="!pause" v-on:click="toggleOff"  />
-
       </div>
-     
+      <div class="bg-white w-75 mx-auto mb-4 p-5 rounded-5 border border-1 border-white shadow d-flex justify-content-evenly"
+          style="--bs-bg-opacity: 0.35"
+        >
+        <h4>Coming Soon:</h4>
+        <h5>NEW! Friends!</h5>
+        <h5>NEW! Trading Options!</h5>
+        <h5>NEW! Pokémon!</h5>
+        <h5>NEW! Messaging!</h5>
+        <h5>NEW! Favorites!</h5>
+      </div>
       <!-- bootstrap carousel -->
       <div
         id="MTG-carousel"
