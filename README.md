@@ -4,7 +4,8 @@
 
 A complete trading card game inventory management system.
 
-Initial creation supports Magic The Gathering.
+Initial creation supports Magic The Gathering. 
+To get started, download Scryfall's [Default Cards](https://scryfall.com/docs/api/bulk-data) data in JSON format and rename it to "BulkDownload.json" prior to running either the create script or the bulk data loader.
 
 Features include:
 * User Account Registration
